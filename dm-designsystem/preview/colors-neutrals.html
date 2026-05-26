@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Colors — Neutrals</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#120D1A; padding:20px; font-family:var(--font-body); }
+  .label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,245,247,0.4); margin-bottom:10px; margin-top:18px; }
+  .label:first-child { margin-top:0; }
+
+  /* ── Dark neutrals — mostrar diferencia claramente ── */
+  .dark-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:4px; }
+  .swatch { border-radius:10px; overflow:hidden; }
+  .chip-tall { height:80px; position:relative; display:flex; flex-direction:column; justify-content:flex-end; padding:10px 12px; }
+  .chip-label { font-family:var(--font-mono); font-size:8px; letter-spacing:0.08em; color:rgba(245,245,247,0.5); text-transform:uppercase; }
+  .delta-badge {
+    position:absolute; top:8px; right:8px;
+    font-family:var(--font-mono); font-size:7px; letter-spacing:0.06em;
+    padding:2px 7px; border-radius:999px;
+    background:rgba(255,255,255,0.09); color:rgba(245,245,247,0.45);
+  }
+  .meta { padding:9px 12px 11px; background:rgba(255,255,255,0.04); }
+  .name { font-family:var(--font-display); font-weight:700; font-size:12px; color:#F5F5F7; letter-spacing:-0.01em; }
+  .hex  { font-family:var(--font-mono); font-size:9px; color:rgba(245,245,247,0.45); margin-top:2px; }
+  .role { font-family:var(--font-mono); font-size:8px; color:rgba(245,245,247,0.30); margin-top:3px; letter-spacing:0.06em; }
+
+  /* ── Contrast ruler — shows difference ── */
+  .contrast-ruler { display:flex; height:28px; border-radius:7px; overflow:hidden; margin-bottom:6px; }
+  .cr-seg { flex:1; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:7px; color:rgba(245,245,247,0.4); letter-spacing:0.04em; }
+
+  /* ── Light neutrals ── */
+  .light-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+  .chip-light { height:60px; }
+
+  /* ── Grey replacement ── */
+  .grey-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .grey-chip { border-radius:8px; overflow:hidden; }
+  .grey-top { height:40px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:9px; letter-spacing:0.06em; }
+  .grey-bot { padding:6px 10px 8px; background:rgba(255,255,255,0.04); }
+  .grey-name { font-family:var(--font-display); font-weight:700; font-size:11px; color:#F5F5F7; }
+  .grey-hex  { font-family:var(--font-mono); font-size:8px; color:rgba(245,245,247,0.4); margin-top:1px; }
+  .grey-use  { font-family:var(--font-mono); font-size:7.5px; color:rgba(245,245,247,0.28); margin-top:2px; }
+</style>
+</head>
+<body>
+
+  <!-- Contrast ruler: Midnight vs Deep Ink vs Ink -->
+  <div class="label">Fondos oscuros · diferencia de valor</div>
+  <div class="contrast-ruler">
+    <div class="cr-seg" style="background:#080510">080510</div>
+    <div class="cr-seg" style="background:#0A070F">0A070F</div>
+    <div class="cr-seg" style="background:#0F0A1A">0F0A1A</div>
+    <div class="cr-seg" style="background:#120D1A">120D1A</div>
+    <div class="cr-seg" style="background:#1A1128">1A1128</div>
+    <div class="cr-seg" style="background:#241A36">241A36</div>
+  </div>
+
+  <div class="dark-row">
+    <!-- Midnight Void — más oscuro, casi negro azulado -->
+    <div class="swatch">
+      <div class="chip-tall" style="background:#080510;border:1.5px solid rgba(255,255,255,0.06)">
+        <div class="delta-badge">bg principal</div>
+        <div class="chip-label">más oscuro</div>
+      </div>
+      <div class="meta">
+        <div class="name">Midnight Void</div>
+        <div class="hex">#080510</div>
+        <div class="role">Hero bg · Nav · Modal overlay</div>
+      </div>
+    </div>
+
+    <!-- Deep Ink — fondo de cards -->
+    <div class="swatch">
+      <div class="chip-tall" style="background:#0F0A1A;border:1.5px solid rgba(255,255,255,0.07)">
+        <div class="delta-badge">+7 L</div>
+        <div class="chip-label">surface</div>
+      </div>
+      <div class="meta">
+        <div class="name">Deep Ink</div>
+        <div class="hex">#0F0A1A</div>
+        <div class="role">Cards · Inputs · Inner surface</div>
+      </div>
+    </div>
+
+    <!-- Elevated Surface — más claro que Deep Ink -->
+    <div class="swatch">
+      <div class="chip-tall" style="background:#1A1128;border:1.5px solid rgba(255,255,255,0.08)">
+        <div class="delta-badge">+17 L</div>
+        <div class="chip-label">elevated</div>
+      </div>
+      <div class="meta">
+        <div class="name">Elevated Surface</div>
+        <div class="hex">#1A1128</div>
+        <div class="role">Hover states · Raised cards</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grey replacement -->
+  <div class="label">Texto secundario · reemplazo de Ghostly Grey</div>
+  <div class="grey-grid">
+    <!-- Antes — Ghostly Grey se perdía -->
+    <div class="grey-chip" style="opacity:0.6">
+      <div class="grey-top" style="background:#B1B5C0;color:#120D1A;font-size:9px">Texto legible?</div>
+      <div class="grey-bot">
+        <div class="grey-name" style="color:#B1B5C0">Ghostly Grey</div>
+        <div class="grey-hex">#B1B5C0 — deprecado</div>
+        <div class="grey-use">✕ Muy tenue sobre #120D1A · difícil lectura</div>
+      </div>
+    </div>
+    <!-- Nuevo — Silver Mist más visible -->
+    <div class="grey-chip" style="border:1px solid rgba(124,63,190,0.2);border-radius:8px;">
+      <div class="grey-top" style="background:#C8CDD8;color:#0F0A1A;font-size:9px">Texto legible ✓</div>
+      <div class="grey-bot">
+        <div class="grey-name" style="color:#C8CDD8">Silver Mist</div>
+        <div class="grey-hex">#C8CDD8 — nuevo</div>
+        <div class="grey-use">✓ Mayor contraste · cuerpo secundario</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Light neutrals -->
+  <div class="label">Fondos claros · superficies light mode</div>
+  <div class="light-row">
+    <div class="swatch">
+      <div class="chip-light" style="background:#F5F5F7"></div>
+      <div class="meta">
+        <div class="name" style="color:#0F0A1A">Stellar Bone</div>
+        <div class="hex" style="color:rgba(15,10,26,0.5)">#F5F5F7 · texto oscuro</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip-light" style="background:#FAF8FC"></div>
+      <div class="meta">
+        <div class="name" style="color:#0F0A1A">Off-White</div>
+        <div class="hex" style="color:rgba(15,10,26,0.5)">#FAF8FC · page bg claro</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip-light" style="background:#F0EAF8"></div>
+      <div class="meta">
+        <div class="name" style="color:#2E1547">Pale Violet</div>
+        <div class="hex" style="color:rgba(46,21,71,0.55)">#F0EAF8 · chips light</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alpha whites -->
+  <div class="label">Alpha whites · sobre fondos oscuros</div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px">
+    <div style="height:28px;border-radius:5px;background:rgba(255,255,255,0.90);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:7px;color:#0F0A1A">90%</div>
+    <div style="height:28px;border-radius:5px;background:rgba(255,255,255,0.65);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:7px;color:#0F0A1A">65%</div>
+    <div style="height:28px;border-radius:5px;background:rgba(255,255,255,0.45);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:7px;color:rgba(245,245,247,0.9)">45%</div>
+    <div style="height:28px;border-radius:5px;background:rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:7px;color:rgba(245,245,247,0.7)">22%</div>
+    <div style="height:28px;border-radius:5px;background:rgba(255,255,255,0.10);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:7px;color:rgba(245,245,247,0.6)">10%</div>
+    <div style="height:28px;border-radius:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:7px;color:rgba(245,245,247,0.4)">5%</div>
+  </div>
+
+</body>
+</html>

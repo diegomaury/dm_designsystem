@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Chips & Badges</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#120D1A; padding:22px; }
+  .label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,245,247,0.4); margin-bottom:10px; margin-top:18px; }
+  .label:first-child { margin-top:0; }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .pill { font-family:var(--font-mono); font-size:10px; letter-spacing:0.10em; text-transform:uppercase; padding:6px 12px; border-radius:999px; }
+
+  /* ── Glow badges ── */
+  .badge-glow-amethyst {
+    font-family:var(--font-mono); font-size:9px; letter-spacing:0.12em;
+    text-transform:uppercase; padding:5px 11px; border-radius:999px;
+    background:rgba(124,63,190,0.18); color:#B07FE0;
+    border:1px solid rgba(124,63,190,0.40);
+    box-shadow:
+      0 0 8px rgba(124,63,190,0.35),
+      0 0 20px rgba(124,63,190,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .badge-glow-ember {
+    font-family:var(--font-mono); font-size:9px; letter-spacing:0.12em;
+    text-transform:uppercase; padding:5px 11px; border-radius:999px;
+    background:rgba(255,92,57,0.15); color:#FF8A70;
+    border:1px solid rgba(255,92,57,0.40);
+    box-shadow:
+      0 0 8px rgba(255,92,57,0.35),
+      0 0 20px rgba(255,92,57,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .badge-glow-quantum {
+    font-family:var(--font-mono); font-size:9px; letter-spacing:0.12em;
+    text-transform:uppercase; padding:5px 11px; border-radius:999px;
+    background:rgba(36,107,253,0.15); color:#6B9EFF;
+    border:1px solid rgba(36,107,253,0.40);
+    box-shadow:
+      0 0 8px rgba(36,107,253,0.35),
+      0 0 20px rgba(36,107,253,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .badge-glow-gold {
+    font-family:var(--font-mono); font-size:9px; letter-spacing:0.12em;
+    text-transform:uppercase; padding:5px 11px; border-radius:999px;
+    background:rgba(230,184,0,0.12); color:#E6B800;
+    border:1px solid rgba(230,184,0,0.40);
+    box-shadow:
+      0 0 8px rgba(230,184,0,0.30),
+      0 0 20px rgba(230,184,0,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  /* ── Glow pills ── */
+  .pill-glow-amethyst {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em;
+    text-transform:uppercase; padding:7px 14px; border-radius:999px;
+    background:rgba(124,63,190,0.15); color:#9B5FD4;
+    border:1px solid rgba(124,63,190,0.30);
+    box-shadow:0 0 12px rgba(124,63,190,0.30), 0 2px 8px rgba(124,63,190,0.15);
+  }
+  .pill-glow-ember {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em;
+    text-transform:uppercase; padding:7px 14px; border-radius:999px;
+    background:rgba(255,92,57,0.12); color:#FF5C39;
+    border:1px solid rgba(255,92,57,0.30);
+    box-shadow:0 0 12px rgba(255,92,57,0.28), 0 2px 8px rgba(255,92,57,0.14);
+  }
+  .pill-glow-neutral {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em;
+    text-transform:uppercase; padding:7px 14px; border-radius:999px;
+    background:rgba(255,255,255,0.06); color:rgba(245,245,247,0.65);
+    border:1px solid rgba(255,255,255,0.10);
+    box-shadow:0 0 8px rgba(255,255,255,0.04), 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  /* ── Skill tags with glow ── */
+  .skill-glow {
+    font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.08em;
+    text-transform:uppercase; padding:6px 13px; border-radius:7px;
+    background:#1A0F2E; color:rgba(245,245,247,0.75);
+    border:1px solid rgba(124,63,190,0.30);
+    box-shadow:
+      0 0 0 1px rgba(124,63,190,0.08),
+      0 2px 8px rgba(124,63,190,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* ── Pulse dot indicator ── */
+  .status-dot {
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--font-mono); font-size:9px; letter-spacing:0.1em;
+    text-transform:uppercase;
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+    border-radius:999px; padding:5px 12px;
+    color:rgba(245,245,247,0.65);
+  }
+  .dot-pulse {
+    width:7px; height:7px; border-radius:50%; flex-shrink:0;
+  }
+</style>
+</head>
+<body>
+
+  <div class="label">Badges · Glow states</div>
+  <div class="row">
+    <span class="badge-glow-amethyst">Innovación</span>
+    <span class="badge-glow-ember">Acción</span>
+    <span class="badge-glow-quantum">Activo</span>
+    <span class="badge-glow-gold">+600%</span>
+  </div>
+
+  <div class="label">Chips · Pills con glow</div>
+  <div class="row">
+    <span class="pill-glow-amethyst">Programa</span>
+    <span class="pill-glow-amethyst">LATAM</span>
+    <span class="pill-glow-ember">Destacado</span>
+    <span class="pill-glow-neutral">Heineken</span>
+    <span class="pill-glow-neutral">Startups</span>
+  </div>
+
+  <div class="label">Skill tags · Glow borde amethyst</div>
+  <div class="row">
+    <span class="skill-glow">Agile</span>
+    <span class="skill-glow">OKRs</span>
+    <span class="skill-glow">Design Thinking</span>
+    <span class="skill-glow">Innovation</span>
+    <span class="skill-glow">Estrategia</span>
+  </div>
+
+  <div class="label">Status indicators · Dot + glow</div>
+  <div class="row">
+    <span class="status-dot">
+      <span class="dot-pulse" style="background:#7C3FBE;box-shadow:0 0 6px rgba(124,63,190,0.8),0 0 14px rgba(124,63,190,0.4)"></span>
+      En progreso
+    </span>
+    <span class="status-dot">
+      <span class="dot-pulse" style="background:#246BFD;box-shadow:0 0 6px rgba(36,107,253,0.8),0 0 14px rgba(36,107,253,0.4)"></span>
+      Online
+    </span>
+    <span class="status-dot">
+      <span class="dot-pulse" style="background:#FF5C39;box-shadow:0 0 6px rgba(255,92,57,0.8),0 0 14px rgba(255,92,57,0.4)"></span>
+      Urgente
+    </span>
+    <span class="status-dot">
+      <span class="dot-pulse" style="background:#E6B800;box-shadow:0 0 6px rgba(230,184,0,0.8),0 0 14px rgba(230,184,0,0.4)"></span>
+      KPI activo
+    </span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Nav — Canónica</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#050208"/>
+    <rect x="10" y="38" width="80" height="24" rx="4" fill="rgba(124,63,190,0.3)" stroke="#7C3FBE" stroke-width="1"/>
+    <rect x="14" y="44" width="12" height="12" rx="2" fill="#7C3FBE"/>
+    <rect x="30" y="47" width="18" height="5" rx="2" fill="rgba(245,245,247,0.6)"/>
+    <rect x="65" y="44" width="20" height="12" rx="3" fill="#7C3FBE"/>
+  </svg>
+</template>
+<style>
+  body { margin:0; background:#120D1A; padding:0; display:flex; flex-direction:column; }
+
+  /* ── NAV CANÓNICA — contraste máximo ── */
+  .nav {
+    background:#04010A;
+    border-bottom:2px solid rgba(124,63,190,0.55);
+    box-shadow:0 4px 24px rgba(0,0,0,0.7), 0 1px 0 rgba(124,63,190,0.12) inset;
+    height:64px; display:flex; align-items:center; padding:0 28px;
+  }
+  .brand { display:flex; align-items:center; gap:10px; margin-right:auto; }
+  .brand-ring {
+    width:32px; height:32px; border-radius:50%;
+    border:1.5px solid rgba(168,112,232,0.65);
+    background:rgba(124,63,190,0.12);
+    box-shadow:0 0 12px rgba(168,112,232,0.45), 0 0 28px rgba(124,63,190,0.20);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .brand-ring img { width:18px; height:18px; object-fit:contain; filter:brightness(1.5) drop-shadow(0 0 5px rgba(168,112,232,0.7)); }
+  .brand-name { font-family:'Satoshi',sans-serif; font-weight:800; font-size:17px; letter-spacing:-0.015em; color:#FFFFFF; text-shadow:0 0 16px rgba(124,63,190,0.25); }
+  .links { display:flex; gap:22px; align-items:center; }
+  .link { font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:rgba(245,245,247,0.65); text-decoration:none; }
+  .link.active { color:#FFFFFF; border-bottom:2px solid #7C3FBE; padding-bottom:1px; }
+  .status { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:rgba(245,245,247,0.5); display:flex; align-items:center; gap:5px; }
+  .dot { width:6px; height:6px; border-radius:50%; background:#246BFD; box-shadow:0 0 7px rgba(36,107,253,0.9); }
+  .cta { font-family:'Satoshi',sans-serif; font-weight:700; font-size:12px; letter-spacing:0.04em; padding:9px 20px; background:linear-gradient(135deg,#9B5FD4,#7C3FBE,#5E2A95); color:#FFF; border-radius:7px; margin-left:8px; box-shadow:0 0 14px rgba(124,63,190,0.55), 0 4px 14px rgba(124,63,190,0.3); border:1px solid rgba(255,255,255,0.10); }
+
+  /* Scrolled */
+  .nav-sc { background:rgba(4,1,10,0.95); backdrop-filter:blur(14px) saturate(140%); border-bottom:2px solid rgba(124,63,190,0.40); height:64px; display:flex; align-items:center; padding:0 28px; box-shadow:0 4px 24px rgba(0,0,0,0.8), 0 0 40px rgba(124,63,190,0.05); }
+
+  .info { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,245,247,0.30); padding:7px 28px; background:#08040F; border-top:1px solid rgba(255,255,255,0.04); }
+
+  /* Hero context -->*/
+  .hero-ctx { background:linear-gradient(180deg,#120D1A 0%,#2E1547 100%); padding:28px 28px 24px; }
+  .hero-tag { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#7C3FBE; margin-bottom:8px; }
+  .hero-h { font-family:'Satoshi',sans-serif; font-weight:800; font-size:26px; letter-spacing:-0.02em; color:#F5F5F7; line-height:1.1; }
+  .hero-h span { color:#FF5C39; }
+  .hero-sub { font-family:'Inter',sans-serif; font-size:13px; color:rgba(245,245,247,0.5); margin-top:6px; }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">
+      <div class="brand-ring"><img src="assets/isotipo-gradient.png" alt="DM"></div>
+      <span class="brand-name">Diego Maury</span>
+    </div>
+    <div class="links">
+      <a class="link active" href="#">Trabajo</a>
+      <a class="link" href="#">Servicios</a>
+      <a class="link" href="#">Sobre mí</a>
+      <span class="status"><span class="dot"></span>Disponible</span>
+      <span class="cta">Agendar →</span>
+    </div>
+  </nav>
+  <div class="info">Canónica · #050208 · amethyst border 28% · amethyst CTA gradient + glow</div>
+
+  <nav class="nav-sc">
+    <div class="brand">
+      <div class="brand-ring"><img src="assets/isotipo-gradient.png" alt="DM"></div>
+      <span class="brand-name">Diego Maury</span>
+    </div>
+    <div class="links">
+      <a class="link" href="#">Trabajo</a>
+      <a class="link active" href="#">Servicios</a>
+      <a class="link" href="#">Sobre mí</a>
+      <span class="status"><span class="dot"></span>Disponible</span>
+      <span class="cta">Agendar →</span>
+    </div>
+  </nav>
+  <div class="info">Scrolled · frosted blur + shadow oscuro</div>
+
+  <div class="hero-ctx">
+    <div class="hero-tag">Strategic Program &amp; Innovation</div>
+    <div class="hero-h">Hagamos que las <span>cosas</span> pasen.</div>
+    <div class="hero-sub">Strategic Program &amp; Innovation Manager · LATAM · diegomaury.mx</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#120D1A; padding:20px; }
+  .label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,245,247,0.4); margin-bottom:10px; margin-top:18px; }
+  .label:first-child { margin-top:0; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .c-tag   { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#A870E8; margin-bottom:8px; }
+  .c-title { font-family:var(--font-display); font-weight:800; font-size:17px; letter-spacing:-0.015em; color:#F5F5F7; line-height:1.2; }
+  .c-body  { font-family:var(--font-body); font-size:11.5px; line-height:1.55; color:#B1B5C0; margin-top:7px; }
+  .c-meta  { font-family:var(--font-mono); font-size:8px; color:rgba(245,245,247,0.25); margin-top:10px; letter-spacing:0.08em; }
+
+  /* ── Glow variants ── */
+  .card-glow-amethyst {
+    background:#0F0A1A;
+    border-radius:14px;
+    padding:16px;
+    border:1px solid rgba(124,63,190,0.25);
+    box-shadow:
+      0 0 0 1px rgba(124,63,190,0.12),
+      0 4px 16px rgba(124,63,190,0.18),
+      0 16px 48px rgba(124,63,190,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .card-glow-ember {
+    background:#0F0A1A;
+    border-radius:14px;
+    padding:16px;
+    border:1px solid rgba(255,92,57,0.25);
+    box-shadow:
+      0 0 0 1px rgba(255,92,57,0.10),
+      0 4px 16px rgba(255,92,57,0.20),
+      0 16px 48px rgba(255,92,57,0.10),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .card-glow-quantum {
+    background:#0F0A1A;
+    border-radius:14px;
+    padding:16px;
+    border:1px solid rgba(36,107,253,0.25);
+    box-shadow:
+      0 0 0 1px rgba(36,107,253,0.12),
+      0 4px 16px rgba(36,107,253,0.20),
+      0 16px 48px rgba(36,107,253,0.10),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .card-glow-gold {
+    background:#0F0A1A;
+    border-radius:14px;
+    padding:16px;
+    border:1px solid rgba(230,184,0,0.25);
+    box-shadow:
+      0 0 0 1px rgba(230,184,0,0.10),
+      0 4px 16px rgba(230,184,0,0.18),
+      0 16px 48px rgba(230,184,0,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* ── Soft elevation (dark, no color) ── */
+  .card-elevated {
+    background:#0F0A1A;
+    border-radius:14px;
+    padding:16px;
+    border:1px solid rgba(255,255,255,0.07);
+    box-shadow:
+      0 2px 8px rgba(0,0,0,0.4),
+      0 8px 32px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* ── Shadow scale annotation ── */
+  .shadow-scale { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:4px; }
+  .shadow-chip {
+    height:36px; border-radius:8px;
+    background:#0F0A1A;
+    border:1px solid rgba(255,255,255,0.06);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:7.5px; color:rgba(245,245,247,0.4); letter-spacing:0.06em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="label">Cards con glow · Amethyst & Ember</div>
+  <div class="grid">
+    <div class="card-glow-amethyst">
+      <div class="c-tag">Caso de estudio</div>
+      <div class="c-title">Heineken — Sistema de Innovación</div>
+      <div class="c-body">+600% adopción en 18 meses. Rediseño end-to-end del ecosistema interno.</div>
+      <div class="c-meta">glow · amethyst · #7C3FBE</div>
+    </div>
+    <div class="card-glow-ember">
+      <div class="c-tag" style="color:#FF5C39">Destacado</div>
+      <div class="c-title">LATAM Innovation Network</div>
+      <div class="c-body">3,000+ emprendedores formados. Red de 12 países. Top performer.</div>
+      <div class="c-meta">glow · ember · #FF5C39</div>
+    </div>
+  </div>
+
+  <div class="label">Quantum & Gold</div>
+  <div class="grid">
+    <div class="card-glow-quantum">
+      <div class="c-tag" style="color:#246BFD">Disponible</div>
+      <div class="c-title">Programa de Transformación</div>
+      <div class="c-body">Diseño e implementación de programas de innovación corporativa a medida.</div>
+      <div class="c-meta">glow · quantum · #246BFD</div>
+    </div>
+    <div class="card-glow-gold">
+      <div class="c-tag" style="color:#E6B800">Impacto</div>
+      <div class="c-title" style="color:#E6B800">+600%</div>
+      <div class="c-body">Adopción del proceso de innovación. Métricas verificadas 2021–2023.</div>
+      <div class="c-meta">glow · gold · #E6B800</div>
+    </div>
+  </div>
+
+  <div class="label">Elevated · Sin color (dark shadow)</div>
+  <div class="card-elevated">
+    <div class="c-tag">Servicio</div>
+    <div class="c-title">Consultoría Estratégica</div>
+    <div class="c-body">Acompañamiento en diseño de estrategia, cultura de innovación y transformación organizacional.</div>
+    <div class="c-meta">elevated · neutral shadow · no color</div>
+  </div>
+
+  <div class="label">Shadow scale reference</div>
+  <div class="shadow-scale">
+    <div class="shadow-chip" style="box-shadow:0 1px 4px rgba(124,63,190,0.2)">xs glow</div>
+    <div class="shadow-chip" style="box-shadow:0 4px 16px rgba(124,63,190,0.25)">sm glow</div>
+    <div class="shadow-chip" style="box-shadow:0 8px 32px rgba(124,63,190,0.30)">md glow</div>
+    <div class="shadow-chip" style="box-shadow:0 16px 48px rgba(124,63,190,0.35)">lg glow</div>
+  </div>
+
+</body>
+</html>

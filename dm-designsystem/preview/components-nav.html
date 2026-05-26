@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Nav — Canónica</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#1A1026; padding:0; display:flex; flex-direction:column; gap:2px; }
+
+  /* ── Isotipo SVG inline (fallback si no carga la imagen) ── */
+  .iso-svg { width:28px; height:28px; color:#A870E8; flex-shrink:0; filter:drop-shadow(0 0 8px rgba(168,112,232,0.8)); }
+
+  /* ── NAV CANÓNICA ── */
+  .nav {
+    background:#07030D;
+    border-bottom:1.5px solid rgba(124,63,190,0.45);
+    box-shadow:0 1px 0 rgba(124,63,190,0.12), 0 4px 24px rgba(0,0,0,0.6);
+    height:64px; display:flex; align-items:center; padding:0 24px;
+  }
+  .brand { display:flex; align-items:center; gap:10px; margin-right:auto; }
+  .brand-logo-ring {
+    width:34px; height:34px; border-radius:50%;
+    border:1.5px solid rgba(168,112,232,0.65);
+    background:rgba(124,63,190,0.12);
+    box-shadow:0 0 12px rgba(168,112,232,0.45), 0 0 28px rgba(124,63,190,0.20);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .brand-logo-ring img { width:20px; height:20px; object-fit:contain; filter:brightness(1.5) drop-shadow(0 0 6px rgba(168,112,232,0.7)); }
+  .brand-name {
+    font-family:var(--font-display); font-weight:800; font-size:16px;
+    letter-spacing:-0.015em; color:#F5F5F7;
+    text-shadow:0 0 20px rgba(124,63,190,0.25);
+  }
+  .links { display:flex; gap:24px; align-items:center; }
+  .link { font-family:var(--font-body); font-size:13px; font-weight:500; color:rgba(245,245,247,0.5); text-decoration:none; }
+  .link.active { color:#F5F5F7; border-bottom:2px solid #7C3FBE; padding-bottom:1px; }
+  .status { font-family:var(--font-mono); font-size:9px; letter-spacing:0.10em; text-transform:uppercase; color:rgba(245,245,247,0.4); display:flex; align-items:center; gap:5px; }
+  .dot-blue { width:6px; height:6px; border-radius:50%; background:#246BFD; box-shadow:0 0 6px rgba(36,107,253,0.8); }
+  .cta {
+    font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:9px 18px; background:linear-gradient(135deg,#9B5FD4,#7C3FBE,#5E2A95); color:#F5F5F7; border-radius:7px;
+    box-shadow:0 0 12px rgba(124,63,190,0.5), 0 4px 16px rgba(124,63,190,0.3);
+    border:1px solid rgba(255,255,255,0.1);
+    margin-left:8px;
+  }
+
+  /* ── INFO STRIP ── */
+  .info { font-family:var(--font-mono); font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,245,247,0.28); padding:6px 24px; background:#07030D; border-bottom:1px solid rgba(255,255,255,0.04); }
+
+  /* ── SCROLLED ── */
+  .nav-sc {
+    background:rgba(7,3,13,0.94); backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1.5px solid rgba(124,63,190,0.30);
+    box-shadow:0 2px 20px rgba(0,0,0,0.7), 0 0 40px rgba(124,63,190,0.06);
+    height:64px; display:flex; align-items:center; padding:0 24px;
+  }
+
+  /* ── HERO CONTEXT ── */
+  .hero-ctx {
+    background:linear-gradient(180deg,#0F0A1A 0%,#1E1035 60%,#120D1A 100%);
+    border-top:1px solid rgba(124,63,190,0.20);
+    padding:28px 24px 24px;
+  }
+  .hero-tag { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#A870E8; margin-bottom:8px; text-shadow:0 0 12px rgba(168,112,232,0.5); }
+  .hero-h { font-family:var(--font-display); font-weight:800; font-size:26px; letter-spacing:-0.02em; color:#F5F5F7; line-height:1.1; }
+  .hero-h span { color:#FF5C39; text-shadow:0 0 16px rgba(255,92,57,0.4); }
+  .hero-sub { font-family:var(--font-body); font-size:13px; color:rgba(245,245,247,0.5); margin-top:7px; }
+</style>
+</head>
+<body>
+
+  <!-- Canónica -->
+  <nav class="nav">
+    <div class="brand">
+      <div class="brand-logo-ring">
+        <img src="../assets/isotipo.png" style="filter:brightness(10) drop-shadow(0 0 5px rgba(168,112,232,0.7))" alt="DM" onerror="this.style.display='none';this.parentNode.innerHTML='<svg viewBox=\'0 0 100 100\' fill=\'none\' style=\'width:18px;height:18px;color:#7C3FBE\'><path d=\'M50 6 L88 28 L88 72 L50 94 L12 72 L12 28 Z\' stroke=\'currentColor\' stroke-width=\'6\' stroke-linejoin=\'round\'/><path d=\'M25 66 L46 40 L54 52 L54 74 L75 60\' stroke=\'#FF5C39\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg>'">
+      </div>
+      <span class="brand-name">Diego Maury</span>
+    </div>
+    <div class="links">
+      <a class="link active" href="#">Trabajo</a>
+      <a class="link" href="#">Servicios</a>
+      <a class="link" href="#">Sobre mí</a>
+      <span class="status"><span class="dot-blue"></span>Disponible</span>
+      <span class="cta">Agendar →</span>
+    </div>
+  </nav>
+  <div class="info">Canónica · #07030D · amethyst border 45% · logo ring glow · CTA gradient shadow</div>
+
+  <!-- Scrolled -->
+  <nav class="nav-sc">
+    <div class="brand">
+      <div class="brand-logo-ring">
+        <img src="../assets/isotipo.png" style="filter:brightness(10) drop-shadow(0 0 5px rgba(168,112,232,0.7))" alt="DM" onerror="this.style.display='none';this.parentNode.innerHTML='<svg viewBox=\'0 0 100 100\' fill=\'none\' style=\'width:18px;height:18px;color:#7C3FBE\'><path d=\'M50 6 L88 28 L88 72 L50 94 L12 72 L12 28 Z\' stroke=\'currentColor\' stroke-width=\'6\' stroke-linejoin=\'round\'/><path d=\'M25 66 L46 40 L54 52 L54 74 L75 60\' stroke=\'#FF5C39\' stroke-width=\'5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/></svg>'">
+      </div>
+      <span class="brand-name">Diego Maury</span>
+    </div>
+    <div class="links">
+      <a class="link" href="#">Trabajo</a>
+      <a class="link active" href="#">Servicios</a>
+      <a class="link" href="#">Sobre mí</a>
+      <span class="status"><span class="dot-blue"></span>Disponible</span>
+      <span class="cta">Agendar →</span>
+    </div>
+  </nav>
+  <div class="info">Scrolled · frosted glass · shadow oscuro · amethyst tint</div>
+
+  <!-- Hero context -->
+  <div class="hero-ctx">
+    <div class="hero-tag">Strategic Program &amp; Innovation</div>
+    <div class="hero-h">Hagamos que las <span>cosas</span> pasen.</div>
+    <div class="hero-sub">Strategic Program &amp; Innovation Manager · LATAM · diegomaury.mx</div>
+  </div>
+
+</body>
+</html>

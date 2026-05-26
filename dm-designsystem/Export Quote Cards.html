@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exportar Quote Cards — Diego Maury</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #070410;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px 60px;
+      font-family: var(--font-display);
+      gap: 36px;
+    }
+
+    /* ── EXPORT UI ────────────────────────────────────────── */
+    .export-panel {
+      width: 100%;
+      max-width: 640px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .export-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dm-bone);
+      letter-spacing: -0.02em;
+    }
+    .export-title span { color: var(--dm-amethyst); }
+    .export-sub {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.5;
+      margin-top: -8px;
+    }
+    .progress-track {
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--dm-tricolor);
+      border-radius: 999px;
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+      width: 0%;
+    }
+    .export-log {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.04em;
+      min-height: 20px;
+    }
+    .export-log .ok   { color: var(--dm-amethyst); }
+    .export-log .done { color: #4ade80; }
+    .export-log .err  { color: var(--dm-ember); }
+
+    .export-btn {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--dm-amethyst) 0%, var(--dm-amethyst-600) 100%);
+      color: var(--dm-bone);
+      align-self: flex-start;
+      letter-spacing: -0.01em;
+      transition: opacity 200ms, transform 200ms;
+      box-shadow: 0 4px 14px rgba(124,63,190,0.35);
+    }
+    .export-btn:hover  { opacity: 0.88; transform: translateY(-1px); }
+    .export-btn:active { transform: translateY(0); }
+    .export-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+    /* ── CARD PREVIEW LABEL ───────────────────────────────── */
+    .preview-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      text-align: center;
+    }
+
+    /* ── STAGE WRAPPER ────────────────────────────────────── */
+    .stage-scaler {
+      transform-origin: top center;
+      width: 1080px;
+      height: 1080px;
+      flex-shrink: 0;
+    }
+
+    /* ── STAGE ────────────────────────────────────────────── */
+    .stage {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background: var(--dm-catalyst-900);
+    }
+    .stage.s-violet {
+      background: linear-gradient(148deg, #1c0a34 0%, #38196a 52%, #130828 100%);
+    }
+    .stage.s-light { background: #F4EEFC; }
+
+    .hex-bg {
+      position: absolute; inset: 0;
+      background-image: url('assets/hexagon-pattern.png');
+      background-size: 560px auto;
+      background-position: center right -30px;
+      background-repeat: no-repeat;
+      opacity: 0.065;
+      pointer-events: none;
+    }
+    .s-light .hex-bg {
+      background-image: url('assets/hexagon-pattern-light.png');
+      background-size: 480px auto;
+      background-position: center right 0;
+      opacity: 0.28;
+    }
+    .orb-a {
+      position: absolute; width: 660px; height: 660px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,63,190,0.30) 0%, transparent 68%);
+      top: -180px; left: -210px; pointer-events: none;
+    }
+    .orb-b {
+      position: absolute; width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,92,57,0.17) 0%, transparent 68%);
+      bottom: 30px; right: -90px; pointer-events: none;
+    }
+    .s-violet .orb-a { background: radial-gradient(circle, rgba(124,63,190,0.38) 0%, transparent 68%); }
+    .s-light  .orb-a { background: radial-gradient(circle, rgba(124,63,190,0.10) 0%, transparent 68%); }
+    .s-light  .orb-b { background: radial-gradient(circle, rgba(255,92,57,0.07) 0%, transparent 68%); }
+
+    .tricolor-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--dm-tricolor); z-index: 4;
+    }
+    .isotipo-wm {
+      position: absolute; bottom: -22px; right: -22px;
+      width: 310px; height: 310px;
+      opacity: 0.045; filter: brightness(10);
+      object-fit: contain; pointer-events: none;
+    }
+    .s-light .isotipo-wm { filter: none; opacity: 0.065; }
+
+    .quote-glyph {
+      position: absolute; top: 50px; left: 64px;
+      font-family: var(--font-display); font-size: 310px; font-weight: 900;
+      line-height: 1; color: var(--dm-amethyst); opacity: 0.17;
+      pointer-events: none; user-select: none; letter-spacing: -0.06em;
+    }
+    .s-light .quote-glyph { opacity: 0.10; }
+
+    .stage-counter {
+      position: absolute; top: 52px; right: 88px; z-index: 4;
+      font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.20em; color: rgba(255,255,255,0.28);
+      display: flex; align-items: baseline; gap: 1px;
+    }
+    .stage-counter .cur { font-size: 17px; color: var(--dm-amethyst); }
+    .s-light .stage-counter     { color: rgba(15,10,26,0.28); }
+    .s-light .stage-counter .cur { color: var(--dm-amethyst); }
+
+    .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 118px 92px 110px 92px;
+      gap: 50px;
+    }
+    .quote-text {
+      font-family: var(--font-display); font-style: italic; font-weight: 700;
+      color: var(--dm-bone); line-height: 1.12;
+      letter-spacing: -0.024em; text-wrap: pretty;
+      position: relative; z-index: 1;
+    }
+    .s-light .quote-text { color: var(--dm-catalyst-700); }
+    .sz-xl { font-size: 84px; }
+    .sz-lg { font-size: 72px; }
+    .sz-md { font-size: 60px; }
+    .sz-sm { font-size: 50px; }
+    .sz-xs { font-size: 42px; }
+
+    .attribution {
+      display: flex; align-items: flex-start; gap: 22px;
+      position: relative; z-index: 1;
+    }
+    .attr-rule {
+      width: 3px; flex-shrink: 0; margin-top: 3px;
+      border-radius: 2px; background: var(--dm-ember); height: 52px;
+    }
+    .attr-body { display: flex; flex-direction: column; gap: 7px; }
+    .attr-label {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--dm-ember);
+    }
+    .attr-blog {
+      font-family: var(--font-body); font-size: 20px; font-weight: 400;
+      color: rgba(245,245,247,0.58); line-height: 1.40; letter-spacing: -0.005em;
+    }
+    .s-light .attr-blog { color: rgba(15,10,26,0.52); }
+    .attr-urls { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+    .attr-url {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.06em; color: rgba(245,245,247,0.35);
+    }
+    .attr-url-sep { font-size: 12px; color: rgba(245,245,247,0.20); }
+    .s-light .attr-url     { color: rgba(15,10,26,0.35); }
+    .s-light .attr-url-sep { color: rgba(15,10,26,0.20); }
+
+    .bottom-bar {
+      position: absolute; bottom: 52px; left: 92px; right: 92px;
+      display: flex; align-items: center; justify-content: space-between; z-index: 4;
+    }
+    .bottom-left { display: flex; flex-direction: column; gap: 6px; }
+    .logo-wrap   { display: flex; }
+    .tagline-txt {
+      font-family: var(--font-mono); font-size: 16px; font-weight: 500;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .s-light .tagline-txt { color: rgba(15,10,26,0.55); }
+    .url-row { display: flex; align-items: center; gap: 10px; }
+    .url-item {
+      font-family: var(--font-mono); font-size: 16px; font-weight: 500;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.70);
+    }
+    .url-sep { font-size: 14px; color: rgba(255,255,255,0.35); }
+    .s-light .url-item { color: rgba(15,10,26,0.65); }
+    .s-light .url-sep  { color: rgba(15,10,26,0.30); }
+
+    .logo-img    { height: 82px; object-fit: contain; }
+    .logo-dark   { filter: brightness(0) invert(1); opacity: 0.92; }
+    .logo-light  { display: none; opacity: 0.95; }
+    .s-light .logo-dark  { display: none; }
+    .s-light .logo-light { display: block; }
+  </style>
+  <template id="__bundler_thumbnail"><svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="56" fill="#120D1A"/><rect x="0" y="0" width="80" height="3" fill="url(#tg)"/><text x="12" y="38" font-size="32" fill="#7C3FBE" opacity="0.7" font-family="serif" font-style="italic">"</text><defs><linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#7C3FBE"/><stop offset="0.55" stop-color="#4B2672"/><stop offset="1" stop-color="#FF5C39"/></linearGradient></defs></svg></template>
+</head>
+<body>
+
+  <!-- Export panel -->
+  <div class="export-panel">
+    <div class="export-title">Exportar <span>Quote Cards</span></div>
+    <p class="export-sub">Genera 10 imágenes PNG 1080×1080 con estilos intercalados (Oscuro · Violeta · Claro) y las descarga como un archivo ZIP.</p>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="export-log" id="exportLog">Listo para exportar.</div>
+    <button class="export-btn" id="exportBtn" onclick="startExport()">Descargar ZIP (10 imágenes)</button>
+  </div>
+
+  <div class="preview-label" id="previewLabel">VISTA PREVIA</div>
+
+  <!-- Stage for rendering -->
+  <div class="stage-scaler" id="stageScaler">
+    <div class="stage" id="stage">
+      <div class="tricolor-bar"></div>
+      <div class="hex-bg"></div>
+      <div class="orb-a"></div>
+      <div class="orb-b"></div>
+      <img class="isotipo-wm" src="assets/isotipo.svg" alt="">
+      <div class="quote-glyph">&#8220;</div>
+      <div class="stage-counter">
+        <span class="cur" id="curNum">01</span>
+        <span>&thinsp;/&thinsp;10</span>
+      </div>
+      <div class="content">
+        <p class="quote-text" id="quoteText"></p>
+        <div class="attribution">
+          <div class="attr-rule"></div>
+          <div class="attr-body">
+            <span class="attr-label">Substack</span>
+            <span class="attr-blog" id="attrBlog"></span>
+            <div class="attr-urls">
+              <span class="attr-url">diegomaury.substack.com</span>
+              <span class="attr-url-sep">·</span>
+              <span class="attr-url">diegomaury.mx</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <div class="bottom-left">
+          <span class="tagline-txt">Hagamos que las cosas pasen</span>
+          <div class="url-row">
+            <span class="url-item">diegomaury.mx</span>
+            <span class="url-sep">&middot;</span>
+            <span class="url-item">diegomaury.substack.com</span>
+          </div>
+        </div>
+        <div class="logo-wrap">
+          <img class="logo-img logo-dark"  src="assets/logo-horizontal.png" alt="Diego Maury">
+          <img class="logo-img logo-light" src="assets/logo-alt.png"        alt="Diego Maury">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const quotes = [
+      { text: "La vida continúa. Siempre habrá nuevos proyectos… si decides seguir.",          blog: "Mi más grande error como emprendedor" },
+      { text: "Sí, va a doler. Pero también vas a florecer.",                                   blog: "Lo que me enseñó la depresión" },
+      { text: "Que pase lo que tenga que pasar. Sin embargo, tendrá que alcanzarme en el camino.", blog: "Lo que ni yo sabía" },
+      { text: "Nunca empiezas de cero: empiezas desde la experiencia.",                          blog: "Lo que me enseñó la depresión" },
+      { text: "Cada error es un punto de partida hacia horizontes más amplios y significativos.", blog: "Ecos Antárticos: Desafíos y Lecciones con Jorge Acevedo" },
+      { text: "Transformé el dolor en combustible para forjar mi propio destino, donde las riendas de mi vida están firmemente en mis manos.", blog: "Sigo aquí: Un viaje de emprendimiento e innovación" },
+      { text: "Hoy entiendo que no hay nada más grande que mi propósito, mi visión y mis capacidades.", blog: "Mi último rechazo" },
+      { text: "La resiliencia no es un talento. Es una práctica. Y se cultiva.",                 blog: "Mi más grande error como emprendedor" },
+      { text: "No necesitas ser experto en código, pero sí en contexto. Saber qué problema estás resolviendo es más importante que dominar un lenguaje.", blog: "Lo que aprendí construyendo una app sin saber programar" },
+      { text: "Si quieres jugar en serio, tienes que pensar como estratega, actuar como líder y moverte como visionario.", blog: "Lunes Negro" }
+    ];
+
+    const styleSequence  = ['',        's-violet', 's-light', '',        's-violet', 's-light', '',        's-violet', 's-light', ''];
+    const styleNames     = ['oscuro',  'violeta',  'claro',   'oscuro',  'violeta',  'claro',   'oscuro',  'violeta',  'claro',   'oscuro'];
+
+    function sizeClass(len) {
+      if (len <= 50)  return 'sz-xl';
+      if (len <= 75)  return 'sz-lg';
+      if (len <= 108) return 'sz-md';
+      if (len <= 132) return 'sz-sm';
+      return 'sz-xs';
+    }
+
+    function setContent(index) {
+      const q  = quotes[index];
+      document.getElementById('quoteText').textContent = q.text;
+      document.getElementById('quoteText').className   = 'quote-text ' + sizeClass(q.text.length);
+      document.getElementById('attrBlog').textContent  = q.blog;
+      document.getElementById('curNum').textContent    = String(index + 1).padStart(2, '0');
+    }
+
+    function setLog(msg, cls) {
+      const el = document.getElementById('exportLog');
+      el.innerHTML = '<span class="' + (cls || '') + '">' + msg + '</span>';
+    }
+
+    function setProgress(n) {
+      document.getElementById('progressFill').style.width = (n / 10 * 100) + '%';
+    }
+
+    /* Viewport scaling for preview */
+    function scaleStage() {
+      const scaler = document.getElementById('stageScaler');
+      const avail  = Math.min(window.innerWidth - 48, window.innerHeight - 320);
+      const sc     = Math.min(1, avail / 1080);
+      scaler.style.transform       = 'scale(' + sc + ')';
+      scaler.style.transformOrigin = 'top center';
+      scaler.parentElement && (scaler.style.marginBottom = ((sc - 1) * 1080) + 'px');
+    }
+    window.addEventListener('resize', scaleStage);
+    scaleStage();
+
+    /* Init preview */
+    setContent(0);
+
+    /* ── ASSET PRE-LOADER ──────────────────────────────────
+       Converts local images to data-URLs via Canvas so
+       html-to-image never needs to fetch external URLs.    */
+    const _asset = {};
+
+    function imgToDataUrl(src) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = function() {
+          try {
+            const c = document.createElement('canvas');
+            c.width  = img.naturalWidth  || img.width  || 1;
+            c.height = img.naturalHeight || img.height || 1;
+            c.getContext('2d').drawImage(img, 0, 0);
+            resolve(c.toDataURL('image/png'));
+          } catch(e) { resolve(src); }
+        };
+        img.onerror = () => resolve(src);
+        img.src = src + '?_cb=' + Date.now();
+      });
+    }
+
+    async function preloadAssets() {
+      setLog('Cargando assets locales…');
+      _asset.hexDark  = await imgToDataUrl('assets/hexagon-pattern.png');
+      _asset.hexLight = await imgToDataUrl('assets/hexagon-pattern-light.png');
+      _asset.isotipo  = await imgToDataUrl('assets/isotipo.svg');
+      _asset.logoDark = await imgToDataUrl('assets/logo-horizontal.png');
+      _asset.logoAlt  = await imgToDataUrl('assets/logo-alt.png');
+      /* Patch <img> src attributes */
+      document.querySelector('.isotipo-wm').src = _asset.isotipo;
+      document.querySelector('.logo-dark').src  = _asset.logoDark;
+      document.querySelector('.logo-light').src = _asset.logoAlt;
+    }
+
+    function applyHexBg(styleClass) {
+      const url = styleClass === 's-light' ? _asset.hexLight : _asset.hexDark;
+      document.querySelector('.hex-bg').style.backgroundImage = 'url(' + url + ')';
+    }
+
+    /* ── EXPORT ────────────────────────────────────────── */
+    async function startExport() {
+      const btn    = document.getElementById('exportBtn');
+      btn.disabled = true;
+      const stage  = document.getElementById('stage');
+      const scaler = document.getElementById('stageScaler');
+      const savedTransform = scaler.style.transform;
+      scaler.style.transform = 'none';
+
+      const zip = new JSZip();
+      setProgress(0);
+
+      try {
+        await preloadAssets();
+        setLog('Assets listos. Iniciando capturas…', 'ok');
+
+        for (let i = 0; i < 10; i++) {
+          const sClass = styleSequence[i];
+          stage.className = ('stage ' + sClass).trim();
+          applyHexBg(sClass);
+          setContent(i);
+          document.getElementById('previewLabel').textContent =
+            'RENDERIZANDO ' + (i + 1) + '/10 — ' + styleNames[i].toUpperCase();
+
+          await new Promise(r => setTimeout(r, 700));
+          setLog('Capturando ' + (i + 1) + '/10 — ' + styleNames[i] + '…', 'ok');
+
+          const dataUrl = await htmlToImage.toPng(stage, {
+            width:      1080,
+            height:     1080,
+            pixelRatio: 1,
+            skipFonts:  true,
+            oncloneDocument: function(doc) {
+              doc.querySelectorAll('link[rel="stylesheet"]').forEach(function(l){ l.remove(); });
+              var wm = doc.querySelector('.isotipo-wm');
+              if (wm) wm.style.display = 'none';
+            }
+          });
+
+          const filename = 'quote-' + String(i + 1).padStart(2, '0') + '-' + styleNames[i] + '.png';
+          zip.file(filename, dataUrl.split(',')[1], { base64: true });
+          setProgress(i + 1);
+        }
+
+        setLog('Generando ZIP…', 'ok');
+        const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href = url; a.download = 'quote-cards-diego-maury.zip';
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        setLog('✓ ZIP descargado — 10 imágenes 1080×1080', 'done');
+        document.getElementById('previewLabel').textContent = 'EXPORTACIÓN COMPLETA ✓';
+
+      } catch(err) {
+        const msg = err ? (err.message || err.toString() || JSON.stringify(err)) : 'Error desconocido';
+        setLog('Error: ' + msg, 'err');
+        console.error('Export error:', err);
+      }
+
+      scaler.style.transform = savedTransform;
+      btn.disabled = false;
+    }
+  </script>
+
+</body>
+</html>

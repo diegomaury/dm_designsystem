@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Cards — Diego Maury</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #070410;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px 32px;
+      font-family: var(--font-display);
+      gap: 0;
+    }
+
+    /* ── NAVIGATION ROW ─────────────────────────────────── */
+    .nav-row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 20px;
+    }
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.11);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.55);
+      font-size: 17px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 180ms, border-color 180ms, color 180ms;
+      flex-shrink: 0;
+    }
+    .nav-btn:hover {
+      background: rgba(124,63,190,0.20);
+      border-color: rgba(124,63,190,0.50);
+      color: #fff;
+    }
+    .nav-btn:active { transform: scale(0.94); }
+    .nav-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.30);
+      min-width: 58px;
+      text-align: center;
+    }
+
+    /* ── STAGE OUTER (handles scale offset) ──────────────── */
+    .stage-outer {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .stage-scaler {
+      transform-origin: top center;
+      width: 1080px;
+      height: 1080px;
+    }
+
+    /* ── STAGE (1080×1080) ───────────────────────────────── */
+    .stage {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background: var(--dm-catalyst-900); /* default: dark */
+    }
+    /* Catalyst / violet variant */
+    .stage.s-violet {
+      background: linear-gradient(148deg, #1c0a34 0%, #38196a 52%, #130828 100%);
+    }
+    /* Light variant */
+    .stage.s-light {
+      background: #F4EEFC;
+    }
+
+    /* ── BACKGROUND LAYERS ──────────────────────────────── */
+    .hex-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/hexagon-pattern.png');
+      background-size: 560px auto;
+      background-position: center right -30px;
+      background-repeat: no-repeat;
+      opacity: 0.065;
+      pointer-events: none;
+    }
+    .s-light .hex-bg {
+      background-image: url('assets/hexagon-pattern-light.png');
+      background-size: 480px auto;
+      background-position: center right 0;
+      opacity: 0.28;
+    }
+
+    .orb-a {
+      position: absolute;
+      width: 660px; height: 660px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,63,190,0.30) 0%, transparent 68%);
+      top: -180px; left: -210px;
+      pointer-events: none;
+    }
+    .orb-b {
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,92,57,0.17) 0%, transparent 68%);
+      bottom: 30px; right: -90px;
+      pointer-events: none;
+    }
+    .s-violet .orb-a {
+      background: radial-gradient(circle, rgba(124,63,190,0.38) 0%, transparent 68%);
+    }
+    .s-light .orb-a {
+      background: radial-gradient(circle, rgba(124,63,190,0.10) 0%, transparent 68%);
+    }
+    .s-light .orb-b {
+      background: radial-gradient(circle, rgba(255,92,57,0.07) 0%, transparent 68%);
+    }
+
+    /* ── TRICOLOR BAR ───────────────────────────────────── */
+    .tricolor-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--dm-tricolor);
+      z-index: 4;
+    }
+
+    /* ── ISOTIPO WATERMARK ──────────────────────────────── */
+    .isotipo-wm {
+      position: absolute;
+      bottom: -22px; right: -22px;
+      width: 310px; height: 310px;
+      opacity: 0.045;
+      filter: brightness(10);
+      object-fit: contain;
+      pointer-events: none;
+    }
+    .s-light .isotipo-wm {
+      filter: none;
+      opacity: 0.065;
+    }
+
+    /* ── QUOTE GLYPH (decorative) ───────────────────────── */
+    .quote-glyph {
+      position: absolute;
+      top: 50px;
+      left: 64px;
+      font-family: var(--font-display);
+      font-size: 310px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--dm-amethyst);
+      opacity: 0.17;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.06em;
+    }
+    .s-light .quote-glyph { opacity: 0.10; }
+
+    /* ── STAGE COUNTER ──────────────────────────────────── */
+    .stage-counter {
+      position: absolute;
+      top: 52px; right: 88px;
+      z-index: 4;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.20em;
+      color: rgba(255,255,255,0.28);
+      display: flex;
+      align-items: baseline;
+      gap: 1px;
+    }
+    .stage-counter .cur {
+      font-size: 17px;
+      color: var(--dm-amethyst);
+    }
+    .s-light .stage-counter       { color: rgba(15,10,26,0.28); }
+    .s-light .stage-counter .cur  { color: var(--dm-amethyst); }
+
+    /* ── MAIN CONTENT ───────────────────────────────────── */
+    .content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 118px 92px 110px 92px;
+      gap: 50px;
+      transition: opacity 0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+    .content.fading { opacity: 0; }
+
+    /* Quote text */
+    .quote-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 700;
+      color: var(--dm-bone);
+      line-height: 1.12;
+      letter-spacing: -0.024em;
+      text-wrap: pretty;
+      position: relative;
+      z-index: 1;
+    }
+    .s-light .quote-text { color: var(--dm-catalyst-700); }
+
+    /* Adaptive sizes by char count */
+    .sz-xl { font-size: 84px; }
+    .sz-lg { font-size: 72px; }
+    .sz-md { font-size: 60px; }
+    .sz-sm { font-size: 50px; }
+    .sz-xs { font-size: 42px; }
+
+    /* Attribution */
+    .attribution {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      position: relative;
+      z-index: 1;
+    }
+    .attr-rule {
+      width: 3px;
+      flex-shrink: 0;
+      margin-top: 3px;
+      border-radius: 2px;
+      background: var(--dm-ember);
+      height: 52px;
+    }
+    .attr-body {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .attr-label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dm-ember);
+    }
+    .attr-blog {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 400;
+      color: rgba(245,245,247,0.58);
+      line-height: 1.40;
+      letter-spacing: -0.005em;
+    }
+    .s-light .attr-blog { color: rgba(15,10,26,0.52); }
+    .attr-url {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: rgba(245,245,247,0.35);
+    }
+    .attr-url-sep {
+      font-size: 12px;
+      color: rgba(245,245,247,0.20);
+    }
+    .attr-urls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .s-light .attr-url     { color: rgba(15,10,26,0.35); }
+    .s-light .attr-url-sep { color: rgba(15,10,26,0.20); }
+
+    /* ── BOTTOM BAR ─────────────────────────────────────── */
+    .bottom-bar {
+      position: absolute;
+      bottom: 52px; left: 92px; right: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 4;
+    }
+    .bottom-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .logo-wrap { display: flex; }
+    .tagline-txt {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .s-light .tagline-txt { color: rgba(15,10,26,0.55); font-size: 16px; }
+    .url-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .url-item {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.70);
+    }
+    .url-sep {
+      font-size: 14px;
+      color: rgba(255,255,255,0.35);
+    }
+    .s-light .url-item { color: rgba(15,10,26,0.65); }
+    .s-light .url-sep  { color: rgba(15,10,26,0.30); }
+
+    .logo-img          { height: 82px; object-fit: contain; }
+    .logo-dark         { filter: brightness(0) invert(1); opacity: 0.92; }
+    .logo-light        { display: none; opacity: 0.95; }
+    .s-light .logo-dark  { display: none; }
+    .s-light .logo-light { display: block; }
+
+    /* ── DOTS + STYLE SWITCHER ──────────────────────────── */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1080px;
+      margin-top: 16px;
+      flex-shrink: 0;
+    }
+    .dots-wrap {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.16);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 180ms, transform 180ms;
+    }
+    .dot.active { background: var(--dm-amethyst); transform: scale(1.6); }
+    .dot:hover:not(.active) { background: rgba(255,255,255,0.32); }
+
+    .style-switcher {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .s-btn {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: transparent;
+      color: rgba(255,255,255,0.34);
+      cursor: pointer;
+      transition: all 180ms;
+    }
+    .s-btn.active,
+    .s-btn:hover {
+      border-color: rgba(124,63,190,0.52);
+      color: var(--dm-amethyst);
+      background: rgba(124,63,190,0.11);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="nav-row">
+    <button class="nav-btn" id="prevBtn" aria-label="Anterior">&#8592;</button>
+    <div class="nav-label" id="navLabel">01 / 10</div>
+    <button class="nav-btn" id="nextBtn" aria-label="Siguiente">&#8594;</button>
+  </div>
+
+  <!-- Stage -->
+  <div class="stage-outer" id="stageOuter">
+    <div class="stage-scaler" id="stageScaler">
+      <div class="stage" id="stage">
+
+        <!-- Static layers -->
+        <div class="tricolor-bar"></div>
+        <div class="hex-bg"></div>
+        <div class="orb-a"></div>
+        <div class="orb-b"></div>
+        <img class="isotipo-wm" src="assets/isotipo.svg" alt="">
+        <div class="quote-glyph">&#8220;</div>
+
+        <!-- Counter -->
+        <div class="stage-counter">
+          <span class="cur" id="curNum">01</span>
+          <span>&thinsp;/&thinsp;10</span>
+        </div>
+
+        <!-- Dynamic content -->
+        <div class="content" id="content">
+          <p class="quote-text" id="quoteText"></p>
+          <div class="attribution">
+            <div class="attr-rule"></div>
+            <div class="attr-body">
+              <span class="attr-label">Substack</span>
+              <span class="attr-blog" id="attrBlog"></span>
+              <div class="attr-urls">
+                <span class="attr-url">diegomaury.substack.com</span>
+                <span class="attr-url-sep">·</span>
+                <span class="attr-url">diegomaury.mx</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="bottom-bar">
+          <div class="bottom-left">
+            <span class="tagline-txt">Hagamos que las cosas pasen</span>
+            <div class="url-row">
+              <span class="url-item">diegomaury.mx</span>
+              <span class="url-sep">&middot;</span>
+              <span class="url-item">diegomaury.substack.com</span>
+            </div>
+          </div>
+          <div class="logo-wrap">
+            <img class="logo-img logo-dark"  src="assets/logo-horizontal.png" alt="Diego Maury">
+            <img class="logo-img logo-light" src="assets/logo-alt.png"        alt="Diego Maury">
+          </div>
+        </div> <!-- /bottom-bar -->
+
+      </div><!-- /stage -->
+    </div><!-- /scaler -->
+  </div><!-- /outer -->
+
+  <!-- Dots + style switcher -->
+  <div class="controls-row" id="controlsRow">
+    <div class="dots-wrap" id="dotsWrap"></div>
+    <div class="style-switcher">
+      <button class="s-btn active" data-s="">Oscuro</button>
+      <button class="s-btn"        data-s="s-violet">Violeta</button>
+      <button class="s-btn"        data-s="s-light">Claro</button>
+    </div>
+  </div>
+
+  <script>
+    const quotes = [
+      {
+        text: "La vida continúa. Siempre habrá nuevos proyectos… si decides seguir.",
+        blog: "Mi más grande error como emprendedor"
+      },
+      {
+        text: "Sí, va a doler. Pero también vas a florecer.",
+        blog: "Lo que me enseñó la depresión"
+      },
+      {
+        text: "Que pase lo que tenga que pasar. Sin embargo, tendrá que alcanzarme en el camino.",
+        blog: "Lo que ni yo sabía"
+      },
+      {
+        text: "Nunca empiezas de cero: empiezas desde la experiencia.",
+        blog: "Lo que me enseñó la depresión"
+      },
+      {
+        text: "Cada error es un punto de partida hacia horizontes más amplios y significativos.",
+        blog: "Ecos Antárticos: Desafíos y Lecciones con Jorge Acevedo"
+      },
+      {
+        text: "Transformé el dolor en combustible para forjar mi propio destino, donde las riendas de mi vida están firmemente en mis manos.",
+        blog: "Sigo aquí: Un viaje de emprendimiento e innovación"
+      },
+      {
+        text: "Hoy entiendo que no hay nada más grande que mi propósito, mi visión y mis capacidades.",
+        blog: "Mi último rechazo"
+      },
+      {
+        text: "La resiliencia no es un talento. Es una práctica. Y se cultiva.",
+        blog: "Mi más grande error como emprendedor"
+      },
+      {
+        text: "No necesitas ser experto en código, pero sí en contexto. Saber qué problema estás resolviendo es más importante que dominar un lenguaje.",
+        blog: "Lo que aprendí construyendo una app sin saber programar"
+      },
+      {
+        text: "Si quieres jugar en serio, tienes que pensar como estratega, actuar como líder y moverte como visionario.",
+        blog: "Lunes Negro"
+      }
+    ];
+
+    function sizeClass(len) {
+      if (len <= 50)  return 'sz-xl';
+      if (len <= 75)  return 'sz-lg';
+      if (len <= 108) return 'sz-md';
+      if (len <= 132) return 'sz-sm';
+      return 'sz-xs';
+    }
+
+    let current = 0;
+    let busy = false;
+
+    const stage    = document.getElementById('stage');
+    const content  = document.getElementById('content');
+    const quoteEl  = document.getElementById('quoteText');
+    const blogEl   = document.getElementById('attrBlog');
+    const curNum   = document.getElementById('curNum');
+    const navLabel = document.getElementById('navLabel');
+    const dotsWrap = document.getElementById('dotsWrap');
+
+    /* Build dots */
+    quotes.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Quote ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+
+    function setContent(index) {
+      const q  = quotes[index];
+      const sz = sizeClass(q.text.length);
+      quoteEl.textContent  = q.text;
+      quoteEl.className    = 'quote-text ' + sz;
+      blogEl.textContent   = q.blog;
+      curNum.textContent   = String(index + 1).padStart(2, '0');
+      navLabel.textContent = String(index + 1).padStart(2, '0') + ' / 10';
+      document.querySelectorAll('.dot').forEach((d, i) =>
+        d.classList.toggle('active', i === index));
+    }
+
+    function goTo(index) {
+      if (index === current || busy) return;
+      busy = true;
+      content.classList.add('fading');
+      setTimeout(() => {
+        current = index;
+        setContent(index);
+        content.classList.remove('fading');
+        setTimeout(() => { busy = false; }, 240);
+      }, 220);
+    }
+
+    /* Arrow controls */
+    document.getElementById('prevBtn').addEventListener('click', () =>
+      goTo((current - 1 + quotes.length) % quotes.length));
+    document.getElementById('nextBtn').addEventListener('click', () =>
+      goTo((current + 1) % quotes.length));
+
+    /* Keyboard */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  goTo((current - 1 + quotes.length) % quotes.length);
+      if (e.key === 'ArrowRight') goTo((current + 1) % quotes.length);
+    });
+
+    /* Style switcher */
+    document.querySelectorAll('.s-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.s-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        stage.className = ('stage ' + btn.dataset.s).trim();
+      });
+    });
+
+    /* Viewport scaling */
+    function scaleStage() {
+      const scaler   = document.getElementById('stageScaler');
+      const outer    = document.getElementById('stageOuter');
+      const controls = document.getElementById('controlsRow');
+      const avail    = Math.min(window.innerWidth - 32, window.innerHeight - 170);
+      if (avail < 1080) {
+        const sc = avail / 1080;
+        scaler.style.transform       = 'scale(' + sc + ')';
+        scaler.style.transformOrigin = 'top center';
+        outer.style.height           = (1080 * sc) + 'px';
+        outer.style.width            = (1080 * sc) + 'px';
+        controls.style.maxWidth      = (1080 * sc) + 'px';
+      } else {
+        scaler.style.transform  = '';
+        outer.style.height      = '';
+        outer.style.width       = '';
+        controls.style.maxWidth = '1080px';
+      }
+    }
+    window.addEventListener('resize', scaleStage);
+    scaleStage();
+
+    /* Init */
+    setContent(0);
+  </script>
+
+</body>
+</html>

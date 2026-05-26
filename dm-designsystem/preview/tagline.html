@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Tagline</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#120D1A; padding:20px; display:flex; flex-direction:column; gap:16px; }
+  .label { font-family:var(--font-mono); font-size:8px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,245,247,0.35); margin-bottom:5px; }
+
+  /* A · Principal mono ember */
+  .tl-a {
+    font-family:var(--font-mono); font-weight:600; font-size:13px;
+    letter-spacing:0.20em; text-transform:uppercase; color:#FF5C39;
+    text-shadow:0 0 16px rgba(255,92,57,0.4);
+  }
+
+  /* B · Muted subheader */
+  .tl-b {
+    font-family:var(--font-mono); font-weight:500; font-size:10px;
+    letter-spacing:0.24em; text-transform:uppercase;
+    color:rgba(255,92,57,0.55);
+  }
+
+  /* C · Display headline con spark */
+  .tl-c {
+    font-family:var(--font-display); font-weight:800; font-size:28px;
+    letter-spacing:-0.02em; color:#F5F5F7; line-height:1.1;
+  }
+  .tl-c span { color:#FF5C39; text-shadow:0 0 16px rgba(255,92,57,0.35); }
+
+  /* D · Pill badge */
+  .tl-d {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 16px; border-radius:999px;
+    border:1px solid rgba(255,92,57,0.45);
+    background:rgba(255,92,57,0.10);
+    box-shadow:0 0 12px rgba(255,92,57,0.20);
+  }
+  .tl-d span {
+    font-family:var(--font-mono); font-weight:600; font-size:10px;
+    letter-spacing:0.18em; text-transform:uppercase; color:#FF8060;
+  }
+  .tl-d-dot { width:6px; height:6px; border-radius:50%; background:#FF5C39; box-shadow:0 0 6px rgba(255,92,57,0.8); flex-shrink:0; }
+
+  /* E · Amethyst version */
+  .tl-e {
+    font-family:var(--font-mono); font-weight:600; font-size:11px;
+    letter-spacing:0.20em; text-transform:uppercase; color:#9B5FD4;
+    text-shadow:0 0 14px rgba(124,63,190,0.4);
+  }
+
+  /* F · Vertical stacked */
+  .tl-f {
+    display:flex; flex-direction:column; gap:0;
+    font-family:var(--font-mono); font-weight:800; font-size:11px;
+    letter-spacing:0.18em; text-transform:uppercase;
+    line-height:1.7;
+  }
+  .tl-f .w1 { color:#FF5C39; }
+  .tl-f .w2 { color:rgba(255,92,57,0.7); }
+  .tl-f .w3 { color:rgba(255,92,57,0.45); }
+  .tl-f .w4 { color:rgba(255,92,57,0.25); }
+
+  /* G · On amethyst bg */
+  .tl-g {
+    background:linear-gradient(135deg,#7C3FBE,#5E2A95);
+    border-radius:8px; padding:10px 16px;
+    font-family:var(--font-mono); font-weight:600; font-size:11px;
+    letter-spacing:0.20em; text-transform:uppercase; color:rgba(245,245,247,0.9);
+    box-shadow:0 4px 16px rgba(124,63,190,0.35);
+    display:inline-block;
+  }
+
+  /* H · Tricolor bar */
+  .tl-h { display:flex; flex-direction:column; gap:5px; }
+  .tl-h-txt {
+    font-family:var(--font-mono); font-weight:600; font-size:12px;
+    letter-spacing:0.18em; text-transform:uppercase; color:rgba(245,245,247,0.85);
+  }
+  .tl-bar { height:2.5px; width:220px; background:linear-gradient(90deg,#7C3FBE,#4B2672,#FF5C39); border-radius:2px; }
+</style>
+</head>
+<body>
+
+  <div>
+    <div class="label">A · Principal · Ember mono</div>
+    <div class="tl-a">HAGAMOS QUE LAS COSAS PASEN</div>
+  </div>
+  <div>
+    <div class="label">B · Muted · subheader</div>
+    <div class="tl-b">HAGAMOS QUE LAS COSAS PASEN</div>
+  </div>
+  <div>
+    <div class="label">C · Display · Ember spark en palabra clave</div>
+    <div class="tl-c">Hagamos que las <span>cosas</span> pasen.</div>
+  </div>
+  <div>
+    <div class="label">D · Pill badge · ember glow</div>
+    <div class="tl-d"><div class="tl-d-dot"></div><span>HAGAMOS QUE LAS COSAS PASEN</span></div>
+  </div>
+  <div>
+    <div class="label">E · Amethyst variant</div>
+    <div class="tl-e">HAGAMOS QUE LAS COSAS PASEN</div>
+  </div>
+  <div>
+    <div class="label">F · Fade vertical · word by word</div>
+    <div class="tl-f">
+      <span class="w1">HAGAMOS</span>
+      <span class="w2">QUE LAS</span>
+      <span class="w3">COSAS</span>
+      <span class="w4">PASEN</span>
+    </div>
+  </div>
+  <div>
+    <div class="label">G · On amethyst bg</div>
+    <div class="tl-g">HAGAMOS QUE LAS COSAS PASEN</div>
+  </div>
+  <div>
+    <div class="label">H · Con tricolor bar</div>
+    <div class="tl-h">
+      <div class="tl-h-txt">HAGAMOS QUE LAS COSAS PASEN</div>
+      <div class="tl-bar"></div>
+    </div>
+  </div>
+
+</body>
+</html>

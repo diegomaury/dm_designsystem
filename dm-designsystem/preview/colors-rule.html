@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Colors — Usage Rules</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#120D1A; padding:20px; font-family:var(--font-body); color:#F5F5F7; }
+  .label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,245,247,0.4); margin-bottom:10px; margin-top:18px; }
+  .label:first-child { margin-top:0; }
+
+  /* ── Usage rules ── */
+  .rule { display:grid; grid-template-columns:40px 1fr; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:start; }
+  .rule:last-child { border-bottom:none; }
+  .dot { width:40px; height:40px; border-radius:10px; }
+  .r-name { font-family:var(--font-display); font-weight:700; font-size:12px; letter-spacing:-0.01em; margin-bottom:3px; }
+  .r-do   { font-family:var(--font-mono); font-size:8.5px; letter-spacing:0.06em; color:#A870E8; margin-bottom:2px; }
+  .r-dont { font-family:var(--font-mono); font-size:8.5px; letter-spacing:0.06em; color:#FF5C39; }
+  .r-use  { font-family:var(--font-mono); font-size:8px; letter-spacing:0.06em; color:rgba(245,245,247,0.35); margin-top:3px; }
+
+  /* ── Gradient swatches ── */
+  .grad-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .grad-chip { height:56px; border-radius:10px; display:flex; flex-direction:column; justify-content:flex-end; padding:8px 10px; position:relative; overflow:hidden; }
+  .grad-name { font-family:var(--font-mono); font-size:8px; letter-spacing:0.08em; color:rgba(245,245,247,0.85); text-shadow:0 1px 4px rgba(0,0,0,0.5); }
+  .grad-hex  { font-family:var(--font-mono); font-size:7px; letter-spacing:0.04em; color:rgba(245,245,247,0.5); margin-top:1px; }
+
+  /* ── Tints / variants ── */
+  .tint-row { display:grid; grid-template-columns:repeat(6,1fr); gap:5px; }
+  .tint { height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:7px; color:rgba(245,245,247,0.55); letter-spacing:0.04em; }
+
+  /* ── On-color pairings ── */
+  .pair-row { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:6px; }
+  .pair { border-radius:8px; overflow:hidden; }
+  .pair-top { height:32px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:9px; letter-spacing:0.06em; font-weight:700; }
+  .pair-bot { height:20px; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:7px; letter-spacing:0.06em; color:rgba(245,245,247,0.4); background:rgba(255,255,255,0.04); }
+</style>
+</head>
+<body>
+
+  <div class="label">Colors · Reglas de Uso · v4</div>
+
+  <div class="rule">
+    <div class="dot" style="background:linear-gradient(135deg,#9B5FD4 0%,#7C3FBE 50%,#5E2A95 100%)"></div>
+    <div>
+      <div class="r-name">Digital Amethyst · #7C3FBE</div>
+      <div class="r-do">✓ CTA primario · Botón principal · Isotipo · Identidad en dark · Glow shadows</div>
+      <div class="r-dont">✕ No en texto corrido · No sobre fondos claros sin ajustar contraste · No mezclar con Ember en mismo elemento</div>
+      <div class="r-use">Uso · Protagonista · 40% presencia visual en dark mode</div>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="dot" style="background:linear-gradient(135deg,#FF7A5C 0%,#FF5C39 60%,#D94824 100%)"></div>
+    <div>
+      <div class="r-name">Electric Ember · #FF5C39</div>
+      <div class="r-do">✓ Palabra clave en headline · Outline buttons · Hover states · Tagline HAGAMOS · Spark de atención</div>
+      <div class="r-dont">✕ No como CTA principal · No fondo dominante · No en párrafos de cuerpo</div>
+      <div class="r-use">Uso · Acento · Máx 20% presencia visual · Siempre contrasta con dark bg</div>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="dot" style="background:linear-gradient(135deg,#4D8DFF 0%,#246BFD 60%,#1A4FCC 100%)"></div>
+    <div>
+      <div class="r-name">Quantum Blue · #246BFD</div>
+      <div class="r-do">✓ Links · Status indicators · Info badges · Disponibilidad · Datos funcionales</div>
+      <div class="r-dont">✕ No como color de marca · No en headlines primarios · No sustituye Amethyst en CTAs</div>
+      <div class="r-use">Uso · Funcional · Comunicación de estado e interactividad</div>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="dot" style="background:linear-gradient(135deg,#FFD740 0%,#E6B800 60%,#B38F00 100%)"></div>
+    <div>
+      <div class="r-name">Spark Gold · #E6B800</div>
+      <div class="r-do">✓ Cifras KPI · Métricas de impacto · +600% · 3,000+ · Números destacados</div>
+      <div class="r-dont">✕ Máx 2 usos por pantalla · Solo en números · No en texto corrido · No en botones</div>
+      <div class="r-use">Uso · Impacto · Solo para cuantificar logros y resultados</div>
+    </div>
+  </div>
+
+  <div class="rule">
+    <div class="dot" style="background:linear-gradient(135deg,#9B5FD4 0%,#246BFD 50%,#FF5C39 100%)"></div>
+    <div>
+      <div class="r-name">Tricolor Gradient · Sistema completo</div>
+      <div class="r-do">✓ Footer bar · Separadores de identidad · Isotipo · Hero accent · Momentos de marca</div>
+      <div class="r-dont">✕ No como fondo de sección · No en texto · Solo para detalles de identidad</div>
+      <div class="r-use">Uso · Identidad · Combina Amethyst + Quantum + Ember en secuencia</div>
+    </div>
+  </div>
+
+  <!-- GRADIENTS -->
+  <div class="label">Gradientes del sistema</div>
+  <div class="grad-grid">
+    <div class="grad-chip" style="background:linear-gradient(135deg,#7C3FBE 0%,#246BFD 100%)">
+      <div class="grad-name">Nebula</div>
+      <div class="grad-hex">Amethyst → Quantum</div>
+    </div>
+    <div class="grad-chip" style="background:linear-gradient(135deg,#7C3FBE 0%,#FF5C39 100%)">
+      <div class="grad-name">Supernova</div>
+      <div class="grad-hex">Amethyst → Ember</div>
+    </div>
+    <div class="grad-chip" style="background:linear-gradient(135deg,#5E2A95 0%,#120D1A 100%)">
+      <div class="grad-name">Deep Space</div>
+      <div class="grad-hex">Amethyst 600 → Void</div>
+    </div>
+    <div class="grad-chip" style="background:linear-gradient(135deg,#FF5C39 0%,#E6B800 100%)">
+      <div class="grad-name">Solar Flare</div>
+      <div class="grad-hex">Ember → Gold</div>
+    </div>
+    <div class="grad-chip" style="background:linear-gradient(180deg,rgba(124,63,190,0.3) 0%,rgba(18,13,26,0) 100%)">
+      <div class="grad-name">Amethyst Fade</div>
+      <div class="grad-hex">Overlay → transparent</div>
+    </div>
+    <div class="grad-chip" style="background:linear-gradient(135deg,#246BFD 0%,#7C3FBE 50%,#FF5C39 100%)">
+      <div class="grad-name">Tricolor</div>
+      <div class="grad-hex">Q.Blue · Amethyst · Ember</div>
+    </div>
+  </div>
+
+  <!-- TINTS -->
+  <div class="label">Tints · Variaciones por opacidad</div>
+  <div class="tint-row">
+    <div class="tint" style="background:rgba(124,63,190,0.90)">90%</div>
+    <div class="tint" style="background:rgba(124,63,190,0.60)">60%</div>
+    <div class="tint" style="background:rgba(124,63,190,0.30)">30%</div>
+    <div class="tint" style="background:rgba(124,63,190,0.15)">15%</div>
+    <div class="tint" style="background:rgba(124,63,190,0.08)">8%</div>
+    <div class="tint" style="background:rgba(124,63,190,0.04)">4%</div>
+  </div>
+  <div class="tint-row" style="margin-top:5px">
+    <div class="tint" style="background:rgba(255,92,57,0.90)">90%</div>
+    <div class="tint" style="background:rgba(255,92,57,0.60)">60%</div>
+    <div class="tint" style="background:rgba(255,92,57,0.30)">30%</div>
+    <div class="tint" style="background:rgba(255,92,57,0.15)">15%</div>
+    <div class="tint" style="background:rgba(255,92,57,0.08)">8%</div>
+    <div class="tint" style="background:rgba(255,92,57,0.04)">4%</div>
+  </div>
+
+  <!-- ON-COLOR PAIRINGS -->
+  <div class="label">Combinaciones válidas sobre fondo</div>
+  <div class="pair-row">
+    <div class="pair">
+      <div class="pair-top" style="background:#7C3FBE;color:#F5F5F7">Aa</div>
+      <div class="pair-bot">White on Amethyst ✓</div>
+    </div>
+    <div class="pair">
+      <div class="pair-top" style="background:#120D1A;color:#A870E8">Aa</div>
+      <div class="pair-bot">Amethyst on Void ✓</div>
+    </div>
+    <div class="pair">
+      <div class="pair-top" style="background:#FF5C39;color:#120D1A">Aa</div>
+      <div class="pair-bot">Dark on Ember ✓</div>
+    </div>
+    <div class="pair">
+      <div class="pair-top" style="background:#120D1A;color:#E6B800">42</div>
+      <div class="pair-bot">Gold on Void ✓</div>
+    </div>
+  </div>
+
+</body>
+</html>

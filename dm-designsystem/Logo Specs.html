@@ -1,0 +1,1525 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diego Maury — Logo · Medidas, distancias y proporciones</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  /* ── PAGE BASE ─────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--dm-off-white);
+    color: var(--dm-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { display: block; }
+
+  /* ── LAYOUT ─────────────────────────────────────────────── */
+  .doc {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 64px);
+  }
+  section { padding: clamp(64px, 9vw, 112px) 0; border-top: 1px solid var(--dm-ink-10); }
+  section:first-of-type { border-top: none; }
+
+  /* dark band variant for visual rhythm */
+  .band-dark {
+    background: var(--dm-catalyst-900);
+    color: var(--dm-bone);
+    margin: 0 calc(-1 * max(24px, 5vw)); /* full-bleed inside .doc */
+    padding-left: max(24px, 5vw);
+    padding-right: max(24px, 5vw);
+  }
+  .band-dark { border-top: none; }
+  .band-dark .lbl, .band-dark .meta { color: var(--dm-white-60); }
+  .band-dark h2, .band-dark h3 { color: var(--dm-white); }
+  .band-dark .body { color: var(--dm-white-80); }
+  .band-dark .divider { background: var(--dm-white-10); }
+
+  /* ── COVER ──────────────────────────────────────────────── */
+  .cover {
+    padding-top: clamp(56px, 8vw, 96px);
+    padding-bottom: clamp(48px, 6vw, 80px);
+    border-top: none;
+  }
+  .cover-top {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid var(--dm-ink-10);
+    padding-bottom: 32px;
+    margin-bottom: 56px;
+  }
+  .cover-top .brand {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--dm-ink-60);
+  }
+  .cover-top .brand img { height: 32px; width: auto; }
+  .cover-top .meta {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--dm-ink-40);
+    text-align: right;
+  }
+  .cover-top .meta b { color: var(--dm-amethyst); font-weight: 500; }
+  .cover-title {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 80px);
+    align-items: end;
+  }
+  .doc-num {
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--dm-amethyst);
+    margin-bottom: 24px;
+  }
+  .doc-num span { color: var(--dm-ink-40); }
+  .doc-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    color: var(--dm-catalyst-700);
+    margin: 0 0 24px;
+  }
+  .doc-title em {
+    font-style: normal;
+    color: var(--dm-ember);
+  }
+  .doc-lede {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(16px, 1.4vw, 19px);
+    line-height: 1.5;
+    color: var(--dm-ink-80);
+    max-width: 38ch;
+    border-left: 2px solid var(--dm-ember);
+    padding-left: 18px;
+  }
+  .toc {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    border-top: 1px solid var(--dm-ink-10);
+    padding-top: 16px;
+  }
+  .toc-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: baseline;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--dm-ink-10);
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--dm-ink-80);
+  }
+  .toc-row .n { color: var(--dm-amethyst); }
+  .toc-row .ttl { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0; color: var(--dm-catalyst-700); text-transform: none; }
+  .toc-row .pg  { color: var(--dm-ink-40); }
+
+  /* ── SECTION HEADER ─────────────────────────────────────── */
+  .sec-head {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--dm-ink-10);
+  }
+  .band-dark .sec-head { border-bottom-color: var(--dm-white-10); }
+  .sec-num {
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--dm-amethyst);
+  }
+  .sec-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--dm-catalyst-700);
+    margin: 0;
+  }
+  .band-dark .sec-title { color: var(--dm-white); }
+  .sec-meta {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--dm-ink-40);
+  }
+  .band-dark .sec-meta { color: var(--dm-white-40); }
+  .sec-intro {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--dm-ink-80);
+    max-width: 65ch;
+    margin: -32px 0 56px 72px;
+  }
+  .band-dark .sec-intro { color: var(--dm-white-80); }
+
+  /* ── MEASUREMENT PRIMITIVES ─────────────────────────────── */
+  .lbl {
+    font-family: var(--font-mono);
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--dm-amethyst);
+    white-space: nowrap;
+  }
+  .lbl-ember { color: var(--dm-ember); font-style: normal; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+  .lbl-key {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--dm-ember);
+  }
+
+  /* dashed amethyst guides */
+  .guide-v {
+    position: absolute;
+    border-left: 1px dashed var(--dm-amethyst);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .guide-h {
+    position: absolute;
+    border-top: 1px dashed var(--dm-amethyst);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .guide-solid {
+    border-style: solid !important;
+    opacity: 0.9 !important;
+  }
+  .guide-ember { border-color: var(--dm-ember) !important; opacity: 0.9 !important; }
+
+  /* dimension bracket — horizontal */
+  .dim-h {
+    position: absolute;
+    display: flex; align-items: center;
+    color: var(--dm-amethyst);
+    height: 14px;
+  }
+  .dim-h::before, .dim-h::after {
+    content: "";
+    width: 1px; height: 8px;
+    background: currentColor;
+  }
+  .dim-h .bar {
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+  }
+  .dim-h .cap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 16px;
+    background: var(--dm-off-white);
+    padding: 0 6px;
+  }
+  .band-dark .dim-h .cap { background: var(--dm-catalyst-900); }
+
+  /* dimension bracket — vertical */
+  .dim-v {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center;
+    color: var(--dm-amethyst);
+    width: 14px;
+  }
+  .dim-v::before, .dim-v::after {
+    content: "";
+    height: 1px; width: 8px;
+    background: currentColor;
+  }
+  .dim-v .bar {
+    flex: 1;
+    width: 1px;
+    background: currentColor;
+  }
+  .dim-v .cap {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    background: var(--dm-off-white);
+    padding: 2px 6px;
+    white-space: nowrap;
+  }
+  .band-dark .dim-v .cap { background: var(--dm-catalyst-900); }
+
+  /* ─── grid overlay for construction ─── */
+  .gridcanvas {
+    background-image:
+      linear-gradient(to right, rgba(124,63,190,0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,63,190,0.10) 1px, transparent 1px);
+    background-size: var(--cell, 10%) var(--cell, 10%);
+  }
+  .gridcanvas-major {
+    background-image:
+      linear-gradient(to right, rgba(124,63,190,0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,63,190,0.10) 1px, transparent 1px),
+      linear-gradient(to right, rgba(124,63,190,0.32) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,63,190,0.32) 1px, transparent 1px);
+    background-size:
+      var(--cell, 10%) var(--cell, 10%),
+      var(--cell, 10%) var(--cell, 10%),
+      var(--majorcell, 50%) var(--majorcell, 50%),
+      var(--majorcell, 50%) var(--majorcell, 50%);
+  }
+  .band-dark .gridcanvas,
+  .band-dark .gridcanvas-major {
+    background-image:
+      linear-gradient(to right, rgba(245,245,247,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(245,245,247,0.06) 1px, transparent 1px),
+      linear-gradient(to right, rgba(124,63,190,0.50) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,63,190,0.50) 1px, transparent 1px);
+  }
+
+  /* axis labels (a–j, 1–10) sit just outside the grid */
+  .axis-x, .axis-y {
+    position: absolute;
+    display: flex;
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500;
+    color: var(--dm-amethyst);
+    letter-spacing: 0;
+    opacity: 0.85;
+  }
+  .axis-x { left: 0; right: 0; top: -22px; }
+  .axis-x span { flex: 1; text-align: center; }
+  .axis-y { top: 0; bottom: 0; left: -20px; flex-direction: column; align-items: center; }
+  .axis-y span { flex: 1; display: flex; align-items: center; }
+  .band-dark .axis-x, .band-dark .axis-y { color: var(--dm-amethyst); }
+
+  /* clear-space hatched fill */
+  .hatched {
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0px, transparent 7px,
+      rgba(255, 92, 57, 0.18) 7px, rgba(255, 92, 57, 0.18) 8px
+    );
+    border: 1px dashed var(--dm-ember);
+  }
+  .band-dark .hatched {
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0px, transparent 7px,
+      rgba(255, 92, 57, 0.22) 7px, rgba(255, 92, 57, 0.22) 8px
+    );
+  }
+
+  /* ── COMMON BLOCKS ─────────────────────────────────────── */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .specs-side h4 {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--dm-amethyst);
+    margin: 0 0 12px;
+  }
+  .band-dark .specs-side h4 { color: var(--dm-ember); }
+  .specs-side dl { margin: 0; }
+  .specs-side dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--dm-catalyst-700);
+    margin-top: 16px;
+  }
+  .band-dark .specs-side dt { color: var(--dm-white); }
+  .specs-side dt:first-of-type { margin-top: 0; }
+  .specs-side dd {
+    margin: 4px 0 0;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--dm-ink-80);
+  }
+  .band-dark .specs-side dd { color: var(--dm-white-80); }
+  .specs-side dd code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--dm-pale);
+    color: var(--dm-amethyst);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .band-dark .specs-side dd code {
+    background: var(--dm-white-10);
+    color: var(--dm-ember);
+  }
+
+  /* sub-section divider */
+  .divider {
+    height: 1px;
+    background: var(--dm-ink-10);
+    margin: clamp(48px, 6vw, 80px) 0;
+  }
+
+  /* ── 1. VERSIONES ──────────────────────────────────────── */
+  .versions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .version-card {
+    background: var(--dm-white);
+    border: 1px solid var(--dm-ink-10);
+    border-radius: var(--r-md);
+    overflow: hidden;
+  }
+  .version-card.dark { background: var(--dm-catalyst-900); border-color: rgba(124,63,190,0.30); }
+  .version-stage {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .version-stage img { max-width: 80%; max-height: 100%; width: auto; height: auto; }
+  .version-meta {
+    border-top: 1px solid var(--dm-ink-10);
+    padding: 14px 18px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px;
+  }
+  .version-card.dark .version-meta { border-top-color: var(--dm-white-10); }
+  .version-meta .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--dm-catalyst-700);
+  }
+  .version-card.dark .version-meta .name { color: var(--dm-white); }
+  .version-meta .tag {
+    font-family: var(--font-mono);
+    font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--dm-ink-40);
+  }
+  .version-card.dark .version-meta .tag { color: var(--dm-white-40); }
+
+  /* ── 2. ANATOMÍA ───────────────────────────────────────── */
+  .anatomy-stage {
+    position: relative;
+    background: var(--dm-catalyst-900);
+    border-radius: var(--r-md);
+    padding: clamp(40px, 6vw, 80px) clamp(48px, 8vw, 120px);
+    overflow: visible;
+  }
+  .anatomy-stage img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .callout {
+    position: absolute;
+    display: flex; align-items: center; gap: 8px;
+    pointer-events: none;
+  }
+  .callout-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--dm-ember);
+    box-shadow: 0 0 0 4px rgba(255,92,57,0.18);
+    flex-shrink: 0;
+  }
+  .callout-line {
+    height: 1px;
+    background: var(--dm-ember);
+    flex: 1;
+    min-width: 40px;
+  }
+  .callout-text {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--dm-ember);
+    white-space: nowrap;
+  }
+  .callout-text small {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 12px; line-height: 1.35;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--dm-white-80);
+    margin-top: 3px;
+    max-width: 200px;
+    white-space: normal;
+  }
+
+  /* ── 3. CONSTRUCCIÓN ISOTIPO ───────────────────────────── */
+  .construction {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .construct-stage {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--dm-white);
+    border: 1px solid var(--dm-ink-10);
+    border-radius: var(--r-md);
+    padding: 56px;
+    --cell: 10%;
+    --majorcell: 50%;
+  }
+  .construct-stage .grid-area {
+    position: absolute;
+    top: 56px; right: 56px; bottom: 56px; left: 56px;
+  }
+  .construct-stage .grid-area::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(124,63,190,0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,63,190,0.10) 1px, transparent 1px),
+      linear-gradient(to right, rgba(124,63,190,0.32) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124,63,190,0.32) 1px, transparent 1px);
+    background-size: 10% 10%, 10% 10%, 100% 100%, 100% 100%;
+  }
+  .construct-stage .grid-area > img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+  }
+  /* axis labels overlay */
+  .construct-stage .ax-x, .construct-stage .ax-y {
+    position: absolute;
+    display: flex;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--dm-amethyst);
+    font-weight: 500;
+  }
+  .construct-stage .ax-x {
+    top: 36px; left: 56px; right: 56px;
+    justify-content: space-between;
+  }
+  .construct-stage .ax-x span { flex: 1; text-align: center; }
+  .construct-stage .ax-y {
+    left: 36px; top: 56px; bottom: 56px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .construct-stage .ax-y span { flex: 1; display: flex; align-items: center; }
+  .construct-stage .corner {
+    position: absolute;
+    width: 56px; height: 56px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--dm-amethyst);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .construct-stage .corner.tl { top: 0; left: 0; }
+
+  /* X-unit explainer card */
+  .x-unit-card {
+    background: var(--dm-catalyst-900);
+    color: var(--dm-white);
+    border-radius: var(--r-md);
+    padding: clamp(28px, 3vw, 40px);
+  }
+  .x-unit-glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px; height: 88px;
+    border: 2px solid var(--dm-ember);
+    border-radius: var(--r-sm);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-style: italic;
+    font-size: 56px;
+    color: var(--dm-ember);
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+  }
+  .x-unit-card h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    color: var(--dm-white);
+  }
+  .x-unit-card p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--dm-white-80);
+    margin: 0 0 24px;
+  }
+  .x-unit-table { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; font-family: var(--font-mono); font-size: 12.5px; }
+  .x-unit-table dt {
+    color: var(--dm-ember);
+    font-weight: 500;
+    font-style: italic;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--dm-white-10);
+  }
+  .x-unit-table dd {
+    margin: 0;
+    color: var(--dm-white-80);
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--dm-white-10);
+  }
+  .x-unit-table dt:last-of-type, .x-unit-table dd:last-of-type { border-bottom: none; }
+
+  /* ── 4. LOCKUP HORIZONTAL ──────────────────────────────── */
+  .lockup-h-stage {
+    position: relative;
+    background: var(--dm-white);
+    border: 1px solid var(--dm-ink-10);
+    border-radius: var(--r-md);
+    padding: clamp(72px, 8vw, 120px) clamp(56px, 6vw, 96px);
+  }
+  .lockup-h-stage .figure {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1038 / 180;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .lockup-h-stage .figure img { width: 100%; height: 100%; object-fit: contain; }
+
+  /* ── 5. LOCKUP VERTICAL ────────────────────────────────── */
+  .lockup-v-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+  .lockup-v-stage {
+    position: relative;
+    background: var(--dm-white);
+    border: 1px solid var(--dm-ink-10);
+    border-radius: var(--r-md);
+    padding: clamp(48px, 5vw, 80px) clamp(80px, 9vw, 140px);
+  }
+  .lockup-v-stage .figure {
+    position: relative;
+    margin: 0 auto;
+    aspect-ratio: 830 / 362;
+    max-width: 100%;
+  }
+  .lockup-v-stage .figure img { width: 100%; height: 100%; object-fit: contain; }
+
+  /* ── 6. ÁREA DE PROTECCIÓN ─────────────────────────────── */
+  .clearspace-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .clearspace-stage {
+    position: relative;
+    background: var(--dm-white);
+    border: 1px solid var(--dm-ink-10);
+    border-radius: var(--r-md);
+    padding: clamp(56px, 7vw, 100px);
+  }
+  .clearspace-figure {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+  .clearspace-figure .core {
+    position: absolute;
+    inset: 25%;
+    background: var(--dm-white);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .clearspace-figure .core img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+  }
+  .clearspace-figure .ring {
+    position: absolute; inset: 0;
+    z-index: 1;
+  }
+
+  .clearspace-stage--h {
+    aspect-ratio: auto;
+  }
+  .clearspace-stage--h .clearspace-figure {
+    aspect-ratio: 1.4 / 1;
+    max-width: 100%;
+  }
+  .clearspace-stage--h .core { inset: 22% 18%; }
+
+  /* ── 7. TAMAÑOS MÍNIMOS ────────────────────────────────── */
+  .sizes-table {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+  .size-card {
+    background: var(--dm-white);
+    border: 1px solid var(--dm-ink-10);
+    border-radius: var(--r-md);
+    padding: 24px;
+    display: flex; flex-direction: column;
+  }
+  .size-card .head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .size-card .head .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--dm-catalyst-700);
+  }
+  .size-card .head .tag {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--dm-amethyst);
+  }
+  .size-card .stage {
+    background: var(--dm-pale);
+    border-radius: var(--r-sm);
+    padding: 24px 16px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 120px;
+    margin-bottom: 16px;
+  }
+  .size-card .stage img {
+    width: auto; height: auto;
+  }
+  .size-card .specs {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+  }
+  .size-card .specs dt {
+    color: var(--dm-ink-40);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 10px;
+    padding-top: 5px;
+  }
+  .size-card .specs dd {
+    margin: 0;
+    color: var(--dm-ink);
+    font-weight: 500;
+  }
+
+  /* min-size visual scale strip */
+  .size-strip {
+    background: var(--dm-pale);
+    border-radius: var(--r-md);
+    padding: 32px;
+    display: flex;
+    align-items: flex-end;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .size-strip figure { margin: 0; text-align: center; }
+  .size-strip figure img { display: block; margin: 0 auto 8px; }
+  .size-strip figure figcaption {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--dm-ink-60);
+  }
+  .size-strip figure figcaption b {
+    color: var(--dm-amethyst);
+    font-weight: 500;
+  }
+
+  /* ── 8. USOS INCORRECTOS ───────────────────────────────── */
+  .misuse-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .misuse {
+    background: var(--dm-white);
+    border: 1px solid var(--dm-ink-10);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    position: relative;
+  }
+  .misuse .stage {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
+    background: var(--dm-pale);
+    position: relative;
+  }
+  .misuse .stage img { max-width: 75%; max-height: 90%; }
+  .misuse .stage::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 2px solid var(--dm-ember);
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  .misuse .x-mark {
+    position: absolute;
+    top: 12px; right: 12px;
+    width: 24px; height: 24px;
+    background: var(--dm-ember);
+    color: var(--dm-white);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .misuse .desc {
+    padding: 14px 16px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--dm-ink-80);
+    border-top: 1px solid var(--dm-ink-10);
+  }
+  .misuse .desc b { color: var(--dm-catalyst-700); font-weight: 700; }
+
+  /* don't filters applied to img */
+  .f-stretch  { transform: scaleX(1.5); }
+  .f-rotate   { transform: rotate(-12deg); }
+  .f-shadow   { filter: drop-shadow(0 8px 6px rgba(0,0,0,0.4)); }
+  .f-recolor  { filter: hue-rotate(140deg) saturate(1.4); }
+  .f-outline  { filter: contrast(0.4) brightness(1.5); }
+  .f-overflow { transform: translateX(20px) scale(1.2); }
+
+  /* ── FOOTER ────────────────────────────────────────────── */
+  footer.foot {
+    padding: 48px 0 64px;
+    border-top: 1px solid var(--dm-ink-10);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dm-ink-40);
+  }
+  footer.foot .mid { text-align: center; color: var(--dm-amethyst); }
+  footer.foot .right { text-align: right; }
+  footer.foot .bar {
+    grid-column: 1 / -1;
+    height: 3px;
+    background: var(--dm-tricolor);
+    margin-bottom: 32px;
+  }
+
+  /* ── responsive ────────────────────────────────────────── */
+  @media (max-width: 880px) {
+    .cover-title, .construction, .clearspace-wrap, .lockup-v-wrap, .specs-grid {
+      grid-template-columns: 1fr;
+    }
+    .versions, .sizes-table, .misuse-grid { grid-template-columns: 1fr 1fr; }
+    .sec-intro { margin-left: 0; }
+  }
+  @media (max-width: 560px) {
+    .versions, .sizes-table, .misuse-grid { grid-template-columns: 1fr; }
+    .sec-head { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- ═════════════════ COVER ═════════════════ -->
+  <section class="cover">
+    <div class="cover-top">
+      <div class="brand">
+        <img src="logo-assets/isotipo.png" alt="DM isotipo">
+        <span>Diego Maury · Design System</span>
+      </div>
+      <div class="meta">
+        Documento · DM-LOGO-01<br>
+        Versión <b>3.0</b> · Mayo 2026
+      </div>
+    </div>
+
+    <div class="cover-title">
+      <div>
+        <div class="doc-num"><span>01 / </span>Logo · Guía técnica</div>
+        <h1 class="doc-title">Medidas,<br>distancias <em>&amp;</em><br>proporciones.</h1>
+      </div>
+      <div>
+        <p class="doc-lede">
+          Reglas de construcción, área de protección y tamaños mínimos del isotipo y los lockups. Todo se mide en unidades <b style="color:var(--dm-ember);font-weight:600;font-style:italic;">X</b>, derivadas de la altura del hexágono.
+        </p>
+        <div class="toc" style="margin-top:32px;">
+          <div class="toc-row"><span class="n">01</span><span class="ttl">Versiones del logo</span><span class="pg">p. 02</span></div>
+          <div class="toc-row"><span class="n">02</span><span class="ttl">Anatomía</span><span class="pg">p. 03</span></div>
+          <div class="toc-row"><span class="n">03</span><span class="ttl">Construcción del isotipo</span><span class="pg">p. 04</span></div>
+          <div class="toc-row"><span class="n">04</span><span class="ttl">Lockup horizontal</span><span class="pg">p. 05</span></div>
+          <div class="toc-row"><span class="n">05</span><span class="ttl">Lockup vertical</span><span class="pg">p. 06</span></div>
+          <div class="toc-row"><span class="n">06</span><span class="ttl">Área de protección</span><span class="pg">p. 07</span></div>
+          <div class="toc-row"><span class="n">07</span><span class="ttl">Tamaños mínimos</span><span class="pg">p. 08</span></div>
+          <div class="toc-row"><span class="n">08</span><span class="ttl">Usos incorrectos</span><span class="pg">p. 09</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 1 · VERSIONES ═════════════════ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <h2 class="sec-title">Versiones del logo</h2>
+      <div class="sec-meta">4 lockups oficiales</div>
+    </div>
+    <p class="sec-intro">
+      El sistema admite cuatro composiciones. Elige la que mejor se adapte al espacio y la jerarquía del medio. <b style="color:var(--dm-catalyst-700)">No se permiten reconstrucciones</b> ni combinaciones fuera de estas variantes.
+    </p>
+
+    <div class="versions">
+      <div class="version-card">
+        <div class="version-stage"><img src="logo-assets/isotipo.png" alt="Isotipo"></div>
+        <div class="version-meta"><div class="name">Isotipo</div><div class="tag">A · Hexágono DM</div></div>
+      </div>
+      <div class="version-card">
+        <div class="version-stage"><img src="logo-assets/logo-horizontal.png" alt="Lockup horizontal"></div>
+        <div class="version-meta"><div class="name">Lockup horizontal</div><div class="tag">B · Firma fila</div></div>
+      </div>
+      <div class="version-card">
+        <div class="version-stage"><img src="logo-assets/logo-principal.png" alt="Lockup vertical"></div>
+        <div class="version-meta"><div class="name">Lockup vertical</div><div class="tag">C · Principal</div></div>
+      </div>
+      <div class="version-card">
+        <div class="version-stage"><img src="logo-assets/logo-tagline.png" alt="Lockup con tagline"></div>
+        <div class="version-meta"><div class="name">Lockup con tagline</div><div class="tag">D · Endorsement</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 2 · ANATOMÍA ═════════════════ -->
+  <section class="band-dark">
+    <div class="sec-head">
+      <div class="sec-num" style="color:var(--dm-ember);">02</div>
+      <h2 class="sec-title">Anatomía</h2>
+      <div class="sec-meta">Las piezas</div>
+    </div>
+    <p class="sec-intro">
+      Cada elemento del lockup cumple una función específica. Conoce las piezas antes de tocar las medidas: cambiar uno descompone la jerarquía.
+    </p>
+
+    <div class="anatomy-stage">
+      <img src="logo-assets/logo-horizontal.png" alt="Anatomía del lockup horizontal" style="filter: brightness(0) invert(1) brightness(0.95);">
+
+      <!-- Callout 1 — isotipo -->
+      <div class="callout" style="top:18%; left:6%; width:22%; flex-direction:row-reverse;">
+        <div class="callout-text" style="text-align:right;">
+          A · Isotipo
+          <small style="margin-left:auto;">Hexágono con monograma DM en negativo. Color: Digital Amethyst <code style="background:rgba(255,255,255,0.08);color:var(--dm-amethyst);padding:1px 5px;border-radius:3px;font-family:var(--font-mono);font-size:10px;">#7C3FBE</code></small>
+        </div>
+        <div class="callout-line"></div>
+        <div class="callout-dot"></div>
+      </div>
+
+      <!-- Callout 2 — divider -->
+      <div class="callout" style="top:50%; left:21%; width:14%; flex-direction:column; align-items:center; gap:6px;">
+        <div class="callout-dot"></div>
+        <div style="width:1px; height:32px; background:var(--dm-ember);"></div>
+        <div class="callout-text" style="text-align:center;">B · Divisor<small>Línea 1px Amethyst @ 60% que separa isotipo y wordmark.</small></div>
+      </div>
+
+      <!-- Callout 3 — wordmark -->
+      <div class="callout" style="top:8%; left:42%; width:30%; flex-direction:column; align-items:flex-start;">
+        <div class="callout-text">C · Wordmark
+          <small>"DIEGO MAURY" — Satoshi 800 · uppercase · tracking -2%</small>
+        </div>
+        <div style="width:1px; height:28px; background:var(--dm-ember); margin-top:6px;"></div>
+        <div class="callout-dot"></div>
+      </div>
+
+      <!-- Callout 4 — descriptor -->
+      <div class="callout" style="bottom:8%; left:42%; width:36%; flex-direction:column; align-items:flex-start;">
+        <div class="callout-dot"></div>
+        <div style="width:1px; height:24px; background:var(--dm-ember); margin-top:0;"></div>
+        <div class="callout-text">D · Descriptor
+          <small>"Strategic Program &amp; Innovation Manager" — Satoshi italic 400. Justifica el rol estratégico bajo el nombre.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="specs-grid">
+      <div class="body" style="font-family:var(--font-body); font-size:14.5px; line-height:1.7; color:var(--dm-white-80); max-width:60ch;">
+        <p style="margin:0 0 16px;">El isotipo (A) es la unidad indivisible: ningún lockup puede existir sin él. El wordmark (C) y el descriptor (D) se relacionan jerárquicamente — el primero <b style="color:var(--dm-white);">nombra</b>, el segundo <b style="color:var(--dm-ember);">posiciona</b>.</p>
+        <p style="margin:0;">El divisor (B) sólo aparece en el lockup horizontal. En el vertical desaparece: lo sustituye la separación óptica del salto de línea.</p>
+      </div>
+      <aside class="specs-side">
+        <h4>Reglas básicas</h4>
+        <dl>
+          <dt>Color identitario</dt>
+          <dd>Toda la marca usa <code>--dm-amethyst</code>. El descriptor y el divisor van en <code>--dm-catalyst-700</code>.</dd>
+          <dt>Sin descomponer</dt>
+          <dd>No es válido usar el wordmark o el descriptor sin el isotipo. El monograma sí puede aparecer solo.</dd>
+          <dt>Alineación óptica</dt>
+          <dd>Centro vertical del isotipo coincide con el centro vertical de la mancha del nombre + descriptor.</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 3 · CONSTRUCCIÓN ISOTIPO ═════════════════ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <h2 class="sec-title">Construcción del isotipo</h2>
+      <div class="sec-meta">Grid 10 × 10 · Unidad <i>X</i></div>
+    </div>
+    <p class="sec-intro">
+      El hexágono se construye sobre una retícula cuadrada de <b>10 × 10 unidades</b>. La <b style="color:var(--dm-ember);"><i>unidad X</i></b> equivale a <b>1/10 de la altura total</b> del isotipo, y rige todas las distancias del sistema.
+    </p>
+
+    <div class="construction">
+      <!-- Grid stage -->
+      <div class="construct-stage">
+        <!-- axis labels -->
+        <div class="ax-x">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+          <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+        </div>
+        <div class="ax-y">
+          <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span>
+          <span>f</span><span>g</span><span>h</span><span>i</span><span>j</span>
+        </div>
+
+        <div class="grid-area">
+          <img src="logo-assets/isotipo.png" alt="Isotipo en retícula 10x10">
+
+          <!-- highlight bounding box of hexagon — the hexagon spans approx col 1.3 → 8.7, row a → j -->
+          <div style="position:absolute; left:13%; right:13%; top:0; bottom:0; border:1.5px solid var(--dm-ember); border-radius:2px; pointer-events:none;"></div>
+
+          <!-- Height dimension X·10 -->
+          <div class="dim-v" style="left:-26px; top:0; height:100%; color:var(--dm-ember);">
+            <span class="cap" style="background:var(--dm-white);"><i style="font-family:var(--font-display);font-style:italic;font-weight:800;color:var(--dm-ember);font-size:14px;">10X</i></span>
+          </div>
+          <!-- Width dimension X·7.4 — hexagon flat sides -->
+          <div class="dim-h" style="top:-26px; left:13%; right:13%; color:var(--dm-ember);">
+            <span class="bar"></span>
+            <span class="cap" style="background:var(--dm-white);"><i style="font-family:var(--font-display);font-style:italic;font-weight:800;color:var(--dm-ember);font-size:14px;">7.4X</i></span>
+          </div>
+        </div>
+
+        <div style="position:absolute;bottom:18px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;">
+          <span class="lbl">Retícula base · 10 × 10</span>
+          <span class="lbl" style="color:var(--dm-ink-40);">Hexágono inscrito · ratio √3/2</span>
+        </div>
+      </div>
+
+      <!-- X-unit card -->
+      <div class="x-unit-card">
+        <div class="x-unit-glyph">X</div>
+        <h3>La unidad <em style="font-style:italic;color:var(--dm-ember);">X</em> rige todo el sistema.</h3>
+        <p>
+          Definida como una décima parte de la altura del isotipo. Cualquier medida del logo — paddings, gaps, tracking, área de protección — se expresa como múltiplo o fracción de <i style="color:var(--dm-ember);">X</i>.
+        </p>
+        <dl class="x-unit-table">
+          <dt>X</dt><dd>= altura del isotipo ÷ 10</dd>
+          <dt>10X</dt><dd>altura total del hexágono</dd>
+          <dt>7.4X</dt><dd>ancho del hexágono (entre lados)</dd>
+          <dt>8.7X</dt><dd>ancho entre vértices (caja contenedora)</dd>
+          <dt>0.6X</dt><dd>grosor del trazo principal</dd>
+          <dt>1.0X</dt><dd>radio interno del monograma</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- examples in different sizes -->
+    <div style="display:grid; grid-template-columns: 1fr; gap:32px;">
+      <div>
+        <div style="font-family:var(--font-mono); font-size:11px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--dm-amethyst); margin-bottom:16px;">Escala de la unidad X · referencia rápida</div>
+        <div style="display:grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap:12px;">
+          <!-- ref scales -->
+          <div style="background:var(--dm-pale); border-radius:var(--r-sm); padding:18px; text-align:center;">
+            <div style="font-family:var(--font-display); font-weight:800; font-size:26px; color:var(--dm-amethyst);">24<small style="font-size:12px;color:var(--dm-ink-60);">px</small></div>
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--dm-ink-60); margin-top:4px;">X = 2.4px</div>
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--dm-ink-40); margin-top:2px; text-transform:uppercase; letter-spacing:0.1em;">favicon</div>
+          </div>
+          <div style="background:var(--dm-pale); border-radius:var(--r-sm); padding:18px; text-align:center;">
+            <div style="font-family:var(--font-display); font-weight:800; font-size:26px; color:var(--dm-amethyst);">40<small style="font-size:12px;color:var(--dm-ink-60);">px</small></div>
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--dm-ink-60); margin-top:4px;">X = 4px</div>
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--dm-ink-40); margin-top:2px; text-transform:uppercase; letter-spacing:0.1em;">nav</div>
+          </div>
+          <div style="background:var(--dm-pale); border-radius:var(--r-sm); padding:18px; text-align:center;">
+            <div style="font-family:var(--font-display); font-weight:800; font-size:26px; color:var(--dm-amethyst);">80<small style="font-size:12px;color:var(--dm-ink-60);">px</small></div>
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--dm-ink-60); margin-top:4px;">X = 8px</div>
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--dm-ink-40); margin-top:2px; text-transform:uppercase; letter-spacing:0.1em;">hero web</div>
+          </div>
+          <div style="background:var(--dm-pale); border-radius:var(--r-sm); padding:18px; text-align:center;">
+            <div style="font-family:var(--font-display); font-weight:800; font-size:26px; color:var(--dm-amethyst);">160<small style="font-size:12px;color:var(--dm-ink-60);">px</small></div>
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--dm-ink-60); margin-top:4px;">X = 16px</div>
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--dm-ink-40); margin-top:2px; text-transform:uppercase; letter-spacing:0.1em;">deck</div>
+          </div>
+          <div style="background:var(--dm-pale); border-radius:var(--r-sm); padding:18px; text-align:center;">
+            <div style="font-family:var(--font-display); font-weight:800; font-size:26px; color:var(--dm-amethyst);">40<small style="font-size:12px;color:var(--dm-ink-60);">mm</small></div>
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--dm-ink-60); margin-top:4px;">X = 4mm</div>
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--dm-ink-40); margin-top:2px; text-transform:uppercase; letter-spacing:0.1em;">impresión</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 4 · LOCKUP HORIZONTAL ═════════════════ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <h2 class="sec-title">Lockup horizontal — proporciones</h2>
+      <div class="sec-meta">B · Firma fila</div>
+    </div>
+    <p class="sec-intro">
+      El lockup horizontal se usa en navegaciones, firmas de email y aplicaciones donde el alto está restringido. La altura del isotipo determina toda la composición.
+    </p>
+
+    <div class="lockup-h-stage">
+      <div class="figure">
+        <!-- the lockup image — original 1038x180 → ratio 5.77 -->
+        <img src="logo-assets/logo-horizontal.png" alt="Lockup horizontal">
+
+        <!-- ─── overlays (% positions based on 1038×180 box) ───
+             isotipo bbox:   left ~0%   → right ~17%
+             divider line:   left ~21%
+             wordmark:       left ~25%  → right ~99%
+             wordmark name:  top ~10%   → ~50%
+             descriptor:     top ~55%   → ~92%
+        -->
+
+        <!-- Total height dimension = 10X -->
+        <div class="dim-v" style="left:-32px; top:0; height:100%;">
+          <span class="cap"><i class="lbl-key">10X</i></span>
+        </div>
+
+        <!-- Isotipo height = 10X (full bleed vertically) — show bracket on right side of isotipo -->
+        <div class="guide-v" style="left:17%; top:-4px; height:calc(100% + 8px);"></div>
+
+        <!-- Gap isotipo → divider = 2X -->
+        <div class="dim-h" style="top:calc(100% + 14px); left:17%; width:4%;">
+          <span class="bar"></span>
+          <span class="cap" style="bottom:14px;"><span class="lbl">2X</span></span>
+        </div>
+
+        <!-- Divider vertical line at 21% -->
+        <div class="guide-v guide-solid guide-ember" style="left:21%; top:10%; height:80%;"></div>
+        <div class="lbl" style="position:absolute; top:101%; left:21%; transform:translateX(-50%); color:var(--dm-ember);">divisor 1px</div>
+
+        <!-- Gap divider → wordmark = 2X -->
+        <div class="dim-h" style="top:calc(100% + 14px); left:21%; width:4%;">
+          <span class="bar"></span>
+          <span class="cap" style="bottom:14px;"><span class="lbl">2X</span></span>
+        </div>
+
+        <!-- Wordmark starts at 25% -->
+        <div class="guide-v" style="left:25%; top:-4px; height:calc(100% + 8px);"></div>
+
+        <!-- Wordmark cap-height ~ 5X (vertically spans ~10%→50% of 180 = ~72px = 4X-ish, label as 5X cap) -->
+        <div class="dim-v" style="right:-32px; top:8%; height:42%; color:var(--dm-catalyst-700);">
+          <span class="cap"><span class="lbl" style="color:var(--dm-catalyst-700);">5X · nombre</span></span>
+        </div>
+
+        <!-- Descriptor cap-height ~ 2.4X -->
+        <div class="dim-v" style="right:-32px; top:55%; height:35%; color:var(--dm-catalyst-700);">
+          <span class="cap"><span class="lbl" style="color:var(--dm-catalyst-700);">2.4X · descriptor</span></span>
+        </div>
+
+        <!-- Vertical separation between name and descriptor = 0.6X -->
+        <div class="guide-h" style="left:25%; right:1%; top:50%;"></div>
+        <div class="guide-h" style="left:25%; right:1%; top:55%;"></div>
+        <div class="lbl" style="position:absolute; left:99.5%; top:52.5%; transform:translateY(-50%);">0.6X</div>
+
+        <!-- Top guide -->
+        <div class="guide-h" style="left:-4px; right:-4px; top:0;"></div>
+        <div class="guide-h" style="left:-4px; right:-4px; bottom:0;"></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="specs-grid">
+      <div class="body" style="font-family:var(--font-body); font-size:14.5px; line-height:1.7; color:var(--dm-ink-80); max-width:60ch;">
+        <p style="margin:0 0 16px;">El ancho total del lockup horizontal es aproximadamente <b style="color:var(--dm-amethyst);">5.77 × la altura</b> (relación 1038:180). En proporciones internas: isotipo + gap + divisor + gap + bloque tipográfico.</p>
+        <p style="margin:0;">El bloque tipográfico ocupa el centro vertical del isotipo: la <b style="color:var(--dm-catalyst-700);">línea base óptica</b> del nombre coincide con el ecuador del hexágono (fila <i>f</i> de la retícula). Esa relación es la que mantiene la firma "en equilibrio".</p>
+      </div>
+      <aside class="specs-side">
+        <h4>Tabla de medidas — horizontal</h4>
+        <dl>
+          <dt>Altura isotipo</dt><dd><code>10X</code></dd>
+          <dt>Gap isotipo → divisor</dt><dd><code>2X</code></dd>
+          <dt>Divisor</dt><dd><code>1px · 80% altura</code></dd>
+          <dt>Gap divisor → texto</dt><dd><code>2X</code></dd>
+          <dt>Cap nombre</dt><dd><code>5X</code> · Satoshi 800</dd>
+          <dt>Cap descriptor</dt><dd><code>2.4X</code> · Satoshi italic 400</dd>
+          <dt>Lead entre líneas</dt><dd><code>0.6X</code></dd>
+          <dt>Ratio total</dt><dd><code>5.77 : 1</code></dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 5 · LOCKUP VERTICAL ═════════════════ -->
+  <section class="band-dark">
+    <div class="sec-head">
+      <div class="sec-num" style="color:var(--dm-ember);">05</div>
+      <h2 class="sec-title">Lockup vertical — proporciones</h2>
+      <div class="sec-meta">C · Principal</div>
+    </div>
+    <p class="sec-intro">
+      Es el lockup principal. Se usa cuando el espacio lo permite y se busca presencia: portadas, posters, slides hero, perfiles. El isotipo se apila sobre el bloque tipográfico, centrados en eje vertical.
+    </p>
+
+    <div class="lockup-v-wrap">
+      <!-- Stage with measurements -->
+      <div class="lockup-v-stage" style="background:var(--dm-ink); border-color:rgba(124,63,190,0.30);">
+        <div class="figure">
+          <img src="logo-assets/logo-principal.png" alt="Lockup vertical" style="filter:brightness(0) invert(1);">
+
+          <!-- Vertical structure: 830×362 → isotipo ~155px height (0–43%), gap (43–53%), name (53–80%), descriptor (82–95%) -->
+
+          <!-- Total height = 10X (isotipo)+ ... actually let's parametrize: isotipo height = 10X, total ≈ 24X -->
+          <div class="dim-v" style="left:-32px; top:0; height:100%; color:var(--dm-ember);">
+            <span class="cap" style="background:var(--dm-ink);"><i class="lbl-key">24X total</i></span>
+          </div>
+
+          <!-- isotipo height = 10X -->
+          <div class="guide-h" style="left:-8px; right:-8px; top:43%;"></div>
+          <div class="dim-v" style="right:-32px; top:0; height:43%;">
+            <span class="cap" style="background:var(--dm-ink); color:var(--dm-amethyst);"><span class="lbl">10X · isotipo</span></span>
+          </div>
+
+          <!-- gap isotipo → nombre = 3X -->
+          <div class="guide-h" style="left:-8px; right:-8px; top:53%;"></div>
+          <div class="dim-v" style="right:-32px; top:43%; height:10%;">
+            <span class="cap" style="background:var(--dm-ink); color:var(--dm-ember);"><i class="lbl" style="color:var(--dm-ember);">3X gap</i></span>
+          </div>
+
+          <!-- nombre cap = 8X -->
+          <div class="guide-h" style="left:-8px; right:-8px; top:80%;"></div>
+          <div class="dim-v" style="right:-32px; top:53%; height:27%;">
+            <span class="cap" style="background:var(--dm-ink);"><span class="lbl">8X · nombre</span></span>
+          </div>
+
+          <!-- gap nombre → descriptor = 1X -->
+          <div class="guide-h" style="left:-8px; right:-8px; top:82%;"></div>
+          <!-- descriptor = 2.4X -->
+          <div class="dim-v" style="right:-32px; top:82%; height:14%;">
+            <span class="cap" style="background:var(--dm-ink);"><span class="lbl">2.4X · descriptor</span></span>
+          </div>
+
+          <!-- center axis -->
+          <div class="guide-v guide-solid guide-ember" style="left:50%; top:-10px; height:calc(100% + 20px); opacity:0.45;"></div>
+          <div class="lbl-ember" style="position:absolute; left:50%; top:-22px; transform:translateX(-50%); font-size:9.5px;">eje de simetría</div>
+        </div>
+      </div>
+
+      <!-- Side info -->
+      <div>
+        <aside class="specs-side">
+          <h4>Tabla de medidas — vertical</h4>
+          <dl style="margin-bottom:32px;">
+            <dt>Altura isotipo</dt><dd><code style="background:var(--dm-white-10);color:var(--dm-ember);">10X</code></dd>
+            <dt>Gap isotipo → nombre</dt><dd><code style="background:var(--dm-white-10);color:var(--dm-ember);">3X</code></dd>
+            <dt>Cap nombre</dt><dd><code style="background:var(--dm-white-10);color:var(--dm-ember);">8X</code> · Satoshi 800</dd>
+            <dt>Gap nombre → descriptor</dt><dd><code style="background:var(--dm-white-10);color:var(--dm-ember);">1X</code></dd>
+            <dt>Cap descriptor</dt><dd><code style="background:var(--dm-white-10);color:var(--dm-ember);">2.4X</code> · Satoshi italic</dd>
+            <dt>Altura total</dt><dd><code style="background:var(--dm-white-10);color:var(--dm-ember);">≈ 24X</code></dd>
+            <dt>Ancho mancha texto</dt><dd><code style="background:var(--dm-white-10);color:var(--dm-ember);">≤ 22X</code></dd>
+            <dt>Eje de simetría</dt><dd>Vertical · centro de hexágono = centro óptico de nombre</dd>
+          </dl>
+          <h4 style="color:var(--dm-ember);">Variante D · con tagline</h4>
+          <p style="font-family:var(--font-body); font-size:13.5px; line-height:1.6; color:var(--dm-white-80); margin:0;">
+            Agrega "HAGAMOS QUE LAS COSAS PASEN" en JetBrains Mono · Ember a <code style="background:var(--dm-white-10);color:var(--dm-ember);font-family:var(--font-mono);font-size:12px;padding:1px 5px;border-radius:3px;">1.6X</code> bajo el descriptor, con un gap superior de <code style="background:var(--dm-white-10);color:var(--dm-ember);font-family:var(--font-mono);font-size:12px;padding:1px 5px;border-radius:3px;">2X</code>. Altura total: <b style="color:var(--dm-ember);">≈ 29X</b>.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 6 · ÁREA DE PROTECCIÓN ═════════════════ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">06</div>
+      <h2 class="sec-title">Área de protección</h2>
+      <div class="sec-meta">Clear space · 2X</div>
+    </div>
+    <p class="sec-intro">
+      Ningún elemento — texto, imagen, borde o margen visual — puede invadir el perímetro de <b style="color:var(--dm-ember);"><i>2X</i></b> alrededor del logo. Esta distancia mínima preserva la legibilidad y el aire de la marca.
+    </p>
+
+    <div class="clearspace-wrap">
+      <!-- Isotipo clearspace -->
+      <div class="clearspace-stage">
+        <div class="clearspace-figure">
+          <div class="hatched ring" style="border-radius:6px;"></div>
+          <div class="core">
+            <img src="logo-assets/isotipo.png" alt="Isotipo con área de protección">
+          </div>
+
+          <!-- dim brackets — outer box -->
+          <div class="dim-v" style="left:-32px; top:0; height:100%;">
+            <span class="cap"><i class="lbl-key">14X</i></span>
+          </div>
+          <div class="dim-h" style="top:-32px; left:0; width:100%;">
+            <span class="bar"></span>
+            <span class="cap" style="bottom:14px;"><i class="lbl-key">14X</i></span>
+          </div>
+
+          <!-- inner box / isotipo bbox -->
+          <div class="dim-v" style="right:-32px; top:25%; height:50%; color:var(--dm-amethyst);">
+            <span class="cap"><span class="lbl">10X</span></span>
+          </div>
+          <!-- side label -->
+          <div class="lbl" style="position:absolute; top:11%; left:50%; transform:translateX(-50%); color:var(--dm-ember);">2X</div>
+          <div class="lbl" style="position:absolute; bottom:11%; left:50%; transform:translateX(-50%); color:var(--dm-ember);">2X</div>
+          <div class="lbl" style="position:absolute; left:6%; top:50%; transform:translateY(-50%); color:var(--dm-ember);">2X</div>
+          <div class="lbl" style="position:absolute; right:6%; top:50%; transform:translateY(-50%); color:var(--dm-ember);">2X</div>
+        </div>
+        <div style="text-align:center; margin-top:24px; font-family:var(--font-mono); font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--dm-ink-60);">
+          Isotipo · perímetro mínimo 2X
+        </div>
+      </div>
+
+      <!-- Side -->
+      <div>
+        <aside class="specs-side">
+          <h4>Regla del 2X</h4>
+          <p style="font-family:var(--font-body); font-size:14px; line-height:1.65; color:var(--dm-ink-80); margin:0 0 24px;">
+            El área de protección equivale a <b style="color:var(--dm-amethyst);">2 unidades X</b> en los cuatro lados — es decir, una franja del 20% de la altura del isotipo. Sirve tanto para el isotipo solo como para los lockups B, C y D.
+          </p>
+
+          <h4>Aplicación práctica</h4>
+          <dl>
+            <dt>Margen mínimo</dt><dd><code>2X</code> en los 4 lados</dd>
+            <dt>Caja envolvente</dt><dd>Isotipo: <code>14X × 14X</code></dd>
+            <dt>Caja env. (horizontal)</dt><dd>~<code>62X × 14X</code></dd>
+            <dt>Caja env. (vertical)</dt><dd>~<code>26X × 28X</code></dd>
+            <dt>Anclaje preferido</dt><dd>Esquina superior-izquierda con <code>2X</code> de margen al borde de la composición.</dd>
+            <dt>Excepción</dt><dd>En grids editoriales muy cerrados, puede reducirse a <code>1.5X</code>. Nunca menos.</dd>
+          </dl>
+        </aside>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Horizontal lockup clearspace -->
+    <div class="clearspace-stage clearspace-stage--h">
+      <div class="clearspace-figure">
+        <div class="hatched ring" style="border-radius:6px;"></div>
+        <div class="core">
+          <img src="logo-assets/logo-horizontal.png" alt="Lockup horizontal con área de protección">
+        </div>
+        <div class="lbl" style="position:absolute; top:8%; left:50%; transform:translateX(-50%); color:var(--dm-ember);">2X</div>
+        <div class="lbl" style="position:absolute; bottom:8%; left:50%; transform:translateX(-50%); color:var(--dm-ember);">2X</div>
+        <div class="lbl" style="position:absolute; left:5%; top:50%; transform:translateY(-50%); color:var(--dm-ember);">2X</div>
+        <div class="lbl" style="position:absolute; right:5%; top:50%; transform:translateY(-50%); color:var(--dm-ember);">2X</div>
+      </div>
+      <div style="text-align:center; margin-top:24px; font-family:var(--font-mono); font-size:11px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--dm-ink-60);">
+        Lockup horizontal · perímetro mínimo 2X
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 7 · TAMAÑOS MÍNIMOS ═════════════════ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">07</div>
+      <h2 class="sec-title">Tamaños mínimos</h2>
+      <div class="sec-meta">Digital · Impresión</div>
+    </div>
+    <p class="sec-intro">
+      Reducir el logo por debajo de los siguientes valores compromete la legibilidad del monograma y del descriptor. Si necesitas algo más pequeño, usa solo el isotipo.
+    </p>
+
+    <div class="sizes-table">
+      <!-- Isotipo -->
+      <div class="size-card">
+        <div class="head">
+          <div class="name">Isotipo</div>
+          <div class="tag">A</div>
+        </div>
+        <div class="stage">
+          <img src="logo-assets/isotipo.png" alt="" style="width:24px; height:24px;">
+        </div>
+        <dl class="specs">
+          <dt>Digital</dt><dd>24 × 24 px</dd>
+          <dt>Print</dt><dd>8 × 8 mm</dd>
+          <dt>Favicon</dt><dd>16 × 16 px*</dd>
+        </dl>
+      </div>
+
+      <!-- Lockup horizontal -->
+      <div class="size-card">
+        <div class="head">
+          <div class="name">Lockup horizontal</div>
+          <div class="tag">B</div>
+        </div>
+        <div class="stage">
+          <img src="logo-assets/logo-horizontal.png" alt="" style="height:24px; width:auto;">
+        </div>
+        <dl class="specs">
+          <dt>Digital</dt><dd>140 px ancho</dd>
+          <dt>Print</dt><dd>40 mm ancho</dd>
+          <dt>Altura mín.</dt><dd>24 px</dd>
+        </dl>
+      </div>
+
+      <!-- Lockup vertical -->
+      <div class="size-card">
+        <div class="head">
+          <div class="name">Lockup vertical</div>
+          <div class="tag">C</div>
+        </div>
+        <div class="stage">
+          <img src="logo-assets/logo-principal.png" alt="" style="width:96px; height:auto;">
+        </div>
+        <dl class="specs">
+          <dt>Digital</dt><dd>96 × 42 px</dd>
+          <dt>Print</dt><dd>28 mm ancho</dd>
+          <dt>Altura mín.</dt><dd>42 px</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Visual scale strip -->
+    <div class="size-strip">
+      <figure>
+        <img src="logo-assets/isotipo.png" alt="" style="width:24px; height:24px;">
+        <figcaption><b>24px</b> · mín. digital</figcaption>
+      </figure>
+      <figure>
+        <img src="logo-assets/isotipo.png" alt="" style="width:40px; height:40px;">
+        <figcaption><b>40px</b> · nav</figcaption>
+      </figure>
+      <figure>
+        <img src="logo-assets/isotipo.png" alt="" style="width:64px; height:64px;">
+        <figcaption><b>64px</b> · app icon</figcaption>
+      </figure>
+      <figure>
+        <img src="logo-assets/isotipo.png" alt="" style="width:96px; height:96px;">
+        <figcaption><b>96px</b> · hero card</figcaption>
+      </figure>
+      <figure>
+        <img src="logo-assets/isotipo.png" alt="" style="width:140px; height:140px;">
+        <figcaption><b>140px</b> · poster</figcaption>
+      </figure>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="specs-grid">
+      <div class="body" style="font-family:var(--font-body); font-size:14.5px; line-height:1.7; color:var(--dm-ink-80); max-width:60ch;">
+        <p style="margin:0 0 16px;"><b style="color:var(--dm-catalyst-700);">*Favicon &lt;24px:</b> usa una versión simplificada del isotipo sin el trazo interno del monograma. Solo silueta del hexágono con relleno sólido <code style="font-family:var(--font-mono); font-size:12.5px; background:var(--dm-pale); color:var(--dm-amethyst); padding:1px 6px; border-radius:3px;">--dm-amethyst</code>.</p>
+        <p style="margin:0;">Para tamaños superiores a <b style="color:var(--dm-amethyst);">200px</b>, considera la variante con tagline (D) — el espacio extra justifica el mensaje "Hagamos que las cosas pasen".</p>
+      </div>
+      <aside class="specs-side">
+        <h4>Reglas digitales</h4>
+        <dl>
+          <dt>Pixel-perfect</dt><dd>Reduce siempre en múltiplos de 8: 16, 24, 40, 64, 96, 128, 160.</dd>
+          <dt>Retina</dt><dd>Exporta @2X y @3X para asegurar nitidez en pantallas HiDPI.</dd>
+          <dt>Print</dt><dd>Vector preferido. PNG mínimo 300dpi para tamaños declarados.</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 8 · USOS INCORRECTOS ═════════════════ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">08</div>
+      <h2 class="sec-title">Usos incorrectos</h2>
+      <div class="sec-meta">No, gracias</div>
+    </div>
+    <p class="sec-intro">
+      El logo nunca se modifica. Cualquier alteración rompe el sistema. Si no encuentras una variante que resuelva tu caso, consulta antes de improvisar.
+    </p>
+
+    <div class="misuse-grid">
+      <div class="misuse">
+        <div class="stage"><div class="x-mark">✕</div><img src="logo-assets/logo-horizontal.png" class="f-stretch" alt=""></div>
+        <div class="desc"><b>No deformes.</b> El isotipo y el wordmark mantienen su proporción 1:1 con el archivo maestro.</div>
+      </div>
+      <div class="misuse">
+        <div class="stage"><div class="x-mark">✕</div><img src="logo-assets/logo-horizontal.png" class="f-rotate" alt=""></div>
+        <div class="desc"><b>No rotes.</b> La marca siempre se lee en horizontal. No hay versiones inclinadas.</div>
+      </div>
+      <div class="misuse">
+        <div class="stage" style="background:var(--dm-amethyst);"><div class="x-mark">✕</div><img src="logo-assets/logo-horizontal.png" alt=""></div>
+        <div class="desc"><b>No uses bajo contraste.</b> Sobre Amethyst usa el lockup en blanco (alt). Nunca el morado sobre morado.</div>
+      </div>
+      <div class="misuse">
+        <div class="stage"><div class="x-mark">✕</div><img src="logo-assets/logo-horizontal.png" class="f-recolor" alt=""></div>
+        <div class="desc"><b>No recolores.</b> El logo sólo existe en Amethyst, Catalyst-700, blanco o negro 100%.</div>
+      </div>
+      <div class="misuse">
+        <div class="stage"><div class="x-mark">✕</div><img src="logo-assets/logo-horizontal.png" class="f-shadow" alt=""></div>
+        <div class="desc"><b>No agregues efectos.</b> Sin sombras, bisels, brillos, glow ni outline.</div>
+      </div>
+      <div class="misuse">
+        <div class="stage"><div class="x-mark">✕</div><img src="logo-assets/logo-horizontal.png" class="f-outline" alt=""></div>
+        <div class="desc"><b>No bajes el contraste.</b> El logo no se muestra atenuado; si "molesta" tu jerarquía, no debería estar ahí.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ FOOTER ═════════════════ -->
+  <footer class="foot">
+    <div class="bar"></div>
+    <div>DM · Brand System v3.0</div>
+    <div class="mid">Hagamos que las cosas pasen</div>
+    <div class="right">Logo Specs · 01/01</div>
+  </footer>
+
+</div>
+</body>
+</html>

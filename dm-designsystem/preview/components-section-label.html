@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Section Label</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#0A0612; padding:20px; display:flex; flex-direction:column; gap:14px; }
+
+  /* Context card — shows the label on a realistic bg */
+  .ctx {
+    background:#0F0A1A;
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:10px;
+    padding:14px 16px 10px;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .label-meta {
+    font-family:var(--font-mono); font-size:8px; letter-spacing:0.14em;
+    text-transform:uppercase; color:rgba(245,245,247,0.45);
+    border-top:1px solid rgba(255,255,255,0.06);
+    padding-top:7px; margin-top:4px;
+  }
+
+  /* ── A · Bar accent izquierdo (amethyst→ember) ── */
+  .sl-a { display:flex; align-items:center; gap:12px; }
+  .sl-a .bar {
+    width:4px; height:22px;
+    background:linear-gradient(180deg,#7C3FBE,#FF5C39);
+    border-radius:2px;
+    box-shadow:0 0 10px rgba(124,63,190,0.7);
+    flex-shrink:0;
+  }
+  .sl-a .text {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:rgba(245,245,247,0.80);
+    font-weight:600;
+  }
+
+  /* ── B · Dot + texto amethyst ── */
+  .sl-b { display:flex; align-items:center; gap:9px; }
+  .sl-b .dot {
+    width:7px; height:7px; border-radius:50%; background:#7C3FBE;
+    box-shadow:0 0 8px rgba(124,63,190,0.9), 0 0 16px rgba(124,63,190,0.4);
+    flex-shrink:0;
+  }
+  .sl-b .text {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:#9B5FD4; font-weight:600;
+    text-shadow:0 0 12px rgba(124,63,190,0.4);
+  }
+
+  /* ── C · Numerado (ember number) ── */
+  .sl-c { display:flex; align-items:baseline; gap:10px; }
+  .sl-c .num {
+    font-family:var(--font-mono); font-size:12px; color:#FF5C39;
+    letter-spacing:0.10em; font-weight:700;
+    text-shadow:0 0 10px rgba(255,92,57,0.5);
+  }
+  .sl-c .text {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:rgba(245,245,247,0.80); font-weight:600;
+  }
+
+  /* ── D · Pill chip amethyst glow ── */
+  .sl-d {
+    display:inline-flex; align-items:center;
+    padding:5px 13px;
+    background:rgba(124,63,190,0.18);
+    border:1.5px solid rgba(124,63,190,0.85);
+    border-radius:999px;
+    box-shadow:0 0 10px rgba(124,63,190,0.40), 0 0 24px rgba(124,63,190,0.20);
+  }
+  .sl-d .text {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.14em;
+    text-transform:uppercase; color:#B07FE0; font-weight:600;
+  }
+
+  /* ── E · Gold underline ── */
+  .sl-e { display:flex; align-items:center; gap:12px; }
+  .sl-e .text {
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:rgba(245,245,247,0.85); font-weight:600;
+    border-bottom:2.5px solid #E6B800;
+    padding-bottom:3px;
+    text-shadow:0 0 12px rgba(230,184,0,0.3);
+  }
+</style>
+</head>
+<body>
+
+  <div class="ctx">
+    <div class="sl-a"><div class="bar"></div><div class="text">Experiencia · Work</div></div>
+    <div class="label-meta">A · Bar izquierdo · gradient amethyst→ember · glow</div>
+  </div>
+
+  <div class="ctx">
+    <div class="sl-b"><div class="dot"></div><div class="text">Servicios</div></div>
+    <div class="label-meta">B · Dot amethyst · pulse glow · texto luminoso</div>
+  </div>
+
+  <div class="ctx">
+    <div class="sl-c"><div class="num">01 /</div><div class="text">Sobre mí</div></div>
+    <div class="label-meta">C · Numerado · ember number + glow · texto claro</div>
+  </div>
+
+  <div class="ctx">
+    <div class="sl-d"><div class="text">Casos de estudio</div></div>
+    <div class="label-meta">D · Pill chip · amethyst border + glow</div>
+  </div>
+
+  <div class="ctx">
+    <div class="sl-e"><div class="text">Impacto</div></div>
+    <div class="label-meta">E · Underline gold · para secciones de métricas</div>
+  </div>
+
+</body>
+</html>

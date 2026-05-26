@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Metrics</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#120D1A; padding:22px; }
+  .label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,245,247,0.4); margin-bottom:16px; margin-top:20px; }
+  .label:first-child { margin-top:0; }
+
+  /* ── Primary row ── */
+  .row { display:flex; gap:0; }
+  .metric { display:flex; flex-direction:column; padding:0 24px; border-right:1px solid rgba(255,255,255,0.08); }
+  .metric:first-child { padding-left:0; }
+  .metric:last-child { border-right:none; }
+
+  .n {
+    font-family:var(--font-display); font-weight:800; font-size:52px;
+    letter-spacing:-0.04em; line-height:1;
+    background:linear-gradient(135deg,#9B5FD4 0%,#7C3FBE 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    filter:drop-shadow(0 0 16px rgba(124,63,190,0.5));
+  }
+  .n.ember {
+    background:linear-gradient(135deg,#FF7A5C 0%,#FF5C39 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    filter:drop-shadow(0 0 16px rgba(255,92,57,0.5));
+  }
+  .n.gold {
+    background:linear-gradient(135deg,#FFD740 0%,#E6B800 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    filter:drop-shadow(0 0 16px rgba(230,184,0,0.5));
+  }
+  .n.quantum {
+    background:linear-gradient(135deg,#5F9FFF 0%,#246BFD 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    filter:drop-shadow(0 0 16px rgba(36,107,253,0.5));
+  }
+
+  .u { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,245,247,0.5); margin-top:7px; }
+  .d { font-family:var(--font-body); font-size:11px; color:rgba(245,245,247,0.35); margin-top:2px; }
+
+  /* ── Accent underline ── */
+  .n-wrap { position:relative; display:inline-block; }
+  .n-wrap::after { content:''; position:absolute; left:0; bottom:-4px; height:2px; width:100%; border-radius:2px; }
+  .n-wrap.a::after { background:linear-gradient(90deg,#7C3FBE,transparent); }
+  .n-wrap.e::after { background:linear-gradient(90deg,#FF5C39,transparent); }
+  .n-wrap.g::after { background:linear-gradient(90deg,#E6B800,transparent); }
+  .n-wrap.q::after { background:linear-gradient(90deg,#246BFD,transparent); }
+
+  /* ── Compact horizontal band ── */
+  .band { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1px; margin-top:4px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden; }
+  .band-cell { background:#0F0A1A; padding:12px 14px; display:flex; flex-direction:column; gap:4px; }
+  .band-n { font-family:var(--font-display); font-weight:800; font-size:26px; letter-spacing:-0.03em; line-height:1; }
+  .band-u { font-family:var(--font-mono); font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(245,245,247,0.4); }
+</style>
+</head>
+<body>
+
+  <div class="label">KPI Display · Glow · Amethyst · Ember · Gold · Quantum</div>
+  <div class="row">
+    <div class="metric">
+      <div class="n-wrap a"><div class="n gold">+600%</div></div>
+      <div class="u">Adopción</div>
+      <div class="d">Heineken Innovation</div>
+    </div>
+    <div class="metric">
+      <div class="n-wrap a"><div class="n">3,000+</div></div>
+      <div class="u">Emprendedores</div>
+      <div class="d">Formados en LATAM</div>
+    </div>
+    <div class="metric">
+      <div class="n-wrap e"><div class="n ember">30+</div></div>
+      <div class="u">Programas</div>
+      <div class="d">Implementados</div>
+    </div>
+    <div class="metric">
+      <div class="n-wrap g"><div class="n gold">900+</div></div>
+      <div class="u">Proyectos</div>
+      <div class="d">Evaluados</div>
+    </div>
+  </div>
+
+  <div class="label" style="margin-top:24px">Compact band · 4-up</div>
+  <div class="band">
+    <div class="band-cell">
+      <div class="band-n" style="background:linear-gradient(135deg,#FFD740,#E6B800);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(230,184,0,0.4))">+600%</div>
+      <div class="band-u">Adopción · Heineken</div>
+    </div>
+    <div class="band-cell">
+      <div class="band-n" style="background:linear-gradient(135deg,#9B5FD4,#7C3FBE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(124,63,190,0.4))">3k+</div>
+      <div class="band-u">Emprendedores</div>
+    </div>
+    <div class="band-cell">
+      <div class="band-n" style="background:linear-gradient(135deg,#FF7A5C,#FF5C39);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(255,92,57,0.4))">30+</div>
+      <div class="band-u">Programas</div>
+    </div>
+    <div class="band-cell">
+      <div class="band-n" style="background:linear-gradient(135deg,#5F9FFF,#246BFD);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(36,107,253,0.4))">900+</div>
+      <div class="band-u">Proyectos eval.</div>
+    </div>
+  </div>
+
+</body>
+</html>
