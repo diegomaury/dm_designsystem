@@ -24,7 +24,7 @@ section { position: relative; padding: clamp(4rem, 8vw, 8rem) 0; }
 .section-content { position: relative; z-index: 1; }
 
 /* ── NAV ── Dark surface · canónica */
-.nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: #050208; border-bottom: 1px solid rgba(124,63,190,0.28); z-index: 100; transition: box-shadow 300ms; }
+.nav { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: #050208; border-bottom: 1px solid rgba(75,42,135,0.28); z-index: 100; transition: box-shadow 300ms; }
 .nav.is-scrolled { background: rgba(5,2,8,0.96); backdrop-filter: blur(12px); box-shadow: 0 2px 16px rgba(0,0,0,0.5); }
 .nav__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .nav__brand { display: flex; align-items: center; gap: 0.6rem; }
@@ -38,9 +38,9 @@ section { position: relative; padding: clamp(4rem, 8vw, 8rem) 0; }
 .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.10em; text-transform: uppercase; font-weight: 500; transition: opacity 150ms, transform 150ms; }
 .btn:hover { opacity: 0.85; transform: translateY(-1px); }
 /* v3: Amethyst = primary CTA · Ember = secondary spark action */
-.btn--ember { background: var(--dm-amethyst-grad); color: var(--dm-bone); box-shadow: 0 4px 14px rgba(124,63,190,0.35); }
-.btn--ember:hover { box-shadow: 0 6px 20px rgba(124,63,190,0.50); opacity: 1; }
-.btn--catalyst { background: transparent; color: var(--dm-ember); border: 1.5px solid rgba(255,92,57,0.4); }
+.btn--ember { background: var(--dm-amethyst-grad); color: var(--dm-bone); box-shadow: 0 4px 14px rgba(75,42,135,0.35); }
+.btn--ember:hover { box-shadow: 0 6px 20px rgba(75,42,135,0.50); opacity: 1; }
+.btn--catalyst { background: transparent; color: var(--dm-ember); border: 1.5px solid rgba(240,89,42,0.4); }
 .btn--catalyst:hover { background: var(--dm-ember-soft); border-color: var(--dm-ember); opacity: 1; }
 .btn--outline { border: 1.5px solid var(--dm-white-20); color: var(--dm-bone); }
 .btn--outline:hover { border-color: var(--dm-white-40); background: var(--dm-white-06); color: white; opacity: 1; }

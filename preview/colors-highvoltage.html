@@ -1,0 +1,69 @@
+<!-- @dsCard group="Colors" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Colors — High Voltage</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#1d1238; padding:20px; font-family:var(--font-body); color:#fff; }
+  .label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:12px; }
+
+  .stage {
+    background:#2a1854; border-radius:14px; padding:30px 28px 26px;
+    border:1px solid rgba(255,255,255,0.1); position:relative; overflow:hidden;
+  }
+  .kicker { font-family:var(--font-mono); font-weight:700; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#f0592a; }
+  .h { font-family:var(--font-display); font-weight:900; font-size:clamp(26px,4.5vw,40px); line-height:0.98; text-transform:uppercase; letter-spacing:-0.02em; color:#fff; margin-top:14px; }
+  .h em { font-style:normal; color:#f0592a; }
+  .kpis { display:flex; flex-wrap:wrap; gap:26px; margin-top:26px; }
+  .kpi .n { font-family:var(--font-display); font-weight:900; font-size:38px; color:#e6a100; line-height:1; font-variant-numeric:tabular-nums; }
+  .kpi .l { font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-top:6px; }
+  .tag { font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#f0592a; margin-top:26px; }
+
+  .swatches { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:16px; }
+  .link { display:inline-flex; align-items:center; gap:7px; margin-top:22px; font-family:var(--font-mono); font-weight:700; font-size:11px; letter-spacing:0.04em; color:#7aa6ff; text-decoration:none; border-bottom:1.5px solid rgba(122,166,255,0.5); padding-bottom:2px; }
+  .link .dotq { width:7px; height:7px; border-radius:50%; background:#7aa6ff; }
+  .sw { border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.04); }
+  .sw-top { height:40px; }
+  .sw-bot { padding:8px 10px 9px; }
+  .sw-name { font-family:var(--font-display); font-weight:700; font-size:11px; color:#fff; }
+  .sw-hex { font-family:var(--font-mono); font-size:9px; color:rgba(255,255,255,0.5); margin-top:2px; }
+  .note { font-family:var(--font-mono); font-size:8.5px; letter-spacing:0.04em; color:rgba(255,255,255,0.42); margin-top:14px; line-height:1.55; }
+  .note b { color:#e6a100; font-weight:700; }
+
+  .excl-label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:20px; margin-bottom:10px; }
+  .excl { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .ex { display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:8px; background:rgba(255,255,255,0.04); }
+  .ex-chip { width:26px; height:26px; border-radius:6px; flex:none; position:relative; opacity:0.55; }
+  .ex-chip::after { content:""; position:absolute; inset:0; background:linear-gradient(135deg, transparent 45%, #fff 46%, #fff 54%, transparent 55%); border-radius:6px; }
+  .ex-name { font-family:var(--font-display); font-weight:700; font-size:11px; color:rgba(255,255,255,0.85); }
+  .ex-why { font-family:var(--font-mono); font-size:8px; color:rgba(255,255,255,0.4); margin-top:2px; letter-spacing:0.04em; }
+</style>
+</head>
+<body>
+  <div class="label">Colors · Paleta alterna · High Voltage</div>
+
+  <div class="stage">
+    <div class="kicker">Máxima tensión</div>
+    <div class="h">Convierto estrategia en <em>sistemas rentables</em></div>
+    <div class="kpis">
+      <div class="kpi"><div class="n">30+</div><div class="l">programas</div></div>
+      <div class="kpi"><div class="n">900+</div><div class="l">proyectos</div></div>
+      <div class="kpi"><div class="n">3,000+</div><div class="l">emprendedores</div></div>
+    </div>
+    <a class="link" href="#"><span class="dotq"></span>Ver arquitectura del sistema →</a>
+    <div class="tag">Hagamos que las cosas pasen</div>
+  </div>
+
+  <div class="swatches">
+    <div class="sw"><div class="sw-top" style="background:#2a1854;border:1px solid rgba(255,255,255,0.12)"></div><div class="sw-bot"><div class="sw-name">Fondo</div><div class="sw-hex">#2a1854</div></div></div>
+    <div class="sw"><div class="sw-top" style="background:#ffffff"></div><div class="sw-bot"><div class="sw-name">Texto</div><div class="sw-hex">#ffffff</div></div></div>
+    <div class="sw"><div class="sw-top" style="background:#f0592a"></div><div class="sw-bot"><div class="sw-name">Ember</div><div class="sw-hex">#f0592a</div></div></div>
+    <div class="sw"><div class="sw-top" style="background:#e6a100"></div><div class="sw-bot"><div class="sw-name">Spark</div><div class="sw-hex">#e6a100</div></div></div>
+    <div class="sw"><div class="sw-top" style="background:#7aa6ff"></div><div class="sw-bot"><div class="sw-name">Quantum</div><div class="sw-hex">#7aa6ff · on-dark</div></div></div>
+  </div>
+
+  <div class="note">Para <b>decks de inversión</b> y portadas de impacto. Fondo Catalyst 900 + blanco puro. <b style="color:#f0592a">Ember</b> y <b style="color:#e6a100">Spark</b> guían la atención al valor; <b style="color:#7aa6ff">Quantum</b> (en su variante luminosa <b style="color:#7aa6ff">#7aa6ff</b> sobre oscuro) marca lo operativo — links, navegación y arquitectura del sistema. Sin morado medio, sin lavanda.</div>
+</body>
+</html>

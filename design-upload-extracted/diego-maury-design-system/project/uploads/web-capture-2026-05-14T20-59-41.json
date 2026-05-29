@@ -1,0 +1,71 @@
+[
+  {
+    "id": "cap_mp5z15rk_rql80g",
+    "selector": "img",
+    "label": "img",
+    "tag": "img",
+    "url": "https://diegomaury.substack.com/",
+    "title": "Haz que pase - Innovación · Emprendimiento · Comunidad | Diego Maury | Substack",
+    "timestamp": "2026-05-14T20:59:00.080Z",
+    "innerText": "",
+    "outerHTML": "<img alt=\"Haz que pase - Innovación · Emprendimiento · Comunidad\" src=\"https://substackcdn.com/image/fetch/$s_!PeCK!,e_trim:10:white/e_trim:10:transparent/h_72,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F97307326-98c6-4dc5-88eb-239f117d71d2_1344x256.png\" style=\"display: block; height: 36px;\">",
+    "rect": {
+      "x": 623,
+      "y": 26,
+      "width": 189,
+      "height": 36
+    },
+    "computedStyles": {
+      "display": "block",
+      "width": "189px",
+      "height": "36px",
+      "border": "0px none rgb(231, 229, 233)",
+      "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+      "color": "rgb(231, 229, 233)",
+      "font-family": "Lora, sans-serif",
+      "font-size": "24px",
+      "font-weight": "600",
+      "line-height": "32px",
+      "text-align": "center",
+      "text-decoration": "none",
+      "white-space": "nowrap",
+      "overflow": "clip",
+      "transition": "transform 0.125s cubic-bezier(0.19, 1, 0.22, 1), height 0.125s cubic-bezier(0.19, 1, 0.22, 1)",
+      "cursor": "pointer"
+    },
+    "cssRules": []
+  },
+  {
+    "id": "cap_mp5z17uk_u7irky",
+    "selector": "img.pencraft",
+    "label": "img.pencraft",
+    "tag": "img",
+    "url": "https://diegomaury.substack.com/",
+    "title": "Haz que pase - Innovación · Emprendimiento · Comunidad | Diego Maury | Substack",
+    "timestamp": "2026-05-14T20:59:02.780Z",
+    "innerText": "",
+    "outerHTML": "<img style=\"object-fit: cover; width: 40px; height: 40px;\" src=\"https://substackcdn.com/image/fetch/$s_!WJxp!,w_40,h_40,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7db78447-b54d-47a4-99e3-aeb981e839b2_500x500.png\" srcset=\"https://substackcdn.com/image/fetch/$s_!WJxp!,w_40,h_40,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7db78447-b54d-47a4-99e3-aeb981e839b2_500x500.png 40w, https://substackcdn.com/image/fetch/$s_!WJxp!,w_80,h_80,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7db78447-b54d-47a4-99e3-aeb981e839b2_500x500.png 80w, https://substackcdn.com/image/fetch/$s_!WJxp!,w_120,h_120,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7db78447-b54d-47a4-99e3-aeb981e839b2_500x500.png 120w\" sizes=\"40px\" alt=\"Haz que pase - Innovación · Emprendimiento · Comunidad\" draggable=\"false\" class=\"pencraft pc-reset\">",
+    "rect": {
+      "x": 25,
+      "y": 24,
+      "width": 40,
+      "height": 40
+    },
+    "computedStyles": {
+      "display": "block",
+      "width": "40px",
+      "height": "40px",
+      "border": "0px none rgb(231, 229, 233)",
+      "background": "rgba(0, 0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box",
+      "color": "rgb(231, 229, 233)",
+      "font-family": "\"SF Pro Display\", -apple-system, system-ui, BlinkMacSystemFont, Inter, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "font-size": "19px",
+      "text-decoration": "none",
+      "overflow": "clip",
+      "transition": "all",
+      "cursor": "pointer",
+      "object-fit": "cover"
+    },
+    "cssRules": []
+  }
+]

@@ -1,0 +1,206 @@
+<!-- @dsCard group="Colors" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>DM · Colors — Sistema Ampliado</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; background:#1d1238; padding:22px; font-family:var(--font-body); color:#fff; }
+  .head { font-family:var(--font-display); font-weight:900; font-size:19px; letter-spacing:-0.01em; color:#fff; text-transform:uppercase; }
+  .sub { font-family:var(--font-mono); font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:5px; }
+
+  .label { font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#f0592a; margin:26px 0 11px; }
+  .label .n { color:rgba(255,255,255,0.35); margin-right:8px; }
+
+  /* tonal ramps */
+  .ramp { margin-bottom:11px; }
+  .ramp-name { font-family:var(--font-display); font-weight:700; font-size:11px; color:#fff; margin-bottom:5px; display:flex; justify-content:space-between; align-items:baseline; }
+  .ramp-name span { font-family:var(--font-mono); font-size:8px; color:rgba(255,255,255,0.4); letter-spacing:0.04em; font-weight:400; }
+  .steps { display:grid; grid-template-columns:repeat(6,1fr); gap:4px; }
+  .step { height:42px; border-radius:6px; display:flex; flex-direction:column; justify-content:flex-end; padding:5px 6px; }
+  .step .lv { font-family:var(--font-mono); font-size:7.5px; font-weight:700; letter-spacing:0.02em; }
+  .step .hx { font-family:var(--font-mono); font-size:6.5px; letter-spacing:0.01em; opacity:0.7; }
+  .nu { color:#fff; } .nd { color:rgba(0,0,0,0.6); }
+
+  /* accessible text */
+  .txt-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .txt { border-radius:8px; overflow:hidden; }
+  .txt-top { padding:13px 14px; background:#f6f4f1; }
+  .txt-top .big { font-family:var(--font-display); font-weight:800; font-size:16px; }
+  .txt-bot { padding:7px 14px 9px; background:rgba(255,255,255,0.04); display:flex; justify-content:space-between; align-items:baseline; }
+  .txt-tok { font-family:var(--font-mono); font-size:8px; color:rgba(255,255,255,0.55); letter-spacing:0.03em; }
+  .pass { font-family:var(--font-mono); font-size:7.5px; font-weight:700; letter-spacing:0.06em; padding:2px 6px; border-radius:4px; background:rgba(31,138,91,0.25); color:#5fd6a0; }
+  .fail { background:rgba(214,52,44,0.22); color:#ff8a82; }
+
+  /* semantic */
+  .sem-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .sem { border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.04); }
+  .sem-bar { height:8px; }
+  .sem-body { padding:11px 12px 12px; }
+  .sem-badge { display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono); font-weight:700; font-size:9px; letter-spacing:0.04em; padding:4px 8px; border-radius:5px; }
+  .sem-badge .d { width:6px; height:6px; border-radius:50%; }
+  .sem-name { font-family:var(--font-display); font-weight:700; font-size:11px; color:#fff; margin-top:9px; }
+  .sem-hex { font-family:var(--font-mono); font-size:8px; color:rgba(255,255,255,0.45); margin-top:2px; }
+  .sem-role { font-family:var(--font-mono); font-size:7.5px; color:rgba(255,255,255,0.4); margin-top:5px; line-height:1.45; letter-spacing:0.02em; }
+
+  .note { font-family:var(--font-mono); font-size:8.5px; letter-spacing:0.03em; color:rgba(255,255,255,0.45); margin-top:11px; line-height:1.6; }
+  .note b { color:#e6a100; font-weight:700; }
+  .new { display:inline-block; font-family:var(--font-mono); font-size:7px; font-weight:700; letter-spacing:0.1em; color:#1d1238; background:#e6a100; padding:2px 6px; border-radius:4px; vertical-align:middle; margin-left:8px; }
+</style>
+</head>
+<body>
+  <div class="head">Paleta ampliada</div>
+  <div class="sub">Deep Tech &amp; Friction · de marca a sistema operable</div>
+
+  <!-- 1 · TONAL RAMPS -->
+  <div class="label"><span class="n">01</span>Rampas tonales · cada acento con soft / base / deep</div>
+
+  <div class="ramp">
+    <div class="ramp-name">Morado Maury <span>identidad · ya existía</span></div>
+    <div class="steps">
+      <div class="step" style="background:#efe9fb"><div class="lv nd">100</div><div class="hx nd">efe9fb</div></div>
+      <div class="step" style="background:#cdbce8"><div class="lv nd">200</div><div class="hx nd">cdbce8</div></div>
+      <div class="step" style="background:#a98fdb"><div class="lv nd">300</div><div class="hx nd">a98fdb</div></div>
+      <div class="step" style="background:#4b2a87"><div class="lv nu">500</div><div class="hx nu">4b2a87</div></div>
+      <div class="step" style="background:#3a2170"><div class="lv nu">700</div><div class="hx nu">3a2170</div></div>
+      <div class="step" style="background:#2a1854"><div class="lv nu">900</div><div class="hx nu">2a1854</div></div>
+    </div>
+  </div>
+
+  <div class="ramp">
+    <div class="ramp-name">Ember <span class="new" style="margin:0">nuevo</span></div>
+    <div class="steps">
+      <div class="step" style="background:#fde7df"><div class="lv nd">100</div><div class="hx nd">fde7df</div></div>
+      <div class="step" style="background:#f9bca6"><div class="lv nd">200</div><div class="hx nd">f9bca6</div></div>
+      <div class="step" style="background:#f0592a"><div class="lv nu">500</div><div class="hx nu">f0592a</div></div>
+      <div class="step" style="background:#d4451c"><div class="lv nu">600</div><div class="hx nu">d4451c</div></div>
+      <div class="step" style="background:#a83514"><div class="lv nu">700</div><div class="hx nu">a83514</div></div>
+      <div class="step" style="background:#5e1d0a"><div class="lv nu">900</div><div class="hx nu">5e1d0a</div></div>
+    </div>
+  </div>
+
+  <div class="ramp">
+    <div class="ramp-name">Quantum <span class="new" style="margin:0">nuevo</span></div>
+    <div class="steps">
+      <div class="step" style="background:#e4ecfb"><div class="lv nd">100</div><div class="hx nd">e4ecfb</div></div>
+      <div class="step" style="background:#a9c2f2"><div class="lv nd">200</div><div class="hx nd">a9c2f2</div></div>
+      <div class="step" style="background:#7aa6ff"><div class="lv nd">300</div><div class="hx nd">7aa6ff</div></div>
+      <div class="step" style="background:#2862cf"><div class="lv nu">500</div><div class="hx nu">2862cf</div></div>
+      <div class="step" style="background:#1c4699"><div class="lv nu">700</div><div class="hx nu">1c4699</div></div>
+      <div class="step" style="background:#0f2a5e"><div class="lv nu">900</div><div class="hx nu">0f2a5e</div></div>
+    </div>
+  </div>
+
+  <div class="ramp">
+    <div class="ramp-name">Spark <span class="new" style="margin:0">nuevo</span></div>
+    <div class="steps">
+      <div class="step" style="background:#fbf0cf"><div class="lv nd">100</div><div class="hx nd">fbf0cf</div></div>
+      <div class="step" style="background:#f5d77a"><div class="lv nd">200</div><div class="hx nd">f5d77a</div></div>
+      <div class="step" style="background:#f0b429"><div class="lv nd">300</div><div class="hx nd">f0b429</div></div>
+      <div class="step" style="background:#e6a100"><div class="lv nd">500</div><div class="hx nd">e6a100</div></div>
+      <div class="step" style="background:#a8740a"><div class="lv nu">700</div><div class="hx nu">a8740a</div></div>
+      <div class="step" style="background:#5e4106"><div class="lv nu">900</div><div class="hx nu">5e4106</div></div>
+    </div>
+  </div>
+
+  <!-- 2 · ACCESSIBLE TEXT -->
+  <div class="label"><span class="n">02</span>Variantes de texto accesibles sobre claro</div>
+  <div class="txt-grid">
+    <div class="txt">
+      <div class="txt-top"><span class="big" style="color:#f0592a;">Ember base no pasa</span></div>
+      <div class="txt-bot"><span class="txt-tok">#f0592a / #f6f4f1</span><span class="pass fail">3.0:1 · FALLA</span></div>
+    </div>
+    <div class="txt">
+      <div class="txt-top"><span class="big" style="color:#c8431a;">Ember texto sí pasa</span></div>
+      <div class="txt-bot"><span class="txt-tok">--ember-text #c8431a</span><span class="pass">4.8:1 · AA</span></div>
+    </div>
+    <div class="txt">
+      <div class="txt-top"><span class="big" style="color:#e6a100;">Spark base no pasa</span></div>
+      <div class="txt-bot"><span class="txt-tok">#e6a100 / #f6f4f1</span><span class="pass fail">2.0:1 · FALLA</span></div>
+    </div>
+    <div class="txt">
+      <div class="txt-top"><span class="big" style="color:#8a6200;">Spark texto sí pasa</span></div>
+      <div class="txt-bot"><span class="txt-tok">--spark-text #8a6200</span><span class="pass">5.1:1 · AA</span></div>
+    </div>
+  </div>
+  <div class="note">El acento brillante se reserva para <b>fills, KPIs y gráficos</b>; cuando una palabra deba ir en color sobre claro, se usa la variante de texto oscurecida. Quantum ya estaba resuelto (#2862cf claro / #7aa6ff oscuro).</div>
+
+  <!-- 3 · SEMANTIC -->
+  <div class="label"><span class="n">03</span>Capa semántica de estado · tintada de violeta</div>
+  <div class="sem-grid">
+    <div class="sem">
+      <div class="sem-bar" style="background:#1f8a5b"></div>
+      <div class="sem-body">
+        <span class="sem-badge" style="background:rgba(31,138,91,0.16);color:#1f8a5b;"><span class="d" style="background:#1f8a5b"></span>Éxito</span>
+        <div class="sem-name">Verde Sistema</div>
+        <div class="sem-hex">#1f8a5b</div>
+        <div class="sem-role">Completado, activo, on-track</div>
+      </div>
+    </div>
+    <div class="sem">
+      <div class="sem-bar" style="background:#d6342c"></div>
+      <div class="sem-body">
+        <span class="sem-badge" style="background:rgba(214,52,44,0.16);color:#d6342c;"><span class="d" style="background:#d6342c"></span>Peligro</span>
+        <div class="sem-name">Rojo Sistema</div>
+        <div class="sem-hex">#d6342c</div>
+        <div class="sem-role">Error, bloqueo, destructivo</div>
+      </div>
+    </div>
+    <div class="sem">
+      <div class="sem-bar" style="background:#e6a100"></div>
+      <div class="sem-body">
+        <span class="sem-badge" style="background:rgba(230,161,0,0.18);color:#8a6200;"><span class="d" style="background:#e6a100"></span>Aviso</span>
+        <div class="sem-name">Spark</div>
+        <div class="sem-hex">#e6a100</div>
+        <div class="sem-role">Alerta, atención · reusa Spark</div>
+      </div>
+    </div>
+    <div class="sem">
+      <div class="sem-bar" style="background:#2862cf"></div>
+      <div class="sem-body">
+        <span class="sem-badge" style="background:rgba(40,98,207,0.16);color:#2862cf;"><span class="d" style="background:#2862cf"></span>Info</span>
+        <div class="sem-name">Quantum</div>
+        <div class="sem-hex">#2862cf</div>
+        <div class="sem-role">Estado neutro · reusa Quantum</div>
+      </div>
+    </div>
+  </div>
+  <div class="note">Resuelve el conflicto actual (Spark hacía de KPI <b>y</b> alerta; Ember podía leerse como "error"). Verde y rojo son <b>nuevos</b> y van tintados de violeta para no romper el sistema; Aviso e Info <b>reutilizan</b> Spark y Quantum. La marca (Morado/Ember) nunca significa estado.</div>
+
+  <!-- 4 · NEUTRALS -->
+  <div class="label"><span class="n">04</span>Rampa de neutrales · violeta-tintada (nunca gris #808080)</div>
+  <div class="steps" style="grid-template-columns:repeat(8,1fr);">
+    <div class="step" style="background:#f6f4f1"><div class="lv nd">50</div></div>
+    <div class="step" style="background:#ece8f1"><div class="lv nd">100</div></div>
+    <div class="step" style="background:#dcd5e4"><div class="lv nd">200</div></div>
+    <div class="step" style="background:#b8aecb"><div class="lv nd">300</div></div>
+    <div class="step" style="background:#8c7fa8"><div class="lv nu">400</div></div>
+    <div class="step" style="background:#5e4f86"><div class="lv nu">600</div></div>
+    <div class="step" style="background:#3b3354"><div class="lv nu">800</div></div>
+    <div class="step" style="background:#241f33"><div class="lv nu">900</div></div>
+  </div>
+  <div class="note">Bordes, divisores, disabled y superficies salen todos de esta única escala — coherente y con el sesgo violeta del sistema, sin un solo gris plano.</div>
+
+  <!-- 5 · DARK ELEVATION -->
+  <div class="label"><span class="n">05</span>Superficies oscuras · elevación <span class="new" style="margin-left:6px">fusión</span></div>
+  <div class="steps" style="grid-template-columns:repeat(4,1fr);">
+    <div class="step" style="background:#1d1238;height:56px;border:1px solid rgba(255,255,255,0.08)"><div class="lv nu">recessed</div><div class="hx nu">1d1238</div></div>
+    <div class="step" style="background:#2a1854;height:56px;border:1px solid rgba(255,255,255,0.1)"><div class="lv nu">suelo · 900</div><div class="hx nu">2a1854</div></div>
+    <div class="step" style="background:#352066;height:56px;border:1px solid rgba(255,255,255,0.12)"><div class="lv nu">tarjeta · 800</div><div class="hx nu">352066</div></div>
+    <div class="step" style="background:#3a2170;height:56px;border:1px solid rgba(255,255,255,0.14)"><div class="lv nu">elevado · 700</div><div class="hx nu">3a2170</div></div>
+  </div>
+  <div class="demo-stack" style="margin-top:12px;background:#1d1238;border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,0.07);">
+    <div style="background:#2a1854;border-radius:9px;padding:14px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);">Suelo · 900</div>
+      <div style="background:#352066;border-radius:8px;padding:13px;margin-top:11px;border:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:13px;color:#fff;">Tarjeta sobre suelo</div>
+        <div style="font-family:var(--font-mono);font-size:8px;color:rgba(255,255,255,0.5);margin-top:3px;">Catalyst 800 · #352066</div>
+        <div style="display:inline-block;background:#3a2170;border-radius:6px;padding:7px 11px;margin-top:11px;border:1px solid rgba(255,255,255,0.14);font-family:var(--font-mono);font-size:9px;color:#7aa6ff;">Elemento elevado / hover · 700</div>
+      </div>
+    </div>
+  </div>
+  <div class="note">El único hueco real que faltaba: entre Catalyst 900 y el blanco había un salto brutal. Ahora hay <b>tres niveles de profundidad</b> en oscuro — recessed, suelo, tarjeta y elevado — para modales, cards y estados hover sin recurrir al blanco.</div>
+
+</body>
+</html>
