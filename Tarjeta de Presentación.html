@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta de Presentación — Diego Maury</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:#e9e5e0;
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;
+    padding:56px 24px 80px;
+    font-family:var(--font-body);
+  }
+  .page-head{text-align:center;margin-bottom:44px;max-width:640px;}
+  .page-head .eyebrow{
+    font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--dm-ember);margin-bottom:12px;
+  }
+  .page-head h1{
+    font-family:var(--font-display);font-weight:800;font-size:28px;
+    color:var(--dm-catalyst-700);letter-spacing:-.01em;margin-bottom:8px;
+  }
+  .page-head p{font-size:14px;color:var(--dm-ink-60);line-height:1.5;}
+
+  .cards{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;}
+  .card-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .card-label{
+    font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--dm-ink-40);
+  }
+
+  /* Business card — 3.5 x 2 in → 525 x 300 px (scaled), 300dpi-ready proportions */
+  .card{
+    width:480px;height:274px;border-radius:13px;overflow:hidden;position:relative;
+    box-shadow:0 20px 50px -22px rgba(18,13,26,.55), 0 4px 12px rgba(18,13,26,.22);
+  }
+
+  /* ─────────── FRONT ─────────── */
+  .front{
+    background:var(--dm-catalyst-900);
+    color:var(--dm-bone);
+    padding:30px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .front .hex-bg{
+    position:absolute;inset:0;
+    background:url('assets/hexagon-pattern.png') center/300px;
+    opacity:.05;pointer-events:none;
+  }
+  .front .tricolor{position:absolute;top:0;left:0;right:0;height:4px;background:var(--dm-tricolor);}
+  .front-stack{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .front .iso{width:46px;height:46px;object-fit:contain;
+    filter:brightness(0) invert(1);margin-bottom:18px;}
+  .front .name{
+    font-family:var(--font-display);font-weight:700;font-size:29px;line-height:1;
+    letter-spacing:.005em;text-transform:uppercase;color:#fff;
+  }
+  .front .role{
+    font-family:var(--font-serif);font-style:italic;font-weight:500;
+    font-size:14px;color:#b9a9d8;margin-top:8px;
+  }
+  .front .rule{width:46px;height:2px;background:var(--dm-tricolor);border-radius:1px;margin:18px 0;}
+  .front .contact{
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    font-family:var(--font-mono);font-size:11px;font-weight:400;
+    letter-spacing:.04em;color:var(--dm-white-80);
+  }
+  .front .contact a{color:inherit;text-decoration:none;}
+
+  /* ─────────── BACK ─────────── */
+  .back{
+    background:linear-gradient(150deg, #2E1547 0%, #4B2672 52%, #2a1240 100%);
+    color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:22px;text-align:center;padding:34px;
+  }
+  .back .hex-bg{
+    position:absolute;inset:0;
+    background:url('assets/hexagon-pattern-light.png') center/300px;
+    opacity:.08;pointer-events:none;
+  }
+  .back .iso-lg{width:82px;height:82px;object-fit:contain;position:relative;
+    filter:brightness(0) invert(1);}
+  .back .tagline{
+    position:relative;font-family:var(--font-mono);font-weight:700;font-size:14px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--dm-ember);
+  }
+  .back .web{
+    position:relative;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--dm-white-60);
+  }
+  .back .tricolor{position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--dm-tricolor);}
+
+  .spec{
+    margin-top:48px;font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;
+    color:var(--dm-ink-40);text-align:center;line-height:1.7;
+  }
+  .spec b{color:var(--dm-ink-60);}
+  @media(max-width:560px){
+    .card{width:340px;height:194px;}
+    .front{padding:22px 24px;}
+    .front .name{font-size:21px;}.front .iso{width:38px;height:38px;}
+    .front .role{font-size:11px;}.front .contact{font-size:9px;}
+    .back .iso-lg{width:62px;height:62px;}.back .tagline{font-size:10px;}
+  }
+</style>
+</head>
+<body>
+  <div class="page-head">
+    <div class="eyebrow">Aplicación de marca · Stationery</div>
+    <h1>Tarjeta de presentación</h1>
+    <p>Frente y reverso con el sistema oficial: Montserrat, Bitter Italic y Space Mono. Los datos de contacto son editables — sustitúyelos por los reales.</p>
+  </div>
+
+  <div class="cards">
+    <!-- FRONT -->
+    <div class="card-wrap">
+      <div class="card front">
+        <div class="hex-bg"></div>
+        <div class="tricolor"></div>
+        <div class="front-stack">
+          <img class="iso" src="assets/isotipo-gradient.png" alt="Isotipo Diego Maury">
+          <div class="name">Diego Maury</div>
+          <div class="role">Strategic Program &amp; Innovation Manager</div>
+          <div class="rule"></div>
+          <div class="contact">
+            <a href="mailto:dm@diegomaury.mx">dm@diegomaury.mx</a>
+            <a href="https://diegomaury.mx">diegomaury.mx</a>
+            <a href="https://www.linkedin.com/in/diegomaury/">linkedin.com/in/diegomaury</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-label">Frente</div>
+    </div>
+
+    <!-- BACK -->
+    <div class="card-wrap">
+      <div class="card back">
+        <div class="hex-bg"></div>
+        <img class="iso-lg" src="assets/isotipo-gradient.png" alt="Isotipo Diego Maury">
+        <div class="tagline">Hagamos que las cosas pasen</div>
+        <div class="web">diegomaury.mx</div>
+        <div class="tricolor"></div>
+      </div>
+      <div class="card-label">Reverso</div>
+    </div>
+  </div>
+
+  <div class="spec">
+    <b>Formato de impresión:</b> 85 × 55 mm (3.5 × 2 in) · 300 dpi · 3 mm de sangrado<br>
+    <b>Tipos:</b> Montserrat 700 (nombre) · Bitter Italic (rol) · Space Mono (contacto + tagline)
+  </div>
+</body>
+</html>

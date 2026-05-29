@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════════════════════
+   DIEGO MAURY — BRAND TOKENS
+   Sistema canónico derivado del logo real
+   Montserrat · Bitter Italic · Space Mono
+   Morado #4b2a87 · Naranja #f0592a
+   "Hagamos que las cosas pasen"
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── FUENTES — archivos locales (autónomo, sin CDN) ─────────
+   Montserrat · Bitter · Space Mono — las del logo real.
+   Variables (Montserrat, Bitter) cubren todo el rango de peso;
+   Space Mono es estática (400 / 700, roman + italic).
+   ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Bitter';
+  src: url('fonts/Bitter-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Bitter';
+  src: url('fonts/Bitter-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('fonts/SpaceMono-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('fonts/SpaceMono-Italic.ttf') format('truetype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('fonts/SpaceMono-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('fonts/SpaceMono-BoldItalic.ttf') format('truetype');
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+
+:root {
+  /* ── COLORES DE MARCA ─────────────────────────────────── */
+  --purple:        #4b2a87;   /* Morado primario — identidad, titulares, isotipo */
+  --purple-deep:   #3a2170;   /* Morado profundo — fondos, hover, depth */
+  --purple-darker: #2a1854;   /* Casi-negro violeta — fondos oscuros */
+  --purple-soft:   #a98fdb;   /* Lavanda claro — acentos/subtítulos SOBRE OSCURO (AA normal 5.6:1) */
+  --orange:        #f0592a;   /* Naranja — spark, tagline, palabra clave */
+  --orange-deep:   #d4451c;   /* Naranja profundo — hover */
+
+  /* ── FUNCIONAL (no es color de marca) ─────────────────── */
+  --blue:          #2862cf;   /* Azul funcional — links/estado SOBRE CLARO (AA 5.1:1) */
+  --blue-on-dark:  #7aa6ff;   /* Azul funcional — links/estado SOBRE OSCURO (AA 6.4:1) */
+
+  /* ── NEUTRALES (tintados de violeta — sin gris plano) ─── */
+  --ink:        #241f33;   /* Texto principal sobre claro — 14:1 */
+  --ink-2:      #463f5e;   /* Texto secundario sobre claro — 8:1 */
+  --muted:      #5e4f86;   /* Texto terciario/metadatos — violeta, 6.5:1 (antes gris) */
+  --paper:      #f6f4f1;   /* Fondo de página claro */
+  --pale:       #efe9fb;   /* Bloques, chips, secciones suaves */
+  --card:       #ffffff;   /* Tarjetas */
+  --line:       #e7e2dc;   /* Bordes, divisores */
+  --bone:       #f3f0ec;   /* Texto primario sobre oscuro */
+
+  /* ── TEXTO SOBRE OSCURO (escala accesible) ────────────── */
+  --on-dark-1:  #f3f0ec;   /* Primario — 13:1 */
+  --on-dark-2:  #c9bce6;   /* Secundario — lavanda claro, 8.7:1 */
+  --on-dark-3:  #a98fdb;   /* Terciario/acento — lavanda, 5.6:1 */
+
+  /* ── ALFAS sobre superficies oscuras ─────────────────── */
+  --white-90: rgba(255,255,255,0.90);
+  --white-80: rgba(255,255,255,0.80);
+  --white-70: rgba(255,255,255,0.70);
+  --white-50: rgba(255,255,255,0.50);
+  --white-30: rgba(255,255,255,0.30);
+  --white-14: rgba(255,255,255,0.14);
+  --white-08: rgba(255,255,255,0.08);
+
+  --ink-70: rgba(36,31,51,0.70);
+  --ink-55: rgba(36,31,51,0.55);
+  --ink-40: rgba(36,31,51,0.40);
+  --ink-12: rgba(36,31,51,0.12);
+  --ink-08: rgba(36,31,51,0.08);
+
+  /* ── GRADIENTES ───────────────────────────────────────── */
+  --grad-tricolor: linear-gradient(90deg, #4b2a87 0%, #6a3a9e 50%, #f0592a 100%);
+  --grad-purple:   linear-gradient(135deg, #4b2a87 0%, #3a2170 100%);
+
+  /* ── TIPOGRAFÍA — FAMILIAS ────────────────────────────── */
+  --font-display: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-serif:   'Bitter', Georgia, 'Times New Roman', serif;
+  --font-mono:    'Space Mono', ui-monospace, 'Menlo', monospace;
+
+  /* ── RADIOS ───────────────────────────────────────────── */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* ── SOMBRAS ──────────────────────────────────────────── */
+  --shadow-1: 0 1px 2px rgba(36,31,51,0.06);
+  --shadow-2: 0 6px 20px -10px rgba(75,42,135,0.30);
+  --shadow-3: 0 18px 48px -18px rgba(75,42,135,0.40);
+  --shadow-glow: 0 0 0 1px rgba(240,89,42,0.25), 0 10px 30px -8px rgba(240,89,42,0.30);
+
+  /* ── ESPACIADO (base 4px) ─────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ── MOTION ───────────────────────────────────────────── */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 200ms;
+}

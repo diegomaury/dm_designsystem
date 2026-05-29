@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand System v2 — Diego Maury</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  /* Brand colors */
+  --purple:       #4B2672;
+  --purple-mid:   #6B3A99;
+  --purple-pale:  #F0EAF8;
+  --purple-deep:  #2E1548;
+  --blue:         #246BFD;
+  --blue-pale:    #EBF1FF;
+  --ember:        #FF5C39;
+  --ember-pale:   #FFF0ED;
+
+  /* Neutrals */
+  --ink:          #0F0A1A;
+  --ink-mid:      #3D3150;
+  --ink-soft:     #7A6E8A;
+  --border:       #E8E0F0;
+  --border-mid:   #C8B8DC;
+  --off-white:    #FAF8FC;
+  --white:        #FFFFFF;
+
+  /* Typography */
+  --f-display: 'Satoshi', 'Arial Black', sans-serif;
+  --f-body:    'Inter', Arial, sans-serif;
+  --f-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+  /* Spacing */
+  --sp-xs:  4px;
+  --sp-sm:  8px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  40px;
+  --sp-2xl: 64px;
+
+  /* Logo URLs */
+  --logo-isotipo: url('https://diegomaury.mx/assets/img/isotipodiegomaury.png');
+  --logo-full:    url('https://diegomaury.mx/assets/img/logo.png');
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body);
+  background: #ECEAF3;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--purple-deep);
+  height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 4px 24px rgba(0,0,0,.3);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-brand img {
+  width: 26px; height: 26px; object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .9;
+}
+.nav-brand span {
+  font-family: var(--f-display); font-weight: 800; font-size: 13px;
+  color: white; letter-spacing: -.01em;
+}
+.nav-brand small {
+  font-family: var(--f-mono); font-size: 9px; color: var(--ember);
+  letter-spacing: .1em; text-transform: uppercase; margin-left: 6px;
+  opacity: .9;
+}
+nav ul { display:flex; gap:2px; list-style:none; }
+nav ul a {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(255,255,255,.55);
+  text-decoration: none; padding: 6px 12px; border-radius: 5px;
+  transition: all .2s;
+}
+nav ul a:hover { background: rgba(255,255,255,.1); color: white; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  background: var(--purple-deep);
+  padding: 80px 64px 96px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(36,107,253,.2) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -60px; left: 25%;
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(255,92,57,.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; max-width: 720px; }
+.hero-logo {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 40px;
+}
+.hero-logo img {
+  width: 52px; height: 52px; object-fit: contain;
+  filter: brightness(0) invert(1); opacity: .9;
+}
+.hero-eyebrow {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ember);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.hero-eyebrow::before { content:''; width:24px; height:2px; background:var(--ember); border-radius:1px; }
+.hero h1 {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: clamp(38px, 5vw, 58px); line-height: 1.03;
+  letter-spacing: -.03em; color: white; margin-bottom: 18px;
+}
+.hero h1 em { font-style:normal; color: var(--ember); }
+.hero-sub {
+  font-family: var(--f-body); font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,.6); line-height: 1.7; max-width: 500px;
+  margin-bottom: 36px;
+}
+.hero-tagline {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+  color: var(--ember); letter-spacing: .16em; text-transform: uppercase;
+  border-left: 2px solid var(--ember); padding-left: 14px;
+}
+.hero-chips {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px;
+}
+.hero-chip {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 5px 12px; border-radius: 100px;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: none; }
+
+.section-eyebrow {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--purple);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.section-eyebrow::before { content:''; width:20px; height:2px; background:var(--purple); border-radius:1px; }
+.section-title {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: clamp(24px, 3vw, 32px); letter-spacing: -.02em;
+  color: var(--ink); margin-bottom: 6px;
+}
+.section-desc {
+  font-family: var(--f-body); font-size: 14px; font-weight: 300;
+  color: var(--ink-soft); max-width: 520px; margin-bottom: 44px; line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════
+   CARDS BASE
+═══════════════════════════════════════════ */
+.card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.card:hover { box-shadow: 0 8px 40px rgba(75,38,114,.1); transform: translateY(-2px); }
+.card-body { padding: 24px 28px; }
+
+/* ═══════════════════════════════════════════
+   01 — COLOR SYSTEM
+═══════════════════════════════════════════ */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) repeat(3, 1fr);
+  gap: 14px; margin-bottom: 28px;
+}
+.color-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.color-swatch { height: 88px; position: relative; }
+.color-hex {
+  position: absolute; bottom: 8px; left: 10px;
+  font-family: var(--f-mono); font-size: 9px; font-weight: 500;
+  padding: 3px 8px; border-radius: 4px; letter-spacing: .05em;
+  background: rgba(0,0,0,.2); color: white;
+}
+.color-hex.dark { background: rgba(0,0,0,.08); color: rgba(0,0,0,.5); }
+.color-info { background: white; padding: 12px 14px; }
+.color-name { font-family: var(--f-display); font-weight: 700; font-size: 12px; color: var(--ink); margin-bottom: 2px; }
+.color-role { font-size: 11px; color: var(--ink-soft); line-height: 1.4; }
+
+.ratio-bar {
+  background: white; border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px 24px; display: flex; gap: 0; overflow: hidden;
+}
+.ratio-seg {
+  height: 32px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-mono); font-size: 9px; color: white; letter-spacing: .08em;
+  font-weight: 500; border-radius: 0;
+}
+.ratio-seg:first-child { border-radius: 6px 0 0 6px; }
+.ratio-seg:last-child  { border-radius: 0 6px 6px 0; }
+.ratio-labels { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+.ratio-label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--ink-soft);
+}
+.ratio-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   02 — TYPOGRAPHY
+═══════════════════════════════════════════ */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+.type-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; }
+.type-specimen { font-size: 52px; line-height: .95; margin-bottom: 16px; }
+.type-family { font-family: var(--f-mono); font-size: 10px; color: var(--purple); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+.type-role { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+.type-scale { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; }
+.scale-row { display: flex; align-items: baseline; gap: 20px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+.scale-row:last-child { border-bottom: none; }
+.scale-meta { font-family: var(--f-mono); font-size: 9px; color: var(--ink-soft); width: 110px; flex-shrink: 0; letter-spacing: .06em; line-height: 1.5; }
+.scale-sample { color: var(--ink); }
+
+/* ═══════════════════════════════════════════
+   03 — LOGO SYSTEM
+═══════════════════════════════════════════ */
+.logo-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.logo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+
+.logo-tile {
+  border-radius: 14px; border: 1px solid var(--border);
+  padding: 40px 32px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; min-height: 200px;
+  position: relative; overflow: hidden; gap: 0;
+}
+.logo-tile-dark   { border-color: transparent; }
+.logo-tile-purple { background: var(--purple); }
+.logo-tile-ink    { background: var(--ink); }
+.logo-tile-mesh   {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(75,38,114,.14) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(36,107,253,.1) 0%, transparent 50%),
+    var(--off-white);
+}
+.logo-tile-darkmesh {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(75,38,114,.5) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(36,107,253,.25) 0%, transparent 50%),
+    var(--ink);
+  border-color: transparent;
+}
+
+.logo-tile img { object-fit: contain; display: block; }
+.logo-tile .logo-full-img {
+  max-height: 90px; width: auto; max-width: 220px;
+}
+.logo-tile .logo-iso-img { width: 64px; height: 64px; }
+.logo-tile .logo-iso-inv { width: 64px; height: 64px; filter: brightness(0) invert(1) opacity(.9); }
+
+.tile-badge {
+  position: absolute; top: 10px; right: 10px;
+  font-family: var(--f-mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 100px;
+}
+.badge-purple { background: rgba(75,38,114,.1); color: var(--purple); }
+.badge-ember  { background: rgba(255,92,57,.12); color: var(--ember); }
+.badge-blue   { background: rgba(36,107,253,.1); color: var(--blue); }
+.badge-light  { background: rgba(255,255,255,.12); color: rgba(255,255,255,.7); }
+
+.tile-label {
+  margin-top: 18px; text-align: center;
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft); line-height: 1.5;
+}
+.tile-label.light { color: rgba(255,255,255,.35); }
+
+/* HORIZONTAL LOGO LOCKUP */
+.logo-horiz {
+  display: flex; align-items: center; gap: 16px;
+}
+.logo-horiz-div       { width: 1.5px; height: 50px; background: rgba(75,38,114,.2); }
+.logo-horiz-div-light { width: 1.5px; height: 50px; background: rgba(255,255,255,.2); }
+.horiz-text-name {
+  font-family: var(--f-display); font-weight: 800; font-size: 20px;
+  letter-spacing: -.02em; line-height: 1.05;
+}
+.horiz-text-role {
+  font-family: var(--f-body); font-size: 10px; font-weight: 400;
+  font-style: italic; line-height: 1.4; margin-top: 3px;
+}
+
+/* FAVICON ROW */
+.favicon-row { display: flex; gap: 12px; align-items: center; }
+.fav-box {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.fav-circle {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ═══════════════════════════════════════════
+   04 — DOCUMENT MOCKS
+═══════════════════════════════════════════ */
+.doc-grid-featured { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.doc-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+
+.doc-card {
+  background: white; border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.doc-card:hover { box-shadow: 0 8px 40px rgba(75,38,114,.1); transform: translateY(-2px); }
+.doc-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+
+.doc-preview {
+  background: var(--off-white);
+  padding: 20px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 260px; border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.doc-card.featured .doc-preview { border-bottom: none; border-right: 1px solid var(--border); min-height: 360px; }
+
+.doc-info { padding: 22px 26px; }
+.doc-type {
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ember); margin-bottom: 6px;
+}
+.doc-info h3 {
+  font-family: var(--f-display); font-weight: 700; font-size: 17px;
+  letter-spacing: -.01em; color: var(--ink); margin-bottom: 7px;
+}
+.doc-info p { font-size: 12px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 14px; }
+.decisions { display: flex; flex-direction: column; gap: 7px; }
+.dec { display: flex; gap: 9px; font-size: 11.5px; color: var(--ink-mid); line-height: 1.5; align-items: flex-start; }
+.dec-icon {
+  width: 18px; height: 18px; background: var(--purple-pale);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── MINI DOCUMENT MOCKS ── */
+.mock {
+  background: white; border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.08);
+  width: 100%; font-size: 7px; overflow: hidden;
+}
+.mock-hdr {
+  background: var(--purple); padding: 9px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mock-hdr img {
+  width: 18px; height: 18px; object-fit: contain;
+  filter: brightness(0) invert(1) opacity(.9);
+}
+.mock-hdr-name {
+  font-family: var(--f-display); font-weight: 800; font-size: 9px;
+  color: white; letter-spacing: -.01em;
+}
+.mock-hdr-right {
+  font-family: var(--f-mono); font-size: 4.5px;
+  color: rgba(255,255,255,.5); letter-spacing: .08em; text-align: right;
+}
+.mock-body { padding: 10px 12px; }
+.mock-kicker {
+  font-family: var(--f-mono); font-size: 4.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ember); margin-bottom: 3px;
+}
+.mock-h1 {
+  font-family: var(--f-display); font-weight: 700; font-size: 10px;
+  color: var(--ink); letter-spacing: -.01em; line-height: 1.2; margin-bottom: 6px;
+}
+.mock-divider {
+  height: 1.5px; margin: 7px 0;
+  background: linear-gradient(to right, var(--purple), var(--blue), var(--ember), transparent);
+  border-radius: 1px;
+}
+.mock-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.mock-block {
+  background: var(--off-white); border-radius: 3px; padding: 5px 7px;
+}
+.mock-block-label {
+  font-family: var(--f-mono); font-size: 3.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 2px;
+}
+.mock-block-value { font-size: 5.5px; font-weight: 500; color: var(--ink); }
+.mock-line { height: 3.5px; background: var(--border); border-radius: 2px; margin-bottom: 3px; }
+.mock-line.s60 { width: 60%; }
+.mock-line.s40 { width: 40%; }
+.mock-line.s75 { width: 75%; }
+.mock-footer {
+  background: var(--purple); padding: 5px 12px;
+  font-family: var(--f-mono); font-size: 4px;
+  color: rgba(255,255,255,.6); letter-spacing: .1em; text-transform: uppercase;
+}
+.mock-triline {
+  height: 2px;
+  background: linear-gradient(to right, var(--purple), var(--blue), var(--ember));
+}
+
+/* ONE PAGER MOCK */
+.mock-op { background: white; border-radius: 8px; box-shadow: 0 2px 16px rgba(0,0,0,.08); width: 100%; overflow: hidden; }
+.mock-op-hero { background: var(--purple); padding: 12px 14px; position: relative; overflow: hidden; }
+.mock-op-hero::after {
+  content:''; position: absolute; right:-20px; top:-20px;
+  width: 70px; height: 70px; border-radius: 50%;
+  background: rgba(36,107,253,.3); pointer-events:none;
+}
+.mock-op-hero img {
+  width: 20px; height: 20px; object-fit: contain;
+  filter: brightness(0) invert(1) opacity(.8); margin-bottom: 6px;
+}
+.mock-op-name { font-family: var(--f-display); font-weight: 800; font-size: 13px; color: white; letter-spacing: -.01em; }
+.mock-op-title { font-size: 5px; color: rgba(255,255,255,.55); margin-top: 1px; }
+.mock-op-body { padding: 8px 10px; }
+.mock-op-stats { display: flex; gap: 5px; margin-bottom: 7px; }
+.mock-op-stat { background: var(--purple-pale); border-radius: 3px; padding: 4px 6px; flex: 1; }
+.mock-op-stat-num { font-family: var(--f-display); font-weight: 700; font-size: 9px; color: var(--purple); }
+.mock-op-stat-lbl { font-size: 3.5px; color: var(--ink-soft); }
+.mock-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 6px; }
+.mock-tag { background: var(--blue-pale); color: var(--blue); font-size: 4px; padding: 2px 5px; border-radius: 3px; font-weight: 500; }
+
+/* SIGNATURE MOCK */
+.mock-sig-wrap {
+  background: white; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  padding: 14px; display: flex; align-items: center; gap: 12px; max-width: 300px;
+}
+.mock-sig-left {
+  padding-right: 12px; border-right: 2px solid var(--purple);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+}
+.mock-sig-left img { width: 22px; height: 22px; object-fit: contain; }
+.mock-sig-name { font-family: var(--f-display); font-weight: 800; font-size: 10px; color: var(--purple); letter-spacing: -.01em; }
+.mock-sig-role { font-size: 5px; color: var(--ink-soft); line-height: 1.4; }
+.mock-sig-tag  { font-family: var(--f-mono); font-size: 4px; color: var(--ember); letter-spacing: .1em; text-transform: uppercase; }
+.mock-sig-right { display: flex; flex-direction: column; gap: 3px; }
+.mock-sig-line { display: flex; align-items: center; gap: 4px; font-size: 5.5px; color: var(--ink-mid); }
+.mock-sig-triline {
+  height: 1.5px; width: 120px; margin: 4px 0;
+  background: linear-gradient(to right, var(--purple), var(--blue), var(--ember), transparent);
+  border-radius: 1px;
+}
+.mock-sig-links { display: flex; gap: 8px; }
+.mock-sig-link { font-family: var(--f-mono); font-size: 4.5px; color: var(--blue); letter-spacing: .05em; }
+
+/* ═══════════════════════════════════════════
+   05 — EMAIL SIGNATURES (FULL SIZE)
+═══════════════════════════════════════════ */
+.sig-showcase { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+.sig-frame {
+  background: white; border: 1px solid var(--border); border-radius: 14px;
+  padding: 28px 32px; box-shadow: 0 2px 20px rgba(75,38,114,.04);
+}
+.sig-frame.dark { background: var(--ink); border-color: rgba(255,255,255,.08); }
+
+/* Variante A */
+.sig-a { display: flex; align-items: stretch; max-width: 560px; }
+.sig-a-left {
+  padding-right: 22px; border-right: 2px solid var(--purple);
+  display: flex; flex-direction: column; min-width: 175px;
+}
+.sig-a-left img { width: 44px; height: 44px; object-fit: contain; margin-bottom: 11px; }
+.sig-a-name {
+  font-family: var(--f-display); font-weight: 800; font-size: 18px;
+  color: var(--purple); letter-spacing: -.025em; line-height: 1.05; margin-bottom: 3px;
+}
+.sig-a-role {
+  font-family: var(--f-body); font-size: 10.5px; font-weight: 400;
+  color: var(--ink-soft); line-height: 1.45; margin-bottom: 12px;
+}
+.sig-a-tagline {
+  font-family: var(--f-mono); font-size: 7.5px; font-weight: 500;
+  color: var(--ember); letter-spacing: .13em; text-transform: uppercase; line-height: 1.5;
+  margin-top: auto;
+}
+.sig-a-right { padding-left: 22px; display: flex; flex-direction: column; justify-content: space-between; }
+
+.contact-row {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--f-body); font-size: 11.5px; color: var(--ink-mid);
+  text-decoration: none; margin-bottom: 5px;
+}
+.contact-row svg { width: 12px; height: 12px; fill: var(--purple); opacity: .6; flex-shrink: 0; }
+.contact-row a   { color: var(--blue); text-decoration: none; }
+.triline-full {
+  height: 2px; width: 200px;
+  background: linear-gradient(to right, var(--purple), var(--blue), var(--ember), transparent);
+  border-radius: 2px; margin: 10px 0;
+}
+.link-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.sig-link {
+  font-family: var(--f-mono); font-size: 9px; font-weight: 500;
+  color: var(--blue); text-decoration: none; letter-spacing: .04em;
+  display: flex; align-items: center; gap: 4px;
+}
+.sig-link svg { width: 10px; height: 10px; fill: var(--blue); opacity: .75; }
+
+/* Variante B */
+.sig-b { max-width: 500px; border-left: 3px solid var(--purple); padding-left: 18px; }
+.sig-b-top { display: flex; align-items: center; gap: 13px; margin-bottom: 9px; }
+.sig-b-top img { width: 36px; height: 36px; object-fit: contain; }
+.sig-b-name {
+  font-family: var(--f-display); font-weight: 800; font-size: 15px;
+  color: var(--purple); letter-spacing: -.02em;
+}
+.sig-b-role { font-family: var(--f-body); font-size: 10.5px; color: var(--ink-soft); margin-top: 2px; }
+.sig-b-contacts {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  font-family: var(--f-body); font-size: 11px; color: var(--ink-mid); margin-bottom: 7px;
+}
+.sig-b-contacts a { color: var(--blue); text-decoration: none; }
+.b-sep { color: var(--border-mid); font-size: 12px; }
+.sig-b-tagline {
+  font-family: var(--f-mono); font-size: 8px; font-weight: 500;
+  color: var(--ember); letter-spacing: .13em; text-transform: uppercase;
+}
+
+/* Variante C Dark */
+.sig-c-card {
+  background: #140D24; border-radius: 10px; padding: 22px 26px;
+  max-width: 540px; position: relative; overflow: hidden;
+}
+.sig-c-card::after {
+  content:''; position: absolute; top:-40px; right:-40px;
+  width: 140px; height: 140px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(36,107,253,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sig-c { display: flex; align-items: flex-start; position: relative; z-index: 1; }
+.sig-c-left {
+  padding-right: 22px; border-right: 1px solid rgba(255,255,255,.1); min-width: 165px;
+}
+.sig-c-left img {
+  width: 38px; height: 38px; object-fit: contain; margin-bottom: 10px;
+  filter: brightness(0) invert(1) opacity(.85);
+}
+.c-name {
+  font-family: var(--f-display); font-weight: 800; font-size: 19px;
+  color: white; letter-spacing: -.025em; line-height: 1.0; margin-bottom: 4px;
+}
+.c-role { font-family: var(--f-body); font-size: 10px; color: rgba(255,255,255,.42); line-height: 1.45; max-width: 130px; margin-bottom: 10px; }
+.c-bar  { width: 26px; height: 2px; background: var(--ember); border-radius: 1px; margin-bottom: 8px; }
+.c-tagline {
+  font-family: var(--f-mono); font-size: 7.5px; font-weight: 500;
+  color: var(--ember); letter-spacing: .13em; text-transform: uppercase; line-height: 1.5;
+}
+.sig-c-right { padding-left: 22px; display: flex; flex-direction: column; gap: 6px; padding-top: 2px; }
+.c-item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--f-body); font-size: 11.5px; color: rgba(255,255,255,.55);
+  text-decoration: none;
+}
+.c-item svg { width: 12px; height: 12px; fill: rgba(255,255,255,.28); flex-shrink: 0; }
+.c-item a   { color: #5E9DFF; text-decoration: none; font-size: 11.5px; }
+
+/* ═══════════════════════════════════════════
+   06 — STANDARDS
+═══════════════════════════════════════════ */
+.rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+.rule-card { border-radius: 12px; padding: 22px 24px; border: 1px solid; }
+.rule-do   { background: #F0FAF5; border-color: #B6E8CE; }
+.rule-dont { background: #FFF4F2; border-color: #FFD0C8; }
+.rule-head { font-family: var(--f-display); font-weight: 700; font-size: 13px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.rule-do   .rule-head { color: #1A7A45; }
+.rule-dont .rule-head { color: #C0392B; }
+.rule-item { font-size: 12px; line-height: 1.6; margin-bottom: 5px; padding-left: 14px; position: relative; color: var(--ink-mid); }
+.rule-item::before { position: absolute; left: 0; font-size: 10px; }
+.rule-do   .rule-item::before { content: '→'; }
+.rule-dont .rule-item::before { content: '×'; }
+
+.coh-table { background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.coh-row { display: grid; grid-template-columns: 190px 1fr 1fr 1fr; border-bottom: 1px solid var(--border); }
+.coh-row:last-child { border-bottom: none; }
+.coh-row.hdr { background: var(--purple); }
+.coh-cell { padding: 11px 16px; font-size: 12px; color: var(--ink-mid); border-right: 1px solid var(--border); }
+.coh-cell:last-child { border-right: none; }
+.coh-row.hdr .coh-cell {
+  font-family: var(--f-mono); font-size: 9px; font-weight: 500;
+  color: rgba(255,255,255,.7); letter-spacing: .08em; text-transform: uppercase;
+  border-right-color: rgba(255,255,255,.12);
+}
+.coh-doc { font-weight: 500; color: var(--ink); font-family: var(--f-body); }
+.ctag { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 100px; font-size: 10px; font-weight: 500; }
+.ctag-p { background: var(--purple-pale); color: var(--purple); }
+.ctag-b { background: var(--blue-pale); color: var(--blue); }
+.ctag-e { background: var(--ember-pale); color: var(--ember); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.site-footer {
+  background: var(--ink); padding: 44px 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { width: 28px; height: 28px; object-fit: contain; filter: brightness(0) invert(1) opacity(.7); }
+.footer-brand span { font-family: var(--f-display); font-weight: 800; font-size: 15px; color: white; letter-spacing: -.01em; }
+.footer-meta { font-family: var(--f-mono); font-size: 10px; color: rgba(255,255,255,.3); letter-spacing: .08em; }
+.footer-tagline { font-family: var(--f-mono); font-size: 9px; color: var(--ember); letter-spacing: .16em; text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════ */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.info-box {
+  background: var(--blue-pale); border: 1px solid #C5D9FF;
+  border-radius: 10px; padding: 16px 20px;
+  font-size: 13px; color: #1A4FBF; line-height: 1.7; margin-top: 24px;
+}
+.info-box strong { font-weight: 600; }
+.tag-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--f-mono); font-size: 9px; font-weight: 500;
+  padding: 4px 10px; border-radius: 100px; letter-spacing: .06em; text-transform: uppercase;
+}
+.pill-p { background: var(--purple-pale); color: var(--purple); }
+.pill-e { background: var(--ember-pale); color: var(--ember); }
+.pill-b { background: var(--blue-pale); color: var(--blue); }
+
+/* spacing section sub-grid */
+.spacing-demo {
+  background: white; border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px 28px;
+}
+.sp-row { display: flex; align-items: center; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.sp-row:last-child { border-bottom: none; }
+.sp-block { background: var(--purple); border-radius: 3px; height: 20px; opacity: .7; }
+.sp-label { font-family: var(--f-mono); font-size: 9px; color: var(--ink-soft); letter-spacing: .08em; width: 80px; }
+.sp-name  { font-size: 11px; color: var(--ink-mid); }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SVG ICON DEFS ═══════════ -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+<defs>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
+  <symbol id="i-web" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></symbol>
+  <symbol id="i-li" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></symbol>
+  <symbol id="i-ss" viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></symbol>
+  <symbol id="i-loc" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></symbol>
+</defs>
+</svg>
+
+<!-- ════════════ NAV ════════════ -->
+<nav>
+  <div class="nav-brand">
+    <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="DM">
+    <span>Diego Maury</span>
+    <small>Brand System v2</small>
+  </div>
+  <ul>
+    <li><a href="#colores">Color</a></li>
+    <li><a href="#tipografia">Tipo</a></li>
+    <li><a href="#logo">Logo</a></li>
+    <li><a href="#documentos">Docs</a></li>
+    <li><a href="#firmas">Firma</a></li>
+    <li><a href="#estandares">Estándares</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-logo">
+        <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="Diego Maury isotipo">
+      </div>
+      <div class="hero-eyebrow">Sistema de Identidad Visual · Marca Personal · v2.0</div>
+      <h1>Brand System<br><em>Diego Maury</em></h1>
+      <p class="hero-sub">Guía maestra de identidad para todos los documentos oficiales. Construida sobre posicionamiento real, activos reales y stack tipográfico definitivo.</p>
+      <div class="hero-tagline">Hagamos que las cosas pasen</div>
+      <div class="hero-chips">
+        <div class="hero-chip">Satoshi · Display</div>
+        <div class="hero-chip">Inter · Body</div>
+        <div class="hero-chip">JetBrains Mono · Data</div>
+        <div class="hero-chip">Catalyst Purple #4B2672</div>
+        <div class="hero-chip">Quantum Blue #246BFD</div>
+        <div class="hero-chip">Electric Ember #FF5C39</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     01 — COLOR SYSTEM
+════════════════════════════════════ -->
+<section id="colores">
+  <div class="container">
+    <div class="section-eyebrow">01 — Sistema de Color</div>
+    <h2 class="section-title">Paleta Oficial</h2>
+    <p class="section-desc">Seis colores con roles estratégicos definidos. Cada uso tiene un propósito, no es decorativo.</p>
+
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#4B2672;">
+          <div class="color-hex">#4B2672</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Catalyst Purple</div>
+          <div class="color-role">Primario. Autoridad, profundidad. Encabezados, elementos dominantes.</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#246BFD;">
+          <div class="color-hex">#246BFD</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Quantum Blue</div>
+          <div class="color-role">Secundario. Tecnología, acción. Links, CTAs secundarios, tags.</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FF5C39;">
+          <div class="color-hex">#FF5C39</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Electric Ember</div>
+          <div class="color-role">Acento. Energía, CTA. Tagline, fechas clave, elementos de atención.</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0F0A1A;">
+          <div class="color-hex">#0F0A1A</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Deep Ink</div>
+          <div class="color-role">Texto principal. Más rico que negro puro. Añade personalidad.</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F0EAF8; border-bottom:1px solid #E8E0F0;">
+          <div class="color-hex dark">#F0EAF8</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Pale Purple</div>
+          <div class="color-role">Fondos de sección, chips, bloques de dato. Evita el blanco plano.</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FAF8FC; border-bottom:1px solid #E8E0F0;">
+          <div class="color-hex dark">#FAF8FC</div>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Off-White</div>
+          <div class="color-role">Fondo de página y documentos. Reduce fatiga visual en PDF digital.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ratio bar -->
+    <div class="spacing-demo" style="margin-top:8px;">
+      <div class="section-eyebrow" style="margin-bottom:16px; font-size:9px;">Regla de uso 60·30·10</div>
+      <div style="display:flex; gap:0; border-radius:8px; overflow:hidden; height:36px; margin-bottom:14px;">
+        <div style="flex:60; background:var(--off-white); display:flex; align-items:center; justify-content:center; border:1px solid var(--border);">
+          <span style="font-family:var(--f-mono); font-size:9px; color:var(--ink-soft); letter-spacing:.08em;">60% Off-White / Blanco</span>
+        </div>
+        <div style="flex:30; background:var(--purple); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:var(--f-mono); font-size:9px; color:rgba(255,255,255,.7); letter-spacing:.08em;">30% Purple / Ink</span>
+        </div>
+        <div style="flex:7; background:var(--blue); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:var(--f-mono); font-size:8px; color:white;"></span>
+        </div>
+        <div style="flex:3; background:var(--ember);"></div>
+      </div>
+      <p style="font-size:12px; color:var(--ink-soft); line-height:1.6;">El 60% de cualquier documento es Off-White o blanco. El 30% Catalyst Purple o Deep Ink para estructura. El 10% restante se divide entre Quantum Blue (soporte) y Electric Ember (acento de acción único).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     02 — TIPOGRAFÍA
+════════════════════════════════════ -->
+<section id="tipografia">
+  <div class="container">
+    <div class="section-eyebrow">02 — Sistema Tipográfico</div>
+    <h2 class="section-title">Satoshi · Inter · JetBrains Mono</h2>
+    <p class="section-desc">Tres familias con roles diferenciados. Cada una comunica una dimensión distinta de tu marca.</p>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="type-specimen" style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; color:var(--purple); letter-spacing:-.03em;">Aa</div>
+        <div class="type-family">Satoshi — Display</div>
+        <div class="type-role">Titulares, nombre en portadas, H1 de documentos. Peso 700–800. Proporciones geométricas modernas. Transmite <em>ejecución impecable</em>.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-specimen" style="font-family:'Inter',Arial,sans-serif; font-weight:300; color:var(--ink); letter-spacing:-.01em;">Aa</div>
+        <div class="type-family">Inter — Cuerpo</div>
+        <div class="type-role">Párrafos, descripciones, propuestas largas. Peso 300–500. Extremadamente legible. Estándar de Stripe, Figma, Linear.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-specimen" style="font-family:'JetBrains Mono','Courier New',monospace; font-weight:400; color:var(--blue); letter-spacing:-.02em;">Aa</div>
+        <div class="type-family">JetBrains Mono — Datos</div>
+        <div class="type-role">Etiquetas de sección, IDs, fechas, cifras, KPIs. Comunica precisión técnica. Versión premium de DM Mono.</div>
+      </div>
+    </div>
+
+    <!-- Scale -->
+    <div class="type-scale">
+      <div class="section-eyebrow" style="margin-bottom:20px; font-size:9px;">Escala tipográfica por elemento</div>
+      <div class="scale-row">
+        <div class="scale-meta">H1 · Portada<br>Satoshi 800</div>
+        <div class="scale-sample" style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; font-size:38px; letter-spacing:-.03em; color:var(--ink); line-height:1;">Diego Maury</div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">H2 · Sección<br>Satoshi 700</div>
+        <div class="scale-sample" style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:700; font-size:24px; letter-spacing:-.02em; color:var(--ink);">Propuesta de Valor</div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">H3 · Subsección<br>Satoshi 700</div>
+        <div class="scale-sample" style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:700; font-size:16px; letter-spacing:-.01em; color:var(--ink);">Alcance del Proyecto</div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">Body · Principal<br>Inter 400 · 14px</div>
+        <div class="scale-sample" style="font-family:'Inter',Arial,sans-serif; font-weight:400; font-size:14px; color:var(--ink-mid); max-width:480px; line-height:1.7;">Diseño y ejecuto programas de innovación que convierten ideas en resultados medibles, conectando personas, tecnología y propósito para generar impacto en LATAM.</div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">Body · Secundario<br>Inter 300 · 12px</div>
+        <div class="scale-sample" style="font-family:'Inter',Arial,sans-serif; font-weight:300; font-size:12px; color:var(--ink-soft);">Notas al pie, aclaraciones, referencias. Uso para contexto secundario en propuestas largas.</div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">Mono · Etiqueta<br>JetBrains 500 · 10px</div>
+        <div class="scale-sample" style="font-family:'JetBrains Mono','Courier New',monospace; font-size:10px; font-weight:500; color:var(--ember); letter-spacing:.14em; text-transform:uppercase;">REF: 2026-004 · STATUS: EN EJECUCIÓN</div>
+      </div>
+      <div class="scale-row">
+        <div class="scale-meta">Mono · Cifras<br>JetBrains 500 · 13px</div>
+        <div class="scale-sample" style="font-family:'JetBrains Mono','Courier New',monospace; font-size:13px; font-weight:500; color:var(--ink); letter-spacing:-.01em;">$85,000.00 MXN</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Regla de oro:</strong> Satoshi solo para titulares de alto impacto — nunca en cuerpo. Inter para todo lo que se lee, no se escanea. JetBrains Mono aparece con moderación: etiquetas, IDs, fechas y cifras de inversión. Juntas comunican <em>estrategia + claridad + infraestructura técnica</em>.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     03 — LOGO SYSTEM
+════════════════════════════════════ -->
+<section id="logo">
+  <div class="container">
+    <div class="section-eyebrow">03 — Sistema de Logo</div>
+    <h2 class="section-title">Isotipo + Logotipo</h2>
+    <p class="section-desc">Cómo vive tu logo en cada contexto y fondo. Reglas de uso para mantener consistencia.</p>
+
+    <!-- Fondos claros -->
+    <div class="section-eyebrow" style="font-size:9px; margin-bottom:14px;">Sobre fondos claros</div>
+    <div class="logo-grid-3" style="margin-bottom:28px;">
+      <div class="logo-tile" style="background:white;">
+        <span class="tile-badge badge-purple">Principal · Uso general</span>
+        <img src="https://diegomaury.mx/assets/img/logo.png" alt="Diego Maury logo" class="logo-full-img">
+        <div class="tile-label">Logo completo · Fondo blanco<br><span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--purple);">#FFFFFF</span></div>
+      </div>
+      <div class="logo-tile logo-tile-mesh">
+        <span class="tile-badge badge-blue">Presentaciones</span>
+        <img src="https://diegomaury.mx/assets/img/logo.png" alt="Diego Maury logo" class="logo-full-img">
+        <div class="tile-label">Logo completo · Off-white mesh<br><span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--purple);">#FAF8FC + gradient</span></div>
+      </div>
+      <div class="logo-tile" style="background:white;">
+        <span class="tile-badge badge-ember">Solo isotipo</span>
+        <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="Diego Maury isotipo" class="logo-iso-img">
+        <div class="tile-label">Isotipo solo · Perfil, avatar<br><span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--purple);">80px+ mínimo</span></div>
+      </div>
+    </div>
+
+    <!-- Fondos oscuros -->
+    <div class="section-eyebrow" style="font-size:9px; margin-bottom:14px;">Sobre fondos oscuros</div>
+    <div class="logo-grid-3" style="margin-bottom:28px;">
+      <div class="logo-tile logo-tile-purple">
+        <span class="tile-badge badge-light">Portadas · Encabezados</span>
+        <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" class="logo-iso-inv" style="margin-bottom:12px;">
+        <div style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; font-size:20px; color:white; letter-spacing:-.02em; text-align:center; line-height:1.05;">DIEGO MAURY</div>
+        <div style="font-family:'Inter',Arial,sans-serif; font-size:10px; font-style:italic; color:rgba(255,255,255,.5); margin-top:3px; text-align:center;">Strategic Program & Innovation Manager</div>
+        <div class="tile-label light">Fondo Catalyst Purple<br><span style="font-family:'JetBrains Mono',monospace;font-size:8px;">#4B2672</span></div>
+      </div>
+      <div class="logo-tile logo-tile-ink">
+        <span class="tile-badge badge-light">Newsletter · Dark</span>
+        <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" class="logo-iso-inv" style="margin-bottom:12px;">
+        <div style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; font-size:20px; color:white; letter-spacing:-.02em; text-align:center; line-height:1.05;">DIEGO MAURY</div>
+        <div style="font-family:'Inter',Arial,sans-serif; font-size:10px; font-style:italic; color:rgba(255,255,255,.4); margin-top:3px; text-align:center;">Strategic Program & Innovation Manager</div>
+        <div class="tile-label light">Fondo Deep Ink<br><span style="font-family:'JetBrains Mono',monospace;font-size:8px;">#0F0A1A</span></div>
+      </div>
+      <div class="logo-tile logo-tile-darkmesh">
+        <span class="tile-badge" style="background:rgba(255,92,57,.15); color:#FF8060;">Substack · Premium</span>
+        <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" class="logo-iso-inv" style="margin-bottom:12px;">
+        <div style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; font-size:20px; color:white; letter-spacing:-.02em; text-align:center;">DIEGO MAURY</div>
+        <div style="font-family:'Inter',Arial,sans-serif; font-size:10px; font-style:italic; color:rgba(255,255,255,.4); margin-top:3px; text-align:center;">Strategic Program & Innovation Manager</div>
+        <div class="tile-label light">Dark gradient mesh</div>
+      </div>
+    </div>
+
+    <!-- Versión horizontal -->
+    <div class="section-eyebrow" style="font-size:9px; margin-bottom:14px;">Versión horizontal — Membretado y firma</div>
+    <div class="logo-grid-2" style="margin-bottom:28px;">
+      <div class="logo-tile" style="background:white; min-height:140px; padding:28px 36px;">
+        <span class="tile-badge badge-purple">Hoja membretada</span>
+        <div class="logo-horiz">
+          <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" style="width:48px;height:48px;object-fit:contain;">
+          <div class="logo-horiz-div"></div>
+          <div>
+            <div class="horiz-text-name" style="color:var(--purple);">DIEGO MAURY</div>
+            <div class="horiz-text-role" style="color:var(--ink-soft);">Strategic Program & Innovation Manager</div>
+          </div>
+        </div>
+        <div class="tile-label" style="margin-top:18px;">Horizontal · Fondo blanco</div>
+      </div>
+      <div class="logo-tile logo-tile-purple" style="min-height:140px; padding:28px 36px;">
+        <span class="tile-badge badge-light">Portada de propuesta</span>
+        <div class="logo-horiz">
+          <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" style="width:48px;height:48px;object-fit:contain; filter:brightness(0) invert(1) opacity(.85);">
+          <div class="logo-horiz-div-light"></div>
+          <div>
+            <div class="horiz-text-name" style="color:white;">DIEGO MAURY</div>
+            <div class="horiz-text-role" style="color:rgba(255,255,255,.5);">Strategic Program & Innovation Manager</div>
+          </div>
+        </div>
+        <div class="tile-label light" style="margin-top:18px;">Horizontal · Fondo Purple</div>
+      </div>
+    </div>
+
+    <!-- Con tagline -->
+    <div class="section-eyebrow" style="font-size:9px; margin-bottom:14px;">Versión con tagline — Portadas y one-pager</div>
+    <div class="logo-grid-2">
+      <div class="logo-tile" style="background:white; min-height:200px;">
+        <span class="tile-badge badge-ember">Recomendada portadas</span>
+        <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" style="width:56px;height:56px;object-fit:contain;margin-bottom:12px;">
+        <div style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; font-size:22px; color:var(--purple); letter-spacing:-.02em; text-align:center;">DIEGO MAURY</div>
+        <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-style:italic; color:var(--ink-soft); margin-top:3px; text-align:center;">Strategic Program & Innovation Manager</div>
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono','Courier New',monospace; font-size:8.5px; font-weight:500; color:var(--ember); letter-spacing:.16em; text-transform:uppercase; text-align:center;">HAGAMOS QUE LAS COSAS PASEN</div>
+        </div>
+      </div>
+      <div class="logo-tile logo-tile-purple" style="min-height:200px;">
+        <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" style="width:56px;height:56px;object-fit:contain;margin-bottom:12px; filter:brightness(0) invert(1) opacity(.85);">
+        <div style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; font-size:22px; color:white; letter-spacing:-.02em; text-align:center;">DIEGO MAURY</div>
+        <div style="font-family:'Inter',Arial,sans-serif; font-size:11px; font-style:italic; color:rgba(255,255,255,.5); margin-top:3px; text-align:center;">Strategic Program & Innovation Manager</div>
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,.12);">
+          <div style="font-family:'JetBrains Mono','Courier New',monospace; font-size:8.5px; font-weight:500; color:var(--ember); letter-spacing:.16em; text-transform:uppercase; text-align:center;">HAGAMOS QUE LAS COSAS PASEN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     04 — DOCUMENT MOCKS
+════════════════════════════════════ -->
+<section id="documentos">
+  <div class="container">
+    <div class="section-eyebrow">04 — Arquitectura de Documentos</div>
+    <h2 class="section-title">Esquemas Estructurales</h2>
+    <p class="section-desc">Cada documento tiene una lógica estratégica. El diseño sigue la función.</p>
+
+    <!-- PROPUESTA — FEATURED -->
+    <div class="doc-grid-featured" style="margin-bottom:20px;">
+      <div class="doc-card featured">
+        <div class="doc-preview">
+          <div class="mock">
+            <div class="mock-hdr">
+              <div style="display:flex;align-items:center;gap:7px;">
+                <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" style="width:16px;height:16px;object-fit:contain;filter:brightness(0) invert(1) opacity(.85);">
+                <div class="mock-hdr-name">DIEGO MAURY</div>
+              </div>
+              <div class="mock-hdr-right">PROPUESTA COMERCIAL<br>REF: 2026-001</div>
+            </div>
+            <div class="mock-body">
+              <div class="mock-kicker">Propuesta Comercial · Confidencial</div>
+              <div class="mock-h1">Programa de Innovación<br>para [Organización]</div>
+              <div class="mock-divider"></div>
+              <div class="mock-row2">
+                <div class="mock-block">
+                  <div class="mock-block-label">Preparado para</div>
+                  <div class="mock-block-value">Dirección de Innovación</div>
+                </div>
+                <div class="mock-block">
+                  <div class="mock-block-label">Fecha · Versión</div>
+                  <div class="mock-block-value">Ene 2026 · v1.0</div>
+                </div>
+              </div>
+              <div class="mock-kicker" style="margin-top:6px; margin-bottom:3px;">Resumen Ejecutivo</div>
+              <div class="mock-line"></div>
+              <div class="mock-line"></div>
+              <div class="mock-line s60"></div>
+              <div class="mock-kicker" style="margin-top:6px; margin-bottom:3px;">Inversión</div>
+              <div class="mock-row2">
+                <div class="mock-block" style="background:var(--blue-pale);">
+                  <div class="mock-block-label">Etapa 1</div>
+                  <div class="mock-block-value" style="color:var(--blue); font-family:'JetBrains Mono',monospace;">$XX,XXX</div>
+                </div>
+                <div class="mock-block">
+                  <div class="mock-block-label">Total</div>
+                  <div class="mock-block-value" style="font-family:'JetBrains Mono',monospace;">$XX,XXX</div>
+                </div>
+              </div>
+            </div>
+            <div class="mock-footer">HAGAMOS QUE LAS COSAS PASEN — dm@diegomaury.mx — diegomaury.mx</div>
+          </div>
+        </div>
+        <div class="doc-info">
+          <div class="doc-type">Documento Prioritario #1</div>
+          <h3>Propuesta Comercial</h3>
+          <p>El documento que más convierte. Cada elemento diseñado para reducir fricción de decisión y comunicar claridad operativa desde la primera página.</p>
+          <div class="decisions">
+            <div class="dec"><div class="dec-icon">🎯</div><span><strong>Encabezado Purple con isotipo</strong> — autoridad antes de leer una palabra.</span></div>
+            <div class="dec"><div class="dec-icon">📋</div><span><strong>Bloque de datos visible</strong> (cliente, fecha, versión) — señal de orden y personalización.</span></div>
+            <div class="dec"><div class="dec-icon">💰</div><span><strong>Cifras en JetBrains Mono</strong> — inversión en tabla clara con desglose por etapa.</span></div>
+            <div class="dec"><div class="dec-icon">⚡</div><span><strong>Footer con tagline + contacto</strong> en Purple — cierra con identidad, no con vacío.</span></div>
+            <div class="dec"><div class="dec-icon">📄</div><span><strong>Estructura:</strong> Portada → Resumen → Diagnóstico → Alcance → Metodología → Inversión → Próximos pasos</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRID 3 -->
+    <div class="doc-grid-3">
+
+      <!-- ONE PAGER -->
+      <div class="doc-card">
+        <div class="doc-preview" style="min-height:240px;">
+          <div class="mock-op" style="width:100%;">
+            <div class="mock-op-hero">
+              <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="">
+              <div class="mock-op-name">Diego Maury</div>
+              <div class="mock-op-title">Diseña y ejecuta programas de innovación con impacto real en LATAM</div>
+            </div>
+            <div class="mock-op-body">
+              <div class="mock-op-stats">
+                <div class="mock-op-stat"><div class="mock-op-stat-num">30+</div><div class="mock-op-stat-lbl">Programas</div></div>
+                <div class="mock-op-stat"><div class="mock-op-stat-num">900+</div><div class="mock-op-stat-lbl">Proyectos eval.</div></div>
+                <div class="mock-op-stat"><div class="mock-op-stat-num">3K+</div><div class="mock-op-stat-lbl">Emprendedores</div></div>
+              </div>
+              <div class="mock-tags">
+                <div class="mock-tag">CRM</div><div class="mock-tag">IA Aplicada</div>
+                <div class="mock-tag">Ecosistemas</div><div class="mock-tag">RevOps</div>
+              </div>
+              <div class="mock-line s40" style="background:var(--purple);height:2px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="doc-info">
+          <div class="doc-type">Prioritario #2</div>
+          <h3>One-Pager / Media Kit</h3>
+          <p>30 segundos para que el lector sepa quién eres, qué resuelves y por qué confiar.</p>
+          <div class="decisions">
+            <div class="dec"><div class="dec-icon">📊</div><span>Las 3 métricas van en el primer tercio — nunca abajo.</span></div>
+            <div class="dec"><div class="dec-icon">🏷️</div><span>Tags de servicio en Quantum Blue — identificables de un vistazo.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIRMA -->
+      <div class="doc-card">
+        <div class="doc-preview" style="min-height:240px;">
+          <div class="mock-sig-wrap">
+            <div class="mock-sig-left">
+              <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="">
+              <div class="mock-sig-name">DIEGO MAURY</div>
+              <div class="mock-sig-role">Strategic Program &<br>Innovation Manager</div>
+              <div class="mock-sig-tag">Hagamos que<br>las cosas pasen</div>
+            </div>
+            <div class="mock-sig-right">
+              <div class="mock-sig-line">✉ dm@diegomaury.mx</div>
+              <div class="mock-sig-line">📱 +52 1 56 59 26 75 16</div>
+              <div class="mock-sig-triline"></div>
+              <div class="mock-sig-links">
+                <div class="mock-sig-link">diegomaury.mx</div>
+                <div class="mock-sig-link">LinkedIn</div>
+                <div class="mock-sig-link">Substack</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="doc-info">
+          <div class="doc-type">Elemento de Contacto</div>
+          <h3>Firma de Email</h3>
+          <p>Primera y última impresión en cada correo. 3 variantes según contexto.</p>
+          <div class="decisions">
+            <div class="dec"><div class="dec-icon">🖼️</div><span>Isotipo real desde diegomaury.mx — coherencia total con logo oficial.</span></div>
+            <div class="dec"><div class="dec-icon">⚡</div><span>Tagline en JetBrains Mono · Ember — refuerza posicionamiento en cada email.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOJA MEMBRETADA -->
+      <div class="doc-card">
+        <div class="doc-preview" style="min-height:240px;">
+          <div class="mock" style="width:100%;">
+            <div style="background:white; padding:8px 12px 6px; border-bottom:2px solid var(--purple); display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="" style="width:16px;height:16px;object-fit:contain;">
+                <div style="font-family:'Satoshi','Arial Black',sans-serif; font-weight:800; font-size:9px; color:var(--purple); letter-spacing:-.01em;">DIEGO MAURY</div>
+              </div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:4px; color:var(--ink-soft); text-align:right; line-height:1.6;">dm@diegomaury.mx<br>diegomaury.mx · CDMX</div>
+            </div>
+            <div style="padding:8px 12px;">
+              <div style="font-family:'JetBrains Mono',monospace; font-size:4.5px; color:var(--ink-soft); margin-bottom:8px; letter-spacing:.1em; text-transform:uppercase;">Ciudad de México, Enero 2026</div>
+              <div class="mock-line"></div>
+              <div class="mock-line"></div>
+              <div class="mock-line s75"></div>
+              <div style="height:8px;"></div>
+              <div class="mock-line"></div>
+              <div class="mock-line s60"></div>
+            </div>
+            <div class="mock-triline"></div>
+          </div>
+        </div>
+        <div class="doc-info">
+          <div class="doc-type">Documento Base</div>
+          <h3>Hoja Membretada</h3>
+          <p>Para cartas y comunicaciones formales. Membrete limpio con degradado tricolor como firma visual.</p>
+          <div class="decisions">
+            <div class="dec"><div class="dec-icon">📐</div><span>Borde inferior tricolor (Purple→Blue→Ember) — firma visual única del sistema.</span></div>
+            <div class="dec"><div class="dec-icon">📋</div><span>Contacto en JetBrains Mono alineado a la derecha del header.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     05 — FIRMAS DE EMAIL (FULL)
+════════════════════════════════════ -->
+<section id="firmas">
+  <div class="container">
+    <div class="section-eyebrow">05 — Firmas de Email</div>
+    <h2 class="section-title">3 Variantes Oficiales</h2>
+    <p class="section-desc">Misma identidad, distintos contextos de uso. Isotipo real, tipografía del sistema, coherencia total.</p>
+
+    <div class="sig-showcase">
+
+      <!-- VARIANTE A -->
+      <div>
+        <div style="font-family:var(--f-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ember); margin-bottom:8px; display:flex; align-items:center; gap:10px;">
+          Variante A — Principal · Prospección y primeros contactos
+          <div style="flex:1; height:1px; background:var(--border);"></div>
+        </div>
+        <div class="sig-frame">
+          <div class="sig-a">
+            <div class="sig-a-left">
+              <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="Diego Maury">
+              <div class="sig-a-name">DIEGO MAURY</div>
+              <div class="sig-a-role">Strategic Program &amp;<br>Innovation Manager</div>
+              <div class="sig-a-tagline">Hagamos que las<br>cosas pasen</div>
+            </div>
+            <div class="sig-a-right">
+              <div>
+                <div class="contact-row"><svg width="12" height="12"><use href="#i-mail"/></svg><a href="mailto:dm@diegomaury.mx">dm@diegomaury.mx</a></div>
+                <div class="contact-row"><svg width="12" height="12"><use href="#i-phone"/></svg>+52 1 56 59 26 75 16</div>
+                <div class="contact-row"><svg width="12" height="12"><use href="#i-loc"/></svg>Ciudad de México · LATAM</div>
+              </div>
+              <div class="triline-full"></div>
+              <div class="link-row">
+                <a href="https://diegomaury.mx" class="sig-link"><svg width="10" height="10"><use href="#i-web"/></svg>diegomaury.mx</a>
+                <a href="https://linkedin.com/in/diegomaury" class="sig-link"><svg width="10" height="10"><use href="#i-li"/></svg>LinkedIn</a>
+                <a href="https://diegomaury.substack.com" class="sig-link"><svg width="10" height="10"><use href="#i-ss"/></svg>Substack</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIANTE B -->
+      <div>
+        <div style="font-family:var(--f-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ember); margin-bottom:8px; display:flex; align-items:center; gap:10px;">
+          Variante B — Compacta · Seguimiento y respuestas
+          <div style="flex:1; height:1px; background:var(--border);"></div>
+        </div>
+        <div class="sig-frame">
+          <div class="sig-b">
+            <div class="sig-b-top">
+              <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="Diego Maury">
+              <div>
+                <div class="sig-b-name">Diego Maury</div>
+                <div class="sig-b-role">Strategic Program &amp; Innovation Manager</div>
+              </div>
+            </div>
+            <div class="sig-b-contacts">
+              <a href="mailto:dm@diegomaury.mx">dm@diegomaury.mx</a>
+              <span class="b-sep">|</span>
+              <a href="tel:+525659267516">+52 1 56 59 26 75 16</a>
+              <span class="b-sep">|</span>
+              <a href="https://diegomaury.mx">diegomaury.mx</a>
+              <span class="b-sep">|</span>
+              <a href="https://linkedin.com/in/diegomaury">LinkedIn</a>
+            </div>
+            <div class="sig-b-tagline">— Hagamos que las cosas pasen</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARIANTE C -->
+      <div>
+        <div style="font-family:var(--f-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--ember); margin-bottom:8px; display:flex; align-items:center; gap:10px;">
+          Variante C — Dark · Substack y comunicaciones premium
+          <div style="flex:1; height:1px; background:var(--border);"></div>
+        </div>
+        <div class="sig-frame dark">
+          <div class="sig-c-card">
+            <div class="sig-c">
+              <div class="sig-c-left">
+                <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="Diego Maury">
+                <div class="c-name">DIEGO<br>MAURY</div>
+                <div class="c-role">Strategic Program &amp; Innovation Manager</div>
+                <div class="c-bar"></div>
+                <div class="c-tagline">Hagamos que<br>las cosas pasen</div>
+              </div>
+              <div class="sig-c-right">
+                <div class="c-item"><svg width="12" height="12"><use href="#i-mail"/></svg><a href="mailto:dm@diegomaury.mx">dm@diegomaury.mx</a></div>
+                <div class="c-item"><svg width="12" height="12"><use href="#i-phone"/></svg>+52 1 56 59 26 75 16</div>
+                <div class="c-item"><svg width="12" height="12"><use href="#i-web"/></svg><a href="https://diegomaury.mx">diegomaury.mx</a></div>
+                <div class="c-item"><svg width="12" height="12"><use href="#i-li"/></svg><a href="https://linkedin.com/in/diegomaury">LinkedIn</a></div>
+                <div class="c-item"><svg width="12" height="12"><use href="#i-ss"/></svg><a href="https://diegomaury.substack.com">Substack</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     06 — ESTÁNDARES
+════════════════════════════════════ -->
+<section id="estandares">
+  <div class="container">
+    <div class="section-eyebrow">06 — Estándares de Coherencia</div>
+    <h2 class="section-title">Reglas del Sistema</h2>
+    <p class="section-desc">Lo que mantiene unido el sistema cuando lo aplican distintas herramientas, personas o momentos.</p>
+
+    <div class="rules-grid">
+      <div class="rule-card rule-do">
+        <div class="rule-head">✓ Siempre</div>
+        <div class="rule-item">Satoshi Bold/ExtraBold para cualquier nombre o titular de portada</div>
+        <div class="rule-item">Iniciar secciones con etiqueta en JetBrains Mono + color acento</div>
+        <div class="rule-item">Incluir tagline "HAGAMOS QUE LAS COSAS PASEN" en portadas y firma</div>
+        <div class="rule-item">Usar Electric Ember solo para elementos de acción o atención única</div>
+        <div class="rule-item">Degradado tricolor (Purple→Blue→Ember) en pies de página</div>
+        <div class="rule-item">Isotipo desde diegomaury.mx — nunca versión recortada o distorsionada</div>
+        <div class="rule-item">Versiones ES y EN con la misma arquitectura visual</div>
+        <div class="rule-item">Cifras e IDs siempre en JetBrains Mono, nunca en Inter o Satoshi</div>
+      </div>
+      <div class="rule-card rule-dont">
+        <div class="rule-head">✗ Nunca</div>
+        <div class="rule-item">Usar más de 3 tamaños de fuente distintos en una sola página</div>
+        <div class="rule-item">Mezclar Satoshi con otra fuente de display externa al sistema</div>
+        <div class="rule-item">Usar Electric Ember como color de fondo de sección completa</div>
+        <div class="rule-item">El turquesa de la firma anterior (#64D8C8) — no está en el sistema</div>
+        <div class="rule-item">Variar el color de encabezado documento a documento</div>
+        <div class="rule-item">Dejar páginas sin ningún elemento de marca</div>
+        <div class="rule-item">Usar fonts genéricas (Arial, Times, Calibri) en documentos oficiales</div>
+        <div class="rule-item">El separador de rombos (◆────◆) de la Cover Letter anterior</div>
+      </div>
+    </div>
+
+    <!-- Tabla de consistencia -->
+    <h3 style="font-family:var(--f-display); font-weight:700; font-size:20px; letter-spacing:-.01em; color:var(--ink); margin-bottom:8px; margin-top:40px;">Tabla de Consistencia</h3>
+    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:24px;">Qué elementos son obligatorios u opcionales en cada documento.</p>
+    <div class="coh-table">
+      <div class="coh-row hdr">
+        <div class="coh-cell">Documento</div>
+        <div class="coh-cell">Header Purple + Isotipo</div>
+        <div class="coh-cell">Tagline JetBrains</div>
+        <div class="coh-cell">Footer tricolor</div>
+      </div>
+      <div class="coh-row">
+        <div class="coh-cell coh-doc">Propuesta Comercial</div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Obligatorio</span></div>
+        <div class="coh-cell"><span class="ctag ctag-e">● Obligatorio</span></div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Obligatorio</span></div>
+      </div>
+      <div class="coh-row">
+        <div class="coh-cell coh-doc">One-Pager / Media Kit</div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Obligatorio</span></div>
+        <div class="coh-cell"><span class="ctag ctag-e">● Obligatorio</span></div>
+        <div class="coh-cell"><span class="ctag ctag-b">◑ Recomendado</span></div>
+      </div>
+      <div class="coh-row">
+        <div class="coh-cell coh-doc">CV Visual</div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Obligatorio</span></div>
+        <div class="coh-cell"><span class="ctag ctag-b">◑ Opcional</span></div>
+        <div class="coh-cell"><span class="ctag ctag-b">◑ Recomendado</span></div>
+      </div>
+      <div class="coh-row">
+        <div class="coh-cell coh-doc">Hoja Membretada</div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Obligatorio</span></div>
+        <div class="coh-cell"><span class="ctag ctag-b">◑ Opcional</span></div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Obligatorio</span></div>
+      </div>
+      <div class="coh-row">
+        <div class="coh-cell coh-doc">Contrato / Acuerdo</div>
+        <div class="coh-cell"><span class="ctag ctag-b">◑ Reducido</span></div>
+        <div class="coh-cell"><span class="ctag ctag-e">○ Omitir</span></div>
+        <div class="coh-cell"><span class="ctag ctag-b">◑ Opcional</span></div>
+      </div>
+      <div class="coh-row">
+        <div class="coh-cell coh-doc">Firma de Email</div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Isotipo sí</span></div>
+        <div class="coh-cell"><span class="ctag ctag-p">● Obligatorio</span></div>
+        <div class="coh-cell"><span class="ctag ctag-e">○ No aplica</span></div>
+      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div style="margin-top:48px; background:var(--purple-deep); border-radius:16px; padding:40px 44px; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(36,107,253,.2) 0%, transparent 70%);"></div>
+      <div style="font-family:var(--f-mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--ember); margin-bottom:10px; position:relative; z-index:1;">Roadmap de Implementación</div>
+      <h3 style="font-family:var(--f-display); font-weight:800; font-size:22px; color:white; letter-spacing:-.02em; margin-bottom:28px; position:relative; z-index:1;">¿Qué construimos primero?</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; position:relative; z-index:1;">
+        <div style="background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:20px;">
+          <div style="font-family:var(--f-mono); font-size:9px; color:var(--ember); letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px;">Semana 1</div>
+          <div style="font-family:var(--f-display); font-weight:700; font-size:15px; color:white; margin-bottom:6px;">Firma + One-Pager</div>
+          <div style="font-size:11px; color:rgba(255,255,255,.5); line-height:1.6;">Presencia inmediata en cada email y LinkedIn. Retorno en prospección desde el día 1.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:20px;">
+          <div style="font-family:var(--f-mono); font-size:9px; color:var(--blue); letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px;">Semana 2–3</div>
+          <div style="font-family:var(--f-display); font-weight:700; font-size:15px; color:white; margin-bottom:6px;">Propuesta + CV Visual</div>
+          <div style="font-size:11px; color:rgba(255,255,255,.5); line-height:1.6;">Documentos de conversión. Los que cierran oportunidades y abren puertas de alto nivel.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:20px;">
+          <div style="font-family:var(--f-mono); font-size:9px; color:rgba(255,255,255,.35); letter-spacing:.12em; text-transform:uppercase; margin-bottom:8px;">Semana 4+</div>
+          <div style="font-family:var(--f-display); font-weight:700; font-size:15px; color:white; margin-bottom:6px;">Membretada + Contratos</div>
+          <div style="font-size:11px; color:rgba(255,255,255,.5); line-height:1.6;">Completar el ecosistema legal y formal. Cada documento habla el mismo idioma visual.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img src="https://diegomaury.mx/assets/img/isotipodiegomaury.png" alt="DM">
+    <span>Diego Maury</span>
+  </div>
+  <div class="footer-tagline">Hagamos que las cosas pasen</div>
+  <div class="footer-meta">Brand System v2.0 · 2026</div>
+</footer>
+
+</body>
+</html>

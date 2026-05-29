@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firma de Correo — Diego Maury</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#e9e5e0;font-family:var(--font-body);padding:48px 24px 80px;color:var(--dm-ink);}
+  .wrap{max-width:720px;margin:0 auto;}
+  .page-head{text-align:center;margin-bottom:40px;}
+  .page-head .eyebrow{
+    font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--dm-ember);margin-bottom:12px;
+  }
+  .page-head h1{font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--dm-catalyst-700);margin-bottom:8px;letter-spacing:-.01em;}
+  .page-head p{font-size:14px;color:var(--dm-ink-60);line-height:1.5;max-width:520px;margin:0 auto;}
+
+  .preview-card{
+    background:#fff;border-radius:14px;padding:40px;
+    box-shadow:0 18px 50px -24px rgba(18,13,26,.4);margin-bottom:14px;
+  }
+  .mail-context{font-family:var(--font-body);font-size:14px;color:var(--dm-ink-60);line-height:1.6;margin-bottom:6px;}
+  .mail-context .greet{color:var(--dm-ink);}
+  .divider-note{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dm-ink-40);margin:22px 0 10px;}
+
+  /* ---- THE SIGNATURE (table-based for email clients) ---- */
+  table.sig{border-collapse:collapse;}
+  table.sig td{vertical-align:top;}
+  .sig-iso{width:62px;height:62px;display:block;}
+  .sig-bar{width:3px;background:linear-gradient(180deg,var(--dm-amethyst),var(--dm-ember));border-radius:2px;}
+  .sig-name{font-family:'Montserrat',Arial,sans-serif;font-weight:700;font-size:18px;color:#2E1547;letter-spacing:-.01em;text-transform:uppercase;line-height:1;}
+  .sig-role{font-family:'Bitter',Georgia,serif;font-style:italic;font-size:13px;color:#7C3FBE;padding-top:5px;}
+  .sig-contact{font-family:'Space Mono','Courier New',monospace;font-size:11px;color:#4a4458;line-height:1.9;padding-top:10px;white-space:nowrap;}
+  .sig-contact a{color:#4a4458;text-decoration:none;}
+  .sig-contact .sep{color:#c9bfe0;}
+  .sig-tag{font-family:'Space Mono','Courier New',monospace;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FF5C39;padding-top:12px;}
+
+  /* code block */
+  .code{
+    background:#1e1830;border-radius:14px;padding:24px 26px;overflow:auto;
+    font-family:var(--font-mono);font-size:12px;line-height:1.7;color:#d7cdf0;position:relative;
+  }
+  .code .hint{font-family:var(--font-body);font-size:13px;color:var(--dm-ink-60);margin:24px 0 10px;}
+  .steps{background:#fff;border-radius:14px;padding:28px 32px;margin-top:18px;}
+  .steps h3{font-family:var(--font-display);font-weight:700;font-size:16px;margin-bottom:14px;}
+  .steps ol{margin-left:18px;display:flex;flex-direction:column;gap:9px;}
+  .steps li{font-size:14px;color:var(--dm-ink);line-height:1.5;}
+  .steps code{font-family:var(--font-mono);font-size:12px;background:#f0ecf6;padding:2px 6px;border-radius:5px;color:var(--dm-catalyst-700);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">Aplicación de marca · Email</div>
+    <h1>Firma de correo</h1>
+    <p>Construida en tabla HTML para que se vea igual en Gmail, Outlook y Apple Mail. Las fuentes de marca aplican donde el cliente lo permite, con respaldo seguro.</p>
+  </div>
+
+  <!-- LIVE PREVIEW in mail context -->
+  <div class="preview-card">
+    <p class="mail-context greet">Hola María,</p>
+    <p class="mail-context">Te comparto el plan de programa que revisamos. Quedo atento a tus comentarios para avanzar con la siguiente fase.</p>
+    <p class="mail-context">Un saludo,</p>
+    <div class="divider-note">— Firma —</div>
+
+    <table class="sig" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td style="padding-right:16px;vertical-align:middle;">
+          <img class="sig-iso" src="assets/isotipo-gradient.png" alt="Diego Maury">
+        </td>
+        <td class="sig-bar" style="padding:0;"></td>
+        <td style="padding-left:16px;vertical-align:middle;">
+          <div class="sig-name">Diego Maury</div>
+          <div class="sig-role">Strategic Program &amp; Innovation Manager</div>
+          <div class="sig-contact">
+            <a href="mailto:dm@diegomaury.mx">dm@diegomaury.mx</a><span class="sep">&nbsp;·&nbsp;</span><a href="https://www.linkedin.com/in/diegomaury/">LinkedIn</a><span class="sep">&nbsp;·&nbsp;</span><a href="https://diegomaury.mx/">diegomaury.mx</a><span class="sep">&nbsp;·&nbsp;</span><a href="http://diegomaury.substack.com/">Substack</a>
+          </div>
+          <div class="sig-tag">Hagamos que las cosas pasen</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="steps">
+    <h3>Cómo instalarla</h3>
+    <ol>
+      <li><b>Gmail:</b> Ajustes → Ver toda la configuración → Firma → selecciona el bloque de arriba (desde el isotipo hasta "Hagamos que las cosas pasen"), cópialo y pégalo en el editor de firma.</li>
+      <li><b>Outlook:</b> Archivo → Opciones → Correo → Firmas → pega el bloque copiado.</li>
+      <li><b>Apple Mail:</b> Preferencias → Firmas → pega y desactiva "Usar siempre la fuente predeterminada".</li>
+      <li>El isotipo debe estar en una <b>URL pública</b> (p. ej. <code>diegomaury.mx/isotipo.png</code>) para que se vea en el correo enviado. Mientras tanto usa el copiado directo.</li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>

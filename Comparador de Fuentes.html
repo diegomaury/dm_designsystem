@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparador de Fuentes — Diego Maury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@600;700;800&family=Archivo:wght@700;800;900&family=Sora:wght@700;800&family=Manrope:wght@700;800&family=Bitter:ital@1&family=Aleo:ital@1&family=PT+Serif:ital@1&family=Roboto+Slab:wght@400;500&family=Zilla+Slab:ital@1&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@500;600&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Mono:wght@500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#4b2a87;
+    --purple-deep:#3a2170;
+    --orange:#f0592a;
+    --ink:#2b2540;
+    --paper:#f6f4f1;
+    --card:#ffffff;
+    --line:#e7e2dc;
+    --muted:#8b8598;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Manrope',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    padding:48px 32px 96px;
+    line-height:1.4;
+  }
+  .wrap{max-width:1100px;margin:0 auto;}
+  header.page{margin-bottom:40px;}
+  .kicker{
+    font-family:'Roboto Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--orange);font-weight:600;margin-bottom:12px;
+  }
+  h1{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:34px;
+    letter-spacing:-.01em;color:var(--ink);margin-bottom:10px;
+  }
+  .lede{font-size:16px;color:var(--muted);max-width:640px;}
+  .lede b{color:var(--ink);font-weight:700;}
+
+  /* Reference logo */
+  .ref{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:28px;margin:32px 0 44px;
+    display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+    box-shadow:0 1px 0 rgba(43,37,64,.03);
+  }
+  .ref img{max-width:340px;width:100%;height:auto;display:block;}
+  .ref .note{flex:1;min-width:220px;}
+  .ref .note h2{font-size:15px;font-weight:800;margin-bottom:6px;}
+  .ref .note p{font-size:14px;color:var(--muted);}
+
+  section.block{margin-bottom:52px;}
+  .block-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
+  .badge{
+    width:30px;height:30px;border-radius:8px;background:var(--purple);
+    color:#fff;font-family:'Roboto Mono',monospace;font-weight:600;
+    display:grid;place-items:center;font-size:14px;flex-shrink:0;
+  }
+  .block-head h3{font-size:20px;font-weight:800;}
+  .block-head .sub{font-size:13px;color:var(--muted);font-family:'Roboto Mono',monospace;}
+
+  .grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;display:flex;align-items:center;gap:22px;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .card:hover{border-color:#cdbfe6;box-shadow:0 6px 24px -12px rgba(75,42,135,.35);}
+  .card .label{
+    flex-shrink:0;width:170px;
+  }
+  .card .label .fname{font-weight:800;font-size:15px;color:var(--ink);}
+  .card .label .fmeta{
+    font-family:'Roboto Mono',monospace;font-size:11px;color:var(--muted);
+    margin-top:4px;letter-spacing:.02em;
+  }
+  .card .sample{flex:1;color:var(--purple);overflow:hidden;}
+  .badge-pick{
+    display:inline-block;margin-top:6px;font-family:'Roboto Mono',monospace;
+    font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--orange);font-weight:700;
+  }
+
+  /* sample renderers */
+  .s-display{font-size:38px;font-weight:800;letter-spacing:.01em;line-height:1;}
+  .s-italic{font-size:26px;font-style:italic;line-height:1.1;color:var(--purple-deep);}
+  .s-mono{font-size:21px;letter-spacing:.16em;color:var(--orange);font-weight:500;text-transform:uppercase;}
+
+  footer.tip{
+    background:#efe9fb;border:1px solid #d9c9f5;border-radius:14px;
+    padding:22px 26px;font-size:14px;color:var(--purple-deep);
+  }
+  footer.tip b{font-weight:800;}
+  footer.tip code{
+    font-family:'Roboto Mono',monospace;background:#fff;border:1px solid #d9c9f5;
+    padding:2px 7px;border-radius:6px;font-size:12.5px;
+  }
+  @media(max-width:640px){
+    .card{flex-direction:column;align-items:flex-start;gap:12px;}
+    .card .label{width:auto;}
+    .s-display{font-size:30px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <div class="kicker">Identificación de tipografías</div>
+    <h1>¿Cuáles son las fuentes del logo?</h1>
+    <p class="lede">Compara tu logo (arriba) con tu mismo texto escrito en varias fuentes de <b>Google Fonts</b> — todas gratis y universales, las puedes subir a web, Canva, Figma, Office o donde sea. Elige la que más se parezca en cada bloque.</p>
+  </header>
+
+  <div class="ref">
+    <img src="uploads/logo-tagline.png" alt="Logo Diego Maury">
+    <div class="note">
+      <h2>Tu logo original</h2>
+      <p>Usa esto como referencia. Acerca la vista y mira la forma de la <b>G</b>, la <b>R</b>, la <b>a</b> y la <b>S</b> — son las letras que más delatan cada fuente.</p>
+    </div>
+  </div>
+
+  <!-- BLOCK 1 -->
+  <section class="block">
+    <div class="block-head">
+      <div class="badge">1</div>
+      <h3>“DIEGO MAURY”</h3>
+      <span class="sub">sans-serif geométrica · caja alta · peso pesado</span>
+    </div>
+    <div class="grid" id="grid1"></div>
+  </section>
+
+  <!-- BLOCK 2 -->
+  <section class="block">
+    <div class="block-head">
+      <div class="badge">2</div>
+      <h3>“Strategic Program &amp; Innovation Manager”</h3>
+      <span class="sub">serif itálica</span>
+    </div>
+    <div class="grid" id="grid2"></div>
+  </section>
+
+  <!-- BLOCK 3 -->
+  <section class="block">
+    <div class="block-head">
+      <div class="badge">3</div>
+      <h3>“HAGAMOS QUE LAS COSAS PASEN”</h3>
+      <span class="sub">monoespaciada · mucho espaciado · naranja</span>
+    </div>
+    <div class="grid" id="grid3"></div>
+  </section>
+
+  <footer class="tip">
+    <b>Mi apuesta más probable:</b> Bloque 1 → <b>Montserrat</b> (ExtraBold/Black) · Bloque 2 → <b>Bitter Italic</b> o <b>PT Serif Italic</b> · Bloque 3 → <b>Space Mono</b> o <b>Roboto Mono</b>.<br><br>
+    Todas se cargan así en cualquier web: <code>fonts.google.com</code> → buscar el nombre → “Get font” → copiar el <code>&lt;link&gt;</code>. En Canva/Figma/Word solo buscas el nombre en el selector de fuentes.
+  </footer>
+</div>
+
+<script>
+  const block1 = [
+    {name:'Montserrat', meta:'800 · Google Fonts', cls:'s-display', style:'font-family:Montserrat;font-weight:800;', pick:true},
+    {name:'Montserrat', meta:'900 Black · Google Fonts', cls:'s-display', style:'font-family:Montserrat;font-weight:900;'},
+    {name:'Poppins', meta:'700 · Google Fonts', cls:'s-display', style:'font-family:Poppins;font-weight:700;'},
+    {name:'Archivo', meta:'800 · Google Fonts', cls:'s-display', style:'font-family:Archivo;font-weight:800;'},
+    {name:'Sora', meta:'800 · Google Fonts', cls:'s-display', style:'font-family:Sora;font-weight:800;'},
+    {name:'Manrope', meta:'800 · Google Fonts', cls:'s-display', style:'font-family:Manrope;font-weight:800;'},
+  ];
+  const block2 = [
+    {name:'Bitter', meta:'Italic · Google Fonts', cls:'s-italic', style:'font-family:Bitter;', pick:true},
+    {name:'PT Serif', meta:'Italic · Google Fonts', cls:'s-italic', style:'font-family:"PT Serif";'},
+    {name:'Aleo', meta:'Italic · Google Fonts', cls:'s-italic', style:'font-family:Aleo;'},
+    {name:'Zilla Slab', meta:'Italic · Google Fonts', cls:'s-italic', style:'font-family:"Zilla Slab";'},
+    {name:'Roboto Slab', meta:'(oblicua simulada)', cls:'s-italic', style:'font-family:"Roboto Slab";font-style:normal;transform:skewX(-9deg);transform-origin:left;'},
+  ];
+  const block3 = [
+    {name:'Space Mono', meta:'700 · Google Fonts', cls:'s-mono', style:'font-family:"Space Mono";font-weight:700;', pick:true},
+    {name:'Roboto Mono', meta:'500 · Google Fonts', cls:'s-mono', style:'font-family:"Roboto Mono";font-weight:500;'},
+    {name:'JetBrains Mono', meta:'600 · Google Fonts', cls:'s-mono', style:'font-family:"JetBrains Mono";font-weight:600;'},
+    {name:'IBM Plex Mono', meta:'500 · Google Fonts', cls:'s-mono', style:'font-family:"IBM Plex Mono";font-weight:500;'},
+    {name:'Share Tech Mono', meta:'400 · Google Fonts', cls:'s-mono', style:'font-family:"Share Tech Mono";'},
+  ];
+
+  const text = {1:'DIEGO MAURY', 2:'Strategic Program & Innovation Manager', 3:'HAGAMOS QUE LAS COSAS PASEN'};
+
+  function render(gridId, list, t){
+    const grid = document.getElementById(gridId);
+    list.forEach(f=>{
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="label">
+          <div class="fname">${f.name}</div>
+          <div class="fmeta">${f.meta}</div>
+          ${f.pick?'<div class="badge-pick">↳ más probable</div>':''}
+        </div>
+        <div class="sample ${f.cls}" style="${f.style}">${t}</div>`;
+      grid.appendChild(card);
+    });
+  }
+  render('grid1', block1, text[1]);
+  render('grid2', block2, text[2]);
+  render('grid3', block3, text[3]);
+</script>
+</body>
+</html>

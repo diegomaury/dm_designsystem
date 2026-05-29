@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Tipográfico — Diego Maury</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  :root{
+    /* Marca */
+    --purple:#4b2a87;
+    --purple-deep:#3a2170;
+    --purple-soft:#7a5cc0;
+    --orange:#f0592a;
+    --ink:#241f33;
+    --paper:#f6f4f1;
+    --card:#ffffff;
+    --line:#e7e2dc;
+    --muted:#8b8598;
+
+    /* Familias oficiales */
+    --font-display:'Montserrat', system-ui, sans-serif;
+    --font-serif:'Bitter', Georgia, serif;
+    --font-mono:'Space Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-display);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:72px 0 52px;border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:var(--font-mono);font-size:12px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--orange);
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(40px,6.5vw,76px);line-height:.98;letter-spacing:-.02em;
+    color:var(--purple-deep);text-transform:uppercase;
+  }
+  .hero .tagline{
+    font-family:var(--font-serif);font-style:italic;font-weight:500;
+    font-size:clamp(18px,2.4vw,26px);color:var(--purple);margin-top:14px;
+  }
+  .hero p.intro{
+    margin-top:26px;max-width:620px;font-size:17px;color:var(--ink);
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section.sec{padding:64px 0;border-bottom:1px solid var(--line);}
+  .sec-label{
+    font-family:var(--font-mono);font-size:12px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:8px;
+  }
+  .sec h2{
+    font-family:var(--font-display);font-weight:800;font-size:30px;
+    letter-spacing:-.01em;margin-bottom:8px;color:var(--ink);
+  }
+  .sec .sec-desc{font-size:16px;color:var(--muted);max-width:600px;margin-bottom:36px;}
+
+  /* ---------- FAMILY CARDS ---------- */
+  .families{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .fam{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:28px;display:flex;flex-direction:column;gap:18px;
+  }
+  .fam .glyph{
+    font-size:88px;line-height:1;color:var(--purple);
+  }
+  .fam .glyph.serif{font-family:var(--font-serif);font-style:italic;font-weight:600;}
+  .fam .glyph.display{font-family:var(--font-display);font-weight:900;}
+  .fam .glyph.mono{font-family:var(--font-mono);font-weight:700;font-size:72px;color:var(--orange);}
+  .fam .fname{font-family:var(--font-display);font-weight:800;font-size:22px;}
+  .fam .frole{
+    font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--orange);
+  }
+  .fam .fset{font-size:14px;color:var(--muted);}
+  .fam .charset{
+    font-size:13px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px;
+    word-break:break-all;line-height:1.7;
+  }
+  .fam.serif .charset{font-family:var(--font-serif);}
+  .fam.display .charset{font-family:var(--font-display);}
+  .fam.mono .charset{font-family:var(--font-mono);font-size:12px;}
+
+  /* ---------- TYPE SCALE ---------- */
+  .scale-row{
+    display:grid;grid-template-columns:150px 1fr;gap:28px;
+    padding:22px 0;border-top:1px solid var(--line);align-items:baseline;
+  }
+  .scale-row:first-child{border-top:none;}
+  .scale-meta{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);line-height:1.6;}
+  .scale-meta .role{color:var(--ink);font-weight:700;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:5px;}
+  .scale-sample{color:var(--ink);overflow:hidden;}
+
+  .t-display{font-family:var(--font-display);font-weight:900;font-size:60px;line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:var(--purple-deep);}
+  .t-h1{font-family:var(--font-display);font-weight:800;font-size:42px;line-height:1.05;letter-spacing:-.015em;}
+  .t-h2{font-family:var(--font-display);font-weight:700;font-size:30px;line-height:1.1;letter-spacing:-.01em;}
+  .t-h3{font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1.2;}
+  .t-sub{font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:24px;line-height:1.3;color:var(--purple);}
+  .t-lead{font-family:var(--font-serif);font-style:normal;font-weight:400;font-size:21px;line-height:1.55;}
+  .t-body{font-family:var(--font-display);font-weight:400;font-size:17px;line-height:1.6;}
+  .t-small{font-family:var(--font-display);font-weight:500;font-size:14px;line-height:1.5;color:var(--muted);}
+  .t-label{font-family:var(--font-mono);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);}
+  .t-caption{font-family:var(--font-mono);font-weight:400;font-size:12px;letter-spacing:.04em;color:var(--muted);}
+
+  /* ---------- RULES ---------- */
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .rule{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;
+  }
+  .rule.do{border-left:4px solid #1f8a5b;}
+  .rule.dont{border-left:4px solid var(--orange);}
+  .rule h4{
+    font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .rule.do h4{color:#1f8a5b;}
+  .rule.dont h4{color:var(--orange);}
+  .rule ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .rule li{font-size:15px;padding-left:22px;position:relative;line-height:1.45;}
+  .rule li::before{position:absolute;left:0;top:0;font-family:var(--font-mono);font-weight:700;}
+  .rule.do li::before{content:'+';color:#1f8a5b;}
+  .rule.dont li::before{content:'×';color:var(--orange);}
+
+  /* ---------- PAIRING / SAMPLE LAYOUT ---------- */
+  .specimen{
+    background:var(--purple-deep);border-radius:20px;padding:56px 48px;color:#fff;
+    overflow:hidden;
+  }
+  .specimen .sp-label{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ffb59c;margin-bottom:18px;}
+  .specimen h3{font-family:var(--font-display);font-weight:900;font-size:clamp(32px,5vw,58px);line-height:1;text-transform:uppercase;letter-spacing:-.02em;}
+  .specimen .sp-sub{font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:clamp(18px,2.6vw,27px);color:#c9b6ee;margin-top:16px;}
+  .specimen .sp-body{font-family:var(--font-display);font-weight:400;font-size:17px;line-height:1.6;color:#e6ddf5;max-width:560px;margin-top:26px;}
+  .specimen .sp-tag{font-family:var(--font-mono);font-weight:700;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-top:34px;}
+
+  /* ---------- TOKENS / CODE ---------- */
+  .code{
+    background:#1e1830;border-radius:14px;padding:26px 28px;overflow:auto;
+    font-family:var(--font-mono);font-size:13px;line-height:1.85;color:#d7cdf0;
+  }
+  .code .c{color:#8a7fb0;}
+  .code .p{color:#ffb59c;}
+  .code .v{color:#a8e6c9;}
+
+  footer.foot{padding:48px 0 80px;color:var(--muted);font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;}
+
+  @media(max-width:780px){
+    .families,.rules{grid-template-columns:1fr;}
+    .scale-row{grid-template-columns:1fr;gap:10px;}
+    .t-display{font-size:40px;}.t-h1{font-size:32px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">Sistema Tipográfico · Oficial</div>
+    <h1>Diego Maury</h1>
+    <div class="tagline">Strategic Program &amp; Innovation Manager</div>
+    <p class="intro">Tres familias tipográficas, gratuitas y universales (Google Fonts), fijadas como obligatorias para toda la marca. Cada una tiene un rol asignado — úsalas siempre así para mantener coherencia en web, presentaciones, documentos y redes.</p>
+  </header>
+
+  <!-- FAMILIAS -->
+  <section class="sec">
+    <div class="sec-label">01 — Familias</div>
+    <h2>Las tres fuentes oficiales</h2>
+    <p class="sec-desc">Estas son las únicas tipografías permitidas. Cada bloque del logo corresponde a una de ellas.</p>
+    <div class="families">
+      <div class="fam display">
+        <div class="glyph display">Aa</div>
+        <div>
+          <div class="frole">Titulares · UI</div>
+          <div class="fname">Montserrat</div>
+        </div>
+        <div class="fset">Pesos: 400 · 500 · 600 · 700 · 800 · 900</div>
+        <div class="charset">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghijklmnñopqrstuvwxyz 0123456789</div>
+      </div>
+      <div class="fam serif">
+        <div class="glyph serif">Aa</div>
+        <div>
+          <div class="frole">Subtítulos · Editorial</div>
+          <div class="fname">Bitter <em style="font-weight:500;">Italic</em></div>
+        </div>
+        <div class="fset">Itálica 400–600 · Redonda para lectura</div>
+        <div class="charset">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghijklmnñopqrstuvwxyz 0123456789</div>
+      </div>
+      <div class="fam mono">
+        <div class="glyph mono">Aa</div>
+        <div>
+          <div class="frole">Etiquetas · Acentos</div>
+          <div class="fname">Space Mono</div>
+        </div>
+        <div class="fset">Pesos: 400 · 700 · Siempre con tracking amplio</div>
+        <div class="charset">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCALA -->
+  <section class="sec">
+    <div class="sec-label">02 — Escala</div>
+    <h2>Cada texto, su fuente</h2>
+    <p class="sec-desc">La escala completa: qué familia, peso y estilo usar en cada rol. Esto es lo “obligatorio”.</p>
+
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Display</span>Montserrat<br>900 · 60px<br>MAYÚSCULAS</div>
+      <div class="scale-sample"><div class="t-display">Hagamos que pasen</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Título H1</span>Montserrat<br>800 · 42px</div>
+      <div class="scale-sample"><div class="t-h1">Innovación que se ejecuta</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Título H2</span>Montserrat<br>700 · 30px</div>
+      <div class="scale-sample"><div class="t-h2">Programas estratégicos</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Título H3</span>Montserrat<br>700 · 22px</div>
+      <div class="scale-sample"><div class="t-h3">Gestión de portafolio</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Subtítulo</span>Bitter Italic<br>500 · 24px</div>
+      <div class="scale-sample"><div class="t-sub">Estrategia, producto e innovación en una sola práctica.</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Entradilla</span>Bitter<br>400 · 21px</div>
+      <div class="scale-sample"><div class="t-lead">Acompaño a equipos a convertir ideas ambiciosas en programas medibles y en marcha.</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Cuerpo</span>Montserrat<br>400 · 17px</div>
+      <div class="scale-sample"><div class="t-body">Texto base para párrafos largos, presentaciones y documentos. Cómodo de leer en pantalla e impreso, con buena altura de línea.</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Texto menor</span>Montserrat<br>500 · 14px</div>
+      <div class="scale-sample"><div class="t-small">Notas al pie, descripciones secundarias y metadatos de apoyo.</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Etiqueta</span>Space Mono<br>700 · 13px<br>tracking .16em</div>
+      <div class="scale-sample"><div class="t-label">Hagamos que las cosas pasen</div></div>
+    </div>
+    <div class="scale-row">
+      <div class="scale-meta"><span class="role">Caption / dato</span>Space Mono<br>400 · 12px</div>
+      <div class="scale-sample"><div class="t-caption">fig. 01 — flujo de valor 2025</div></div>
+    </div>
+  </section>
+
+  <!-- SPECIMEN -->
+  <section class="sec">
+    <div class="sec-label">03 — En conjunto</div>
+    <h2>Cómo se ven juntas</h2>
+    <p class="sec-desc">Ejemplo de las tres familias trabajando como sistema.</p>
+    <div class="specimen">
+      <div class="sp-label">Caso · Transformación</div>
+      <h3>De la idea<br>a la operación</h3>
+      <div class="sp-sub">Diseño y dirijo programas que mueven la aguja.</div>
+      <p class="sp-body">Montserrat lleva el peso visual en los titulares y la interfaz. Bitter en itálica aporta el tono humano y editorial en subtítulos y citas. Space Mono marca las etiquetas y los datos con precisión.</p>
+      <div class="sp-tag">Hagamos que las cosas pasen</div>
+    </div>
+  </section>
+
+  <!-- REGLAS -->
+  <section class="sec">
+    <div class="sec-label">04 — Reglas</div>
+    <h2>Buenas prácticas</h2>
+    <p class="sec-desc">Para que el sistema se mantenga consistente en cualquier formato.</p>
+    <div class="rules">
+      <div class="rule do">
+        <h4>Sí</h4>
+        <ul>
+          <li>Montserrat 800/900 en MAYÚSCULAS para los titulares principales.</li>
+          <li>Bitter siempre en <em>itálica</em> cuando es subtítulo o acento editorial.</li>
+          <li>Space Mono solo en mayúsculas y con mucho espaciado entre letras.</li>
+          <li>Morado para textos principales; naranja reservado para etiquetas y acentos.</li>
+        </ul>
+      </div>
+      <div class="rule dont">
+        <h4>No</h4>
+        <ul>
+          <li>No introducir otras fuentes (Satoshi, Arial, Inter, etc.).</li>
+          <li>No usar Space Mono en párrafos largos ni en minúsculas.</li>
+          <li>No poner Bitter itálica en bloques largos de lectura.</li>
+          <li>No usar naranja para cuerpo de texto: pierde legibilidad.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENS -->
+  <section class="sec">
+    <div class="sec-label">05 — Implementación</div>
+    <h2>Para pegar en cualquier proyecto</h2>
+    <p class="sec-desc">Carga las fuentes y usa estas variables. Funciona igual en web, y los nombres existen tal cual en Canva, Figma y Office.</p>
+    <div class="code">
+<span class="c">&lt;!-- 1. Cargar en el &lt;head&gt; --&gt;</span><br>
+&lt;link href=<span class="v">"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Bitter:ital,wght@0,400;1,500&family=Space+Mono:wght@400;700&display=swap"</span> rel=<span class="v">"stylesheet"</span>&gt;<br><br>
+<span class="c">/* 2. Tokens CSS */</span><br>
+<span class="p">--font-display</span>: <span class="v">'Montserrat', sans-serif;</span>   <span class="c">/* titulares + UI */</span><br>
+<span class="p">--font-serif</span>&nbsp;&nbsp;: <span class="v">'Bitter', serif;</span>          <span class="c">/* subtítulos (italic) */</span><br>
+<span class="p">--font-mono</span>&nbsp;&nbsp;&nbsp;: <span class="v">'Space Mono', monospace;</span>  <span class="c">/* etiquetas + datos */</span><br><br>
+<span class="c">/* 3. Color de marca */</span><br>
+<span class="p">--purple</span>: <span class="v">#4b2a87;</span>&nbsp;&nbsp;<span class="p">--orange</span>: <span class="v">#f0592a;</span>
+    </div>
+  </section>
+
+  <footer class="foot">
+    Diego Maury — Sistema Tipográfico v1 · Montserrat + Bitter + Space Mono · Google Fonts (gratis, comerciales)
+  </footer>
+
+</div>
+</body>
+</html>
