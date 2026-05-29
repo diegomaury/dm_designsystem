@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diego Maury — Manual de Marca</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="dm-brand.css">
+<style>
+  /* ════════════ BASE ════════════ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--font-display); line-height: 1.5;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+
+  .doc { max-width: 1180px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 64px); }
+  section { padding: clamp(60px, 8vw, 110px) 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+
+  /* full-bleed dark band */
+  .band-dark {
+    position: relative; background: var(--purple-darker); color: var(--bone);
+    margin: 0 calc(-1 * max(24px, 5vw)); padding-left: max(24px, 5vw); padding-right: max(24px, 5vw);
+    border-top: none; overflow: hidden;
+  }
+
+  /* ════════════ MONO LABEL ════════════ */
+  .kicker {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange);
+  }
+  .kicker.muted { color: var(--muted); }
+
+  /* ════════════ SECTION HEADER ════════════ */
+  .sec-head {
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; align-items: baseline;
+    padding-bottom: 26px; margin-bottom: 42px; border-bottom: 1px solid var(--line);
+  }
+  .band-dark .sec-head { border-bottom-color: var(--white-14); }
+  .sec-num { font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; color: var(--orange); }
+  .sec-title {
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(26px, 3.6vw, 44px); line-height: 1.02; letter-spacing: -0.01em;
+    color: var(--ink); margin: 0;
+  }
+  .band-dark .sec-title { color: #fff; }
+  .sec-meta { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .sec-intro {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+    font-size: clamp(18px, 1.8vw, 23px); line-height: 1.45; color: var(--purple);
+    max-width: 60ch; margin: -22px 0 50px 78px;
+  }
+  .band-dark .sec-intro { color: var(--purple-soft); }
+  @media (max-width: 720px) { .sec-intro { margin-left: 0; } }
+
+  .divider { height: 1px; background: var(--line); margin: clamp(40px, 6vw, 68px) 0; }
+  .band-dark .divider { background: var(--white-14); }
+
+  .block-label {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--purple); margin: 0 0 20px;
+  }
+  .band-dark .block-label { color: var(--orange); }
+
+  .prose { font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 62ch; font-weight: 400; }
+  .prose b { color: var(--purple-deep); font-weight: 700; }
+  .band-dark .prose { color: var(--white-80); }
+  .band-dark .prose b { color: #fff; }
+  code.tok {
+    font-family: var(--font-mono); font-size: 0.84em; background: var(--pale);
+    color: var(--purple); padding: 2px 7px; border-radius: var(--r-xs); font-weight: 400;
+  }
+  .band-dark code.tok { background: var(--white-08); color: var(--orange); }
+
+  /* ════════════ COVER ════════════ */
+  .cover { padding-top: clamp(44px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 68px); border-top: none; }
+  .cover-top {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: clamp(44px, 7vw, 76px);
+  }
+  .cover-top .brand { display: flex; align-items: center; gap: 14px; }
+  .cover-top .brand img { height: 36px; width: auto; }
+  .cover-top .brand span { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .cover-top .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: right; line-height: 1.7; }
+  .cover-top .meta b { color: var(--purple); font-weight: 700; }
+  .cover-grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: clamp(32px, 6vw, 80px); align-items: end; }
+  .doc-num { font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 22px; }
+  .doc-num span { color: var(--muted); }
+  .doc-title {
+    font-family: var(--font-display); font-weight: 900; text-transform: uppercase;
+    font-size: clamp(48px, 8vw, 112px); line-height: 0.9; letter-spacing: -0.02em;
+    color: var(--purple-deep); margin: 0 0 24px;
+  }
+  .doc-title em { font-style: normal; color: var(--orange); }
+  .doc-sub { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(18px, 2vw, 24px); color: var(--purple); margin: 0 0 8px; }
+  .doc-lede { font-size: 16px; line-height: 1.55; color: var(--ink-2); max-width: 40ch; border-left: 3px solid var(--orange); padding-left: 18px; margin-top: 24px; }
+  .doc-lede b { color: var(--purple-deep); font-weight: 700; }
+  .toc { display: grid; gap: 0; border-top: 1px solid var(--line); margin-top: 26px; }
+  .toc a { display: grid; grid-template-columns: 42px 1fr auto; align-items: baseline; gap: 14px; padding: 11px 0; border-bottom: 1px dashed var(--line); text-decoration: none; transition: padding-left var(--dur) var(--ease); }
+  .toc a:hover { padding-left: 8px; }
+  .toc a .n { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--orange); }
+  .toc a .t { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--purple-deep); }
+  .toc a:hover .t { color: var(--orange); }
+  .toc a .x { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+
+  /* ════════════ ESENCIA ════════════ */
+  .essence-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .essence-tag { font-family: var(--font-mono); font-weight: 700; font-size: clamp(13px,1.2vw,15px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin: 0 0 22px; }
+  .essence-h { font-family: var(--font-display); font-weight: 800; font-size: clamp(24px,2.8vw,34px); line-height: 1.16; letter-spacing: -0.015em; color: var(--purple-deep); margin: 0 0 22px; }
+  .essence-h em { font-style: normal; color: var(--orange); }
+  .attr-list { border-top: 1px solid var(--line); }
+  .attr-row { display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--line); }
+  .attr-row dt { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin: 0; }
+  .attr-row dd { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .attr-row dd b { color: var(--purple-deep); font-weight: 700; }
+
+  .kpi-band { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: clamp(36px,5vw,60px); }
+  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 28px 26px; }
+  .kpi .num { font-family: var(--font-display); font-weight: 900; font-size: clamp(34px,4vw,52px); line-height: 1; letter-spacing: -0.02em; color: var(--purple); }
+  .kpi .lbl { font-size: 14px; color: var(--muted); margin-top: 10px; }
+
+  /* ════════════ LOGO ════════════ */
+  .logo-versions { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+  .lv { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+  .lv.dark { background: var(--purple-darker); border-color: rgba(122,92,192,0.3); }
+  .lv .stage { height: 152px; display: flex; align-items: center; justify-content: center; padding: 22px; }
+  .lv .stage img { max-width: 84%; max-height: 100%; width: auto; }
+  .lv .meta { border-top: 1px solid var(--line); padding: 12px 16px; }
+  .lv.dark .meta { border-top-color: var(--white-14); }
+  .lv .meta .name { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--purple-deep); }
+  .lv.dark .meta .name { color: #fff; }
+  .lv .meta .tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+
+  .logo-rules { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,4vw,44px); margin-top: clamp(36px,5vw,52px); }
+  .rcol h4 { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 14px; }
+  .rcol.do h4 { color: #1f8a5b; }
+  .rcol.dont h4 { color: var(--orange); }
+  .rcol ul { list-style: none; margin: 0; padding: 0; }
+  .rcol li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+  .rcol li::before { font-family: var(--font-mono); font-weight: 700; font-size: 15px; }
+  .rcol.do li::before { content: "+"; color: #1f8a5b; }
+  .rcol.dont li::before { content: "\00d7"; color: var(--orange); }
+
+  .linkout { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--pale); border-radius: var(--r-md); padding: 22px 28px; margin-top: 38px; text-decoration: none; transition: transform var(--dur) var(--ease); }
+  .linkout:hover { transform: translateY(-2px); }
+  .linkout .t { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--purple-deep); }
+  .linkout .s { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .linkout .arrow { font-family: var(--font-display); font-weight: 900; font-size: 24px; color: var(--purple); }
+
+  /* ════════════ COLOR ════════════ */
+  .swatch-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .swatch { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line); }
+  .swatch .chip { height: 140px; display: flex; align-items: flex-end; padding: 16px; }
+  .swatch .chip .role { font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 8px; border-radius: var(--r-xs); background: rgba(255,255,255,0.2); color: #fff; }
+  .swatch .info { background: var(--card); padding: 16px; }
+  .swatch .info .name { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--purple-deep); }
+  .swatch .info .hex { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-2); margin-top: 5px; }
+  .swatch .info .var { font-family: var(--font-mono); font-size: 11px; color: var(--purple); margin-top: 3px; }
+
+  .neutral-strip { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; }
+  .neutral { border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--line); }
+  .neutral .chip { height: 72px; }
+  .neutral .info { padding: 10px 12px; background: var(--card); }
+  .neutral .info .name { font-family: var(--font-display); font-weight: 700; font-size: 11.5px; color: var(--purple-deep); }
+  .neutral .info .hex { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  .usage-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+  .usage { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px; }
+  .usage .dot { width: 30px; height: 30px; border-radius: 9px; margin-bottom: 14px; }
+  .usage .name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--purple-deep); margin-bottom: 6px; }
+  .usage .desc { font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+
+  .combo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .combo { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line); }
+  .combo .demo { padding: 28px 24px; min-height: 130px; display: flex; flex-direction: column; justify-content: center; }
+  .combo .demo .t { font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 1.15; text-transform: uppercase; letter-spacing: -0.01em; }
+  .combo .demo .t em { font-style: normal; }
+  .combo .demo .s { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 12px; }
+  .combo .cap { background: var(--card); padding: 12px 16px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+  .combo .cap .pass { color: #1f8a5b; font-weight: 700; }
+
+  .grad { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line); margin-bottom: 14px; }
+  .grad .bar { height: 56px; }
+  .grad .lbl { background: var(--card); padding: 11px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .grad .lbl .name { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--purple-deep); }
+  .grad .lbl .val { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+
+  /* ════════════ TYPOGRAPHY ════════════ */
+  .families { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .fam { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 28px; }
+  .fam .glyph { font-size: 92px; line-height: 0.85; color: var(--purple); margin-bottom: 22px; }
+  .fam.display .glyph { font-family: var(--font-display); font-weight: 900; }
+  .fam.serif .glyph { font-family: var(--font-serif); font-style: italic; font-weight: 600; }
+  .fam.mono .glyph { font-family: var(--font-mono); font-weight: 700; font-size: 74px; color: var(--orange); }
+  .fam .role { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
+  .fam .fname { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--purple-deep); margin-top: 6px; }
+  .fam .weights { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .fam .charset { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 16px; font-size: 13px; line-height: 1.7; color: var(--ink-2); word-break: break-word; }
+  .fam.display .charset { font-family: var(--font-display); }
+  .fam.serif .charset { font-family: var(--font-serif); }
+  .fam.mono .charset { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; }
+
+  .scale-list { display: grid; }
+  .scale-row { display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: baseline; padding: 22px 0; border-top: 1px solid var(--line); }
+  .scale-row:first-child { border-top: none; }
+  .scale-meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
+  .scale-meta .role { display: block; color: var(--purple); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 5px; }
+  .scale-sample { color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+  .sd { font-family: var(--font-display); font-weight: 900; font-size: 58px; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink); }
+  .sh1 { font-family: var(--font-display); font-weight: 800; font-size: 42px; line-height: 1.04; letter-spacing: -0.015em; }
+  .sh2 { font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1.1; letter-spacing: -0.01em; }
+  .sh3 { font-family: var(--font-display); font-weight: 700; font-size: 22px; line-height: 1.2; }
+  .ssub { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 24px; line-height: 1.3; color: var(--purple); }
+  .slead { font-family: var(--font-serif); font-weight: 400; font-size: 20px; line-height: 1.55; color: var(--ink); }
+  .sbody { font-family: var(--font-display); font-weight: 400; font-size: 16px; line-height: 1.6; color: var(--ink); }
+  .ssmall { font-family: var(--font-display); font-weight: 500; font-size: 14px; line-height: 1.5; color: var(--muted); }
+  .slabel { font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); }
+  .scap { font-family: var(--font-mono); font-weight: 400; font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }
+
+  .type-rules { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: clamp(36px,5vw,56px); }
+  .trule { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 24px; }
+  .trule .n { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.12em; }
+  .trule h4 { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--purple-deep); margin: 10px 0 8px; }
+  .trule p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); margin: 0; }
+
+  /* specimen */
+  .specimen { background: var(--purple-darker); border-radius: var(--r-lg); padding: clamp(36px,5vw,56px) clamp(28px,4vw,48px); color: #fff; overflow: hidden; }
+  .specimen .sl { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+  .specimen h3 { font-family: var(--font-display); font-weight: 900; font-size: clamp(30px,5vw,58px); line-height: 0.98; text-transform: uppercase; letter-spacing: -0.02em; margin: 0; }
+  .specimen .ss { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(18px,2.6vw,27px); color: var(--purple-soft); margin: 16px 0 0; }
+  .specimen .sb { font-size: 16px; line-height: 1.6; color: var(--white-80); max-width: 560px; margin: 26px 0 0; }
+  .specimen .st { font-family: var(--font-mono); font-weight: 700; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin: 32px 0 0; }
+
+  /* ════════════ BACKGROUNDS ════════════ */
+  .surface-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .surface { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line); }
+  .surface .stage { height: 196px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .surface .stage .dt { font-family: var(--font-display); font-weight: 800; font-size: 25px; text-transform: uppercase; letter-spacing: -0.01em; z-index: 2; }
+  .surface .stage .dt em { font-style: normal; color: var(--orange); }
+  .surface .info { background: var(--card); padding: 16px 18px; border-top: 1px solid var(--line); }
+  .surface .info .name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--purple-deep); }
+  .surface .info .desc { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin-top: 5px; }
+  .surface .info .tok { font-family: var(--font-mono); font-size: 11px; color: var(--purple); margin-top: 6px; }
+
+  .bg-paper { background: var(--paper); }
+  .bg-pale { background: var(--pale); }
+  .bg-purple { background: var(--purple); }
+  .bg-deep { background: var(--purple-darker); }
+  .bg-tricolor { background: var(--grad-tricolor); }
+  .bg-pgrad { background: var(--grad-purple); }
+  .bg-pattern { background: var(--purple-darker); }
+  .bg-pattern::before { content: ""; position: absolute; inset: 0; background: url('logo-assets/hexagon-pattern.png') center/260px repeat; opacity: 0.45; }
+  .bg-pattern-light { background: var(--paper); }
+  .bg-pattern-light::before { content: ""; position: absolute; inset: 0; background: url('logo-assets/hexagon-pattern-light.png') center/260px repeat; opacity: 0.7; }
+
+  /* ════════════ TEXT ON SURFACES ════════════ */
+  .texton-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .texton { border-radius: var(--r-md); padding: 32px; border: 1px solid var(--line); }
+  .texton.light { background: var(--paper); }
+  .texton.dark { background: var(--purple-darker); border-color: rgba(122,92,192,0.3); }
+  .texton .eb { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .texton.light .eb { color: var(--purple); }
+  .texton.dark .eb { color: var(--orange); }
+  .texton h3 { font-family: var(--font-display); font-weight: 800; font-size: 27px; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.015em; margin: 14px 0 6px; }
+  .texton h3 em { font-style: normal; color: var(--orange); }
+  .texton.light h3 { color: var(--purple-deep); }
+  .texton.dark h3 { color: #fff; }
+  .texton .sub { font-family: var(--font-serif); font-style: italic; font-size: 17px; margin: 0 0 12px; }
+  .texton.light .sub { color: var(--purple); }
+  .texton.dark .sub { color: var(--purple-soft); }
+  .texton p { font-size: 14px; line-height: 1.65; margin: 0; }
+  .texton.light p { color: var(--ink-2); }
+  .texton.dark p { color: var(--white-80); }
+
+  /* ════════════ COMPONENTS ════════════ */
+  .comp-block { background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 30px; margin-bottom: 16px; }
+  .comp-block.dark { background: var(--purple-darker); border-color: rgba(122,92,192,0.3); }
+  .comp-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .comp-cap { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+
+  .btn { font-family: var(--font-display); font-weight: 700; font-size: 14px; padding: 12px 22px; border-radius: var(--r-sm); border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--grad-purple); color: #fff; box-shadow: 0 4px 14px rgba(75,42,135,0.32); }
+  .btn-secondary { background: transparent; color: var(--orange); border: 1.5px solid rgba(240,89,42,0.45); }
+  .btn-secondary:hover { background: rgba(240,89,42,0.08); border-color: var(--orange); }
+  .btn-ghost { background: transparent; color: var(--bone); border: 1.5px solid var(--white-30); }
+  .btn-solid-light { background: var(--purple); color: #fff; }
+
+  .badge { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 10px; border-radius: var(--r-xs); display: inline-flex; align-items: center; gap: 6px; }
+  .badge-purple { background: rgba(75,42,135,0.14); color: var(--purple); }
+  .badge-orange { background: rgba(240,89,42,0.14); color: var(--orange-deep); }
+  .badge-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  .demo-card { width: 280px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-md); padding: 24px; box-shadow: var(--shadow-2); }
+  .demo-card.dark { background: var(--purple-darker); border-color: rgba(122,92,192,0.3); box-shadow: none; }
+  .demo-card .ckicker { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+  .demo-card h4 { font-family: var(--font-display); font-weight: 800; font-size: 19px; text-transform: uppercase; letter-spacing: -0.01em; margin: 10px 0 8px; }
+  .demo-card.light h4 { color: var(--purple-deep); }
+  .demo-card.dark h4 { color: #fff; }
+  .demo-card p { font-size: 13.5px; line-height: 1.55; margin: 0; }
+  .demo-card.light p { color: var(--ink-2); }
+  .demo-card.dark p { color: var(--white-80); }
+  .demo-card.feature { position: relative; overflow: hidden; }
+  .demo-card.feature::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-tricolor); }
+
+  .link-demo { font-size: 15px; color: var(--purple); text-decoration: none; border-bottom: 1px dashed rgba(75,42,135,0.4); }
+  .link-demo:hover { border-bottom-style: solid; }
+
+  /* ════════════ SPACING / RADII / SHADOW ════════════ */
+  .space-list { display: grid; gap: 10px; }
+  .space-row { display: grid; grid-template-columns: 96px 56px 1fr; gap: 16px; align-items: center; }
+  .space-row .tok { font-family: var(--font-mono); font-size: 12px; color: var(--purple); }
+  .space-row .px { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  .space-row .bar { height: 14px; background: var(--purple); border-radius: 2px; }
+
+  .radii-row { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; }
+  .radii { text-align: center; }
+  .radii .box { height: 88px; background: var(--pale); border: 1px solid rgba(75,42,135,0.18); }
+  .radii .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--purple); margin-top: 10px; }
+  .radii .px { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+
+  .shadow-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .shadow-card { height: 96px; background: var(--card); border-radius: var(--r-md); display: flex; align-items: flex-end; padding: 12px; }
+  .shadow-card .l { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); }
+
+  /* ════════════ FOOTER ════════════ */
+  footer.foot { padding: 46px 0 64px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; }
+  footer.foot .bar { grid-column: 1 / -1; height: 3px; background: var(--grad-tricolor); margin-bottom: 30px; }
+  footer.foot div { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  footer.foot .mid { text-align: center; color: var(--orange); }
+  footer.foot .right { text-align: right; }
+
+  /* ════════════ RESPONSIVE ════════════ */
+  @media (max-width: 920px) {
+    .cover-grid, .essence-grid { grid-template-columns: 1fr; }
+    .logo-versions, .swatch-grid, .usage-grid, .neutral-strip { grid-template-columns: repeat(2,1fr); }
+    .families, .combo-grid, .type-rules, .kpi-band { grid-template-columns: 1fr; }
+    .radii-row { grid-template-columns: repeat(3,1fr); }
+    .shadow-row { grid-template-columns: repeat(2,1fr); }
+    .surface-grid, .texton-grid, .logo-rules { grid-template-columns: 1fr; }
+    .scale-row { grid-template-columns: 1fr; gap: 10px; }
+  }
+  @media (max-width: 560px) {
+    .logo-versions, .swatch-grid, .usage-grid, .neutral-strip, .radii-row { grid-template-columns: 1fr 1fr; }
+    .sec-head { grid-template-columns: 1fr; gap: 8px; }
+    .attr-row, .space-row { grid-template-columns: 1fr; gap: 6px; }
+    .sd { font-size: 38px; } .sh1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- ══════════ COVER ══════════ -->
+  <section class="cover" data-screen-label="Portada">
+    <div class="cover-top">
+      <div class="brand">
+        <img src="logo-assets/isotipo.png" alt="DM isotipo">
+        <span>Diego Maury · Design System</span>
+      </div>
+      <div class="meta">Documento · DM-BRAND-00<br>Versión <b>1.0</b> · Mayo 2026</div>
+    </div>
+
+    <div class="cover-grid">
+      <div>
+        <div class="doc-num"><span>00 / </span>Manual de marca</div>
+        <h1 class="doc-title">Manual<br>de <em>marca</em></h1>
+        <p class="doc-sub">Strategic Program &amp; Innovation Manager</p>
+      </div>
+      <div>
+        <p class="doc-lede">
+          Las reglas que mantienen la identidad consistente en cualquier superficie. <b>Fondos, color, tipografía, texto y componentes</b> — definidos al detalle.
+        </p>
+        <nav class="toc">
+          <a href="#esencia"><span class="n">01</span><span class="t">Esencia de marca</span><span class="x">↗</span></a>
+          <a href="#logo"><span class="n">02</span><span class="t">Logo</span><span class="x">↗</span></a>
+          <a href="#color"><span class="n">03</span><span class="t">Color</span><span class="x">↗</span></a>
+          <a href="#tipografia"><span class="n">04</span><span class="t">Tipografía</span><span class="x">↗</span></a>
+          <a href="#fondos"><span class="n">05</span><span class="t">Fondos y superficies</span><span class="x">↗</span></a>
+          <a href="#texto"><span class="n">06</span><span class="t">Texto</span><span class="x">↗</span></a>
+          <a href="#componentes"><span class="n">07</span><span class="t">Componentes</span><span class="x">↗</span></a>
+          <a href="#espaciado"><span class="n">08</span><span class="t">Espaciado · Radios · Sombras</span><span class="x">↗</span></a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 01 · ESENCIA ══════════ -->
+  <section id="esencia" data-screen-label="01 Esencia">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <h2 class="sec-title">Esencia de marca</h2>
+      <div class="sec-meta">El porqué</div>
+    </div>
+    <p class="sec-intro">Antes de las reglas visuales, el fundamento. Toda decisión de diseño sirve a un posicionamiento: convertir estrategia en resultados medibles.</p>
+
+    <div class="essence-grid">
+      <div>
+        <p class="essence-tag">Hagamos que las cosas pasen</p>
+        <h3 class="essence-h">Programas y sistemas que convierten <em>innovación</em> en resultados medibles.</h3>
+        <p class="prose">La fórmula visual es <b>Innovación + Halloween + Elegancia</b>: el morado protagonista aporta carácter y misterio, el naranja enciende lo importante, y la tipografía sostiene la elegancia ejecutiva. Una identidad que se siente estratégica, no decorativa.</p>
+      </div>
+      <div>
+        <dl class="attr-list">
+          <div class="attr-row"><dt>Posicionamiento</dt><dd><b>Strategic Program &amp; Innovation Manager</b> que convierte estrategia en resultados medibles.</dd></div>
+          <div class="attr-row"><dt>Tagline</dt><dd>"Hagamos que las cosas pasen"</dd></div>
+          <div class="attr-row"><dt>Fórmula</dt><dd>Innovación + Halloween + Elegancia</dd></div>
+          <div class="attr-row"><dt>Audiencia</dt><dd>Líderes de innovación, corporativos, aceleradoras y hiring managers en LATAM.</dd></div>
+          <div class="attr-row"><dt>Tono</dt><dd>Seguro, claro, orientado a resultados. Sin jerga vacía.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="kpi-band">
+      <div class="kpi"><div class="num">30+</div><div class="lbl">Programas dirigidos</div></div>
+      <div class="kpi"><div class="num">900+</div><div class="lbl">Proyectos acompañados</div></div>
+      <div class="kpi"><div class="num">3,000+</div><div class="lbl">Emprendedores impactados</div></div>
+    </div>
+  </section>
+
+  <!-- ══════════ 02 · LOGO ══════════ -->
+  <section id="logo" class="band-dark" data-screen-label="02 Logo">
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <h2 class="sec-title">Logo</h2>
+      <div class="sec-meta">4 versiones oficiales</div>
+    </div>
+    <p class="sec-intro">El logo combina un isotipo hexagonal con el monograma DM y un bloque tipográfico de tres niveles. Cuatro composiciones cubren todos los usos.</p>
+
+    <div class="logo-versions">
+      <div class="lv dark"><div class="stage"><img src="logo-assets/isotipo.png" alt="Isotipo" style="filter:brightness(0) invert(1);"></div><div class="meta"><div class="name">Isotipo</div><div class="tag">A · Hexágono DM</div></div></div>
+      <div class="lv dark"><div class="stage"><img src="logo-assets/logo-horizontal.png" alt="Lockup horizontal" style="filter:brightness(0) invert(1);"></div><div class="meta"><div class="name">Horizontal</div><div class="tag">B · Firma fila</div></div></div>
+      <div class="lv dark"><div class="stage"><img src="logo-assets/logo-principal.png" alt="Lockup vertical" style="filter:brightness(0) invert(1);"></div><div class="meta"><div class="name">Vertical</div><div class="tag">C · Principal</div></div></div>
+      <div class="lv dark"><div class="stage"><img src="logo-assets/logo-tagline.png" alt="Con tagline" style="filter:brightness(0) invert(1);"></div><div class="meta"><div class="name">Con tagline</div><div class="tag">D · Completo</div></div></div>
+    </div>
+
+    <div class="logo-rules">
+      <div class="rcol do">
+        <h4>Sí</h4>
+        <ul>
+          <li>Mantén el área de protección mínima de 2X alrededor del logo.</li>
+          <li>Usa la versión blanca sobre fondos oscuros y la morada sobre claros.</li>
+          <li>Conserva siempre la proporción original del archivo maestro.</li>
+          <li>El isotipo puede usarse solo; el wordmark nunca sin el isotipo.</li>
+        </ul>
+      </div>
+      <div class="rcol dont">
+        <h4>No</h4>
+        <ul>
+          <li>No deformes, rotes ni inclines el logo.</li>
+          <li>No lo recolorees fuera de morado, blanco o negro 100%.</li>
+          <li>No agregues sombras, brillos, contornos ni efectos.</li>
+          <li>No lo coloques sobre fondos de bajo contraste o muy cargados.</li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="linkout" href="Logo Specs.html" style="background:rgba(255,255,255,0.06);">
+      <div><div class="t" style="color:#fff;">Medidas, distancias y proporciones →</div><div class="s" style="color:var(--white-70);">Construcción del isotipo, lockups, área de protección y tamaños mínimos.</div></div>
+      <div class="arrow" style="color:var(--orange);">→</div>
+    </a>
+  </section>
+
+  <!-- ══════════ 03 · COLOR ══════════ -->
+  <section id="color" data-screen-label="03 Color">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <h2 class="sec-title">Color</h2>
+      <div class="sec-meta">Paleta · Reglas · Contraste</div>
+    </div>
+    <p class="sec-intro">Dos colores cargan la identidad: el morado que es la marca, y el naranja que enciende lo importante. Todo lo demás es neutral y da soporte.</p>
+
+    <div class="block-label">Colores de marca</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#4b2a87;"><span class="role">Primario · Identidad</span></div><div class="info"><div class="name">Morado Maury</div><div class="hex">#4b2a87</div><div class="var">--purple</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#3a2170;"><span class="role">Fondos · Profundidad</span></div><div class="info"><div class="name">Morado Profundo</div><div class="hex">#3a2170</div><div class="var">--purple-deep</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#f0592a;"><span class="role">Spark · Acento</span></div><div class="info"><div class="name">Naranja Catalizador</div><div class="hex">#f0592a</div><div class="var">--orange</div></div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Neutrales</div>
+    <div class="neutral-strip">
+      <div class="neutral"><div class="chip" style="background:#241f33;"></div><div class="info"><div class="name">Tinta</div><div class="hex">#241f33</div></div></div>
+      <div class="neutral"><div class="chip" style="background:#5e4f86;"></div><div class="info"><div class="name">Violeta Neutro</div><div class="hex">#5e4f86</div></div></div>
+      <div class="neutral"><div class="chip" style="background:#a98fdb;"></div><div class="info"><div class="name">Lavanda</div><div class="hex">#a98fdb</div></div></div>
+      <div class="neutral"><div class="chip" style="background:#efe9fb;"></div><div class="info"><div class="name">Pale</div><div class="hex">#efe9fb</div></div></div>
+      <div class="neutral"><div class="chip" style="background:#f6f4f1;"></div><div class="info"><div class="name">Paper</div><div class="hex">#f6f4f1</div></div></div>
+      <div class="neutral"><div class="chip" style="background:#ffffff;border:1px solid var(--line);"></div><div class="info"><div class="name">Card</div><div class="hex">#ffffff</div></div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Reglas de uso · proporción 60 / 30 / 10</div>
+    <div class="usage-grid">
+      <div class="usage"><div class="dot" style="background:#f6f4f1;border:1px solid var(--line);"></div><div class="name">Neutral · 60%</div><div class="desc">Fondos claros y blancos dominan. Dan aire y dejan respirar al contenido.</div></div>
+      <div class="usage"><div class="dot" style="background:#4b2a87;"></div><div class="name">Morado · 30%</div><div class="desc">Identidad: titulares, isotipo, botones primarios, bloques destacados.</div></div>
+      <div class="usage"><div class="dot" style="background:#f0592a;"></div><div class="name">Naranja · 10%</div><div class="desc">Solo el acento: tagline, palabra clave, una llamada de atención por vista.</div></div>
+      <div class="usage"><div class="dot" style="background:#a98fdb;"></div><div class="name">Lavanda</div><div class="desc">Acentos y subtítulos SOBRE fondo oscuro. Contraste AA (5.6:1) garantizado.</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Combinaciones y contraste</div>
+    <div class="combo-grid">
+      <div class="combo">
+        <div class="demo" style="background:#4b2a87;"><div class="t" style="color:#fff;">Hagamos que <em style="color:#f0592a;">pasen</em></div><div class="s" style="color:var(--purple-soft);">Blanco sobre morado</div></div>
+        <div class="cap"><span>Texto #fff / #4b2a87</span><span class="pass">AAA</span></div>
+      </div>
+      <div class="combo">
+        <div class="demo" style="background:#f6f4f1;"><div class="t" style="color:#3a2170;">Hagamos que <em style="color:#f0592a;">pasen</em></div><div class="s" style="color:var(--muted);">Morado sobre claro</div></div>
+        <div class="cap"><span>#3a2170 / #f6f4f1</span><span class="pass">AAA</span></div>
+      </div>
+      <div class="combo">
+        <div class="demo" style="background:#2a1854;"><div class="t" style="color:#fff;">Hagamos que <em style="color:#f0592a;">pasen</em></div><div class="s" style="color:var(--purple-soft);">Sobre fondo oscuro</div></div>
+        <div class="cap"><span>#fff / #2a1854</span><span class="pass">AAA</span></div>
+      </div>
+    </div>
+    <p class="prose" style="margin-top:24px;">El naranja <code class="tok">#f0592a</code> nunca se usa para texto largo sobre blanco — solo en bloques cortos, etiquetas y la palabra clave. Sobre morado funciona bien como acento brillante; sobre blanco resérvalo para titulares cortos o elementos gráficos.</p>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Color funcional · Azul</div>
+    <div class="combo-grid">
+      <div class="combo">
+        <div class="demo" style="background:#f6f4f1;"><div class="t" style="color:#2862cf;text-transform:none;font-size:17px;">Ver el caso completo →</div><div class="s" style="color:var(--muted);">Link sobre claro</div></div>
+        <div class="cap"><span>#2862cf / #f6f4f1</span><span class="pass">AA 5.1</span></div>
+      </div>
+      <div class="combo">
+        <div class="demo" style="background:#2a1854;"><div class="t" style="color:#7aa6ff;text-transform:none;font-size:17px;">Ver el caso completo →</div><div class="s" style="color:var(--purple-soft);">Link sobre oscuro</div></div>
+        <div class="cap"><span>#7aa6ff / #2a1854</span><span class="pass">AA 6.4</span></div>
+      </div>
+      <div class="combo">
+        <div class="demo" style="background:#fff;align-items:flex-start;"><span class="badge badge-purple" style="background:rgba(40,98,207,.14);color:#2862cf;">● En curso</span><div class="s" style="color:var(--muted);margin-top:14px;">Estado / info</div></div>
+        <div class="cap"><span>Solo funcional</span><span class="pass">No es marca</span></div>
+      </div>
+    </div>
+    <p class="prose" style="margin-top:24px;">El azul <b>no es color de marca</b> — la identidad es morado + naranja. Se reserva como color <b>funcional</b>: enlaces, estados e indicadores de información. Usa <code class="tok">#2862cf</code> sobre fondos claros y <code class="tok">#7aa6ff</code> sobre oscuros (ambos accesibles AA). Nunca lo uses en titulares ni como acento decorativo.</p>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Gradientes</div>
+    <div class="grad"><div class="bar bg-tricolor"></div><div class="lbl"><span class="name">Tricolor · firma</span><span class="val">--grad-tricolor · morado → naranja</span></div></div>
+    <div class="grad"><div class="bar bg-pgrad"></div><div class="lbl"><span class="name">Morado · profundidad</span><span class="val">--grad-purple · 135°</span></div></div>
+    <p class="prose" style="margin-top:20px;">El gradiente tricolor es la firma de la marca — úsalo como barra fina (3px) al pie de documentos o como detalle, nunca como fondo de texto. El gradiente morado da profundidad a botones y bloques.</p>
+  </section>
+
+  <!-- ══════════ 04 · TIPOGRAFÍA ══════════ -->
+  <section id="tipografia" data-screen-label="04 Tipografía">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <h2 class="sec-title">Tipografía</h2>
+      <div class="sec-meta">3 familias · Google Fonts</div>
+    </div>
+    <p class="sec-intro">Tres familias, cada una con un rol fijo — las mismas que viven en el logo. Gratuitas y universales: funcionan en web, Canva, Figma y Office.</p>
+
+    <div class="families">
+      <div class="fam display">
+        <div class="glyph">Aa</div>
+        <div class="role">Titulares · UI</div>
+        <div class="fname">Montserrat</div>
+        <div class="weights">400 · 500 · 600 · 700 · 800 · 900</div>
+        <div class="charset">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghijklmnñopqrstuvwxyz 0123456789</div>
+      </div>
+      <div class="fam serif">
+        <div class="glyph">Aa</div>
+        <div class="role">Subtítulos · Editorial</div>
+        <div class="fname">Bitter <em style="font-weight:500;">Italic</em></div>
+        <div class="weights">Itálica 400–600 · redonda para lectura</div>
+        <div class="charset">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghijklmnñopqrstuvwxyz 0123456789</div>
+      </div>
+      <div class="fam mono">
+        <div class="glyph">Aa</div>
+        <div class="role">Etiquetas · Datos</div>
+        <div class="fname">Space Mono</div>
+        <div class="weights">400 · 700 · siempre con tracking amplio</div>
+        <div class="charset">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Escala — cada texto, su fuente</div>
+    <div class="scale-list">
+      <div class="scale-row"><div class="scale-meta"><span class="role">Display</span>Montserrat<br>900 · 58px · MAYÚS</div><div class="scale-sample"><div class="sd">Hagamos que pasen</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Título H1</span>Montserrat<br>800 · 42px</div><div class="scale-sample"><div class="sh1">Innovación que se ejecuta</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Título H2</span>Montserrat<br>700 · 30px</div><div class="scale-sample"><div class="sh2">Programas estratégicos</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Título H3</span>Montserrat<br>700 · 22px</div><div class="scale-sample"><div class="sh3">Gestión de portafolio</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Subtítulo</span>Bitter Italic<br>500 · 24px</div><div class="scale-sample"><div class="ssub">Estrategia, producto e innovación en una sola práctica.</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Entradilla</span>Bitter<br>400 · 20px</div><div class="scale-sample"><div class="slead">Acompaño a equipos a convertir ideas ambiciosas en programas medibles.</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Cuerpo</span>Montserrat<br>400 · 16px</div><div class="scale-sample"><div class="sbody">Texto base para párrafos, presentaciones y documentos. Cómodo de leer en pantalla e impreso.</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Texto menor</span>Montserrat<br>500 · 14px</div><div class="scale-sample"><div class="ssmall">Notas al pie, descripciones secundarias y metadatos de apoyo.</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Etiqueta</span>Space Mono<br>700 · 13px · .16em</div><div class="scale-sample"><div class="slabel">Hagamos que las cosas pasen</div></div></div>
+      <div class="scale-row"><div class="scale-meta"><span class="role">Caption / dato</span>Space Mono<br>400 · 12px</div><div class="scale-sample"><div class="scap">fig. 01 — flujo de valor 2025</div></div></div>
+    </div>
+
+    <div class="type-rules">
+      <div class="trule"><div class="n">R1</div><h4>Montserrat manda</h4><p>800/900 en MAYÚSCULAS para titulares principales. Es la voz visual de la marca.</p></div>
+      <div class="trule"><div class="n">R2</div><h4>Bitter siempre en itálica</h4><p>Cuando es subtítulo o acento editorial. No la uses en bloques largos de lectura.</p></div>
+      <div class="trule"><div class="n">R3</div><h4>Mono con aire</h4><p>Space Mono solo en mayúsculas y con mucho tracking. Nunca en párrafos largos.</p></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Las tres juntas</div>
+    <div class="specimen">
+      <div class="sl">Caso · Transformación</div>
+      <h3>De la idea<br>a la operación</h3>
+      <div class="ss">Diseño y dirijo programas que mueven la aguja.</div>
+      <p class="sb">Montserrat lleva el peso visual en titulares e interfaz. Bitter en itálica aporta el tono humano y editorial en subtítulos y citas. Space Mono marca las etiquetas y los datos con precisión.</p>
+      <div class="st">Hagamos que las cosas pasen</div>
+    </div>
+  </section>
+
+  <!-- ══════════ 05 · FONDOS ══════════ -->
+  <section id="fondos" data-screen-label="05 Fondos">
+    <div class="sec-head">
+      <div class="sec-num">05</div>
+      <h2 class="sec-title">Fondos y superficies</h2>
+      <div class="sec-meta">Claro · Oscuro · Patrón</div>
+    </div>
+    <p class="sec-intro">La marca vive en dos mundos: claro por defecto para documentos y lectura, oscuro para impacto y momentos hero. Cada fondo tiene su texto.</p>
+
+    <div class="surface-grid">
+      <div class="surface"><div class="stage bg-paper"><span class="dt" style="color:var(--purple-deep);">Hagamos que <em>pasen</em></span></div><div class="info"><div class="name">Paper · fondo base</div><div class="desc">Fondo por defecto de páginas y documentos. Texto en tinta o morado profundo.</div><div class="tok">--paper · #f6f4f1</div></div></div>
+      <div class="surface"><div class="stage bg-pale"><span class="dt" style="color:var(--purple-deep);">Hagamos que <em>pasen</em></span></div><div class="info"><div class="name">Pale · bloques suaves</div><div class="desc">Para secciones destacadas, chips y tarjetas de apoyo sobre fondo claro.</div><div class="tok">--pale · #efe9fb</div></div></div>
+      <div class="surface"><div class="stage bg-deep"><span class="dt" style="color:#fff;">Hagamos que <em>pasen</em></span></div><div class="info"><div class="name">Profundo · hero oscuro</div><div class="desc">Momentos de impacto, portadas y bloques destacados. Texto en blanco.</div><div class="tok">--purple-darker · #2a1854</div></div></div>
+      <div class="surface"><div class="stage bg-purple"><span class="dt" style="color:#fff;">Hagamos que <em>pasen</em></span></div><div class="info"><div class="name">Morado · identidad plena</div><div class="desc">Bloques de marca, CTAs grandes. Texto blanco; acento naranja.</div><div class="tok">--purple · #4b2a87</div></div></div>
+      <div class="surface"><div class="stage bg-pattern"><span class="dt" style="color:#fff;position:relative;">Hagamos que <em>pasen</em></span></div><div class="info"><div class="name">Patrón hexagonal · oscuro</div><div class="desc">Textura sutil para fondos hero. Mantén baja opacidad para no competir.</div><div class="tok">hexagon-pattern.png</div></div></div>
+      <div class="surface"><div class="stage bg-pattern-light"><span class="dt" style="color:var(--purple-deep);position:relative;">Hagamos que <em>pasen</em></span></div><div class="info"><div class="name">Patrón hexagonal · claro</div><div class="desc">Textura discreta sobre fondo claro para secciones de relleno.</div><div class="tok">hexagon-pattern-light.png</div></div></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="prose">
+      <p style="margin:0 0 14px;"><b>Regla de oro:</b> nunca pongas texto morado sobre fondo morado, ni naranja sobre naranja. Cada fondo define su color de texto antes de añadir contenido.</p>
+      <p style="margin:0;">Los gradientes y patrones son <b>decorativos</b>, no superficies de lectura: si llevan texto encima, usa siempre un color de máximo contraste (blanco puro) y evita párrafos largos.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 06 · TEXTO ══════════ -->
+  <section id="texto" class="band-dark" data-screen-label="06 Texto">
+    <div class="sec-head">
+      <div class="sec-num">06</div>
+      <h2 class="sec-title">Texto</h2>
+      <div class="sec-meta">Jerarquía · Color · Acento</div>
+    </div>
+    <p class="sec-intro">Cómo se comporta el texto sobre cada superficie, y cómo usar el naranja como "spark" — la palabra que enciende el mensaje.</p>
+
+    <div class="texton-grid">
+      <div class="texton light">
+        <div class="eb">Sobre fondo claro</div>
+        <h3>Innovación que <em>se ejecuta</em></h3>
+        <div class="sub">El subtítulo va en Bitter itálica, morado.</div>
+        <p>Cuerpo en Montserrat 400, color tinta <code class="tok">#241f33</code>. Títulos en morado profundo. La palabra clave del titular puede ir en naranja para destacar la idea central.</p>
+      </div>
+      <div class="texton dark">
+        <div class="eb">Sobre fondo oscuro</div>
+        <h3>Innovación que <em>se ejecuta</em></h3>
+        <div class="sub">Subtítulo en Bitter itálica, morado suave.</div>
+        <p>Cuerpo en blanco al 80%. Los títulos van en blanco puro. El naranja conserva todo su brillo como acento y mantiene contraste AAA sobre el morado oscuro.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="logo-rules" style="margin-top:0;">
+      <div class="rcol do">
+        <h4 style="color:#7ee0a8;">Sí</h4>
+        <ul style="--c:#fff;">
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Una sola palabra clave en naranja por titular.</li>
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Jerarquía clara: display → título → subtítulo → cuerpo.</li>
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Alineación a la izquierda para textos largos.</li>
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Máximo 65 caracteres por línea en cuerpo.</li>
+        </ul>
+      </div>
+      <div class="rcol dont">
+        <h4>No</h4>
+        <ul>
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Varias palabras o frases enteras en naranja.</li>
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Cuerpo de texto en Space Mono o en mayúsculas.</li>
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Texto morado sobre fondo morado.</li>
+          <li style="color:var(--white-80);border-top-color:var(--white-14);">Centrar párrafos largos o justificar con ríos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 07 · COMPONENTES ══════════ -->
+  <section id="componentes" data-screen-label="07 Componentes">
+    <div class="sec-head">
+      <div class="sec-num">07</div>
+      <h2 class="sec-title">Componentes</h2>
+      <div class="sec-meta">Botones · Badges · Cards</div>
+    </div>
+    <p class="sec-intro">Los bloques base de cualquier interfaz o documento, construidos con la paleta y la tipografía de la marca.</p>
+
+    <div class="comp-block">
+      <div class="comp-cap">Botones</div>
+      <div class="comp-row">
+        <button class="btn btn-primary">Agendar una sesión</button>
+        <button class="btn btn-secondary">Ver casos</button>
+        <button class="btn btn-solid-light">Descargar CV</button>
+      </div>
+    </div>
+    <div class="comp-block dark">
+      <div class="comp-cap" style="color:var(--white-50);">Botones sobre oscuro</div>
+      <div class="comp-row">
+        <button class="btn btn-primary">Agendar una sesión</button>
+        <button class="btn btn-secondary">Ver casos</button>
+        <button class="btn btn-ghost">Contacto</button>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-cap">Badges / Chips</div>
+      <div class="comp-row">
+        <span class="badge badge-purple">Programa</span>
+        <span class="badge badge-purple badge-dot">En curso</span>
+        <span class="badge badge-orange">Destacado</span>
+        <span class="badge badge-orange badge-dot">Urgente</span>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-cap">Tarjetas</div>
+      <div class="comp-row" style="align-items:stretch;">
+        <div class="demo-card light"><div class="ckicker">Caso</div><h4>Heineken</h4><p>Programa de innovación abierta con 40+ startups evaluadas.</p></div>
+        <div class="demo-card dark"><div class="ckicker">Caso</div><h4>ITESM</h4><p>Sistema de aceleración para el ecosistema emprendedor del campus.</p></div>
+        <div class="demo-card light feature"><div class="ckicker">Destacado</div><h4>REDUX</h4><p>Rediseño del modelo operativo con barra tricolor de firma.</p></div>
+      </div>
+    </div>
+
+    <div class="comp-block">
+      <div class="comp-cap">Enlaces</div>
+      <div class="comp-row" style="font-size:15px;color:var(--ink-2);">
+        Consulta el <a class="link-demo" href="#">portafolio completo</a> o escríbeme directo por <a class="link-demo" href="#">correo</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 08 · ESPACIADO ══════════ -->
+  <section id="espaciado" data-screen-label="08 Espaciado">
+    <div class="sec-head">
+      <div class="sec-num">08</div>
+      <h2 class="sec-title">Espaciado · Radios · Sombras</h2>
+      <div class="sec-meta">Base 4px</div>
+    </div>
+    <p class="sec-intro">Una escala de espaciado en base 4 mantiene el ritmo. Radios suaves y sombras discretas: nunca duras ni dramáticas.</p>
+
+    <div class="block-label">Escala de espaciado</div>
+    <div class="space-list">
+      <div class="space-row"><span class="tok">--space-1</span><span class="px">4px</span><div class="bar" style="width:4px;"></div></div>
+      <div class="space-row"><span class="tok">--space-2</span><span class="px">8px</span><div class="bar" style="width:8px;"></div></div>
+      <div class="space-row"><span class="tok">--space-3</span><span class="px">12px</span><div class="bar" style="width:12px;"></div></div>
+      <div class="space-row"><span class="tok">--space-4</span><span class="px">16px</span><div class="bar" style="width:16px;"></div></div>
+      <div class="space-row"><span class="tok">--space-5</span><span class="px">24px</span><div class="bar" style="width:24px;"></div></div>
+      <div class="space-row"><span class="tok">--space-6</span><span class="px">32px</span><div class="bar" style="width:32px;"></div></div>
+      <div class="space-row"><span class="tok">--space-7</span><span class="px">48px</span><div class="bar" style="width:48px;"></div></div>
+      <div class="space-row"><span class="tok">--space-8</span><span class="px">64px</span><div class="bar" style="width:64px;"></div></div>
+      <div class="space-row"><span class="tok">--space-9</span><span class="px">96px</span><div class="bar" style="width:96px;"></div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Radios de esquina</div>
+    <div class="radii-row">
+      <div class="radii"><div class="box" style="border-radius:4px;"></div><div class="lbl">--r-xs</div><div class="px">4px</div></div>
+      <div class="radii"><div class="box" style="border-radius:8px;"></div><div class="lbl">--r-sm</div><div class="px">8px</div></div>
+      <div class="radii"><div class="box" style="border-radius:14px;"></div><div class="lbl">--r-md</div><div class="px">14px</div></div>
+      <div class="radii"><div class="box" style="border-radius:20px;"></div><div class="lbl">--r-lg</div><div class="px">20px</div></div>
+      <div class="radii"><div class="box" style="border-radius:999px;"></div><div class="lbl">--r-pill</div><div class="px">999px</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="block-label">Sombras</div>
+    <div class="shadow-row">
+      <div class="shadow-card" style="box-shadow:var(--shadow-1);"><span class="l">--shadow-1</span></div>
+      <div class="shadow-card" style="box-shadow:var(--shadow-2);"><span class="l">--shadow-2</span></div>
+      <div class="shadow-card" style="box-shadow:var(--shadow-3);"><span class="l">--shadow-3</span></div>
+      <div class="shadow-card" style="box-shadow:var(--shadow-glow);"><span class="l">--shadow-glow</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="foot">
+    <div class="bar"></div>
+    <div>DM · Manual de marca v1.0</div>
+    <div class="mid">Hagamos que las cosas pasen</div>
+    <div class="right">Diego Maury · 2026</div>
+  </footer>
+
+</div>
+</body>
+</html>

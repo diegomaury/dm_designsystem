@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Diego Maury · Motion Brand</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #2a1854; /* Casi-negro violeta — sólido */
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* ── Stage ──────────────────────────────────────────── */
+.stage-outer { position: relative; flex-shrink: 0; }
+.stage {
+  width: 1920px; height: 1080px;
+  background: #2a1854; /* sólido */
+  position: relative; overflow: hidden;
+  transform-origin: top left;
+}
+
+/* ── Center composition ─────────────────────────────── */
+.center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -54%);
+  display: flex; flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Isotipo ────────────────────────────────────────── */
+.iso-wrap {
+  width: 220px; height: 220px;
+  position: relative;
+  margin-bottom: 36px;
+}
+
+/* Glow ring that pulses after draw */
+.iso-ring {
+  position: absolute;
+  inset: -32px; border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 0px 0px rgba(122,92,192,0);
+  animation: ringPulse 0.6s 1.9s ease-out forwards;
+}
+
+/* The isotipo PNG */
+.iso-img {
+  width: 100%; height: 100%;
+  position: relative; z-index: 1;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.78);
+  clip-path: circle(0% at 50% 50%);
+  filter: brightness(0) invert(1) drop-shadow(0 0 0px rgba(122,92,192,0));
+  animation:
+    isoReveal 1.4s 0.55s cubic-bezier(0.16,1,0.3,1) forwards,
+    isoGlow   1.5s 1.6s  ease-out             forwards;
+}
+
+/* ── Tricolor line sweep ─────────────────────────────── */
+.tribar-wrap {
+  width: 480px; height: 3px;
+  overflow: hidden; opacity: 0;
+  margin-bottom: 48px;
+  animation: fadeIn 0.01s 2.45s linear forwards;
+}
+.tribar {
+  height: 100%;
+  background: linear-gradient(90deg, #4b2a87 0%, #6a3a9e 50%, #f0592a 100%);
+  transform: scaleX(0); transform-origin: left center;
+  animation: sweep 0.8s 2.45s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* ── Name ───────────────────────────────────────────── */
+.dm-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 94px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #f3f0ec;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+.dm-name::after {
+  content: attr(data-text);
+  position: absolute; inset: 0;
+  color: #f3f0ec;
+  clip-path: inset(0 100% 0 0);
+  animation: nameWipe 0.9s 2.5s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.dm-name span {
+  opacity: 0;
+  animation: fadeIn 0.01s 2.5s linear forwards;
+}
+
+/* ── Subtitle ───────────────────────────────────────── */
+.dm-sub {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: rgba(243,240,236,0.7);
+  margin-top: 18px;
+  opacity: 0; transform: translateY(16px);
+  animation: slideUp 0.7s 3.1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+/* ── Tagline ────────────────────────────────────────── */
+.dm-tag {
+  font-family: var(--font-mono);
+  font-size: 18px; font-weight: 700;
+  letter-spacing: 0.30em; text-transform: uppercase;
+  color: var(--dm-ember);
+  margin-top: 26px;
+  opacity: 0;
+  animation: fadeIn 0.9s 3.55s ease-out forwards;
+}
+
+/* ── Progress ───────────────────────────────────────── */
+.progress-track {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: rgba(255,255,255,0.04);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4b2a87 0%, #6a3a9e 50%, #f0592a 100%);
+  transform: scaleX(0); transform-origin: left;
+  animation: sweep 5.5s 0s linear forwards;
+}
+
+/* ── Controls ───────────────────────────────────────── */
+.ctrl-bar {
+  position: absolute; bottom: 22px; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; z-index: 20;
+}
+.ctrl-btn {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 9px 22px; border-radius: var(--r-pill);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.38);
+  cursor: pointer; transition: all 200ms;
+}
+.ctrl-btn:hover {
+  border-color: rgba(122,92,192,0.55);
+  color: #a98fdb; background: rgba(122,92,192,0.12);
+}
+.ctrl-label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+/* ── Keyframes ──────────────────────────────────────── */
+@keyframes fadeIn   { to { opacity: 1; } }
+@keyframes slideUp  { to { opacity: 1; transform: translateY(0); } }
+@keyframes sweep    { to { transform: scaleX(1); } }
+@keyframes nameWipe { to { clip-path: inset(0 0% 0 0); } }
+
+@keyframes ringPulse {
+  0%   { box-shadow: 0 0 0px  0px  rgba(122,92,192,0.0); }
+  40%  { box-shadow: 0 0 60px 40px rgba(122,92,192,0.34); }
+  100% { box-shadow: 0 0 20px 12px rgba(122,92,192,0.14); }
+}
+@keyframes isoGlow {
+  0%   { filter: brightness(0) invert(1) drop-shadow(0 0 0px   rgba(122,92,192,0.0)); }
+  50%  { filter: brightness(0) invert(1) drop-shadow(0 0 28px  rgba(122,92,192,0.75)); }
+  100% { filter: brightness(0) invert(1) drop-shadow(0 0 14px  rgba(122,92,192,0.45)); }
+}
+@keyframes isoReveal {
+  0%   { opacity: 0; transform: scale(0.78); clip-path: circle(0%  at 50% 50%); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: scale(1);    clip-path: circle(75% at 50% 50%); }
+}
+</style>
+</head>
+<body>
+<div class="stage-outer">
+  <div class="stage" id="stage">
+
+    <!-- Center composition -->
+    <div class="center">
+
+      <!-- Isotipo reveal -->
+      <div class="iso-wrap">
+        <div class="iso-ring"></div>
+        <img class="iso-img" src="assets/isotipo.png" alt="Diego Maury isotipo">
+      </div>
+
+      <!-- Tricolor sweep -->
+      <div class="tribar-wrap">
+        <div class="tribar"></div>
+      </div>
+
+      <!-- Name wipe -->
+      <div class="dm-name" data-text="Diego Maury">
+        <span>Diego Maury</span>
+      </div>
+
+      <!-- Subtitle slide-up -->
+      <div class="dm-sub">Strategic Program &amp; Innovation Manager</div>
+
+      <!-- Tagline fade -->
+      <div class="dm-tag">Hagamos que las cosas pasen</div>
+
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-track"><div class="progress-fill"></div></div>
+
+    <!-- Controls -->
+    <div class="ctrl-bar">
+      <span class="ctrl-label">Motion Brand · 5s · Montserrat / Bitter / Space Mono</span>
+      <button class="ctrl-btn" id="replayBtn">↺ Replay</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function scaleStage() {
+    const stage = document.getElementById('stage');
+    const outer = document.querySelector('.stage-outer');
+    const sc = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = `scale(${sc})`;
+    outer.style.width  = (1920 * sc) + 'px';
+    outer.style.height = (1080 * sc) + 'px';
+  }
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+
+  document.getElementById('replayBtn').addEventListener('click', () => {
+    const stage = document.getElementById('stage');
+    const els = stage.querySelectorAll(
+      '.iso-ring,.iso-img,.tribar-wrap,.tribar,.dm-name span,.dm-sub,.dm-tag,.progress-fill'
+    );
+    els.forEach(el => { el.style.animation = 'none'; });
+    void stage.offsetWidth;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      els.forEach(el => { el.style.animation = ''; });
+    }));
+  });
+</script>
+</body>
+</html>
