@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Deck" subtitle="Presentación / Cotización · 1280×720 · v2.0" viewport="1280x820" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentación — Diego Maury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+  --W: 1280px; --H: 720px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+/* ── Shell ── */
+body {
+  background: #06030F; font-family: var(--sans); color: var(--t1);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 100vh; gap: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Stage ── */
+.stage-outer { position: relative; flex-shrink: 0; }
+.stage-scaler { transform-origin: top center; width: var(--W); height: var(--H); }
+
+/* ── Slide base ── */
+.slide {
+  width: var(--W); height: var(--H);
+  position: absolute; inset: 0;
+  background: var(--bg);
+  display: none; overflow: hidden;
+}
+.slide.active { display: flex; }
+
+/* Ember top rule — presente en todos los slides */
+.e-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ember); z-index: 5; }
+
+/* Panel derecho — bg-2 con border izq */
+.r-panel { position: absolute; right: 0; top: 0; bottom: 0; background: var(--bg-2); border-left: 1px solid var(--border); }
+
+/* Watermark isotipo */
+.iso-wm { position: absolute; object-fit: contain; pointer-events: none; opacity: .04; }
+
+/* ── Tipografía de slide ── */
+.s-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); }
+.s-num { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--t3); letter-spacing: .06em; }
+.s-h1 { font-weight: 700; font-size: 52px; letter-spacing: -.025em; line-height: 1.0; }
+.s-h2 { font-weight: 700; font-size: 36px; letter-spacing: -.018em; line-height: 1.05; }
+.s-h3 { font-weight: 700; font-size: 22px; letter-spacing: -.01em; }
+.s-body { font-size: 16px; color: var(--t2); line-height: 1.7; }
+.s-label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--t3); }
+.s-tag { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--ember); }
+
+/* Dividers */
+.h-rule { height: 1px; background: var(--border); }
+.v-rule { width: 1px; background: var(--border); flex-shrink: 0; }
+
+/* ════════════════════════════════════
+   SLIDE 1 — PORTADA
+════════════════════════════════════ */
+#s1 { flex-direction: row; }
+#s1 .r-panel { width: 380px; }
+#s1 .iso-wm { width: 300px; height: 300px; right: 40px; top: 50%; transform: translateY(-50%); opacity: .06; }
+
+#s1 .left {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; padding: 72px 64px;
+  position: relative; z-index: 2;
+}
+#s1 .iso { width: 72px; height: 72px; object-fit: contain; margin-bottom: 36px; }
+#s1 .name { font-weight: 700; font-size: 64px; letter-spacing: -.03em; line-height: .96; text-transform: uppercase; }
+#s1 .role { font-family: var(--mono); font-size: 14px; letter-spacing: .08em; color: var(--t2); margin-top: 16px; }
+#s1 .div { width: 48px; height: 2px; background: var(--border); margin: 24px 0; }
+#s1 .tag { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--ember); }
+
+#s1 .right-content {
+  width: 380px; display: flex; flex-direction: column;
+  align-items: flex-end; justify-content: flex-end;
+  padding: 40px 40px 40px 32px; gap: 8px; z-index: 2;
+}
+#s1 .client-label { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
+#s1 .client-name { font-size: 18px; font-weight: 700; color: var(--t1); text-align: right; }
+#s1 .client-date { font-family: var(--mono); font-size: 11px; color: var(--t3); letter-spacing: .04em; }
+
+/* ════════════════════════════════════
+   SLIDE 2 — PERFIL
+════════════════════════════════════ */
+#s2 { flex-direction: column; padding: 0; }
+#s2 .r-panel { width: 260px; }
+#s2 .iso-wm { width: 320px; height: 320px; right: 16px; bottom: -40px; opacity: .05; }
+
+#s2 .header { padding: 52px 72px 0; display: flex; align-items: flex-start; justify-content: space-between; }
+#s2 .header-left { display: flex; flex-direction: column; gap: 8px; }
+
+#s2 .body { flex: 1; padding: 36px 72px 0; display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: start; }
+#s2 .bio { font-size: 18px; color: var(--t2); line-height: 1.75; max-width: 540px; }
+#s2 .bio strong { color: var(--t1); font-weight: 500; }
+
+#s2 .metrics { display: flex; flex-direction: column; gap: 0; }
+#s2 .metric { padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
+#s2 .metric:first-child { border-top: 1px solid var(--border); }
+#s2 .m-num { font-weight: 700; font-size: 40px; letter-spacing: -.03em; color: var(--t1); line-height: 1; }
+#s2 .m-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); }
+
+/* ════════════════════════════════════
+   SLIDE 3 — EL RETO
+════════════════════════════════════ */
+#s3 { flex-direction: column; }
+#s3 .r-panel { width: 200px; }
+
+#s3 .inner { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 72px 72px 60px; }
+#s3 .phase-num { font-family: var(--mono); font-size: 72px; font-weight: 500; letter-spacing: -.02em; color: var(--border); line-height: 1; margin-bottom: 24px; }
+#s3 .challenge-head { font-weight: 700; font-size: 42px; letter-spacing: -.02em; line-height: 1.05; max-width: 760px; }
+#s3 .challenge-body { font-size: 17px; color: var(--t2); line-height: 1.75; max-width: 660px; margin-top: 24px; }
+#s3 .tags { display: flex; gap: 10px; margin-top: 36px; flex-wrap: wrap; }
+#s3 .tag-chip {
+  font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .10em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--t3);
+}
+
+/* ════════════════════════════════════
+   SLIDE 4 — SERVICIOS
+════════════════════════════════════ */
+#s4 { flex-direction: column; }
+
+#s4 .header { padding: 52px 72px 40px; }
+#s4 .services-grid {
+  flex: 1; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border); margin: 0;
+  border-top: 1px solid var(--border);
+}
+#s4 .service {
+  background: var(--bg); padding: 36px 40px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+#s4 .service:nth-child(3n) { background: var(--bg-2); }
+#s4 .svc-num { font-family: var(--mono); font-size: 11px; color: var(--ember); letter-spacing: .10em; font-weight: 500; }
+#s4 .svc-title { font-weight: 700; font-size: 20px; letter-spacing: -.01em; }
+#s4 .svc-desc { font-size: 14px; color: var(--t2); line-height: 1.65; }
+
+/* ════════════════════════════════════
+   SLIDE 5 — PROCESO
+════════════════════════════════════ */
+#s5 { flex-direction: column; }
+
+#s5 .header { padding: 52px 72px 40px; }
+#s5 .process { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 56px 52px; gap: 24px; align-items: start; }
+#s5 .step { display: flex; flex-direction: column; gap: 0; padding: 0 16px; border-left: 1px solid var(--border); }
+#s5 .step.active-step { border-left-color: var(--ember); }
+#s5 .step-num { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--t3); letter-spacing: .10em; margin-bottom: 16px; }
+#s5 .step.active-step .step-num { color: var(--ember); }
+#s5 .step-title { font-weight: 700; font-size: 20px; letter-spacing: -.01em; margin-bottom: 12px; }
+#s5 .step-desc { font-size: 14px; color: var(--t2); line-height: 1.65; }
+#s5 .step-duration { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: .08em; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px; }
+
+/* ════════════════════════════════════
+   SLIDE 6 — INVERSIÓN
+════════════════════════════════════ */
+#s6 { flex-direction: row; }
+#s6 .r-panel { width: 340px; }
+#s6 .iso-wm { width: 260px; height: 260px; right: 40px; bottom: 20px; opacity: .05; }
+
+#s6 .left { flex: 1; padding: 52px 64px; display: flex; flex-direction: column; gap: 0; }
+#s6 .table-wrap { flex: 1; margin-top: 32px; }
+
+.inv-row {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.inv-row.head { border-bottom: 1px solid var(--t3); padding-bottom: 10px; margin-bottom: 2px; }
+.inv-row.head .inv-item { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
+.inv-item { font-size: 15px; color: var(--t1); }
+.inv-item.sub { font-size: 12px; color: var(--t2); margin-top: 3px; }
+.inv-price { font-family: var(--mono); font-size: 15px; color: var(--t1); letter-spacing: .02em; white-space: nowrap; }
+.inv-row.total { border-bottom: none; border-top: 2px solid var(--ember); margin-top: 4px; padding-top: 16px; }
+.inv-row.total .inv-item { font-weight: 700; font-size: 16px; }
+.inv-row.total .inv-price { font-size: 22px; font-weight: 700; color: var(--ember); letter-spacing: -.01em; }
+
+#s6 .note { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: .03em; margin-top: 20px; line-height: 1.7; }
+#s6 .right-content { width: 340px; display: flex; flex-direction: column; justify-content: center; padding: 52px 40px; gap: 24px; z-index: 2; }
+#s6 .aside-block { display: flex; flex-direction: column; gap: 8px; }
+#s6 .aside-label { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ember); }
+#s6 .aside-val { font-size: 15px; color: var(--t1); line-height: 1.5; }
+#s6 .aside-val.mono { font-family: var(--mono); font-size: 13px; letter-spacing: .04em; }
+
+/* ════════════════════════════════════
+   SLIDE 7 — PRÓXIMOS PASOS
+════════════════════════════════════ */
+#s7 { flex-direction: column; }
+
+#s7 .header { padding: 52px 72px 40px; }
+#s7 .steps-row { flex: 1; display: flex; align-items: center; padding: 0 72px 60px; gap: 0; }
+#s7 .next-step { flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 0 32px; position: relative; }
+#s7 .next-step::before { content: ''; position: absolute; top: 22px; right: 0; width: 1px; height: 80px; background: var(--border); }
+#s7 .next-step:last-child::before { display: none; }
+#s7 .ns-num { font-family: var(--mono); font-size: 32px; font-weight: 500; color: var(--border); letter-spacing: -.02em; line-height: 1; }
+#s7 .ns-title { font-weight: 700; font-size: 20px; letter-spacing: -.01em; }
+#s7 .ns-desc { font-size: 14px; color: var(--t2); line-height: 1.65; }
+
+#s7 .contact-row {
+  margin: 0 72px; padding: 20px 28px;
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px;
+  display: flex; align-items: center; gap: 24px; margin-bottom: 52px;
+}
+#s7 .contact-iso { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+#s7 .c-v-rule { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
+#s7 .contact-info { display: flex; gap: 32px; }
+#s7 .c-item { display: flex; flex-direction: column; gap: 3px; }
+#s7 .c-label { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); }
+#s7 .c-val { font-family: var(--mono); font-size: 13px; color: var(--t2); letter-spacing: .02em; }
+
+/* ════════════════════════════════════
+   SLIDE 8 — CIERRE
+════════════════════════════════════ */
+#s8 { flex-direction: column; align-items: center; justify-content: center; gap: 0; }
+#s8 .iso-lg { width: 128px; height: 128px; object-fit: contain; margin-bottom: 40px; }
+#s8 .closing-name { font-weight: 700; font-size: 52px; letter-spacing: -.025em; text-transform: uppercase; }
+#s8 .closing-rule { width: 1px; height: 52px; background: var(--border); margin: 28px 0; }
+#s8 .closing-tag { font-family: var(--mono); font-size: 14px; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--ember); }
+#s8 .closing-url { font-family: var(--mono); font-size: 12px; color: var(--t3); letter-spacing: .08em; margin-top: 32px; }
+
+/* ════════════════════════════════════
+   CHROME — slide counter + dots
+════════════════════════════════════ */
+.chrome {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: var(--W);
+  padding: 10px 4px; flex-shrink: 0;
+}
+.dots { display: flex; gap: 6px; align-items: center; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border); border: none; padding: 0; cursor: pointer; transition: background 150ms, transform 150ms; }
+.dot.active { background: var(--ember); transform: scale(1.5); }
+.dot:hover:not(.active) { background: var(--t3); }
+.chrome-right { display: flex; gap: 8px; align-items: center; }
+.nav-btn {
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
+  background: transparent; color: var(--t2); font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: all 150ms;
+}
+.nav-btn:hover { border-color: var(--ember); color: var(--ember); }
+.slide-counter { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: .10em; }
+
+/* ════════════════════════════════════
+   PRINT / PDF MODE
+════════════════════════════════════ */
+@media print {
+  body { background: #0A0612; display: block; min-height: auto; }
+  .chrome { display: none; }
+  .stage-outer, .stage-scaler { width: 100% !important; height: auto !important; transform: none !important; }
+  .slide { position: relative !important; display: flex !important; width: 100% !important; height: auto !important; min-height: 56vw; break-inside: avoid; page-break-after: always; }
+  #s1 .right-content, #s6 .right-content { position: relative; }
+  #s2 .r-panel, #s3 .r-panel, #s4 .r-panel, #s5 .r-panel, #s6 .r-panel, #s7 .r-panel { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── CHROME (arriba) ── -->
+<div class="chrome" id="chromeTop">
+  <div class="dots" id="dotsWrap"></div>
+  <div class="chrome-right">
+    <span class="slide-counter" id="slideCounter">01 / 08</span>
+    <button class="nav-btn" id="prevBtn">&#8592;</button>
+    <button class="nav-btn" id="nextBtn">&#8594;</button>
+  </div>
+</div>
+
+<div class="stage-outer" id="stageOuter">
+  <div class="stage-scaler" id="stageScaler">
+
+    <!-- ══ S1 · PORTADA ══ -->
+    <div class="slide active" id="s1">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="" style="width:300px;height:300px;right:40px;top:50%;transform:translateY(-50%);">
+      <div class="left">
+        <img class="iso" src="assets/isotipo-final-ember.svg" alt="Diego Maury">
+        <div class="name">Diego<br>Maury</div>
+        <div class="role">Strategic Program Director</div>
+        <div class="div"></div>
+        <div class="tag">Hagamos que las cosas pasen.</div>
+      </div>
+      <div class="right-content">
+        <div class="client-label">Presentado a</div>
+        <div class="client-name">[Nombre del cliente<br>o empresa]</div>
+        <div style="height:1px;background:var(--border);margin:16px 0;"></div>
+        <div class="client-label">Fecha</div>
+        <div class="client-date">[Mes] 2025</div>
+        <div style="height:1px;background:var(--border);margin:16px 0;"></div>
+        <div class="client-label">Propuesta</div>
+        <div class="client-date">[Referencia / Número]</div>
+      </div>
+    </div>
+
+    <!-- ══ S2 · PERFIL ══ -->
+    <div class="slide" id="s2">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="" style="width:320px;height:320px;right:16px;bottom:-40px;">
+      <div class="header">
+        <div class="header-left">
+          <div class="s-eyebrow">Quién soy</div>
+          <div class="s-h2" style="margin-top:6px;">Un director que ejecuta,<br>no solo asesora.</div>
+        </div>
+        <div class="s-num">02 / 08</div>
+      </div>
+      <div class="body">
+        <p class="bio">
+          Diseño y dirijo <strong>programas estratégicos</strong> que convierten ideas ambiciosas en resultados medibles. Trabajo en la intersección de estrategia, producto e innovación — con foco en <strong>ejecución real</strong>, no en reportes.
+          <br><br>
+          He liderado iniciativas en corporativos, startups y aceleradoras a lo largo de LATAM, siempre desde el rol de quien hace que las cosas pasen.
+        </p>
+        <div class="metrics">
+          <div class="metric">
+            <div class="m-num">30<span style="font-size:24px;color:var(--ember);">+</span></div>
+            <div class="m-label">Programas liderados</div>
+          </div>
+          <div class="metric">
+            <div class="m-num">900<span style="font-size:24px;color:var(--t3);">+</span></div>
+            <div class="m-label">Proyectos gestionados</div>
+          </div>
+          <div class="metric">
+            <div class="m-num">3,000<span style="font-size:24px;color:var(--t3);">+</span></div>
+            <div class="m-label">Emprendedores impactados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S3 · EL RETO ══ -->
+    <div class="slide" id="s3">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <div class="inner">
+        <div class="phase-num">01</div>
+        <div class="s-eyebrow" style="margin-bottom:16px;">El reto</div>
+        <div class="challenge-head">[Describe el problema central<br>que enfrenta el cliente]</div>
+        <p class="challenge-body">
+          [Contexto adicional: ¿Qué está pasando en la organización? ¿Por qué es urgente resolverlo? ¿Cuál es el costo de no actuar? Este texto puede ser de 2 a 3 oraciones.]
+        </p>
+        <div class="tags">
+          <span class="tag-chip">[Área 1]</span>
+          <span class="tag-chip">[Área 2]</span>
+          <span class="tag-chip">[Área 3]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S4 · SERVICIOS ══ -->
+    <div class="slide" id="s4">
+      <div class="e-bar"></div>
+      <div class="header">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <div>
+            <div class="s-eyebrow">Lo que hago</div>
+            <div class="s-h2" style="margin-top:6px;">Servicios</div>
+          </div>
+          <div class="s-num">04 / 08</div>
+        </div>
+      </div>
+      <div class="services-grid">
+        <div class="service">
+          <div class="svc-num">01</div>
+          <div class="svc-title">Dirección de Programa</div>
+          <div class="svc-desc">Liderazgo end-to-end de programas complejos: desde el diseño hasta la operación. Gobierno, KPIs y cadencia de ejecución.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">02</div>
+          <div class="svc-title">Diseño Estratégico</div>
+          <div class="svc-desc">Traducción de visión en planes accionables. Roadmaps, portafolios de iniciativas y alineación de stakeholders.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">03</div>
+          <div class="svc-title">Innovación Aplicada</div>
+          <div class="svc-desc">Metodologías ágiles adaptadas al contexto del cliente. Design thinking, MVP, validación y escalamiento.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">04</div>
+          <div class="svc-title">Consultoría Operativa</div>
+          <div class="svc-desc">Diagnóstico y rediseño de procesos críticos. Habilitación de equipos para sostener el cambio sin dependencia externa.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">05</div>
+          <div class="svc-title">Aceleración de Equipos</div>
+          <div class="svc-desc">Formación, mentoría y acompañamiento de líderes y equipos multidisciplinarios en contextos de alta incertidumbre.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">06</div>
+          <div class="svc-title">Sesiones de Trabajo</div>
+          <div class="svc-desc">Facilitación de workshops estratégicos, retiros de equipo y sesiones de diagnóstico. Resultados tangibles al cierre del día.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S5 · PROCESO ══ -->
+    <div class="slide" id="s5">
+      <div class="e-bar"></div>
+      <div class="header">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <div>
+            <div class="s-eyebrow">Cómo trabajo</div>
+            <div class="s-h2" style="margin-top:6px;">Proceso</div>
+          </div>
+          <div class="s-num">05 / 08</div>
+        </div>
+      </div>
+      <div class="process">
+        <div class="step active-step">
+          <div class="step-num">01</div>
+          <div class="step-title">Diagnóstico</div>
+          <div class="step-desc">Entendimiento profundo del contexto, los objetivos y las restricciones. Entrevistas, revisión documental y mapeo del sistema actual.</div>
+          <div class="step-duration">Semana 1–2</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Diseño</div>
+          <div class="step-desc">Co-diseño del programa con los stakeholders clave. Definición de arquitectura, fases, entregables y métricas de éxito.</div>
+          <div class="step-duration">Semana 2–3</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Ejecución</div>
+          <div class="step-desc">Operación del programa con cadencia semanal. Seguimiento de avances, resolución de bloqueos y gestión del cambio en tiempo real.</div>
+          <div class="step-duration">Semana 4–[N]</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Cierre</div>
+          <div class="step-desc">Entrega de resultados, documentación del aprendizaje y transferencia de capacidades al equipo interno para garantizar continuidad.</div>
+          <div class="step-duration">Semana [N]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S6 · INVERSIÓN ══ -->
+    <div class="slide" id="s6">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="" style="width:260px;height:260px;right:40px;bottom:20px;">
+      <div class="left">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0;">
+          <div>
+            <div class="s-eyebrow">Propuesta económica</div>
+            <div class="s-h2" style="margin-top:6px;">Inversión</div>
+          </div>
+          <div class="s-num">06 / 08</div>
+        </div>
+        <div class="table-wrap">
+          <div class="inv-row head">
+            <div class="inv-item">Concepto</div>
+            <div class="inv-price">Monto</div>
+          </div>
+          <div class="inv-row">
+            <div>
+              <div class="inv-item">[Fase / Servicio 1]</div>
+              <div class="inv-item sub">[Descripción breve — duración o entregable]</div>
+            </div>
+            <div class="inv-price">$00,000</div>
+          </div>
+          <div class="inv-row">
+            <div>
+              <div class="inv-item">[Fase / Servicio 2]</div>
+              <div class="inv-item sub">[Descripción breve]</div>
+            </div>
+            <div class="inv-price">$00,000</div>
+          </div>
+          <div class="inv-row">
+            <div>
+              <div class="inv-item">[Fase / Servicio 3]</div>
+              <div class="inv-item sub">[Descripción breve]</div>
+            </div>
+            <div class="inv-price">$00,000</div>
+          </div>
+          <div class="inv-row total">
+            <div class="inv-item">Total</div>
+            <div class="inv-price">$00,000</div>
+          </div>
+        </div>
+        <div class="note">
+          * Precios en MXN / USD según acuerdo. · Vigencia de la propuesta: 30 días.<br>
+          * [Condiciones de pago: 50% inicio / 50% entrega, o según negociación.]
+        </div>
+      </div>
+      <div class="right-content">
+        <div class="aside-block">
+          <div class="aside-label">Duración estimada</div>
+          <div class="aside-val">[N semanas / meses]</div>
+        </div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="aside-block">
+          <div class="aside-label">Modalidad</div>
+          <div class="aside-val">[Remoto / Presencial / Híbrido]</div>
+        </div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="aside-block">
+          <div class="aside-label">Dedicación</div>
+          <div class="aside-val">[Horas por semana / Full-time]</div>
+        </div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="aside-block">
+          <div class="aside-label">Moneda</div>
+          <div class="aside-val mono">MXN / USD</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S7 · PRÓXIMOS PASOS ══ -->
+    <div class="slide" id="s7">
+      <div class="e-bar"></div>
+      <div class="header">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <div>
+            <div class="s-eyebrow">Para arrancar</div>
+            <div class="s-h2" style="margin-top:6px;">Próximos pasos</div>
+          </div>
+          <div class="s-num">07 / 08</div>
+        </div>
+      </div>
+      <div class="steps-row">
+        <div class="next-step">
+          <div class="ns-num">01</div>
+          <div class="ns-title">Revisión</div>
+          <div class="ns-desc">Compartir comentarios sobre esta propuesta. Ajustamos alcance, tiempos o condiciones según sea necesario.</div>
+        </div>
+        <div class="next-step">
+          <div class="ns-num">02</div>
+          <div class="ns-title">Acuerdo</div>
+          <div class="ns-desc">Firma de contrato y condiciones. Primer pago para reservar fecha de inicio y garantizar disponibilidad.</div>
+        </div>
+        <div class="next-step">
+          <div class="ns-num">03</div>
+          <div class="ns-title">Arranque</div>
+          <div class="ns-desc">Sesión de kickoff para alinear equipo, objetivos y cadencia de trabajo. Comenzamos a hacer que las cosas pasen.</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <img class="contact-iso" src="assets/isotipo-final-ember.svg" alt="">
+        <div class="c-v-rule"></div>
+        <div class="contact-info">
+          <div class="c-item">
+            <div class="c-label">Email</div>
+            <div class="c-val">hola@diegomaury.mx</div>
+          </div>
+          <div class="c-item">
+            <div class="c-label">Web</div>
+            <div class="c-val">diegomaury.mx</div>
+          </div>
+          <div class="c-item">
+            <div class="c-label">LinkedIn</div>
+            <div class="c-val">/in/diegomaury</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S8 · CIERRE ══ -->
+    <div class="slide" id="s8">
+      <div class="e-bar"></div>
+      <img class="iso-lg" src="assets/isotipo-final-ember.svg" alt="Diego Maury">
+      <div class="closing-name">Diego Maury</div>
+      <div class="closing-rule"></div>
+      <div class="closing-tag">Hagamos que las cosas pasen.</div>
+      <div class="closing-url">diegomaury.mx</div>
+    </div>
+
+  </div><!-- /stage-scaler -->
+</div><!-- /stage-outer -->
+
+<script>
+  const TOTAL = 8;
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('dotsWrap');
+  const counter = document.getElementById('slideCounter');
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(i) {
+    slides[cur].classList.remove('active');
+    document.querySelectorAll('.dot')[cur].classList.remove('active');
+    cur = (i + TOTAL) % TOTAL;
+    slides[cur].classList.add('active');
+    document.querySelectorAll('.dot')[cur].classList.add('active');
+    counter.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(TOTAL).padStart(2, '0');
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(cur - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(cur + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(cur + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(cur - 1);
+  });
+
+  function scaleStage() {
+    const scaler = document.getElementById('stageScaler');
+    const outer  = document.getElementById('stageOuter');
+    const chrome = document.getElementById('chromeTop');
+    const chromeH = chrome.offsetHeight + 8;
+    const avail = Math.min(window.innerWidth - 32, window.innerHeight - chromeH - 16);
+    const sc = Math.min(1, avail / 720, (window.innerWidth - 32) / 1280);
+    scaler.style.transform = 'scale(' + sc + ')';
+    scaler.style.transformOrigin = 'top center';
+    outer.style.width  = (1280 * sc) + 'px';
+    outer.style.height = (720  * sc) + 'px';
+    chrome.style.maxWidth = (1280 * sc) + 'px';
+  }
+  window.addEventListener('resize', scaleStage);
+  scaleStage();
+</script>
+</body>
+</html>

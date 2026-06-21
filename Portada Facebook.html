@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Portada Facebook" subtitle="v2.0 · 3 variantes · 851×315 con zonas seguras" viewport="1280x900" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diego Maury · Portada Facebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { background: var(--bg); font-family: var(--sans); color: var(--t1); padding: 40px 24px 60px; margin: 0; }
+
+.page-head { text-align: center; margin-bottom: 36px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 10px; }
+.page-head h1 { font-size: 24px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 6px; }
+.page-head p { font-size: 13px; color: var(--t2); line-height: 1.5; max-width: 600px; margin: 0 auto; }
+
+.toolbar {
+  position: fixed; top: 14px; right: 16px; z-index: 100;
+  display: flex; gap: 8px;
+  background: rgba(10,6,18,.92); border: 1px solid var(--border);
+  border-radius: 999px; padding: 6px 10px 6px 14px;
+}
+.toolbar span { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); align-self: center; }
+.tb-btn {
+  font-family: var(--sans); font-weight: 700; font-size: 11px;
+  border: 1px solid var(--border); background: transparent; color: var(--t2);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer; transition: all .15s;
+}
+.tb-btn:hover, .tb-btn.on { border-color: var(--ember); color: var(--ember); }
+
+.artboards { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.ab-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ab-label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
+.ab-outer { position: relative; }
+.ab-scaler { transform-origin: top center; width: 851px; height: 315px; }
+
+/* ─── BASE ARTBOARD 851×315 ─── */
+.fb {
+  width: 851px; height: 315px;
+  background: var(--bg); position: relative; overflow: hidden;
+  display: flex; align-items: center;
+}
+.ember-line { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ember); z-index: 3; }
+
+/* Safe-zone guides */
+.fb-guides { position: absolute; inset: 0; z-index: 9; pointer-events: none; display: none; }
+body.show-guides .fb-guides { display: block; }
+.guide-pp {
+  position: absolute; left: 16px; bottom: -12px;
+  width: 140px; height: 140px; border-radius: 50%;
+  border: 1.5px dashed rgba(255,92,57,.7);
+  background: rgba(255,92,57,.06);
+}
+.guide-mobile {
+  position: absolute; top: 0; bottom: 0; left: 105px; width: 640px;
+  border-left: 1.5px dashed rgba(255,255,255,.2);
+  border-right: 1.5px dashed rgba(255,255,255,.2);
+  background: rgba(255,255,255,.03);
+}
+.guide-lbl {
+  position: absolute; font-family: var(--mono); font-size: 8px;
+  font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  padding: 2px 5px; border-radius: 3px;
+}
+
+/* ─── VARIANT A · Firma centrada ─── */
+.fb-a .lockup {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: flex; align-items: center; gap: 24px; z-index: 2;
+}
+.fb-a .lockup img { width: 56px; height: 56px; object-fit: contain; }
+.fb-a .v-rule { width: 1px; height: 56px; background: var(--border); flex-shrink: 0; }
+.fb-a .name { font-size: 40px; font-weight: 700; letter-spacing: -.015em; text-transform: uppercase; line-height: 1; }
+.fb-a .role { font-family: var(--mono); font-size: 11px; color: var(--t2); margin-top: 6px; letter-spacing: .04em; }
+.fb-a .tag  { font-family: var(--mono); font-size: 9.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ember); margin-top: 7px; }
+
+/* ─── VARIANT B · Editorial + métricas ─── */
+.fb-b .content {
+  position: absolute; top: 50%; left: 105px; width: 640px;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; z-index: 2; gap: 0;
+}
+.fb-b .lockup-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.fb-b .lockup-row img { width: 46px; height: 46px; object-fit: contain; }
+.fb-b .name-s { font-size: 32px; font-weight: 700; letter-spacing: -.015em; text-transform: uppercase; line-height: 1; }
+.fb-b .role-s { font-family: var(--mono); font-size: 10px; color: var(--t2); margin-top: 4px; }
+.fb-b .rule-h { width: 100%; height: 1px; background: var(--border); margin: 0 0 12px; }
+.fb-b .metrics { display: flex; gap: 40px; }
+.fb-b .metric-n { font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--t1); line-height: 1; }
+.fb-b .metric-l { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); margin-top: 4px; }
+.fb-b .tag-b { font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ember); margin-top: 12px; }
+
+/* ─── VARIANT C · Declaración ─── */
+.fb-c { background: var(--bg-2); }
+.fb-c .content {
+  position: absolute; top: 50%; left: 105px; width: 640px;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; z-index: 2; gap: 12px;
+}
+.fb-c .role-c { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); }
+.fb-c .quote { font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -.02em; text-transform: uppercase; }
+.fb-c .quote span { color: var(--ember); }
+.fb-c .sig { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.fb-c .sig img { width: 26px; height: 26px; object-fit: contain; }
+.fb-c .sig .name-c { font-size: 16px; font-weight: 700; letter-spacing: .01em; text-transform: uppercase; }
+.fb-c .iso-wm {
+  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+  width: 160px; height: 160px; object-fit: contain; opacity: .06; pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span>Zonas seguras</span>
+  <button class="tb-btn" id="guideBtn" onclick="document.body.classList.toggle('show-guides');this.classList.toggle('on');">Mostrar guías</button>
+</div>
+
+<div class="page-head">
+  <div class="eyebrow">Aplicación de marca · Facebook</div>
+  <h1>Portada de Facebook</h1>
+  <p>Tres variantes a 851 × 315 px. La zona inferior-izquierda la ocupa la foto de perfil en escritorio.</p>
+</div>
+
+<div class="artboards">
+  <!-- A -->
+  <div class="ab-wrap">
+    <div class="ab-outer" id="outerA"><div class="ab-scaler" id="scalerA">
+      <div class="fb fb-a">
+        <div class="ember-line"></div>
+        <div class="lockup">
+          <img src="assets/isotipo-final-ember.svg" alt="">
+          <div class="v-rule"></div>
+          <div>
+            <div class="name">Diego Maury</div>
+            <div class="role">Strategic Program Director</div>
+            <div class="tag">Hagamos que las cosas pasen.</div>
+          </div>
+        </div>
+        <div class="fb-guides">
+          <div class="guide-pp"></div>
+          <div class="guide-lbl" style="left:20px;bottom:2px;background:rgba(255,92,57,.9);color:#0A0612;">Foto perfil</div>
+          <div class="guide-mobile"></div>
+          <div class="guide-lbl" style="left:110px;top:8px;color:rgba(255,255,255,.5);">Visible en móvil</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="ab-label">A · Firma centrada</div>
+  </div>
+
+  <!-- B -->
+  <div class="ab-wrap">
+    <div class="ab-outer" id="outerB"><div class="ab-scaler" id="scalerB">
+      <div class="fb fb-b">
+        <div class="ember-line"></div>
+        <div class="content">
+          <div class="lockup-row">
+            <img src="assets/isotipo-final-ember.svg" alt="">
+            <div><div class="name-s">Diego Maury</div><div class="role-s">Strategic Program Director</div></div>
+          </div>
+          <div class="rule-h"></div>
+          <div class="metrics">
+            <div><div class="metric-n">30+</div><div class="metric-l">Programas</div></div>
+            <div><div class="metric-n">900+</div><div class="metric-l">Proyectos</div></div>
+            <div><div class="metric-n">3,000+</div><div class="metric-l">Emprendedores</div></div>
+          </div>
+          <div class="tag-b">Hagamos que las cosas pasen.</div>
+        </div>
+        <div class="fb-guides">
+          <div class="guide-pp"></div>
+          <div class="guide-mobile"></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="ab-label">B · Editorial + métricas</div>
+  </div>
+
+  <!-- C -->
+  <div class="ab-wrap">
+    <div class="ab-outer" id="outerC"><div class="ab-scaler" id="scalerC">
+      <div class="fb fb-c">
+        <div class="ember-line"></div>
+        <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="">
+        <div class="content">
+          <div class="role-c">Strategic Program Director</div>
+          <div class="quote">Hago que<br><span>las cosas pasen.</span></div>
+          <div class="sig">
+            <img src="assets/isotipo-final-ember.svg" alt="">
+            <div class="name-c">Diego Maury</div>
+          </div>
+        </div>
+        <div class="fb-guides">
+          <div class="guide-pp"></div>
+          <div class="guide-mobile"></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="ab-label">C · Declaración</div>
+  </div>
+</div>
+
+<script>
+function scale(scaler, outer) {
+  const avail = window.innerWidth - 48;
+  const sc = Math.min(1, avail / 851);
+  scaler.style.transform = 'scale(' + sc + ')';
+  outer.style.width  = (851 * sc) + 'px';
+  outer.style.height = (315 * sc) + 'px';
+}
+function scaleAll() {
+  ['A','B','C'].forEach(id => scale(document.getElementById('scaler'+id), document.getElementById('outer'+id)));
+}
+window.addEventListener('resize', scaleAll);
+scaleAll();
+</script>
+</body>
+</html>

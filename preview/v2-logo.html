@@ -1,0 +1,90 @@
+<!-- @dsCard group="v2 · Sistema Ember" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0A0612;font-family:'Plus Jakarta Sans',sans-serif;padding:32px;min-height:400px}
+h2{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#FF5C39;font-family:'DM Mono',monospace;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.card{background:#1A1128;border:1px solid #2A1F3D;border-radius:10px;overflow:hidden}
+.stage{height:140px;display:flex;align-items:center;justify-content:center;padding:20px}
+.meta{padding:10px 12px;border-top:1px solid #2A1F3D;display:flex;justify-content:space-between;align-items:baseline}
+.meta .name{font-size:12px;font-weight:600;color:#FAF8FC}
+.meta .tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8B7C9E}
+/* CSS lockups */
+.lockup-h{display:inline-flex;align-items:center;gap:10px}
+.lockup-h img{width:36px;height:36px}
+.lockup-h .sep{width:1px;height:28px;background:#2A1F3D}
+.lockup-h .nm{font-weight:700;font-size:15px;letter-spacing:.04em;color:#FAF8FC;text-transform:uppercase;line-height:1.1}
+.lockup-h .ro{font-weight:400;font-style:italic;font-size:9px;color:#9A8CB0;margin-top:2px}
+.lockup-v{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.lockup-v img{width:40px;height:40px}
+.lockup-v .nm{font-weight:700;font-size:17px;letter-spacing:.04em;color:#FAF8FC;text-transform:uppercase;line-height:1.1}
+.lockup-v .ro{font-weight:400;font-style:italic;font-size:9px;color:#9A8CB0;margin-top:2px}
+.lockup-v .tl{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:#FF5C39;margin-top:4px}
+/* light card */
+.card-light .stage{background:#FAF8FC}
+.card-light .nm-l{font-weight:700;font-size:15px;letter-spacing:.04em;color:#2A1F3D;text-transform:uppercase;line-height:1.1}
+.card-light .ro-l{font-weight:400;font-style:italic;font-size:9px;color:#4B3D6B;margin-top:2px}
+</style>
+</head>
+<body>
+<h2>Logo v2.0 · 4 lockups oficiales</h2>
+<div class="grid">
+  <div class="card">
+    <div class="stage">
+      <img src="../assets/isotipo-final-ember.svg" alt="Isotipo" style="width:64px;height:64px">
+    </div>
+    <div class="meta"><span class="name">Isotipo</span><span class="tag">A · solo</span></div>
+  </div>
+  <div class="card">
+    <div class="stage">
+      <div class="lockup-h">
+        <img src="../assets/isotipo-final-ember.svg" alt="">
+        <div class="sep"></div>
+        <div><div class="nm">Diego Maury</div><div class="ro">Strategic Program Director</div></div>
+      </div>
+    </div>
+    <div class="meta"><span class="name">Horizontal</span><span class="tag">B · firma</span></div>
+  </div>
+  <div class="card">
+    <div class="stage">
+      <div class="lockup-v">
+        <img src="../assets/isotipo-final-ember.svg" alt="">
+        <div><div class="nm">Diego Maury</div><div class="ro">Strategic Program Director</div></div>
+      </div>
+    </div>
+    <div class="meta"><span class="name">Vertical</span><span class="tag">C · principal</span></div>
+  </div>
+  <div class="card">
+    <div class="stage">
+      <div class="lockup-v">
+        <img src="../assets/isotipo-final-ember.svg" alt="">
+        <div><div class="nm">Diego Maury</div><div class="ro">Strategic Program Director</div><div class="tl">Hagamos que las cosas pasen</div></div>
+      </div>
+    </div>
+    <div class="meta"><span class="name">Con tagline</span><span class="tag">D · >200px</span></div>
+  </div>
+</div>
+<!-- variantes contenedor -->
+<div style="margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+  <div class="card card-light">
+    <div class="stage">
+      <div class="lockup-h">
+        <img src="../assets/isotipo-final-ember.svg" alt="" style="width:28px;height:28px">
+        <div class="sep" style="background:#D9D2E8"></div>
+        <div><div class="nm-l">Diego Maury</div><div class="ro-l">Strategic Program Director</div></div>
+      </div>
+    </div>
+    <div class="meta" style="background:#FAF8FC;border-color:#D9D2E8"><span class="name" style="color:#2A1F3D;font-size:11px">Modo claro</span><span class="tag">light</span></div>
+  </div>
+  <div class="card"><div class="stage"><img src="../assets/isotipo-final-circulo.svg" alt="" style="width:64px;height:64px"></div><div class="meta"><span class="name">Círculo</span><span class="tag">contenedor</span></div></div>
+  <div class="card"><div class="stage"><img src="../assets/isotipo-final-cuadrado.svg" alt="" style="width:64px;height:64px"></div><div class="meta"><span class="name">Cuadrado</span><span class="tag">contenedor</span></div></div>
+  <div class="card"><div class="stage"><img src="../assets/isotipo-final-white.svg" alt="" style="width:64px;height:64px"></div><div class="meta"><span class="name">Una tinta</span><span class="tag">white</span></div></div>
+</div>
+</body>
+</html>

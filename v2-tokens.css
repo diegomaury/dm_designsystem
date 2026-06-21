@@ -1,0 +1,139 @@
+/* Diego Maury Design System v2.0 — Ember on Ink
+   Fuente de verdad de tokens CSS. Usar como @import en proyectos web.
+   Solo Plus Jakarta Sans + DM Mono. Sin efectos, sin gradientes. */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Color ── */
+  --color-bg-primary:    #0A0612;  /* Deep Ink — fondo principal */
+  --color-bg-secondary:  #1A1128;  /* Surface — cards, paneles, hover */
+  --color-border:        #2A1F3D;  /* Bordes y separadores */
+  --color-text-primary:  #FAF8FC;  /* Headlines, nombre */
+  --color-text-secondary:#9A8CB0;  /* Role, URL, metadata */
+  --color-text-tertiary: #8B7C9E;  /* Supporting copy */
+  --color-accent:        #FF5C39;  /* Electric Ember — acento único */
+
+  /* ── Aliases cortos (internos) ── */
+  --bg:     var(--color-bg-primary);
+  --bg-2:   var(--color-bg-secondary);
+  --border: var(--color-border);
+  --t1:     var(--color-text-primary);
+  --t2:     var(--color-text-secondary);
+  --t3:     var(--color-text-tertiary);
+  --ember:  var(--color-accent);
+
+  /* ── Tipografía ── */
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --sans: var(--font-sans);
+  --mono: var(--font-mono);
+
+  /* ── Escala tipográfica ── */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  1.875rem;  /* 30px */
+  --text-4xl:  2.25rem;   /* 36px */
+  --text-5xl:  3rem;      /* 48px */
+  --text-6xl:  3.75rem;   /* 60px */
+  --text-7xl:  4.5rem;    /* 72px */
+
+  /* ── Espaciado ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Bordes ── */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-full: 9999px;
+
+  /* ── Motion ── */
+  --duration-fast:   150ms; /* @kind other */
+  --duration-normal: 300ms; /* @kind other */
+  --duration-slow:   600ms; /* @kind other */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-in-out:  cubic-bezier(0.45, 0, 0.55, 1); /* @kind other */
+}
+
+/* ── Reset mínimo ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ── */
+body {
+  background: var(--bg);
+  color: var(--t1);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Utilidades de texto ── */
+.font-sans  { font-family: var(--sans); }
+.font-mono  { font-family: var(--mono); }
+.text-ember { color: var(--ember); }
+.text-t1    { color: var(--t1); }
+.text-t2    { color: var(--t2); }
+.text-t3    { color: var(--t3); }
+
+/* ── Utilidades de superficie ── */
+.bg-primary   { background: var(--bg); }
+.bg-secondary { background: var(--bg-2); }
+.border-default { border: 1px solid var(--border); }
+.ember-bar-top { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ember); }
+.ember-bar-left { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--ember); border-radius: 2px; }
+
+/* ── Lockup base ── */
+.lockup {
+  display: flex; align-items: center; gap: 14px;
+}
+.lockup-divider {
+  width: 1px; background: var(--border); flex-shrink: 0;
+}
+.lockup-name {
+  font-size: 15px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.005em;
+  color: var(--t1);
+}
+.lockup-role {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--t2); margin-top: 3px; letter-spacing: 0.04em;
+}
+
+/* ── Etiquetas mono ── */
+.label-mono {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--t3);
+}
+.label-ember {
+  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ember);
+}
+
+/* ── Tagline ── */
+.tagline-invite { /* "Hagamos que las cosas pasen." */
+  font-family: var(--mono); font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ember);
+}
+.tagline-first { /* "Hago que las cosas pasen." */
+  font-family: var(--mono); font-style: italic;
+  color: var(--t2); letter-spacing: 0.06em;
+}

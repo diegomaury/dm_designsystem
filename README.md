@@ -1,11 +1,11 @@
-# Diego Maury — Design System v4
+# Diego Maury — Design System V2
 
-**Sistema "Deep Tech & Friction"**
+**Sistema "Ember on Ink"**  
 *"Hagamos que las cosas pasen."*
 
-Sistema de diseño personal de Diego Maury: Strategic Program & Innovation Manager operando en LATAM. Sirve cualquier superficie — web, documento, deck, prototipo — con identidad consistente.
+Sistema de diseño personal de Diego Maury: Strategic Program Director operando en LATAM. Sirve cualquier superficie — web, documento, deck, redes — con identidad consistente.
 
-> **v3.1 — Tipografía corregida.** Las fuentes oficiales ahora son **Montserrat + Bitter Italic + Space Mono** (las del logo real), reemplazando a Satoshi / Inter / Space Mono.
+> **v2.0 — Ember on Ink.** Sistema completamente renovado. Dark-first, acento único Electric Ember, Plus Jakarta Sans + DM Mono. Sin gradientes, sin glows, sin efectos. Todo autocontenido.
 
 ---
 
@@ -13,203 +13,145 @@ Sistema de diseño personal de Diego Maury: Strategic Program & Innovation Manag
 
 | Atributo | Definición |
 |---|---|
-| **Posicionamiento** | Strategic Program & Innovation Manager que convierte estrategia en resultados medibles |
-| **Sub-línea** | "Programas y sistemas que convierten innovación en resultados medibles." |
-| **Tagline** | "HAGAMOS QUE LAS COSAS PASEN" |
-| **Fórmula visual** | Innovación + Halloween + Elegancia |
-| **Audiencia** | Innovation leaders, corporativos, aceleradoras, hiring managers — LATAM |
+| **Nombre** | Diego Maury |
+| **Título** | Strategic Program Director |
+| **Tagline (1ª persona)** | Hago que las cosas pasen. |
+| **Tagline (invitación)** | Hagamos que las cosas pasen. |
+| **URL** | diegomaury.mx |
+| **Substack** | diegomaury.substack.com · Haz que Pase |
 | **Métricas clave** | 30+ programas · 900+ proyectos · 3,000+ emprendedores |
 
 ---
 
-## Paleta — "Deep Tech & Friction"
+## Paleta — Ember on Ink
 
-> **Sistema de 5 roles estratégicos** derivado del logo real. Comunica **ingeniería de negocios**: ejecución técnica sobre retórica corporativa. Fuente canónica: `dm-brand.css`.
-
-### Colores de marca · 5 roles
-
-| Rol | Token | Hex | Nombre | Aplicación |
-|---|---|---|---|---|
-| **Dominante** | `--purple` | `#4b2a87` | Morado Maury | Identidad, titulares, isotipo, CTA |
-| **Provocador** | `--orange` | `#f0592a` | Ember | Fricción, CTA, métricas, palabra clave |
-| **Técnico** | `--blue` | `#2862cf` | Quantum | Links, estados UI, navegación |
-| **Enfoque** | `--spark` | `#e6a100` | Spark | KPI, datos críticos, alertas |
-| **Suelo** | `--purple-darker` | `#2a1854` | Catalyst 900 | Fondos oscuros, superficies |
-
-> **Quantum y Spark son ahora estratégicos** (antes "uso puntual / no es marca"). Convierten la marca en un entorno de **operación e ingeniería**: Quantum dicta la interacción, Spark señala el dato que importa. Sobre oscuro: Quantum `#7aa6ff`, Spark `#f0b429`.
-
-### Escala tonal · Morado Maury
-
-`100 #efe9fb` · `300 #a98fdb` *(solo superficies/bordes)* · `500 #4b2a87` · `700 #3a2170` · `900 #2a1854`
-
-### Neutrales
-
-| Token | Hex | Nombre | Rol |
+| Token | Hex | Nombre | Uso |
 |---|---|---|---|
-| `--bone` | `#f3f0ec` | Bone | Texto sobre oscuro |
-| `--muted` | `#5e4f86` | Violeta Neutro | Texto secundario (NUNCA gris #808080) |
-| `--paper` | `#f6f4f1` | Paper | Page bg claro |
-| `--pale` | `#efe9fb` | Pale | Section bg, chips |
-| `--ink` | `#241f33` | Tinta | Texto principal |
+| `--color-bg-primary` | `#0A0612` | Deep Ink | Fondo principal |
+| `--color-bg-secondary` | `#1A1128` | Surface | Cards, paneles, hover |
+| `--color-border` | `#2A1F3D` | Border | Bordes y separadores |
+| `--color-text-primary` | `#FAF8FC` | Off White | Headlines, nombre |
+| `--color-text-secondary` | `#9A8CB0` | Lavender | Role, URL, metadata |
+| `--color-text-tertiary` | `#8B7C9E` | Muted | Supporting copy |
+| `--color-accent` | `#FF5C39` | Electric Ember | Acento único |
 
-Texto sobre oscuro **blanco-base** (sin lavanda): `--on-dark-1 #f3f0ec` · `--on-dark-2` blanco 78% · `--on-dark-3` blanco 55% · acento técnico `--accent-on-dark #7aa6ff`.
-
-### Jerarquía de fricción
-
-- **Neutral (60%)** → Fondos claros / Catalyst 900. El soporte que deja respirar.
-- **Morado (30%)** → CTAs, isotipo, titulares, bloques. La identidad.
-- **Ember (provoca)** → Fricción y acción: una llamada por vista.
-- **Quantum (opera)** → Interacción: links, estados, navegación.
-- **Spark (enfoca)** → Solo el dato crítico: KPI, alerta. Máx 2 por vista.
-
-### Paleta alterna · High Voltage
-
-Para decks de inversión y portadas de impacto: fondo **Catalyst 900** + **blanco puro** + acentos **exclusivamente** Ember/Spark. Tokens `--hv-bg`, `--hv-fg`, `--hv-ember`, `--hv-spark`; helper `.dm-hv`.
-
-### Colores a evitar
-
-- ✕ **Gris medio #808080** → desactiva la disrupción, "corporativo genérico".
-- ✕ **Tonos tierra / desaturados** → restan agilidad tecnológica.
-- ✕ **Pasteles / lavandas como acento** → contravienen la ejecución (la lavanda solo sobrevive como tint 300 de superficie).
+**Regla crítica:** Ember (`#FF5C39`) aparece **exactamente una vez por pieza**, en el elemento más importante. Nunca dos colores vivos simultáneos. Sin gradientes, drop shadows, blur ni glow.
 
 ---
 
 ## Tipografía
 
-> **Fuentes oficiales (las del logo).** Reemplazan a las antiguas Satoshi / Inter / Space Mono. Todas son **gratis, comerciales y universales** (Google Fonts) — se cargan igual en web, Canva, Figma y Office.
-
-| Familia | Origen | Rol | Pesos |
-|---|---|---|---|
-| **Montserrat** | Google Fonts | Display · Headlines · UI · Body | 400–900 |
-| **Bitter** *Italic* | Google Fonts | Subtítulos · editorial · citas | 400–600 (italic + roman) |
-| **Space Mono** | Google Fonts | Etiquetas · KPIs · tagline | 400 · 700 |
-
-Carga única en el `<head>` — **una sola línea** importa fuentes + tokens (archivos locales, sin depender del CDN):
-
 ```html
-<link rel="stylesheet" href="dm-brand.css">
+<!-- Google Fonts — cargar en el <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 ```
 
-`dm-brand.css` declara las tres familias vía `@font-face` desde `fonts/` (Montserrat, Bitter y Space Mono). Funciona offline y en exports autónomos. `colors_and_type.css` lo importa y añade las clases semánticas.
+| Familia | Rol | Pesos |
+|---|---|---|
+| **Plus Jakarta Sans** | Titulares · UI · Cuerpo | 300 · 400 · 500 · 700 · Itálica |
+| **DM Mono** | Cifras · Fechas · Labels · Tagline | 400 · 500 |
 
-### Escala
+**DM Mono siempre:** uppercase, letter-spacing 0.06–0.18em. Nunca para párrafos largos.
 
-| Token | Valor | Uso | Familia |
-|---|---|---|---|
-| `--t-display` | clamp(2.5rem → 4.5rem) | Nombre, hero headline | Montserrat 900 |
-| `--t-h1` | clamp(2rem → 3.75rem) | Títulos de sección | Montserrat 800 |
-| `--t-h2` | clamp(1.75rem → 2.5rem) | Sub-secciones | Montserrat 700 |
-| `--t-h3` | 1.5rem | Cards, items + subtítulos | Montserrat 700 / Bitter italic |
-| `--t-body-lg` | 1.125rem | Entradillas | Bitter 400 |
-| `--t-body` | 0.875rem | Body principal | Montserrat 400 |
-| `--t-mono` | 0.8125rem | KPIs, cifras | Space Mono |
-| `--t-mono-tag` | 0.625rem | Labels, chips, tagline | Space Mono 700 |
+---
 
-### Clases semánticas
+## Tokens CSS
+
+Importar `v2-tokens.css` o usar las variables directamente:
 
 ```css
-.dm-display     /* Montserrat 900, -2.5% tracking, uppercase */
-.dm-h1 / .dm-h2 / .dm-h3 / .dm-h4  /* Montserrat 700–800 */
-.dm-sub         /* Bitter Italic — subtítulos / acentos editoriales */
-.dm-lead        /* Bitter roman — entradillas de lectura */
-.dm-body-lg / .dm-body / .dm-body-sm  /* Montserrat */
-.dm-mono / .dm-mono-tag / .dm-tagline /* Space Mono */
-.dm-metric      /* KPI numbers — Montserrat 800, amethyst */
-.dm-spark       /* span inline — ember highlight */
+:root {
+  --bg: #0A0612;  --bg-2: #1A1128;  --border: #2A1F3D;
+  --t1: #FAF8FC;  --t2: #9A8CB0;   --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
 ```
 
 ---
 
-## Componentes
+## Assets de marca
 
-### Botones
-
-```css
-.dm-btn .dm-btn-primary      /* Amethyst gradient · CTA principal */
-.dm-btn .dm-btn-secondary    /* Ember outline · Acción secundaria */
-.dm-btn .dm-btn-ghost        /* Bone border · Navegación */
-.dm-btn .dm-btn-primary-light /* Amethyst solid · sobre fondos claros */
-```
-
-Tipografía: **Montserrat 700 · sentence-case** (no mono, no uppercase).
-
-### Badges / Chips
-
-```css
-.dm-badge .dm-badge-amethyst  /* Violeta · categoría */
-.dm-badge .dm-badge-ember     /* Naranja · urgente/destaque */
-.dm-badge .dm-badge-quantum   /* Azul · status/info */
-.dm-badge-status              /* Añade dot de color antes del texto */
-```
-
-### Cards
-
-```css
-.dm-card          /* Dark · Catalyst 900 #2a1854 bg */
-.dm-card-light    /* Light · #FFFFFF bg */
-.dm-card-feature  /* Dark con tricolor top border */
-```
-
-### Links
-
-```css
-.dm-link  /* Quantum · dashed underline */
-```
-
----
-
-## Gradientes y barras
-
-```css
---grad-tricolor:    linear-gradient(90deg, #4b2a87 → #6a3a9e → #f0592a)
---grad-purple:      linear-gradient(135deg, #4b2a87 → #3a2170)
-
-.dm-tricolor-bar   /* 3px bar — firma de pie de página (único gradiente sancionado) */
-```
-
----
-
-## Espaciado y radii
-
-Base 4px. Tokens: `--space-1` (4px) → `--space-12` (96px).
-
-Radii: `--r-xs` 4px · `--r-sm` 6px · `--r-md` 10px · `--r-lg` 16px · `--r-pill` 999px.
-
-Sombras: `--shadow-1/2/3` · `--shadow-glow-ember` · amethyst glow vía `box-shadow`.
-
----
-
-## Assets
+### SVG isotipo (fuente de verdad)
 
 | Archivo | Descripción |
 |---|---|
-| `assets/logo-principal.png` | Logo principal — sobre oscuro |
-| `assets/logo-horizontal.png` | Logo horizontal — transparente |
-| `assets/logo-tagline.png` | Logo con tagline |
-| `assets/logo-alt.png` | Logo alternativo — claro |
-| `assets/isotipo.svg` | Hexágono DM — SVG vectorial |
-| `assets/hexagon-pattern.png` | Patrón hexagonal — dark |
-| `assets/hexagon-pattern-light.png` | Patrón hexagonal — light |
+| `assets/isotipo-final-ember.svg` | Hexágono Off-White + facetas Ember — sin fondo |
+| `assets/isotipo-final-white.svg` | Todo en blanco (una tinta) |
+| `assets/isotipo-final-circulo.svg` | Contenedor circular · fondo Deep Ink |
+| `assets/isotipo-final-cuadrado.svg` | Contenedor cuadrado · fondo Deep Ink |
+
+El isotipo nunca se deforma, rota ni se le agregan efectos. Solo se usan estas 4 variantes.
+
+### Lockup base (código)
+
+```html
+<!-- Lockup isotipo + nombre -->
+<div style="display:flex;align-items:center;gap:14px;">
+  <img src="assets/isotipo-final-ember.svg" width="36" height="36">
+  <div style="width:1px;height:28px;background:#2A1F3D;"></div>
+  <div>
+    <div style="font-weight:700;text-transform:uppercase;color:#FAF8FC;">Diego Maury</div>
+    <div style="font-family:'DM Mono';font-size:10px;color:#9A8CB0;letter-spacing:.04em;">Strategic Program Director</div>
+  </div>
+</div>
+```
 
 ---
 
-## UI Kit
+## Archivos del sistema
 
-`ui_kits/portfolio/` — mock clickable del portfolio completo:
-- Navbar fija con indicador activo
-- Hero con métricas band
-- Work list con cases (Heineken, ITESM, REDUX)
-- Services grid
-- About + Contact sections
+### Documentación y especificaciones
 
-Importar: `<link rel="stylesheet" href="ui_kits/portfolio/styles.css">` + `<script type="text/babel" src="ui_kits/portfolio/app.jsx"></script>`
-
----
-
-## Fuentes de información
-
-| Fuente | Tipo |
+| Archivo | Descripción |
 |---|---|
-| https://dmbrand.netlify.app/ | Brand System v2 (referencia canónica) |
-| `newlandingpage/docs/superpowers/specs/` | Spec del portfolio |
-| Logos y assets subidos | `/uploads/` → `/assets/` |
+| `manual-de-marca.html` | Manual completo 8 secciones — v2.0 |
+| `logo-specs.html` | Especificaciones técnicas del isotipo |
+| `Sistema Tipográfico.html` | Specimen tipográfico completo — v2.0 |
+
+### Assets de marca (v2.0)
+
+| Archivo | Formato | Estado |
+|---|---|---|
+| `Firma de Correo.html` | Tabla HTML · Gmail/Outlook | ✅ v2.0 |
+| `Tarjeta de Presentación.html` | 480×310 · frente + reverso | ✅ v2.0 |
+| `Portada LinkedIn.html` | 1584×396 · 2 variantes | ✅ v2.0 |
+| `Portada Facebook.html` | 851×315 · 3 variantes | ✅ v2.0 |
+| `Firma Substack.html` | 1344×256 banner | ✅ v2.0 |
+| `Substack Banners.html` | 1080×1080 · quotes carousel | ✅ v2.0 |
+| `Quote Cards.html` | 1080×1080 · 10 quotes | ✅ v2.0 |
+| `Social Banners.html` | Multi-formato · LinkedIn/Twitter/FB/Square | ✅ v2.0 |
+| `Footer.html` | Web footer · oscuro y claro | ✅ v2.0 |
+| `Fondo Perfil.html` | 800×800 · fondo único | ✅ v2.0 |
+| `Fondos Perfil.html` | 800×800 · 4 variantes | ✅ v2.0 |
+| `Foto de Perfil.html` | 800×800 · isotipo + headshot | ✅ v2.0 |
+| `poster.html` | 1080×1080 · poster editorial | ✅ v2.0 |
+| `Logo Animation.html` | 1920×1080 · CSS animation | ⏳ pendiente |
+
+### Preview cards (design system)
+
+| Archivo | Descripción |
+|---|---|
+| `preview/v2-colors.html` | Paleta completa v2.0 |
+| `preview/v2-typography.html` | Escala tipográfica |
+| `preview/v2-logo.html` | Variantes del isotipo |
+| `preview/v2-components.html` | Componentes base |
+| `preview/v2-surfaces.html` | Superficies y bordes |
+| `preview/v2-spacing.html` | Espaciado y radii |
+
+---
+
+## Reglas de diseño no negociables
+
+1. **Un solo acento:** Ember `#FF5C39` — exactamente una vez por pieza, en el elemento más importante.
+2. **Sin efectos:** Prohibidos gradientes, drop shadows, blur, glow, efectos decorativos.
+3. **Dark mode primario:** Fondo `#0A0612` por defecto.
+4. **DM Mono restringido:** Solo para cifras, fechas, labels, tagline. Nunca párrafos.
+5. **Morado como estructura:** `#1A1128` y `#2A1F3D` son fondos y bordes, nunca acento.
+6. **Espacio generoso:** Ante la duda, más espacio.
+7. **Autocontenido:** Sin dependencias externas salvo Google Fonts. Sin `colors_and_type.css`.
+
+---
+
+*Diego Maury Design System V2 · Ember on Ink · 2025*

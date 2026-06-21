@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Portada LinkedIn" subtitle="v2.0 · Ember on Ink · 1584×396" viewport="1280x900" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diego Maury · Portada LinkedIn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { background: var(--bg); font-family: var(--sans); color: var(--t1); padding: 40px 24px 60px; margin: 0; }
+
+.page-head { text-align: center; margin-bottom: 36px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 10px; }
+.page-head h1 { font-size: 24px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 6px; }
+.page-head p { font-size: 13px; color: var(--t2); line-height: 1.5; max-width: 600px; margin: 0 auto; }
+
+.artboards { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.ab-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ab-label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
+
+/* Viewport scaler */
+.ab-outer { position: relative; }
+.ab-scaler { transform-origin: top center; width: 1584px; height: 396px; }
+
+/* ─── BASE ARTBOARD 1584×396 ─── */
+.li {
+  width: 1584px; height: 396px;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+}
+
+/* Ember top line */
+.ember-line {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--ember); z-index: 3;
+}
+
+/* Subtle surface panel right side */
+.li-panel {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 560px;
+  background: var(--bg-2);
+  border-left: 1px solid var(--border);
+}
+
+/* Vertical divider in lockup */
+.v-rule {
+  width: 1px; height: 80px;
+  background: var(--border); flex-shrink: 0;
+}
+
+/* Isotipo ghost watermark */
+.iso-wm {
+  position: absolute; right: 48px; top: 50%;
+  transform: translateY(-50%);
+  width: 220px; height: 220px;
+  object-fit: contain; opacity: .07; pointer-events: none;
+}
+
+/* ─── VARIANT A · Firma de marca ─── */
+.li-a .lockup {
+  position: absolute; left: 96px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; align-items: center; gap: 28px; z-index: 2;
+}
+.li-a .lockup img { width: 80px; height: 80px; object-fit: contain; }
+.li-a .lockup-text { display: flex; flex-direction: column; gap: 6px; }
+.li-a .lockup-name { font-size: 56px; font-weight: 700; letter-spacing: -.02em; text-transform: uppercase; line-height: 1; color: var(--t1); }
+.li-a .lockup-role { font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: .06em; color: var(--t2); }
+.li-a .lockup-tag { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); }
+
+/* ─── VARIANT B · Declaración ─── */
+.li-b .decl {
+  position: absolute; left: 96px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 12px; z-index: 2;
+  max-width: 800px;
+}
+.li-b .decl-role { font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: .10em; text-transform: uppercase; color: var(--t3); }
+.li-b .decl-quote { font-size: 60px; font-weight: 700; line-height: 1; letter-spacing: -.025em; text-transform: uppercase; color: var(--t1); }
+.li-b .decl-quote span { color: var(--ember); }
+.li-b .metrics { display: flex; gap: 52px; margin-top: 8px; }
+.li-b .metric-n { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--t1); line-height: 1; }
+.li-b .metric-l { font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); margin-top: 4px; }
+.li-b .iso-sm { position: absolute; right: 96px; top: 50%; transform: translateY(-50%); width: 96px; height: 96px; object-fit: contain; z-index: 2; }
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="eyebrow">Aplicación de marca · LinkedIn</div>
+  <h1>Portada de LinkedIn</h1>
+  <p>Dos variantes a 1584 × 396 px. La zona inferior-izquierda la ocupa la foto de perfil en escritorio.</p>
+</div>
+
+<div class="artboards">
+  <!-- A · Firma de marca -->
+  <div class="ab-wrap">
+    <div class="ab-outer" id="outerA">
+      <div class="ab-scaler" id="scalerA">
+        <div class="li li-a">
+          <div class="ember-line"></div>
+          <div class="li-panel"></div>
+          <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="">
+          <div class="lockup">
+            <img src="assets/isotipo-final-ember.svg" alt="Isotipo Diego Maury">
+            <div class="v-rule"></div>
+            <div class="lockup-text">
+              <div class="lockup-name">Diego Maury</div>
+              <div class="lockup-role">Strategic Program Director</div>
+              <div class="lockup-tag">Hagamos que las cosas pasen.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ab-label">A · Firma de marca</div>
+  </div>
+
+  <!-- B · Declaración -->
+  <div class="ab-wrap">
+    <div class="ab-outer" id="outerB">
+      <div class="ab-scaler" id="scalerB">
+        <div class="li li-b">
+          <div class="ember-line"></div>
+          <div class="li-panel"></div>
+          <div class="decl">
+            <div class="decl-role">Strategic Program Director</div>
+            <div class="decl-quote">Hago que las<br><span>cosas pasen.</span></div>
+            <div class="metrics">
+              <div><div class="metric-n">30+</div><div class="metric-l">Programas</div></div>
+              <div><div class="metric-n">900+</div><div class="metric-l">Proyectos</div></div>
+              <div><div class="metric-n">3,000+</div><div class="metric-l">Emprendedores</div></div>
+            </div>
+          </div>
+          <img class="iso-sm" src="assets/isotipo-final-ember.svg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="ab-label">B · Declaración + métricas</div>
+  </div>
+</div>
+
+<script>
+function scaleAb(scaler, outer) {
+  const avail = window.innerWidth - 48;
+  const sc = Math.min(1, avail / 1584);
+  scaler.style.transform = 'scale(' + sc + ')';
+  outer.style.width  = (1584 * sc) + 'px';
+  outer.style.height = (396  * sc) + 'px';
+}
+function scaleAll() {
+  scaleAb(document.getElementById('scalerA'), document.getElementById('outerA'));
+  scaleAb(document.getElementById('scalerB'), document.getElementById('outerB'));
+}
+window.addEventListener('resize', scaleAll);
+scaleAll();
+</script>
+</body>
+</html>

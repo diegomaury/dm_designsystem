@@ -1,0 +1,80 @@
+<!-- @dsCard group="v2 · Sistema Ember" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0A0612;font-family:'Plus Jakarta Sans',sans-serif;padding:32px;min-height:440px}
+h2{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#FF5C39;font-family:'DM Mono',monospace;margin-bottom:24px}
+.group{margin-bottom:20px}
+.group-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8B7C9E;margin-bottom:10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+/* Buttons */
+.btn{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13px;padding:10px 22px;border-radius:6px;border:none;cursor:pointer;letter-spacing:.01em}
+.btn-primary{background:#FF5C39;color:#0A0612}
+.btn-secondary{background:transparent;color:#FF5C39;border:1.5px solid #FF5C39}
+.btn-ghost{background:transparent;color:#FAF8FC;border:1.5px solid #2A1F3D}
+.btn-sm{padding:7px 16px;font-size:12px;border-radius:3px}
+.btn-lg{padding:14px 32px;font-size:15px;border-radius:10px}
+/* Tags */
+.tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px}
+.tag-ember{background:rgba(255,92,57,.12);color:#FF5C39;border:1px solid rgba(255,92,57,.3)}
+.tag-muted{background:#1A1128;color:#9A8CB0;border:1px solid #2A1F3D}
+.tag-outline{background:transparent;color:#FAF8FC;border:1px solid #2A1F3D}
+/* Cards */
+.cards-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.card{background:#1A1128;border:1px solid #2A1F3D;border-radius:10px;padding:16px}
+.card-title{font-weight:700;font-size:15px;color:#FAF8FC;margin-bottom:4px}
+.card-sub{font-size:12px;color:#9A8CB0;line-height:1.5}
+.card-tag{display:inline-block;margin-top:10px;font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#FF5C39;background:rgba(255,92,57,.1);padding:3px 8px;border-radius:3px}
+/* Light mode row */
+.light-row{background:#FAF8FC;border-radius:10px;padding:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.btn-primary-l{background:#FF5C39;color:#FAF8FC;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13px;padding:10px 22px;border-radius:6px;border:none}
+.btn-ghost-l{background:transparent;color:#2A1F3D;border:1.5px solid #D9D2E8;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13px;padding:10px 22px;border-radius:6px}
+.tag-l{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px;background:#2A1F3D;color:#FAF8FC;border:1px solid #2A1F3D}
+.label-l{font-family:'DM Mono',monospace;font-size:10px;color:#4B3D6B;letter-spacing:.12em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<h2>Componentes v2.0 · Oscuro + claro</h2>
+<div class="group">
+  <div class="group-label">Botones</div>
+  <div class="row">
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-ghost">Ghost</button>
+    <button class="btn btn-primary btn-sm">Small</button>
+    <button class="btn btn-primary btn-lg">Large CTA</button>
+  </div>
+</div>
+<div class="group">
+  <div class="group-label">Tags &amp; badges</div>
+  <div class="row">
+    <span class="tag tag-ember">Ember</span>
+    <span class="tag tag-muted">Estrategia</span>
+    <span class="tag tag-outline">Educación</span>
+    <span class="tag tag-ember">Dirección</span>
+    <span class="tag tag-muted">15+ años</span>
+    <span class="tag tag-outline">v2.0</span>
+  </div>
+</div>
+<div class="group">
+  <div class="group-label">Cards · modo oscuro</div>
+  <div class="cards-row">
+    <div class="card"><div class="card-title">Estrategia</div><div class="card-sub">Diseño y ejecución de programas de transformación a escala.</div><span class="card-tag">Core</span></div>
+    <div class="card"><div class="card-title">9,900+</div><div class="card-sub" style="font-family:'DM Mono',monospace;font-size:11px;color:#9A8CB0;margin-top:2px">emprendedores impactados</div><span class="card-tag">Impacto</span></div>
+    <div class="card" style="border-color:rgba(255,92,57,.3)"><div class="card-title" style="color:#FF5C39">Ember</div><div class="card-sub">Acento único. Aparece exactamente una vez por pieza.</div><span class="card-tag">Regla</span></div>
+  </div>
+</div>
+<div class="light-row">
+  <span class="label-l">Modo claro →</span>
+  <button class="btn-primary-l">Primary</button>
+  <button class="btn-ghost-l">Ghost</button>
+  <span class="tag-l">Tag</span>
+  <span style="font-family:'DM Mono',monospace;font-size:9px;color:#4B3D6B;letter-spacing:.1em">Ember = único acento en ambos modos</span>
+</div>
+</body>
+</html>

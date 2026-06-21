@@ -1,0 +1,76 @@
+<!-- @dsCard group="v2 · Sistema Ember" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0A0612;font-family:'Plus Jakarta Sans',sans-serif;padding:32px;min-height:360px}
+h2{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#FF5C39;font-family:'DM Mono',monospace;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.surface{border-radius:10px;overflow:hidden;border:1px solid #2A1F3D}
+.swatch{height:100px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px}
+.surface-name{font-weight:700;font-size:13px;margin-bottom:2px}
+.surface-hex{font-family:'DM Mono',monospace;font-size:10px;margin-top:2px}
+.surface-token{font-family:'DM Mono',monospace;font-size:9px;margin-top:1px}
+.surface-use{font-size:11px;line-height:1.45;padding:12px;border-top:1px solid rgba(255,255,255,.08)}
+.rule-row{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rule{background:#1A1128;border:1px solid #2A1F3D;border-radius:8px;padding:14px}
+.rule-icon{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#FF5C39;margin-bottom:6px}
+.rule-text{font-size:12px;line-height:1.5;color:#9A8CB0}
+</style>
+</head>
+<body>
+<h2>Fondos &amp; superficies v2.0</h2>
+<div class="grid">
+  <div class="surface">
+    <div class="swatch" style="background:#0A0612">
+      <div class="surface-name" style="color:#FAF8FC">Deep Ink</div>
+      <div class="surface-hex" style="color:#9A8CB0">#0A0612</div>
+      <div class="surface-token" style="color:#8B7C9E">--bg-primary</div>
+    </div>
+    <div class="surface-use" style="background:#0A0612;color:#9A8CB0">Fondo principal. La base de todo el sistema. Pantallas, páginas, decks.</div>
+  </div>
+  <div class="surface">
+    <div class="swatch" style="background:#1A1128">
+      <div class="surface-name" style="color:#FAF8FC">Surface</div>
+      <div class="surface-hex" style="color:#9A8CB0">#1A1128</div>
+      <div class="surface-token" style="color:#8B7C9E">--bg-secondary</div>
+    </div>
+    <div class="surface-use" style="background:#1A1128;color:#9A8CB0">Cards, panels, hover states. Crea profundidad sin romper el tono oscuro.</div>
+  </div>
+  <div class="surface" style="border-color:#D9D2E8">
+    <div class="swatch" style="background:#FAF8FC">
+      <div class="surface-name" style="color:#2A1F3D">Off-White</div>
+      <div class="surface-hex" style="color:#4B3D6B">#FAF8FC</div>
+      <div class="surface-token" style="color:#8B7C9E">--bg-light</div>
+    </div>
+    <div class="surface-use" style="background:#FAF8FC;border-color:#D9D2E8;color:#4B3D6B">Modo claro explícito. Print, PDFs, tarjetas físicas. No el default digital.</div>
+  </div>
+  <div class="surface">
+    <div class="swatch" style="background:#2A1F3D">
+      <div class="surface-name" style="color:#FAF8FC">Border</div>
+      <div class="surface-hex" style="color:#9A8CB0">#2A1F3D</div>
+      <div class="surface-token" style="color:#8B7C9E">--border</div>
+    </div>
+    <div class="surface-use" style="background:#1A1128;color:#9A8CB0">Bordes, dividers, separadores. Estructura. Nunca como acento ni texto.</div>
+  </div>
+</div>
+<div class="rule-row">
+  <div class="rule">
+    <div class="rule-icon">Sin efectos</div>
+    <div class="rule-text">Prohibidos gradientes, drop shadows, blur y glow. Las superficies son planas y directas.</div>
+  </div>
+  <div class="rule">
+    <div class="rule-icon">Morado = estructura</div>
+    <div class="rule-text"><code style="font-family:'DM Mono',monospace;font-size:10px;background:#0A0612;padding:1px 4px;border-radius:2px;color:#FF5C39">#1A1128</code> y <code style="font-family:'DM Mono',monospace;font-size:10px;background:#0A0612;padding:1px 4px;border-radius:2px;color:#FF5C39">#2A1F3D</code> son fondos y bordes. Nunca acento ni texto destacado.</div>
+  </div>
+  <div class="rule">
+    <div class="rule-icon">Dark mode primario</div>
+    <div class="rule-text">El sistema es oscuro por defecto. El modo claro es una variante explícita para contextos específicos.</div>
+  </div>
+</div>
+</body>
+</html>

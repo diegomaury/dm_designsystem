@@ -1,53 +1,51 @@
 <!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Firma de Correo" subtitle="Firma HTML en tabla · compatible Gmail/Outlook" -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Firma de Correo — Diego Maury</title>
-<link rel="stylesheet" href="colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#e9e5e0;font-family:var(--font-body);padding:48px 24px 80px;color:var(--dm-ink);}
-  .wrap{max-width:720px;margin:0 auto;}
-  .page-head{text-align:center;margin-bottom:40px;}
-  .page-head .eyebrow{
-    font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.2em;
-    text-transform:uppercase;color:var(--dm-ember);margin-bottom:12px;
-  }
-  .page-head h1{font-family:var(--font-display);font-weight:800;font-size:28px;color:var(--dm-catalyst-700);margin-bottom:8px;letter-spacing:-.01em;}
-  .page-head p{font-size:14px;color:var(--dm-ink-60);line-height:1.5;max-width:520px;margin:0 auto;}
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); font-family: var(--sans); padding: 48px 24px 80px; color: var(--t1); }
+.wrap { max-width: 720px; margin: 0 auto; }
 
-  .preview-card{
-    background:#fff;border-radius:14px;padding:40px;
-    box-shadow:0 18px 50px -24px rgba(18,13,26,.4);margin-bottom:14px;
-  }
-  .mail-context{font-family:var(--font-body);font-size:14px;color:var(--dm-ink-60);line-height:1.6;margin-bottom:6px;}
-  .mail-context .greet{color:var(--dm-ink);}
-  .divider-note{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dm-ink-40);margin:22px 0 10px;}
+.page-head { text-align: center; margin-bottom: 40px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 12px; }
+.page-head h1 { font-size: 28px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 8px; }
+.page-head p { font-size: 14px; color: var(--t2); line-height: 1.55; max-width: 520px; margin: 0 auto; }
 
-  /* ---- THE SIGNATURE (table-based for email clients) ---- */
-  table.sig{border-collapse:collapse;}
-  table.sig td{vertical-align:top;}
-  .sig-iso{width:62px;height:62px;display:block;}
-  .sig-bar{width:3px;background:linear-gradient(180deg,var(--dm-amethyst),var(--dm-ember));border-radius:2px;}
-  .sig-name{font-family:'Montserrat',Arial,sans-serif;font-weight:700;font-size:18px;color:#2a1854;letter-spacing:-.01em;text-transform:uppercase;line-height:1;}
-  .sig-role{font-family:'Bitter',Georgia,serif;font-style:italic;font-size:13px;color:#6a3a9e;padding-top:5px;}
-  .sig-contact{font-family:'Space Mono','Courier New',monospace;font-size:11px;color:#4a4458;line-height:1.9;padding-top:10px;white-space:nowrap;}
-  .sig-contact a{color:#4a4458;text-decoration:none;}
-  .sig-contact .sep{color:#c9bfe0;}
-  .sig-tag{font-family:'Space Mono','Courier New',monospace;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#f0592a;padding-top:12px;}
+.card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 36px; margin-bottom: 12px; }
+.mail-context { font-size: 14px; color: var(--t2); line-height: 1.65; margin-bottom: 4px; }
+.mail-context.greet { color: var(--t1); }
+.divider-note { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); margin: 22px 0 16px; }
 
-  /* code block */
-  .code{
-    background:#1e1830;border-radius:14px;padding:24px 26px;overflow:auto;
-    font-family:var(--font-mono);font-size:12px;line-height:1.7;color:#d7cdf0;position:relative;
-  }
-  .code .hint{font-family:var(--font-body);font-size:13px;color:var(--dm-ink-60);margin:24px 0 10px;}
-  .steps{background:#fff;border-radius:14px;padding:28px 32px;margin-top:18px;}
-  .steps h3{font-family:var(--font-display);font-weight:700;font-size:16px;margin-bottom:14px;}
-  .steps ol{margin-left:18px;display:flex;flex-direction:column;gap:9px;}
-  .steps li{font-size:14px;color:var(--dm-ink);line-height:1.5;}
-  .steps code{font-family:var(--font-mono);font-size:12px;background:#f0ecf6;padding:2px 6px;border-radius:5px;color:var(--dm-catalyst-700);}
+/* ─── SIGNATURE (tabla para clientes de correo) ─── */
+table.sig { border-collapse: collapse; }
+table.sig td { vertical-align: middle; }
+.sig-iso  { width: 54px; height: 54px; display: block; }
+.sig-name { font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-weight: 700; font-size: 17px; color: #FAF8FC; letter-spacing: -.005em; text-transform: uppercase; line-height: 1; }
+.sig-role { font-family: 'DM Mono', 'Courier New', monospace; font-size: 11px; font-weight: 400; color: #9A8CB0; padding-top: 5px; letter-spacing: .04em; }
+.sig-contact { font-family: 'DM Mono', 'Courier New', monospace; font-size: 11px; color: #8B7C9E; line-height: 1.9; padding-top: 9px; }
+.sig-contact a { color: #9A8CB0; text-decoration: none; }
+.sig-tag { font-family: 'DM Mono', 'Courier New', monospace; font-size: 9.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #FF5C39; padding-top: 11px; }
+
+.steps { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; }
+.steps h3 { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+.steps ol { margin-left: 18px; display: flex; flex-direction: column; gap: 9px; }
+.steps li { font-size: 14px; color: var(--t2); line-height: 1.5; }
+.steps b { color: var(--t1); }
+.steps code { font-family: var(--mono); font-size: 12px; background: var(--border); padding: 2px 6px; border-radius: 4px; color: var(--t1); }
 </style>
 </head>
 <body>
@@ -55,11 +53,10 @@
   <div class="page-head">
     <div class="eyebrow">Aplicación de marca · Email</div>
     <h1>Firma de correo</h1>
-    <p>Construida en tabla HTML para que se vea igual en Gmail, Outlook y Apple Mail. Las fuentes de marca aplican donde el cliente lo permite, con respaldo seguro.</p>
+    <p>Construida en tabla HTML para Gmail, Outlook y Apple Mail. Copia el bloque desde el isotipo hasta el tagline.</p>
   </div>
 
-  <!-- LIVE PREVIEW in mail context -->
-  <div class="preview-card">
+  <div class="card">
     <p class="mail-context greet">Hola María,</p>
     <p class="mail-context">Te comparto el plan de programa que revisamos. Quedo atento a tus comentarios para avanzar con la siguiente fase.</p>
     <p class="mail-context">Un saludo,</p>
@@ -67,17 +64,18 @@
 
     <table class="sig" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
-        <td style="padding-right:16px;vertical-align:middle;">
-          <img class="sig-iso" src="assets/isotipo-gradient.png" alt="Diego Maury">
+        <td style="padding-right:14px;">
+          <img class="sig-iso" src="assets/isotipo-final-ember.svg" alt="Diego Maury">
         </td>
-        <td class="sig-bar" style="padding:0;"></td>
-        <td style="padding-left:16px;vertical-align:middle;">
+        <td style="width:2px;background:#FF5C39;border-radius:2px;padding:0;">&nbsp;</td>
+        <td style="padding-left:14px;">
           <div class="sig-name">Diego Maury</div>
-          <div class="sig-role">Strategic Program &amp; Innovation Manager</div>
+          <div class="sig-role">Strategic Program Director</div>
           <div class="sig-contact">
-            <a href="mailto:dm@diegomaury.mx">dm@diegomaury.mx</a><span class="sep">&nbsp;·&nbsp;</span><a href="https://www.linkedin.com/in/diegomaury/">LinkedIn</a><span class="sep">&nbsp;·&nbsp;</span><a href="https://diegomaury.mx/">diegomaury.mx</a><span class="sep">&nbsp;·&nbsp;</span><a href="http://diegomaury.substack.com/">Substack</a>
+            <a href="mailto:dm@diegomaury.mx">dm@diegomaury.mx</a><br>
+            <a href="https://diegomaury.mx/">diegomaury.mx</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://www.linkedin.com/in/diegomaury/">LinkedIn</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="http://diegomaury.substack.com/">Substack</a>
           </div>
-          <div class="sig-tag">Hagamos que las cosas pasen</div>
+          <div class="sig-tag">Hago que las cosas pasen.</div>
         </td>
       </tr>
     </table>
@@ -86,10 +84,10 @@
   <div class="steps">
     <h3>Cómo instalarla</h3>
     <ol>
-      <li><b>Gmail:</b> Ajustes → Ver toda la configuración → Firma → selecciona el bloque de arriba (desde el isotipo hasta "Hagamos que las cosas pasen"), cópialo y pégalo en el editor de firma.</li>
-      <li><b>Outlook:</b> Archivo → Opciones → Correo → Firmas → pega el bloque copiado.</li>
+      <li><b>Gmail:</b> Ajustes → Ver toda la configuración → Firma → selecciona el bloque de la firma de arriba y pégalo en el editor.</li>
+      <li><b>Outlook:</b> Archivo → Opciones → Correo → Firmas → pega el bloque.</li>
       <li><b>Apple Mail:</b> Preferencias → Firmas → pega y desactiva "Usar siempre la fuente predeterminada".</li>
-      <li>El isotipo debe estar en una <b>URL pública</b> (p. ej. <code>diegomaury.mx/isotipo.png</code>) para que se vea en el correo enviado. Mientras tanto usa el copiado directo.</li>
+      <li>El isotipo debe estar en una <b>URL pública</b> (ej. <code>diegomaury.mx/isotipo.svg</code>) para que se vea en el correo enviado. Mientras tanto funciona al copiar directamente.</li>
     </ol>
   </div>
 </div>

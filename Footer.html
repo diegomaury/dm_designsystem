@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Footer" subtitle="Pie de firma oscuro/claro · v2.0 copiable" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Footer — Diego Maury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --bg-light: #FAF8FC; --t1-light: #2A1F3D; --t2-light: #4B3D6B; --border-light: #D9D2E8;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); font-family: var(--sans); color: var(--t1); padding: 44px 24px 80px; }
+.wrap { max-width: 900px; margin: 0 auto; }
+
+.page-head { text-align: center; margin-bottom: 32px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 10px; }
+.page-head h1 { font-size: 26px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 6px; }
+.page-head p { font-size: 13px; color: var(--t2); line-height: 1.55; max-width: 540px; margin: 0 auto; }
+
+.toolbar { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px; gap: 3px; }
+.tb-btn {
+  font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px; border: none; background: transparent;
+  color: var(--t3); cursor: pointer; transition: all 150ms;
+}
+.tb-btn.active { background: var(--ember); color: #fff; }
+.tb-btn:hover:not(.active) { color: var(--t1); }
+
+.preview { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
+
+/* ── FOOTER DARK ── */
+.footer-dark {
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 40px 48px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.footer-dark.theme-light {
+  background: var(--bg-light); border-top-color: var(--border-light);
+}
+
+.footer-lockup { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.footer-lockup img { width: 36px; height: 36px; object-fit: contain; }
+.v-rule { width: 1px; height: 28px; background: var(--border); }
+.v-rule-light { background: var(--border-light); }
+.footer-name { font-size: 15px; font-weight: 700; letter-spacing: .005em; text-transform: uppercase; color: var(--t1); }
+.footer-role { font-family: var(--mono); font-size: 10px; color: var(--t2); margin-top: 3px; letter-spacing: .04em; }
+.footer-name.light { color: var(--t1-light); }
+.footer-role.light { color: var(--t2-light); }
+
+.footer-links { display: flex; flex-direction: column; gap: 5px; }
+.footer-link { font-family: var(--mono); font-size: 12px; color: var(--t2); text-decoration: none; letter-spacing: .03em; transition: color 150ms; }
+.footer-link:hover { color: var(--ember); }
+.footer-link.light { color: var(--t2-light); }
+.footer-link.light:hover { color: var(--ember); }
+
+.footer-copy { font-family: var(--mono); font-size: 11px; color: var(--t3); letter-spacing: .03em; align-self: flex-end; }
+.footer-copy.light { color: var(--t2-light); opacity: .6; }
+.footer-tagline { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--ember); margin-top: 5px; }
+
+/* Minimal variant */
+.footer-minimal {
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 24px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.footer-minimal.theme-light { background: var(--bg-light); border-top-color: var(--border-light); }
+
+.preview-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); padding: 8px 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">Aplicación de marca · Web</div>
+    <h1>Footer</h1>
+    <p>Dos variantes (completo y mínimo) en modo oscuro y claro. Copiable para cualquier proyecto web.</p>
+  </div>
+
+  <div class="toolbar">
+    <div class="seg" id="themeSeg">
+      <button class="tb-btn active" data-theme="dark">Oscuro</button>
+      <button class="tb-btn" data-theme="light">Claro</button>
+    </div>
+    <div class="seg" id="variantSeg">
+      <button class="tb-btn active" data-variant="full">Completo</button>
+      <button class="tb-btn" data-variant="minimal">Mínimo</button>
+    </div>
+  </div>
+
+  <!-- FULL FOOTER -->
+  <div class="preview" id="previewFull">
+    <div class="footer-dark" id="footerFull">
+      <div>
+        <div class="footer-lockup">
+          <img id="footerIso" src="assets/isotipo-final-ember.svg" alt="">
+          <div class="v-rule" id="footerRule"></div>
+          <div>
+            <div class="footer-name" id="footerName">Diego Maury</div>
+            <div class="footer-role" id="footerRole">Strategic Program Director</div>
+          </div>
+        </div>
+        <div class="footer-tagline">Hagamos que las cosas pasen.</div>
+      </div>
+      <div class="footer-links" id="footerLinks">
+        <a class="footer-link" href="https://diegomaury.mx">diegomaury.mx</a>
+        <a class="footer-link" href="https://diegomaury.substack.com">Substack · Haz que Pase</a>
+        <a class="footer-link" href="https://www.linkedin.com/in/diegomaury/">LinkedIn</a>
+      </div>
+      <div class="footer-copy" id="footerCopy">
+        © 2025 Diego Maury<br>diegomaury.mx
+      </div>
+    </div>
+  </div>
+
+  <!-- MINIMAL FOOTER -->
+  <div class="preview" id="previewMinimal" style="display:none;">
+    <div class="footer-minimal" id="footerMinimal">
+      <div class="footer-lockup">
+        <img src="assets/isotipo-final-ember.svg" alt="" style="width:28px;height:28px;">
+        <div class="v-rule"></div>
+        <div class="footer-name" id="minName">Diego Maury</div>
+      </div>
+      <div class="footer-copy" id="minCopy">© 2025 diegomaury.mx</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let theme = 'dark', variant = 'full';
+  function apply() {
+    const isLight = theme === 'light';
+    // full
+    const ff = document.getElementById('footerFull');
+    ff.className = 'footer-dark' + (isLight ? ' theme-light' : '');
+    document.getElementById('footerName').className = 'footer-name' + (isLight ? ' light' : '');
+    document.getElementById('footerRole').className = 'footer-role' + (isLight ? ' light' : '');
+    document.getElementById('footerRule').className = 'v-rule' + (isLight ? ' v-rule-light' : '');
+    document.getElementById('footerCopy').className = 'footer-copy' + (isLight ? ' light' : '');
+    document.querySelectorAll('.footer-link').forEach(a => a.className = 'footer-link' + (isLight ? ' light' : ''));
+    // minimal
+    const fm = document.getElementById('footerMinimal');
+    fm.className = 'footer-minimal' + (isLight ? ' theme-light' : '');
+    document.getElementById('minName').className = 'footer-name' + (isLight ? ' light' : '');
+    document.getElementById('minCopy').className = 'footer-copy' + (isLight ? ' light' : '');
+    // variant
+    document.getElementById('previewFull').style.display = variant === 'full' ? '' : 'none';
+    document.getElementById('previewMinimal').style.display = variant === 'minimal' ? '' : 'none';
+  }
+  document.querySelectorAll('#themeSeg .tb-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#themeSeg .tb-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active'); theme = btn.dataset.theme; apply();
+    });
+  });
+  document.querySelectorAll('#variantSeg .tb-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#variantSeg .tb-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active'); variant = btn.dataset.variant; apply();
+    });
+  });
+</script>
+</body>
+</html>

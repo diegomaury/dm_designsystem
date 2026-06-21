@@ -39,8 +39,8 @@ function Hero({onCTA}) {
           <h1 className="hero__headline">Programas y sistemas que convierten<br/>innovación en resultados medibles.</h1>
           <p className="hero__sub">Diseño y opero programas de innovación, emprendimiento y transformación digital en LATAM.</p>
           <div className="hero__ctas">
-            <a className="btn btn--ember" onClick={()=>onCTA('cv')}>Descargar CV</a>
-            <a className="btn btn--outline" onClick={()=>onCTA('call')}>Agendar llamada</a>
+            <a className="btn btn--ember" onClick={()=>onCTA('call')}>Agendar llamada</a>
+            <a className="btn btn--outline" onClick={()=>onCTA('cv')}>Descargar CV</a>
           </div>
         </div>
       </div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>LinkedIn EN · export 1.5×</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#fff;overflow:hidden;}
+  .stage{ width:2376px; height:594px; transform-origin:top left; transform:scale(1);
+    position:relative; }
+  /* banner at 1.5× native (1584×396 → 2376×594) */
+  .li{ position:relative; overflow:hidden; width:2376px; height:594px;
+    font-family:var(--font-body);
+    background:linear-gradient(102deg,#9fe6bd 0%,#a8cfd5 46%,#aeb2e6 100%); }
+  .li-hex{ position:absolute; top:-51px; left:-42px; width:690px; height:352px;
+    background-image:url('../assets/hexagon-pattern.png'); background-size:contain;
+    background-repeat:no-repeat; opacity:.20; filter:grayscale(.55) brightness(1.05); }
+  .li-shape{ position:absolute; }
+  .li-logo{ position:absolute; object-fit:contain; right:225px; top:50%;
+    transform:translateY(-58%); width:705px; height:auto; }
+  .li-tagbar{ position:absolute; bottom:0; left:46%; right:0; height:90px;
+    display:flex; align-items:center; justify-content:flex-end; padding-right:165px;
+    background:linear-gradient(90deg,rgba(120,120,140,0) 0%,rgba(150,140,160,.35) 30%,#f0592a 100%); }
+  .li-tag-en{ font-family:var(--font-display); font-weight:600; font-size:36px; color:#fff;
+    letter-spacing:-0.005em; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="li">
+    <div class="li-hex"></div>
+    <div class="li-shape" style="right:-120px;top:-90px;width:780px;height:780px;background:rgba(120,140,210,.16);transform:rotate(24deg);border-radius:27px;"></div>
+    <div class="li-shape" style="right:60px;bottom:-180px;width:630px;height:630px;background:rgba(160,150,220,.14);transform:rotate(18deg);border-radius:27px;"></div>
+    <div class="li-shape" style="right:0;top:0;width:0;height:0;border-top:594px solid rgba(122,140,210,.10);border-left:360px solid transparent;"></div>
+    <img class="li-logo" src="../assets/logo-principal.png" alt="Diego Maury">
+    <div class="li-tagbar"><span class="li-tag-en">Let&rsquo;s make things happen.</span></div>
+  </div>
+</div>
+</body>
+</html>

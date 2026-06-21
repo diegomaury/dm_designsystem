@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Foto de Perfil" subtitle="Avatar isotipo + headshot · 800×800 · v2.0" viewport="1280x900" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diego Maury · Foto de Perfil v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #06030F; color: var(--t1); font-family: var(--sans);
+  padding: 40px 32px 60px; display: flex; flex-direction: column; align-items: center; gap: 32px;
+}
+.page-head { text-align: center; }
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 10px; }
+.page-head h1 { font-size: 24px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 6px; }
+.page-head p { font-size: 13px; color: var(--t2); max-width: 560px; line-height: 1.55; }
+
+/* Toggle guía */
+.toolbar { display: flex; gap: 10px; align-items: center; }
+.tb-btn {
+  font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 999px; border: 1px solid var(--border); background: transparent;
+  color: var(--t3); cursor: pointer; transition: all 150ms;
+}
+.tb-btn:hover, .tb-btn.on { border-color: var(--ember); color: var(--ember); background: rgba(255,92,57,.07); }
+
+/* Grid de artboards */
+.ab-row { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+.ab-wrap { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.ab-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); }
+
+/* ── BASE PERFIL 800×800 ── */
+.pf {
+  position: relative; overflow: hidden;
+  width: 400px; height: 400px; flex-shrink: 0;
+  background: var(--bg);
+}
+.pf-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ember); z-index: 3; }
+.pf-border { position: absolute; inset: 0; border: 1px solid var(--border); pointer-events: none; z-index: 3; }
+
+/* Guía circular */
+.pf-guide {
+  position: absolute; inset: 0; z-index: 5; pointer-events: none; display: none;
+}
+body.show-guides .pf-guide { display: block; }
+.guide-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 2px dashed rgba(255,92,57,.6);
+}
+.guide-lbl {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .10em;
+  text-transform: uppercase; color: rgba(255,92,57,.7);
+  background: rgba(10,6,18,.85); padding: 3px 8px; border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ── A · Avatar de isotipo ── */
+.pf-iso-wrap {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; z-index: 2;
+}
+.pf-iso-img { width: 160px; height: 160px; object-fit: contain; }
+.pf-name {
+  font-family: var(--mono); font-weight: 500; font-size: 12px;
+  letter-spacing: .28em; text-transform: uppercase; color: var(--t2);
+}
+
+/* ── B · Headshot ── */
+.pf-bg-2 { position: absolute; inset: 0; background: var(--bg-2); }
+.pf-panel { position: absolute; right: 0; top: 0; bottom: 0; width: 100px; background: var(--bg); border-left: 1px solid var(--border); }
+.drop-zone {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; padding: 24px; text-align: center;
+  border: 1px dashed var(--border); border-radius: 0;
+  transition: border-color 150ms, background 150ms;
+}
+.drop-zone.drag-over { border-color: var(--ember); background: rgba(255,92,57,.04); }
+.drop-zone img.preview-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 1;
+}
+.drop-icon { font-size: 32px; opacity: .3; position: relative; z-index: 2; }
+.drop-hint { font-family: var(--mono); font-size: 10px; color: var(--t3); letter-spacing: .08em; line-height: 1.5; position: relative; z-index: 2; }
+</style>
+</head>
+<body>
+
+  <div class="page-head">
+    <div class="eyebrow">Aplicación de marca · Redes sociales</div>
+    <h1>Foto de Perfil</h1>
+    <p>Formato circular (LinkedIn y Facebook recortan a círculo). Activa la guía para ver el área visible. En B, arrastra tu headshot PNG sin fondo.</p>
+  </div>
+
+  <div class="toolbar">
+    <button class="tb-btn" id="guideBtn">Mostrar guía circular</button>
+  </div>
+
+  <div class="ab-row">
+    <!-- A · Avatar de isotipo -->
+    <div class="ab-wrap">
+      <div class="pf" id="pfA">
+        <div class="pf-bar"></div>
+        <div class="pf-iso-wrap">
+          <img class="pf-iso-img" src="assets/isotipo-final-ember.svg" alt="Diego Maury">
+          <div class="pf-name">Diego&nbsp;&nbsp;Maury</div>
+        </div>
+        <div class="pf-border"></div>
+        <div class="pf-guide"><div class="guide-ring"></div><div class="guide-lbl">Área visible · 800×800</div></div>
+      </div>
+      <div class="ab-label">A · Avatar de isotipo</div>
+    </div>
+
+    <!-- B · Tu headshot -->
+    <div class="ab-wrap">
+      <div class="pf" id="pfB">
+        <div class="pf-bar"></div>
+        <div class="pf-bg-2"></div>
+        <div class="pf-panel"></div>
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-icon">↑</div>
+          <div class="drop-hint">Arrastra tu foto PNG<br>sin fondo aquí</div>
+        </div>
+        <div class="pf-border"></div>
+        <div class="pf-guide"><div class="guide-ring"></div><div class="guide-lbl">Área visible · 800×800</div></div>
+      </div>
+      <div class="ab-label">B · Tu headshot enmarcado</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('guideBtn').addEventListener('click', function() {
+      document.body.classList.toggle('show-guides');
+      this.classList.toggle('on');
+      this.textContent = document.body.classList.contains('show-guides') ? 'Ocultar guía circular' : 'Mostrar guía circular';
+    });
+
+    const dropZone = document.getElementById('dropZone');
+    ['dragenter','dragover'].forEach(ev => dropZone.addEventListener(ev, e => { e.preventDefault(); dropZone.classList.add('drag-over'); }));
+    ['dragleave','drop'].forEach(ev => dropZone.addEventListener(ev, e => { e.preventDefault(); dropZone.classList.remove('drag-over'); }));
+    dropZone.addEventListener('drop', e => {
+      const file = e.dataTransfer.files[0];
+      if (!file || !file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        dropZone.querySelectorAll('.drop-icon, .drop-hint').forEach(el => el.style.display = 'none');
+        const img = document.createElement('img');
+        img.className = 'preview-photo';
+        img.src = ev.target.result;
+        dropZone.prepend(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>

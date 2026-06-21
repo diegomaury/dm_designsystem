@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Inventario de Assets" subtitle="Mapa completo del sistema v2.0" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventario de Assets — Diego Maury v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); }
+body { font-family: var(--sans); color: var(--t1); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+.page { width: 960px; max-width: 100%; margin: 40px auto; }
+
+/* ── Masthead ── */
+header.masthead {
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px 12px 0 0;
+  padding: 48px 48px 40px; position: relative; overflow: hidden;
+}
+header.masthead::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ember); }
+.masthead .eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 16px; }
+.masthead h1 { font-size: 52px; font-weight: 700; letter-spacing: -.025em; line-height: 1.0; }
+.masthead .tagline { font-family: var(--mono); font-size: 14px; color: var(--t2); margin-top: 12px; letter-spacing: .06em; }
+.masthead .meta { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--t3); margin-top: 24px; display: flex; gap: 28px; flex-wrap: wrap; }
+.masthead .iso { position: absolute; top: 40px; right: 48px; width: 64px; height: 64px; object-fit: contain; opacity: .9; }
+
+/* ── Stats band ── */
+.summary { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--bg); border: 1px solid var(--border); border-top: none; }
+.stat { padding: 20px 28px; border-right: 1px solid var(--border); }
+.stat:last-child { border-right: none; }
+.stat .n { font-size: 38px; font-weight: 700; letter-spacing: -.03em; color: var(--t1); line-height: 1; }
+.stat .n.ember { color: var(--ember); }
+.stat .l { font-family: var(--mono); font-size: 10px; letter-spacing: .10em; text-transform: uppercase; color: var(--t3); margin-top: 6px; }
+
+/* ── Body ── */
+main { padding: 0; background: var(--bg); border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; }
+section.group { padding: 32px 48px; border-bottom: 1px solid var(--border); }
+section.group:last-child { border-bottom: none; }
+
+.group-head { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+.group-head .idx { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--ember); letter-spacing: .08em; }
+.group-head h2 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; flex: 1; }
+.group-head .count { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--t3); }
+
+.items { display: flex; flex-direction: column; }
+.item { display: grid; grid-template-columns: 280px 1fr auto; gap: 20px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.item:last-child { border-bottom: none; }
+.item .name { font-family: var(--mono); font-size: 12px; color: var(--t1); font-weight: 500; }
+.item .desc { font-size: 13px; color: var(--t2); }
+.badge { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; white-space: nowrap; font-weight: 500; border: 1px solid; }
+.badge.html { color: #7ABFFF; border-color: rgba(122,191,255,.25); background: rgba(122,191,255,.07); }
+.badge.svg  { color: var(--ember); border-color: rgba(255,92,57,.25); background: rgba(255,92,57,.07); }
+.badge.css  { color: #A8E6C9; border-color: rgba(168,230,201,.25); background: rgba(168,230,201,.07); }
+.badge.png  { color: var(--t2); border-color: var(--border); background: transparent; }
+.badge.done { color: #34A87B; border-color: rgba(52,168,123,.3); background: rgba(52,168,123,.07); }
+.badge.pending { color: var(--t3); border-color: var(--border); background: transparent; }
+
+/* ── Footer ── */
+footer.docfoot {
+  margin-top: 12px; padding: 20px 48px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .04em;
+  color: var(--t3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .summary { grid-template-columns: repeat(2,1fr); }
+  .item { grid-template-columns: 1fr; gap: 4px; }
+  .masthead h1 { font-size: 36px; }
+  .masthead .iso { display: none; }
+  section.group { padding: 24px 24px; }
+}
+@media print {
+  html, body { background: #fff; color: #000; }
+  .page { margin: 0; }
+}
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <rect width="512" height="512" fill="#3a1d6e"/>
+    <rect x="154" y="120" width="204" height="272" rx="14" fill="#ffffff"/>
+    <rect x="154" y="120" width="204" height="18" fill="#ff5a3c"/>
+    <rect x="180" y="178" width="120" height="14" rx="4" fill="#3a1d6e"/>
+    <rect x="180" y="210" width="152" height="9" rx="4" fill="#c9c2d6"/>
+    <rect x="180" y="230" width="152" height="9" rx="4" fill="#c9c2d6"/>
+    <rect x="180" y="250" width="110" height="9" rx="4" fill="#c9c2d6"/>
+    <rect x="180" y="296" width="152" height="9" rx="4" fill="#c9c2d6"/>
+    <rect x="180" y="316" width="152" height="9" rx="4" fill="#c9c2d6"/>
+    <rect x="180" y="336" width="92" height="9" rx="4" fill="#c9c2d6"/>
+  </svg>
+</template>
+<div class="page">
+  <header class="masthead">
+    <img class="iso" src="assets/isotipo-final-ember.svg" alt="">
+    <div class="eyebrow">Diego Maury · Design System V2</div>
+    <h1>Inventario de Assets</h1>
+    <div class="tagline">Hagamos que las cosas pasen.</div>
+    <div class="meta">
+      <span>VERSIÓN · 2026.06</span>
+      <span>SISTEMA · Ember on Ink</span>
+      <span>FUENTES · Plus Jakarta Sans · DM Mono</span>
+    </div>
+  </header>
+
+  <div class="summary">
+    <div class="stat"><div class="n">14</div><div class="l">Assets HTML</div></div>
+    <div class="stat"><div class="n ember">4</div><div class="l">SVG Isotipo</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">Preview Cards</div></div>
+    <div class="stat"><div class="n ember">1</div><div class="l">Token CSS</div></div>
+  </div>
+
+  <main>
+    <!-- 01 · Documentación -->
+    <section class="group">
+      <div class="group-head"><span class="idx">01</span><h2>Documentación de marca</h2><span class="count">3 archivos</span></div>
+      <div class="items">
+        <div class="item"><span class="name">manual-de-marca.html</span><span class="desc">Manual completo — 8 secciones · portada + paleta + tipo + isotipo + voz + aplicaciones + do/don't + tokens</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">logo-specs.html</span><span class="desc">Especificaciones técnicas del isotipo · área de respeto · tamaños mínimos · usos permitidos</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Sistema Tipográfico.html</span><span class="desc">Specimen completo · Plus Jakarta Sans + DM Mono · escala · reglas de uso</span><span class="badge html">html</span></div>
+      </div>
+    </section>
+
+    <!-- 02 · Tokens -->
+    <section class="group">
+      <div class="group-head"><span class="idx">02</span><h2>Tokens y fundamentos</h2><span class="count">2 archivos</span></div>
+      <div class="items">
+        <div class="item"><span class="name">v2-tokens.css</span><span class="desc">232 tokens — color, tipografía, espaciado, radii, motion · fuente de verdad para proyectos web</span><span class="badge css">css</span></div>
+        <div class="item"><span class="name">README.md</span><span class="desc">Documentación del sistema, reglas no negociables, lockup base y referencia de archivos</span><span class="badge html">md</span></div>
+      </div>
+    </section>
+
+    <!-- 03 · Isotipo -->
+    <section class="group">
+      <div class="group-head"><span class="idx">03</span><h2>Isotipo · SVG vectorial</h2><span class="count">4 archivos · /assets</span></div>
+      <div class="items">
+        <div class="item"><span class="name">isotipo-final-ember.svg</span><span class="desc">Hexágono Off-White + facetas Electric Ember · sin fondo · uso principal</span><span class="badge svg">svg</span></div>
+        <div class="item"><span class="name">isotipo-final-white.svg</span><span class="desc">Todo en blanco (una tinta) · sobre fondos oscuros de color</span><span class="badge svg">svg</span></div>
+        <div class="item"><span class="name">isotipo-final-circulo.svg</span><span class="desc">Contenedor circular · fondo Deep Ink · redes sociales</span><span class="badge svg">svg</span></div>
+        <div class="item"><span class="name">isotipo-final-cuadrado.svg</span><span class="desc">Contenedor cuadrado redondeado · fondo Deep Ink · apps / favicons</span><span class="badge svg">svg</span></div>
+      </div>
+    </section>
+
+    <!-- 04 · Papelería -->
+    <section class="group">
+      <div class="group-head"><span class="idx">04</span><h2>Papelería</h2><span class="count">3 archivos</span></div>
+      <div class="items">
+        <div class="item"><span class="name">Firma de Correo.html</span><span class="desc">Firma HTML en tabla · compatible Gmail y Outlook · acento Ember 2px</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Tarjeta de Presentación.html</span><span class="desc">480×310 · frente oscuro + reverso bg-2 · tagline en Ember</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Footer.html</span><span class="desc">Pie de marca para web · completo y mínimo · oscuro y claro</span><span class="badge html">html</span></div>
+      </div>
+    </section>
+
+    <!-- 05 · Social media -->
+    <section class="group">
+      <div class="group-head"><span class="idx">05</span><h2>Social media · Banners</h2><span class="count">7 archivos</span></div>
+      <div class="items">
+        <div class="item"><span class="name">Portada LinkedIn.html</span><span class="desc">1584×396 · 2 variantes · lockup y declaración + métricas</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Portada Facebook.html</span><span class="desc">851×315 · 3 variantes · guías de zona segura toggleables</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Social Banners.html</span><span class="desc">Multi-formato · LinkedIn 1584×396 · Twitter 1500×500 · Square 1080×1080 · Substack · Facebook</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Firma Substack.html</span><span class="desc">Banner cabecera 1344×256 + email 1100×220 · switcher de tamaño</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Substack Banners.html</span><span class="desc">1080×1080 · 10 quotes con keyword destacada en Ember · carrusel interactivo · oscuro/claro</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Quote Cards.html</span><span class="desc">1080×1080 · 10 quotes · carrusel · oscuro/claro · tipografía adaptativa</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">poster.html</span><span class="desc">1080×1080 · editorial · "Eres mucho más chingón"</span><span class="badge html">html</span></div>
+      </div>
+    </section>
+
+    <!-- 06 · Perfil -->
+    <section class="group">
+      <div class="group-head"><span class="idx">06</span><h2>Foto y fondos de perfil</h2><span class="count">3 archivos</span></div>
+      <div class="items">
+        <div class="item"><span class="name">Foto de Perfil.html</span><span class="desc">800×800 · A: avatar isotipo · B: headshot con drag &amp; drop · guía circular toggleable</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Fondo Perfil.html</span><span class="desc">800×800 · variante única · Deep Ink + panel bg-2 + ember bar</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">Fondos Perfil.html</span><span class="desc">800×800 · 4 variantes de composición (A: der · B: izq · C: centrado · D: esquina)</span><span class="badge html">html</span></div>
+      </div>
+    </section>
+
+    <!-- 07 · Presentaciones -->
+    <section class="group">
+      <div class="group-head"><span class="idx">07</span><h2>Presentaciones y cotizaciones</h2><span class="count">1 archivo</span></div>
+      <div class="items">
+        <div class="item"><span class="name">Deck.html</span><span class="desc">16:9 · 1280×720 · 8 slides · portada + perfil + reto + servicios + proceso + inversión + próximos pasos + cierre · ← → · PDF print mode</span><span class="badge html">html</span></div>
+      </div>
+    </section>
+
+    <!-- 08 · Animación -->
+    <section class="group">
+      <div class="group-head"><span class="idx">08</span><h2>Animación</h2><span class="count">1 archivo</span></div>
+      <div class="items">
+        <div class="item"><span class="name">Logo Animation.html</span><span class="desc">1920×1080 · secuencia de entrada del isotipo + nombre + tagline · CSS animation · replay</span><span class="badge html">html</span></div>
+      </div>
+    </section>
+
+    <!-- 08 · Preview cards -->
+    <section class="group">
+      <div class="group-head"><span class="idx">08</span><h2>Preview cards · Design System pane</h2><span class="count">6 archivos · /preview</span></div>
+      <div class="items">
+        <div class="item"><span class="name">preview/v2-colors.html</span><span class="desc">Paleta completa v2.0 — 7 tokens con swatches y hex</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">preview/v2-typography.html</span><span class="desc">Escala tipográfica · Plus Jakarta Sans + DM Mono</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">preview/v2-logo.html</span><span class="desc">Variantes del isotipo · 4 SVG + reglas de uso</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">preview/v2-components.html</span><span class="desc">Componentes base · lockup, etiquetas, badges, barras</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">preview/v2-surfaces.html</span><span class="desc">Superficies, bordes y capas del sistema</span><span class="badge html">html</span></div>
+        <div class="item"><span class="name">preview/v2-spacing.html</span><span class="desc">Escala de espaciado y radii</span><span class="badge html">html</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="docfoot">
+    <span>DIEGO MAURY · DESIGN SYSTEM V2</span>
+    <span>Ember on Ink · Plus Jakarta Sans · DM Mono · #FF5C39 · 2026</span>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Fondo Perfil" subtitle="Deep Ink · 800×800 · v2.0" viewport="848x848" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diego Maury · Fondo de Perfil 800×800</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0612; --bg-2: #1A1128; --border: #2A1F3D;
+  --t1: #FAF8FC; --t2: #9A8CB0; --t3: #8B7C9E;
+  --ember: #FF5C39;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #06030F; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; flex-direction: column; gap: 16px;
+  font-family: var(--mono); color: var(--t2);
+}
+.label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
+
+/* ── FONDO 800×800 ── */
+.bg {
+  position: relative; overflow: hidden;
+  width: 800px; height: 800px;
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+/* Ember top bar — acento único */
+.bg-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--ember); z-index: 2; }
+
+/* Panel derecho sutil */
+.bg-panel {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 200px; background: var(--bg-2);
+  border-left: 1px solid var(--border);
+}
+
+/* Isotipo central watermark */
+.bg-iso {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px; height: 360px;
+  object-fit: contain;
+  opacity: .04;
+  pointer-events: none;
+}
+
+/* Border sutil */
+.bg-border {
+  position: absolute; inset: 0;
+  border: 1px solid var(--border);
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+  <div class="bg">
+    <div class="bg-bar"></div>
+    <div class="bg-panel"></div>
+    <img class="bg-iso" src="assets/isotipo-final-ember.svg" alt="">
+    <div class="bg-border"></div>
+  </div>
+  <div class="label">800 × 800 px · Fondo de perfil · Ember on Ink v2.0</div>
+</body>
+</html>

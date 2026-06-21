@@ -1,0 +1,62 @@
+<!-- @dsCard group="v2 · Sistema Ember" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0A0612;font-family:'Plus Jakarta Sans',sans-serif;padding:32px;min-height:360px}
+h2{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#FF5C39;font-family:'DM Mono',monospace;margin-bottom:24px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.section-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#FF5C39;margin-bottom:12px}
+.space-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.space-bar{height:24px;background:#2A1F3D;border-radius:2px;border-left:2px solid #FF5C39}
+.space-meta{font-family:'DM Mono',monospace;font-size:10px;color:#9A8CB0;white-space:nowrap}
+.space-meta b{color:#FAF8FC;font-weight:500}
+.radii-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.radius-card{background:#1A1128;border:1px solid #2A1F3D;padding:12px 8px;text-align:center}
+.radius-demo{width:100%;aspect-ratio:1;background:#2A1F3D;margin-bottom:8px}
+.radius-name{font-family:'DM Mono',monospace;font-size:9.5px;color:#FAF8FC;font-weight:500}
+.radius-val{font-family:'DM Mono',monospace;font-size:8.5px;color:#8B7C9E;margin-top:2px}
+.no-shadow-note{margin-top:20px;background:#1A1128;border:1px solid #2A1F3D;border-left:3px solid #FF5C39;border-radius:0 8px 8px 0;padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
+.note-label{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#FF5C39;flex-shrink:0}
+.note-text{font-size:12.5px;line-height:1.55;color:#9A8CB0}
+</style>
+</head>
+<body>
+<h2>Espaciado &amp; radios v2.0</h2>
+<div class="cols">
+  <div>
+    <div class="section-label">Escala de espaciado</div>
+    <div class="space-row"><div class="space-bar" style="width:8px"></div><span class="space-meta"><b>4px</b> · --space-xs</span></div>
+    <div class="space-row"><div class="space-bar" style="width:16px"></div><span class="space-meta"><b>8px</b> · --space-sm</span></div>
+    <div class="space-row"><div class="space-bar" style="width:24px"></div><span class="space-meta"><b>12px</b> · --space-md</span></div>
+    <div class="space-row"><div class="space-bar" style="width:40px"></div><span class="space-meta"><b>20px</b> · --space-lg</span></div>
+    <div class="space-row"><div class="space-bar" style="width:64px"></div><span class="space-meta"><b>32px</b> · --space-xl</span></div>
+    <div class="space-row"><div class="space-bar" style="width:96px"></div><span class="space-meta"><b>48px</b> · --space-2xl</span></div>
+    <div class="space-row"><div class="space-bar" style="width:128px"></div><span class="space-meta"><b>64px</b> · --space-3xl</span></div>
+    <div class="space-row"><div class="space-bar" style="width:192px;max-width:100%"></div><span class="space-meta"><b>96px</b> · --space-4xl</span></div>
+  </div>
+  <div>
+    <div class="section-label">Radios de borde</div>
+    <div class="radii-grid">
+      <div class="radius-card"><div class="radius-demo" style="border-radius:0"></div><div class="radius-name">None</div><div class="radius-val">0px</div></div>
+      <div class="radius-card"><div class="radius-demo" style="border-radius:3px"></div><div class="radius-name">XS</div><div class="radius-val">3px</div></div>
+      <div class="radius-card"><div class="radius-demo" style="border-radius:6px"></div><div class="radius-name">SM</div><div class="radius-val">6px</div></div>
+      <div class="radius-card"><div class="radius-demo" style="border-radius:10px"></div><div class="radius-name">MD</div><div class="radius-val">10px</div></div>
+      <div class="radius-card"><div class="radius-demo" style="border-radius:16px"></div><div class="radius-name">LG</div><div class="radius-val">16px</div></div>
+    </div>
+    <div style="margin-top:16px;background:#1A1128;border:1px solid #2A1F3D;border-radius:10px;padding:14px">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:#FF5C39;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Uso de radios</div>
+      <div style="font-size:12px;line-height:1.5;color:#9A8CB0"><b style="color:#FAF8FC">XS (3px)</b> — badges, tags<br><b style="color:#FAF8FC">SM (6px)</b> — botones small, inputs<br><b style="color:#FAF8FC">MD (10px)</b> — cards, paneles<br><b style="color:#FAF8FC">LG (16px)</b> — modales, hero cards</div>
+    </div>
+  </div>
+</div>
+<div class="no-shadow-note">
+  <span class="note-label">Sin sombras</span>
+  <span class="note-text">El sistema v2.0 <b style="color:#FAF8FC">prohíbe box-shadows y drop-shadows</b>. La profundidad se logra únicamente con capas de color: Deep Ink → Surface → Border. Ningún componente tiene shadow.</span>
+</div>
+</body>
+</html>
