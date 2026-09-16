@@ -1,0 +1,18 @@
+{
+  "$comment": "estado: canónico — 2026-09-11. Excepciones aprobadas al chequeo de adherencia (.tools/ds-adherence-check.mjs). Cada entrada necesita aprobación explícita de Diego y una línea en la tabla de excepciones del README. Vacío no significa 'sin excepciones': significa que no se han trasladado.",
+  "files": [],
+  "rules": {
+    "R1-hex-crudo": [
+      "archive/Firma de Correo v1.html"
+    ],
+    "R5-efectos": [],
+    "R7-token-sin-consumidor": [
+      "v2-tokens.css"
+    ]
+  },
+  "notes": {
+    "R7-token-sin-consumidor": {
+      "v2-tokens.css": "--light-accent reservado sin consumidor — aprobado 2026-09-11. D2 documenta la paleta clara como bloque completo y D-E (Fase 2) planea migrar superficies de lectura a modo claro; borrarlo hoy y reponerlo en semanas es peor que declararlo reservado. Revisar al cerrar D-E: si sigue sin consumidor, se retira."
+    }
+  }
+}

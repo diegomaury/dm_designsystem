@@ -1,0 +1,17 @@
+name: Adherencia al contrato
+
+on:
+  push:
+    branches: [main, 'v2**']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Chequeo de adherencia (R0-R15)
+        run: node .tools/ds-adherence-check.mjs --strict

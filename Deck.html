@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<!-- estado: vigente — 2026-09-12 -->
+<!-- @dsCard group="Brand" name="Deck" subtitle="Presentación / Cotización · 1920×1080 · v2.5" viewport="1280x820" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentación — Diego Maury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* snapshot v2.5 — 2026-09-16 · sincronizar contra v2-tokens.css */
+  --bg: #0A0612; --bg-2: #1A1128; --bg-stage: #06030F; --border: #6A291B; --border-control: #B06A4E;
+  --t1: #FAF8FC; --t2: #DDDBE0; --t3: #A8A6AC;
+  --ember: #FF5C39;
+  --display: 'Archivo', system-ui, sans-serif;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+  /* Deck = 1920×1080. La escala de documento × 2 (v2-dimensions.css). */
+  --W: 1920px; --H: 1080px;
+}
+/* surface: deck */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+/* ── Shell ── */
+body {
+  background: var(--bg-stage); font-family: var(--sans); color: var(--t1);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 100vh; gap: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Stage ── */
+.stage-outer { position: relative; flex-shrink: 0; }
+.stage-scaler { transform-origin: top left; width: var(--W); height: var(--H); }
+
+/* ── Slide base ── */
+.slide {
+  width: var(--W); height: var(--H);
+  position: absolute; inset: 0;
+  background: var(--bg);
+  display: none; overflow: hidden;
+}
+.slide.active { display: flex; }
+
+/* Ember top rule — presente en todos los slides */
+.e-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--ember); z-index: 5; }
+
+/* Panel derecho — bg-2 con border izq */
+.r-panel { position: absolute; right: 0; top: 0; bottom: 0; background: var(--bg-2); border-left: 1px solid var(--border); }
+
+/* Watermark isotipo */
+.iso-wm { position: absolute; object-fit: contain; pointer-events: none; opacity: .04; }
+
+/* ── Tipografía de slide ── */
+/* ── Tipografía de slide ──
+   Titulares en Archivo 700 · tracking -.035em (D-H). Cifras en Plus Jakarta
+   Sans 700 tabular. Mono solo en eyebrows, labels, fechas y metadata. */
+.s-eyebrow { font-family: var(--mono); font-size: 24px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); }
+.s-num { font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--t3); letter-spacing: .06em; }
+.s-h1 { font-family: var(--display); font-weight: 700; font-size: 104px; letter-spacing: -.035em; line-height: 1.02; }
+.s-h2 { font-family: var(--display); font-weight: 700; font-size: 76px; letter-spacing: -.035em; line-height: 1.02; }
+.s-h3 { font-family: var(--display); font-weight: 700; font-size: 44px; letter-spacing: -.035em; line-height: 1.02; }
+.s-body { font-size: 34px; color: var(--t2); line-height: 1.7; }
+.s-label { font-family: var(--mono); font-size: 24px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--t3); }
+.s-tag { font-family: var(--mono); font-size: 24px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--ember); }
+.figure { font-family: var(--sans); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Dividers */
+.h-rule { height: 1px; background: var(--border); }
+.v-rule { width: 1px; background: var(--border); flex-shrink: 0; }
+
+/* ════════════════════════════════════
+   SLIDE 1 — PORTADA
+════════════════════════════════════ */
+#s1 { flex-direction: row; }
+#s1 .r-panel { width: 570px; }
+#s1 .iso-wm { width: 450px; height: 450px; right: 56px; top: 50%; transform: translateY(-50%); opacity: .06; }
+
+#s1 .left {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; padding: 96px;
+  position: relative; z-index: 2;
+}
+#s1 .iso { width: 108px; height: 108px; object-fit: contain; margin-bottom: 56px; }
+#s1 .name { font-family: var(--display); font-weight: 700; font-size: 132px; letter-spacing: -.035em; line-height: 1.02; text-transform: uppercase; }
+#s1 .role { font-family: var(--mono); font-size: 24px; letter-spacing: .08em; color: var(--t2); margin-top: 24px; }
+#s1 .div { width: 72px; height: 2px; background: var(--border); margin: 32px 0; }
+#s1 .tag { font-family: var(--mono); font-size: 24px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--ember); }
+
+#s1 .right-content {
+  width: 570px; display: flex; flex-direction: column;
+  align-items: flex-end; justify-content: flex-end;
+  padding: 56px 56px 56px 48px; gap: 12px; z-index: 2;
+}
+#s1 .client-label { font-family: var(--mono); font-size: 24px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
+#s1 .client-name { font-size: 34px; font-weight: 700; color: var(--t1); text-align: right; }
+#s1 .client-date { font-family: var(--mono); font-size: 24px; color: var(--t3); letter-spacing: .04em; }
+
+/* ════════════════════════════════════
+   SLIDE 2 — PERFIL
+════════════════════════════════════ */
+#s2 { flex-direction: column; padding: 0; }
+#s2 .r-panel { width: 672px; }
+#s2 .iso-wm { width: 480px; height: 480px; right: 24px; bottom: -56px; opacity: .05; }
+
+#s2 .header { padding: 72px 96px 0; display: flex; align-items: flex-start; justify-content: space-between; position: relative; z-index: 2; }
+#s2 .header-left { display: flex; flex-direction: column; gap: 12px; }
+
+#s2 .body { flex: 1; padding: 32px 96px 0; display: grid; grid-template-columns: 1fr 480px; gap: 96px; align-items: start; position: relative; z-index: 2; }
+#s2 .bio { font-size: 34px; color: var(--t2); line-height: 1.7; max-width: 900px; }
+#s2 .bio strong { color: var(--t1); font-weight: 500; }
+
+#s2 .metrics { display: flex; flex-direction: column; gap: 0; }
+#s2 .metric { padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
+#s2 .metric:first-child { border-top: 1px solid var(--border); }
+#s2 .m-num { font-family: var(--sans); font-variant-numeric: tabular-nums; font-weight: 700; font-size: 76px; letter-spacing: -.03em; color: var(--t1); line-height: 1; }
+#s2 .m-label { font-family: var(--mono); font-size: 24px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); }
+
+/* ════════════════════════════════════
+   SLIDE 3 — EL RETO
+════════════════════════════════════ */
+#s3 { flex-direction: column; }
+#s3 .r-panel { width: 300px; }
+
+#s3 .inner { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 96px 96px 96px; }
+#s3 .phase-num { font-family: var(--sans); font-variant-numeric: tabular-nums; font-size: 104px; font-weight: 700; letter-spacing: -.02em; color: var(--border); line-height: 1; margin-bottom: 32px; }
+#s3 .challenge-head { font-family: var(--display); font-weight: 700; font-size: 76px; letter-spacing: -.035em; line-height: 1.02; max-width: 1140px; }
+#s3 .challenge-body { font-size: 34px; color: var(--t2); line-height: 1.75; max-width: 990px; margin-top: 32px; }
+#s3 .tags { display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap; }
+#s3 .tag-chip {
+  font-family: var(--mono); font-size: 24px; font-weight: 500; letter-spacing: .10em; text-transform: uppercase;
+  padding: 8px 24px; border-radius: 0; border: 1px solid var(--border); color: var(--t3);
+}
+
+/* ════════════════════════════════════
+   SLIDE 4 — SERVICIOS
+════════════════════════════════════ */
+#s4 { flex-direction: column; }
+
+#s4 .header { padding: 72px 96px 56px; }
+#s4 .services-grid {
+  flex: 1; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border); margin: 0;
+  border-top: 1px solid var(--border);
+}
+#s4 .service {
+  background: var(--bg); padding: 48px 56px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+#s4 .service:nth-child(3n) { background: var(--bg-2); }
+#s4 .svc-num { font-family: var(--mono); font-size: 24px; color: var(--ember); letter-spacing: .10em; font-weight: 500; }
+#s4 .svc-title { font-family: var(--display); font-weight: 700; font-size: 44px; letter-spacing: -.035em; line-height: 1.02; }
+#s4 .svc-desc { font-size: 24px; color: var(--t2); line-height: 1.65; }
+
+/* ════════════════════════════════════
+   SLIDE 5 — PROCESO
+════════════════════════════════════ */
+#s5 { flex-direction: column; }
+
+#s5 .header { padding: 72px 96px 56px; }
+#s5 .process { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 72px 72px; gap: 32px; align-items: start; }
+#s5 .step { display: flex; flex-direction: column; gap: 0; padding: 0 24px; border-left: 1px solid var(--border); }
+#s5 .step.active-step { border-left-color: var(--ember); }
+#s5 .step-num { font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--t3); letter-spacing: .10em; margin-bottom: 24px; }
+#s5 .step.active-step .step-num { color: var(--ember); }
+#s5 .step-title { font-family: var(--display); font-weight: 700; font-size: 44px; letter-spacing: -.035em; line-height: 1.02; margin-bottom: 16px; }
+#s5 .step-desc { font-size: 24px; color: var(--t2); line-height: 1.65; }
+#s5 .step-duration { font-family: var(--mono); font-size: 24px; color: var(--t3); letter-spacing: .08em; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px; }
+
+/* ════════════════════════════════════
+   SLIDE 6 — INVERSIÓN
+════════════════════════════════════ */
+#s6 { flex-direction: row; }
+#s6 .r-panel { width: 510px; }
+#s6 .iso-wm { width: 390px; height: 390px; right: 56px; bottom: 32px; opacity: .05; }
+
+#s6 .left { flex: 1; padding: 72px 96px; display: flex; flex-direction: column; gap: 0; }
+#s6 .table-wrap { flex: 1; margin-top: 48px; }
+
+.inv-row {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 32px; padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.inv-row.head { border-bottom: 1px solid var(--t3); padding-bottom: 16px; margin-bottom: 2px; }
+.inv-row.head .inv-item { font-family: var(--mono); font-size: 24px; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
+.inv-item { font-size: 34px; color: var(--t1); }
+.inv-item.sub { font-size: 24px; color: var(--t2); margin-top: 4px; }
+.inv-price { font-family: var(--sans); font-variant-numeric: tabular-nums; font-weight: 700; font-size: 34px; color: var(--t1); letter-spacing: .02em; white-space: nowrap; }
+.inv-row.total { border-bottom: none; border-top: 2px solid var(--ember); margin-top: 4px; padding-top: 24px; }
+.inv-row.total .inv-item { font-weight: 700; font-size: 44px; }
+.inv-row.total .inv-price { font-size: 76px; font-weight: 700; color: var(--ember); letter-spacing: -.01em; }
+
+#s6 .note { font-family: var(--mono); font-size: 24px; color: var(--t3); letter-spacing: .03em; margin-top: 32px; line-height: 1.7; }
+#s6 .right-content { width: 510px; display: flex; flex-direction: column; justify-content: center; padding: 72px 56px; gap: 32px; z-index: 2; }
+#s6 .aside-block { display: flex; flex-direction: column; gap: 12px; }
+#s6 .aside-label { font-family: var(--mono); font-size: 24px; letter-spacing: .14em; text-transform: uppercase; color: var(--ember); }
+#s6 .aside-val { font-size: 34px; color: var(--t1); line-height: 1.5; }
+#s6 .aside-val.mono { font-family: var(--mono); font-size: 24px; letter-spacing: .04em; }
+
+/* ════════════════════════════════════
+   SLIDE 7 — PRÓXIMOS PASOS
+════════════════════════════════════ */
+#s7 { flex-direction: column; }
+
+#s7 .header { padding: 72px 96px 56px; }
+#s7 .steps-row { flex: 1; display: flex; align-items: center; padding: 0 96px 72px; gap: 0; }
+#s7 .next-step { flex: 1; display: flex; flex-direction: column; gap: 16px; padding: 0 48px; position: relative; }
+#s7 .next-step::before { content: ''; position: absolute; top: 32px; right: 0; width: 1px; height: 120px; background: var(--border); }
+#s7 .next-step:last-child::before { display: none; }
+#s7 .ns-num { font-family: var(--sans); font-variant-numeric: tabular-nums; font-size: 44px; font-weight: 700; color: var(--border); letter-spacing: -.02em; line-height: 1; }
+#s7 .ns-title { font-family: var(--display); font-weight: 700; font-size: 44px; letter-spacing: -.035em; line-height: 1.02; }
+#s7 .ns-desc { font-size: 24px; color: var(--t2); line-height: 1.65; }
+
+#s7 .contact-row {
+  margin: 0 96px; padding: 32px 40px;
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: 0;
+  display: flex; align-items: center; gap: 32px; margin-bottom: 72px;
+}
+#s7 .contact-iso { width: 54px; height: 54px; object-fit: contain; flex-shrink: 0; }
+#s7 .c-v-rule { width: 1px; height: 42px; background: var(--border); flex-shrink: 0; }
+#s7 .contact-info { display: flex; gap: 48px; }
+#s7 .c-item { display: flex; flex-direction: column; gap: 4px; }
+#s7 .c-label { font-family: var(--mono); font-size: 24px; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); }
+#s7 .c-val { font-family: var(--mono); font-size: 24px; color: var(--t2); letter-spacing: .02em; }
+
+/* ════════════════════════════════════
+   SLIDE 8 — CIERRE
+════════════════════════════════════ */
+#s8 { flex-direction: column; align-items: center; justify-content: center; gap: 0; }
+#s8 .iso-lg { width: 192px; height: 192px; object-fit: contain; margin-bottom: 56px; }
+#s8 .closing-name { font-family: var(--display); font-weight: 700; font-size: 104px; letter-spacing: -.035em; line-height: 1.02; text-transform: uppercase; }
+#s8 .closing-rule { width: 1px; height: 78px; background: var(--border); margin: 40px 0; }
+#s8 .closing-tag { font-family: var(--mono); font-size: 24px; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--ember); }
+#s8 .closing-url { font-family: var(--mono); font-size: 24px; color: var(--t3); letter-spacing: .08em; margin-top: 48px; }
+
+/* ════════════════════════════════════
+   CHROME — slide counter + dots
+════════════════════════════════════ */
+/* ══════════════════════════════════
+   CHROME — no es superficie de deck: es UI de pantalla
+══════════════════════════════════ */
+/* surface: document */
+.chrome {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: var(--W);
+  padding: 12px 4px; flex-shrink: 0;
+}
+.dots { display: flex; gap: 8px; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 0; background: var(--border); border: none; padding: 0; cursor: pointer; transition: background 120ms, transform 120ms; }
+.dot.active { background: var(--ember); transform: scale(1.5); }
+.dot:hover:not(.active) { background: var(--t3); }
+.chrome-right { display: flex; gap: 8px; align-items: center; }
+.nav-btn {
+  width: 44px; height: 44px; border-radius: 0; border: 1px solid var(--border-control);
+  background: transparent; color: var(--t2); font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: color 120ms, border-color 120ms;
+}
+.nav-btn:hover { border-color: var(--ember); color: var(--ember); }
+.nav-btn:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+.slide-counter { font-family: var(--mono); font-size: 12px; color: var(--t3); letter-spacing: .10em; }
+
+/* ════════════════════════════════════
+   PRINT / PDF MODE
+════════════════════════════════════ */
+@media print {
+  body { background: var(--bg); display: block; min-height: auto; }
+  .chrome { display: none; }
+  .stage-outer, .stage-scaler { width: 100% !important; height: auto !important; transform: none !important; }
+  .slide { position: relative !important; display: flex !important; width: 100% !important; height: auto !important; min-height: 56vw; break-inside: avoid; page-break-after: always; }
+  #s1 .right-content, #s6 .right-content { position: relative; }
+  #s2 .r-panel, #s3 .r-panel, #s4 .r-panel, #s5 .r-panel, #s6 .r-panel, #s7 .r-panel { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ── CHROME (arriba) ── -->
+<div class="chrome" id="chromeTop">
+  <div class="dots" id="dotsWrap"></div>
+  <div class="chrome-right">
+    <span class="slide-counter" id="slideCounter">01 / 08</span>
+    <button class="nav-btn" id="prevBtn">&#8592;</button>
+    <button class="nav-btn" id="nextBtn">&#8594;</button>
+  </div>
+</div>
+
+<div class="stage-outer" id="stageOuter">
+  <div class="stage-scaler" id="stageScaler">
+
+    <!-- ══ S1 · PORTADA ══ -->
+    <div class="slide active" id="s1">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="" style="width:450px;height:450px;right:56px;top:50%;transform:translateY(-50%);">
+      <div class="left">
+        <img class="iso" src="assets/isotipo-final-ember.svg" alt="Diego Maury">
+        <div class="name">Diego<br>Maury</div>
+        <div class="role">Strategic Program Director</div>
+        <div class="div"></div>
+        <div class="tag">Hagamos que las cosas pasen.</div>
+      </div>
+      <div class="right-content">
+        <div class="client-label">Presentado a</div>
+        <div class="client-name">[Nombre del cliente<br>o empresa]</div>
+        <div style="height:1px;background:var(--border);margin:24px 0;"></div>
+        <div class="client-label">Fecha</div>
+        <div class="client-date">[Mes] 2025</div>
+        <div style="height:1px;background:var(--border);margin:24px 0;"></div>
+        <div class="client-label">Propuesta</div>
+        <div class="client-date">[Referencia / Número]</div>
+      </div>
+    </div>
+
+    <!-- ══ S2 · PERFIL ══ -->
+    <div class="slide" id="s2">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="" style="width:480px;height:480px;right:24px;bottom:-56px;">
+      <div class="header">
+        <div class="header-left">
+          <div class="s-eyebrow">Quién soy</div>
+          <div class="s-h2" style="margin-top:12px;">Un director que ejecuta,<br>no solo asesora.</div>
+        </div>
+        <div class="s-num">02 / 08</div>
+      </div>
+      <div class="body">
+        <p class="bio">
+          Diseño y dirijo <strong>programas estratégicos</strong> que convierten ideas ambiciosas en resultados medibles. Trabajo en la intersección de estrategia, producto e innovación — con foco en <strong>ejecución real</strong>, no en reportes.
+          <br><br>
+          He liderado iniciativas en corporativos, startups y aceleradoras a lo largo de LATAM, siempre desde el rol de quien hace que las cosas pasen.
+        </p>
+        <div class="metrics">
+          <div class="metric">
+            <div class="m-num">30<span style="font-size:34px;color:var(--ember);">+</span></div>
+            <div class="m-label">Programas liderados</div>
+          </div>
+          <div class="metric">
+            <div class="m-num">900<span style="font-size:34px;color:var(--t3);">+</span></div>
+            <div class="m-label">Proyectos gestionados</div>
+          </div>
+          <div class="metric">
+            <div class="m-num">3,000<span style="font-size:34px;color:var(--t3);">+</span></div>
+            <div class="m-label">Emprendedores impactados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S3 · EL RETO ══ -->
+    <div class="slide" id="s3">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <div class="inner">
+        <div class="phase-num">01</div>
+        <div class="s-eyebrow" style="margin-bottom:16px;">El reto</div>
+        <div class="challenge-head">[Describe el problema central<br>que enfrenta el cliente]</div>
+        <p class="challenge-body">
+          [Contexto adicional: ¿Qué está pasando en la organización? ¿Por qué es urgente resolverlo? ¿Cuál es el costo de no actuar? Este texto puede ser de 2 a 3 oraciones.]
+        </p>
+        <div class="tags">
+          <span class="tag-chip">[Área 1]</span>
+          <span class="tag-chip">[Área 2]</span>
+          <span class="tag-chip">[Área 3]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S4 · SERVICIOS ══ -->
+    <div class="slide" id="s4">
+      <div class="e-bar"></div>
+      <div class="header">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <div>
+            <div class="s-eyebrow">Lo que hago</div>
+            <div class="s-h2" style="margin-top:12px;">Servicios</div>
+          </div>
+          <div class="s-num">04 / 08</div>
+        </div>
+      </div>
+      <div class="services-grid">
+        <div class="service">
+          <div class="svc-num">01</div>
+          <div class="svc-title">Dirección de Programa</div>
+          <div class="svc-desc">Liderazgo end-to-end de programas complejos: desde el diseño hasta la operación. Gobierno, KPIs y cadencia de ejecución.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">02</div>
+          <div class="svc-title">Diseño Estratégico</div>
+          <div class="svc-desc">Traducción de visión en planes accionables. Roadmaps, portafolios de iniciativas y alineación de stakeholders.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">03</div>
+          <div class="svc-title">Innovación Aplicada</div>
+          <div class="svc-desc">Metodologías ágiles adaptadas al contexto del cliente. Design thinking, MVP, validación y escalamiento.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">04</div>
+          <div class="svc-title">Consultoría Operativa</div>
+          <div class="svc-desc">Diagnóstico y rediseño de procesos críticos. Habilitación de equipos para sostener el cambio sin dependencia externa.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">05</div>
+          <div class="svc-title">Aceleración de Equipos</div>
+          <div class="svc-desc">Formación, mentoría y acompañamiento de líderes y equipos multidisciplinarios en contextos de alta incertidumbre.</div>
+        </div>
+        <div class="service">
+          <div class="svc-num">06</div>
+          <div class="svc-title">Sesiones de Trabajo</div>
+          <div class="svc-desc">Facilitación de workshops estratégicos, retiros de equipo y sesiones de diagnóstico. Resultados tangibles al cierre del día.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S5 · PROCESO ══ -->
+    <div class="slide" id="s5">
+      <div class="e-bar"></div>
+      <div class="header">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <div>
+            <div class="s-eyebrow">Cómo trabajo</div>
+            <div class="s-h2" style="margin-top:12px;">Proceso</div>
+          </div>
+          <div class="s-num">05 / 08</div>
+        </div>
+      </div>
+      <div class="process">
+        <div class="step active-step">
+          <div class="step-num">01</div>
+          <div class="step-title">Diagnóstico</div>
+          <div class="step-desc">Entendimiento profundo del contexto, los objetivos y las restricciones. Entrevistas, revisión documental y mapeo del sistema actual.</div>
+          <div class="step-duration">Semana 1–2</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Diseño</div>
+          <div class="step-desc">Co-diseño del programa con los stakeholders clave. Definición de arquitectura, fases, entregables y métricas de éxito.</div>
+          <div class="step-duration">Semana 2–3</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Ejecución</div>
+          <div class="step-desc">Operación del programa con cadencia semanal. Seguimiento de avances, resolución de bloqueos y gestión del cambio en tiempo real.</div>
+          <div class="step-duration">Semana 4–[N]</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-title">Cierre</div>
+          <div class="step-desc">Entrega de resultados, documentación del aprendizaje y transferencia de capacidades al equipo interno para garantizar continuidad.</div>
+          <div class="step-duration">Semana [N]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S6 · INVERSIÓN ══ -->
+    <div class="slide" id="s6">
+      <div class="e-bar"></div>
+      <div class="r-panel"></div>
+      <img class="iso-wm" src="assets/isotipo-final-ember.svg" alt="" style="width:390px;height:390px;right:56px;bottom:32px;">
+      <div class="left">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0;">
+          <div>
+            <div class="s-eyebrow">Propuesta económica</div>
+            <div class="s-h2" style="margin-top:12px;">Inversión</div>
+          </div>
+          <div class="s-num">06 / 08</div>
+        </div>
+        <div class="table-wrap">
+          <div class="inv-row head">
+            <div class="inv-item">Concepto</div>
+            <div class="inv-price">Monto</div>
+          </div>
+          <div class="inv-row">
+            <div>
+              <div class="inv-item">[Fase / Servicio 1]</div>
+              <div class="inv-item sub">[Descripción breve — duración o entregable]</div>
+            </div>
+            <div class="inv-price">$00,000</div>
+          </div>
+          <div class="inv-row">
+            <div>
+              <div class="inv-item">[Fase / Servicio 2]</div>
+              <div class="inv-item sub">[Descripción breve]</div>
+            </div>
+            <div class="inv-price">$00,000</div>
+          </div>
+          <div class="inv-row">
+            <div>
+              <div class="inv-item">[Fase / Servicio 3]</div>
+              <div class="inv-item sub">[Descripción breve]</div>
+            </div>
+            <div class="inv-price">$00,000</div>
+          </div>
+          <div class="inv-row total">
+            <div class="inv-item">Total</div>
+            <div class="inv-price">$00,000</div>
+          </div>
+        </div>
+        <div class="note">
+          * Precios en MXN / USD según acuerdo. · Vigencia de la propuesta: 30 días.<br>
+          * [Condiciones de pago: 50% inicio / 50% entrega, o según negociación.]
+        </div>
+      </div>
+      <div class="right-content">
+        <div class="aside-block">
+          <div class="aside-label">Duración estimada</div>
+          <div class="aside-val">[N semanas / meses]</div>
+        </div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="aside-block">
+          <div class="aside-label">Modalidad</div>
+          <div class="aside-val">[Remoto / Presencial / Híbrido]</div>
+        </div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="aside-block">
+          <div class="aside-label">Dedicación</div>
+          <div class="aside-val">[Horas por semana / Full-time]</div>
+        </div>
+        <div style="height:1px;background:var(--border);"></div>
+        <div class="aside-block">
+          <div class="aside-label">Moneda</div>
+          <div class="aside-val mono">MXN / USD</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S7 · PRÓXIMOS PASOS ══ -->
+    <div class="slide" id="s7">
+      <div class="e-bar"></div>
+      <div class="header">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;">
+          <div>
+            <div class="s-eyebrow">Para arrancar</div>
+            <div class="s-h2" style="margin-top:12px;">Próximos pasos</div>
+          </div>
+          <div class="s-num">07 / 08</div>
+        </div>
+      </div>
+      <div class="steps-row">
+        <div class="next-step">
+          <div class="ns-num">01</div>
+          <div class="ns-title">Revisión</div>
+          <div class="ns-desc">Compartir comentarios sobre esta propuesta. Ajustamos alcance, tiempos o condiciones según sea necesario.</div>
+        </div>
+        <div class="next-step">
+          <div class="ns-num">02</div>
+          <div class="ns-title">Acuerdo</div>
+          <div class="ns-desc">Firma de contrato y condiciones. Primer pago para reservar fecha de inicio y garantizar disponibilidad.</div>
+        </div>
+        <div class="next-step">
+          <div class="ns-num">03</div>
+          <div class="ns-title">Arranque</div>
+          <div class="ns-desc">Sesión de kickoff para alinear equipo, objetivos y cadencia de trabajo. Comenzamos a hacer que las cosas pasen.</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <img class="contact-iso" src="assets/isotipo-final-ember.svg" alt="">
+        <div class="c-v-rule"></div>
+        <div class="contact-info">
+          <div class="c-item">
+            <div class="c-label">Email</div>
+            <div class="c-val">hola@diegomaury.mx</div>
+          </div>
+          <div class="c-item">
+            <div class="c-label">Web</div>
+            <div class="c-val">diegomaury.mx</div>
+          </div>
+          <div class="c-item">
+            <div class="c-label">LinkedIn</div>
+            <div class="c-val">/in/diegomaury</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ S8 · CIERRE ══ -->
+    <div class="slide" id="s8">
+      <div class="e-bar"></div>
+      <img class="iso-lg" src="assets/isotipo-final-ember.svg" alt="Diego Maury">
+      <div class="closing-name">Diego Maury</div>
+      <div class="closing-rule"></div>
+      <div class="closing-tag">Hagamos que las cosas pasen.</div>
+      <div class="closing-url">diegomaury.mx</div>
+    </div>
+
+  </div><!-- /stage-scaler -->
+</div><!-- /stage-outer -->
+
+<script>
+  const TOTAL = 8;
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('dotsWrap');
+  const counter = document.getElementById('slideCounter');
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(i) {
+    slides[cur].classList.remove('active');
+    document.querySelectorAll('.dot')[cur].classList.remove('active');
+    cur = (i + TOTAL) % TOTAL;
+    slides[cur].classList.add('active');
+    document.querySelectorAll('.dot')[cur].classList.add('active');
+    counter.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(TOTAL).padStart(2, '0');
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(cur - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(cur + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(cur + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(cur - 1);
+  });
+
+  function scaleStage() {
+    const scaler = document.getElementById('stageScaler');
+    const outer  = document.getElementById('stageOuter');
+    const chrome = document.getElementById('chromeTop');
+    const chromeH = chrome.offsetHeight + 8;
+    const avail = Math.min(window.innerWidth - 32, window.innerHeight - chromeH - 16);
+    if (avail <= 0) return; // medición transitoria: conservar la escala buena anterior
+    const sc = Math.min(1, avail / 1080, (window.innerWidth - 32) / 1920);
+    scaler.style.transform = 'scale(' + sc + ')';
+    scaler.style.transformOrigin = 'top left';
+    outer.style.width  = (1920 * sc) + 'px';
+    outer.style.height = (1080 * sc) + 'px';
+    chrome.style.maxWidth = (1920 * sc) + 'px';
+  }
+  window.addEventListener('resize', scaleStage);
+  if (window.ResizeObserver) new ResizeObserver(scaleStage).observe(document.documentElement);
+  scaleStage();
+</script>
+</body>
+</html>
