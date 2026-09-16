@@ -1,0 +1,6 @@
+/* estado: canónico — 2026-09-11 */
+/* Diego Maury Design System v2.0 — Ember on Ink
+   Entry point canónico. Los consumidores linkean este archivo.
+   La fuente de verdad de tokens vive en v2-tokens.css. */
+@import url('./v2-tokens.css');
+@import url('./v2-dimensions.css');

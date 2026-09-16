@@ -1,0 +1,154 @@
+<!doctype html>
+<!-- estado: canónico — 2026-09-14 -->
+<!-- @dsCard group="Brand" name="Manual de Marca" subtitle="Manual mínimo · 5 secciones · v2.5" -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diego Maury — Manual de Marca v2.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="v2-tokens.css">
+<style>
+  .wrap { max-width: 900px; margin: 0 auto; padding: 72px 32px 96px; }
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  section:first-of-type { border-top: none; padding-top: 0; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 12px; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(40px, 6vw, 64px); letter-spacing: -.035em; line-height: 1.02; margin-bottom: 8px; }
+  h2 { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: -.035em; line-height: 1.02; margin-bottom: 24px; }
+  .tagline { font-family: var(--mono); font-size: 13px; color: var(--t2); letter-spacing: .06em; margin-bottom: 40px; }
+
+  .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .swatch { overflow: hidden; border: 1px solid var(--border); }
+  .swatch .chip { height: 64px; }
+  .swatch .info { padding: 12px; background: var(--bg-2); }
+  .swatch .info b { display: block; font-size: 12px; }
+  .swatch .info span { display: block; font-family: var(--mono); font-size: 10px; color: var(--t3); margin-top: 2px; }
+
+  .type-row { display: grid; grid-template-columns: 140px 1fr; gap: 24px; padding: 16px 0; border-top: 1px solid var(--border); align-items: baseline; }
+  .type-row:first-child { border-top: none; }
+  .type-meta { font-family: var(--mono); font-size: 10px; color: var(--t3); }
+
+  .lockups { display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+
+  .rules { display: flex; flex-direction: column; gap: 12px; }
+  .rule { background: var(--bg-2); border: 1px solid var(--border); padding: 16px; font-size: 13px; color: var(--t2); line-height: 1.55; }
+  .rule b { color: var(--t1); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--t3); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 12px; border-bottom: 1px solid var(--border); color: var(--t2); vertical-align: top; }
+
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section>
+    <p class="eyebrow">Manual de Marca · v2.3</p>
+    <h1>Ember on Ink</h1>
+    <p class="tagline">Hagamos que las cosas pasen.</p>
+    <p style="color:var(--t2);font-size:15px;line-height:1.65;max-width:560px;">
+      Manual mínimo: paleta, tipografía, isotipo y las 11 reglas no negociables.
+      Sin inventario de piezas — se rehace cuando existan piezas que inventariar.
+      Referencia completa: <code>README.md</code> de este repo.
+    </p>
+  </section>
+
+  <section>
+    <h2>01 — Paleta</h2>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:var(--bg)"></div><div class="info"><b>Deep Ink</b><span><code data-hex-of="--bg"></code> · fondo</span></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--bg-2)"></div><div class="info"><b>Surface</b><span><code data-hex-of="--bg-2"></code> · cards</span></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--border)"></div><div class="info"><b>Ember Dark</b><span><code data-hex-of="--border"></code> · bordes</span></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--ember)"></div><div class="info"><b>Electric Ember</b><span><code data-hex-of="--ember"></code> · acento único</span></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--t1)"></div><div class="info"><b>Off White</b><span><code data-hex-of="--t1"></code> · 18.7:1</span></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--t2)"></div><div class="info"><b>Near White</b><span><code data-hex-of="--t2"></code> · 13.6:1</span></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--t3)"></div><div class="info"><b>Neutral Mid</b><span><code data-hex-of="--t3"></code> · 8.3:1</span></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--light-bg);border:1px solid var(--light-border)"></div><div class="info"><b>Light BG (D2)</b><span><code data-hex-of="--light-bg"></code> · modo documento</span></div></div>
+    </div>
+    <p style="margin-top:16px;font-size:12px;color:var(--t3);">Contraste sobre <code data-hex-of="--bg"></code>. Ember sobre Deep Ink: 6.5:1. Texto sobre Ember: siempre <code>var(--bg)</code>, 12.2:1 — nunca blanco.</p>
+  </section>
+
+  <section>
+    <h2>02 — Escala tipográfica</h2>
+    <div class="type-row">
+      <span class="type-meta">Titular<br>Archivo 700 · -.035em</span>
+      <div style="font-family:var(--display);font-weight:700;font-size:40px;letter-spacing:-.035em;line-height:1.02;">Hagamos que pasen</div>
+    </div>
+    <div class="type-row">
+      <span class="type-meta">Titular de sección<br>Archivo 700</span>
+      <div style="font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-.035em;line-height:1.02;">Dirección estratégica</div>
+    </div>
+    <div class="type-row">
+      <span class="type-meta">Cuerpo<br>Plus Jakarta Sans 400</span>
+      <div style="font-weight:400;font-size:16px;color:var(--t2);line-height:1.6;">Texto de cuerpo en Plus Jakarta Sans 400.</div>
+    </div>
+    <div class="type-row">
+      <span class="type-meta">Label<br>DM Mono 500</span>
+      <div class="label-mono">Etiqueta de sección</div>
+    </div>
+    <div class="type-row">
+      <span class="type-meta">Tagline<br>DM Mono 500</span>
+      <div class="tagline-invite">Hagamos que las cosas pasen.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>03 — Isotipo, modos y lockups</h2>
+    <div class="lockups">
+      <div class="lockup">
+        <img src="assets/isotipo-dark.svg" width="40" height="40" alt="Isotipo dark">
+        <div class="lockup-divider"></div>
+        <div>
+          <div class="lockup-name">Diego Maury</div>
+          <div class="lockup-role">Strategic Program Director</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:13px;color:var(--t2);line-height:1.6;max-width:560px;">
+      El fondo determina la variante: oscuro → <code>isotipo-dark.svg</code>, claro → <code>isotipo-light.svg</code>.
+      Facetas Ember invariables en ambos modos. Nunca se deforma, rota ni lleva efectos.
+    </p>
+  </section>
+
+  <section>
+    <h2>04 — Reglas no negociables</h2>
+    <div class="rules">
+      <div class="rule"><b>1 · Ember estructural (D-A):</b> eyebrow/label de sección y CTA. Nunca en cifras, bullets, puntos ni titulares sueltos.</div>
+      <div class="rule"><b>2 · Sin efectos:</b> sin gradientes, drop shadows, blur, glow. Movimiento perpetuo decorativo prohibido.</div>
+      <div class="rule"><b>3 · Dark mode primario:</b> fondo <code data-hex-of="--bg"></code> por defecto.</div>
+      <div class="rule"><b>4 · DM Mono restringido:</b> solo eyebrows, fechas, labels y metadata. Nunca párrafos y nunca cifras — las cifras van en Plus Jakarta Sans 700 tabular a cualquier tamaño.</div>
+      <div class="rule"><b>5 · Estructura tinta + ember:</b> el violeta solo en fondos; texto/bordes en neutros y ember quemado.</div>
+      <div class="rule"><b>6 · Espacio generoso:</b> ante la duda, más espacio.</div>
+      <div class="rule"><b>7 · Autocontenido:</b> sin dependencias externas salvo Google Fonts.</div>
+      <div class="rule"><b>8 · Ember sobre claro (D3):</b> nunca aislado sobre blanco; siempre acompañado de tinta.</div>
+      <div class="rule"><b>9 · Logotipo (D5):</b> Plus Jakarta Sans 700 uppercase, +.04em, Off-White sobre oscuro.</div>
+      <div class="rule"><b>10 · Titulares (D-H):</b> Archivo 700 con <code>letter-spacing:-.035em</code> en toda la escala. El peso 300 de Plus Jakarta Sans deja de ser recurso de display. El 800 no existe.</div>
+      <div class="rule"><b>11 · Texto sobre Ember (D-P3):</b> siempre tinta <code data-hex-of="--bg"></code>, 12.2:1. Nunca blanco ni segundo naranja.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>05 — Excepciones vigentes</h2>
+    <table>
+      <thead><tr><th>Archivo / scope</th><th>Regla</th><th>Excepción</th></tr></thead>
+      <tbody>
+        <tr><td>assets/isotipo-light.svg</td><td>--border token</td><td><code>stroke:#2A1F3D</code> fijo en el hexágono — no sincronizar</td></tr>
+        <tr><td>archive/Firma de Correo v1.html</td><td>Sin hex crudos</td><td>Email no soporta variables CSS — valores sí se actualizan</td></tr>
+        <tr><td>Foto de perfil · nav · modal (sitio)</td><td>Sin efectos</td><td><code>mask-image</code> / <code>backdrop-filter</code> — funcionales, no decorativos</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+<script>
+  document.querySelectorAll('[data-hex-of]').forEach(function (el) {
+    var v = getComputedStyle(document.documentElement).getPropertyValue(el.getAttribute('data-hex-of')).trim();
+    el.textContent = v.toUpperCase();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- estado: canónico — 2026-09-14 -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consumer Example — Diego Maury Design System</title>
+<link rel="stylesheet" href="v2-tokens.css">
+<style>
+  body { padding: 48px 32px 72px; display: flex; flex-direction: column; gap: 32px; max-width: 640px; margin: 0 auto; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ember); color: var(--bg);
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 12px 24px; min-height: 44px; border: none; cursor: pointer;
+    transition: opacity 150ms;
+  }
+  .btn:hover { opacity: .88; }
+  .link {
+    color: var(--t2); font-family: var(--mono); font-size: 12px;
+    text-decoration: none; letter-spacing: .03em;
+  }
+  .link:hover { color: var(--ember); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bg-2); border: 1px solid var(--border);
+    color: var(--t3); font-family: var(--mono); font-size: 10px;
+    letter-spacing: .12em; text-transform: uppercase;
+    padding: 8px 12px; min-height: 44px; cursor: pointer;
+    transition: border-color 150ms, color 150ms;
+  }
+  .chip:hover { border-color: var(--ember); color: var(--ember); }
+  .card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .card h2 { font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; margin-bottom: 8px; }
+  .card p { color: var(--t2); font-size: 15px; line-height: 1.6; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--ember);
+  }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+  <p class="eyebrow">Consumer example</p>
+  <p style="color:var(--t2);font-size:15px;line-height:1.6;">
+    Este archivo no declara ningún <code>:root</code> propio — todo valor viene de
+    <code>v2-tokens.css</code> vía <code>&lt;link rel="stylesheet"&gt;</code>. Cambia un valor en
+    <code>v2-tokens.css</code> y este archivo se actualiza solo, sin tocar una sola línea aquí.
+  </p>
+
+  <div class="card">
+    <h2>Botón, link y chip</h2>
+    <p>Los tres estados interactivos llevan <code>:focus-visible</code> — pruébalo con Tab.</p>
+    <div class="row" style="margin-top:16px;">
+      <button class="btn">Agendar llamada</button>
+      <a class="link" href="#">diegomaury.mx</a>
+      <button class="chip">Filtro</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Texto sobre Ember (D-P3)</h2>
+    <p>El botón de arriba usa <code>color: var(--bg)</code> sobre <code>background: var(--ember)</code> —
+    tinta <code data-hex-of="--bg"></code>, contraste 12.2:1. Nunca blanco.</p>
+  </div>
+  <script>
+    document.querySelectorAll('[data-hex-of]').forEach(function (el) {
+      var v = getComputedStyle(document.documentElement).getPropertyValue(el.getAttribute('data-hex-of')).trim();
+      el.textContent = v.toUpperCase();
+    });
+  </script>
+</body>
+</html>
