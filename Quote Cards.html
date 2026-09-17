@@ -16,6 +16,7 @@
   --bg:    #0A0612; --bg-2: #1A1128; --border: #6A291B; --border-control: #B06A4E;
   --t1:    #FAF8FC; --t2: #DDDBE0; --t3: #A8A6AC;
   --ember: #FF5C39;
+  --ember-fill: rgba(255, 92, 57, .10); --ember-fill-strong: rgba(255, 92, 57, .16);
   --light-bg: #FAF8FC; --light-text-1: #0A0612; --light-text-2: #3D2A52; --light-border: #E4DAEE;
   --display: 'Archivo', system-ui, sans-serif;
   --sans:  'Plus Jakarta Sans', system-ui, sans-serif;
@@ -160,7 +161,7 @@ body {
   min-height: 44px; border-radius: 0; border: 1px solid var(--border-control);
   background: transparent; color: var(--t3); cursor: pointer; transition: color 120ms, border-color 120ms;
 }
-.s-btn.active, .s-btn:hover { border-color: var(--ember); color: var(--ember); background: rgba(255,92,57,.07); }
+.s-btn.active, .s-btn:hover { border-color: var(--ember); color: var(--ember); background: var(--ember-fill); }
 
 /* ──────────────────────────────────────────
    PANEL DE EDICIÓN
@@ -226,7 +227,7 @@ body {
   background: transparent;
 }
 .size-card:hover { border-color: var(--ember); }
-.size-card.active { border-color: var(--ember); background: rgba(255,92,57,.06); }
+.size-card.active { border-color: var(--ember); background: var(--ember-fill); }
 .size-thumb {
   flex-shrink: 0; border: 1px solid var(--border);
   border-radius: 0; background: var(--bg);
@@ -239,7 +240,7 @@ body {
   width: 60%; height: 60%; background: var(--border); border-radius: 0;
 }
 .size-card.active .size-thumb { border-color: var(--ember); }
-.size-card.active .size-thumb-inner { background: var(--ember); opacity: .35; }
+.size-card.active .size-thumb-inner { background: var(--ember-fill-strong); }
 .size-info { display: flex; flex-direction: column; gap: 2px; }
 .size-name { font-size: 16px; font-weight: 500; color: var(--t1); letter-spacing: .01em; }
 .size-dim  { font-family: var(--mono); font-size: 12px; color: var(--t3); letter-spacing: .06em; }
@@ -272,8 +273,8 @@ body {
   background: transparent; color: var(--t3); cursor: pointer; transition: color 120ms, border-color 120ms;
 }
 .ep-btn:hover { border-color: var(--ember); color: var(--t2); }
-.ep-btn.primary { border-color: var(--ember); color: var(--ember); background: rgba(255,92,57,.08); }
-.ep-btn.primary:hover { background: rgba(255,92,57,.16); }
+.ep-btn.primary { border-color: var(--ember); color: var(--ember); background: var(--ember-fill); }
+.ep-btn.primary:hover { background: var(--ember-fill-strong); }
 
 /* ── Focus visible (SC 2.4.7) ── */
 #prevBtn:focus-visible, #nextBtn:focus-visible,

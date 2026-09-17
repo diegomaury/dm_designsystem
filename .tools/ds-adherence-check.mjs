@@ -28,6 +28,7 @@ const CONTRACT_FONTS = ['archivo', 'plus jakarta sans', 'dm mono', 'system-ui', 
 const DEPRECATED_ALIASES = ['--bg-light', '--t1-light', '--t2-light', '--border-light'];
 const EMBER = /#ff5c39|var\(--ember\)|var\(--color-accent\)/i;
 const WHITE_INK = /#fff\b|#ffffff|#faf8fc|var\(--t1\)|var\(--color-text-primary\)/i;
+const RAW_COLOR = /#[0-9a-f]{3,8}\b|\b(?:rgba?|hsla?|oklch|color-mix)\s*\(/i;
 
 let exceptions = { files: [], rules: {} };
 try { exceptions = JSON.parse(await readFile(join(ROOT, '_adherence-exceptions.json'), 'utf8')); } catch {}
@@ -72,10 +73,10 @@ for (const [file, src] of sources) {
     const styleAttrMatch = raw.match(/style\s*=\s*"([^"]*)"/i) || raw.match(/style\s*=\s*'([^']*)'/i);
     const styleContent = inStyleTag ? raw : (styleAttrMatch ? styleAttrMatch[1] : null);
 
-    // R1 — hex crudo fuera del bloque :root sellado
-    if (!isTokenStore && styleContent != null && /#[0-9a-f]{3,8}\b/i.test(styleContent) && !/^\s*(\/\*|\*|<!--)/.test(raw)) {
+    // R1 — color crudo (hex o rgba/hsla/oklch/color-mix) fuera del bloque :root sellado
+    if (!isTokenStore && styleContent != null && RAW_COLOR.test(styleContent) && !/^\s*(\/\*|\*|<!--)/.test(raw)) {
       const inSealedRoot = inRoot && sealed;
-      if (!inSealedRoot) add('R1-hex-crudo', file, n, 'Hex literal fuera del bloque :root sellado — usar var(--token).');
+      if (!inSealedRoot) add('R1-hex-crudo', file, n, 'Color literal fuera del bloque :root sellado — usar var(--token).');
     }
 
     // R2 — familia tipográfica fuera del contrato

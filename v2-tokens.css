@@ -34,6 +34,17 @@
   --t3:     var(--color-text-tertiary);
   --ember:  var(--color-accent);
 
+  /* ── Relleno de estado · D-J 2026-09-16 ──────────────────────────────
+     Ember a opacidad declarada, para el fondo de un control activo. NO es
+     un segundo naranja (D-P3 habla de texto): es #FF5C39 a una opacidad
+     medida. Solo como relleno, nunca como color de texto ni de borde.
+     Texto Ember encima, compuesto sobre --bg:
+       --ember-fill        → 5.74:1
+       --ember-fill-strong → 5.50:1
+     Los dos pasan AA. Si el relleno se usa sobre --bg-2, medir de nuevo. */
+  --ember-fill:        rgba(255, 92, 57, .10);
+  --ember-fill-strong: rgba(255, 92, 57, .16);
+
   /* ── Borde de control (D-B · 2026-09-15) ──
      --border (#6A291B) da 1.86 a 1 sobre --bg y 1.34 a 1 sobre --bg-2, y no
      alcanza el 3 a 1 que necesita el contorno de un control interactivo.
@@ -102,6 +113,10 @@ body {
    entra un segundo color al sistema. */
 .border-control { border: 1px solid var(--border-control); }
 .border-control:hover { border-color: var(--ember); }
+
+/* ── Relleno de estado (D-J) ── */
+.ember-fill        { background: var(--ember-fill); }
+.ember-fill-strong { background: var(--ember-fill-strong); }
 
 /* ── Lockup base ── canónico: isotipo 32 · gap 8 · regla 1×30 ·
    nombre 14 / 700 / +.04em · rol itálica 8.5.
