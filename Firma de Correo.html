@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- estado: vigente — 2026-09-17 -->
+<!-- @dsCard group="Brand" name="Firma de Correo" subtitle="Firma de correo oscura/clara · v2.5 copiable" -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firma de Correo — Diego Maury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* snapshot v2.5 — 2026-09-17 · sincronizar contra v2-tokens.css */
+  --bg: #0A0612; --bg-2: #1A1128; --border: #6A291B; --border-control: #B06A4E;
+  --t1: #FAF8FC; --t2: #DDDBE0; --t3: #A8A6AC;
+  --ember: #FF5C39;
+  --light-bg: #FAF8FC; --light-text-1: #0A0612; --light-text-2: #3D2A52; --light-border: #E4DAEE;
+  --display: 'Archivo', system-ui, sans-serif;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* surface: document — la página de demo es UI de pantalla */
+body { background: var(--bg); font-family: var(--sans); color: var(--t1); padding: 48px 24px 72px; }
+.wrap { max-width: 900px; margin: 0 auto; }
+
+.page-head { text-align: center; margin-bottom: 32px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ember); margin-bottom: 12px; }
+.page-head h1 { font-family: var(--display); font-size: 38px; font-weight: 700; letter-spacing: -.035em; line-height: 1.02; margin-bottom: 8px; }
+.page-head p { font-size: 16px; color: var(--t2); line-height: 1.55; max-width: 560px; margin: 0 auto; }
+
+.toolbar { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+.seg { display: inline-flex; border: 1px solid var(--border-control); border-radius: 0; padding: 4px; gap: 4px; }
+.tb-btn {
+  font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  padding: 8px 16px; min-height: 44px; border-radius: 0; border: none; background: transparent;
+  color: var(--t3); cursor: pointer; transition: color 120ms, background 120ms;
+}
+.tb-btn.active { background: var(--ember); color: var(--bg); }
+.tb-btn:hover:not(.active) { color: var(--t1); }
+.tb-btn:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+
+.preview { background: var(--bg-2); border: 1px solid var(--border); border-radius: 0; overflow: hidden; margin-bottom: 12px; padding: 32px; }
+.preview.theme-light { background: var(--light-bg); border-color: var(--light-border); }
+
+.copy-btn {
+  background: transparent; border: 1px solid var(--border-control); color: var(--t1);
+  font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .12em;
+  padding: 12px 24px; cursor: pointer; min-height: 44px; white-space: nowrap; margin-bottom: 32px;
+}
+.copy-btn:hover { border-color: var(--ember); color: var(--ember); }
+.copy-status { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--ember); min-height: 24px; margin-bottom: 32px; }
+
+.note { border: 1px solid var(--border); padding: 32px; margin-top: 16px; }
+.note .label { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--t2); margin-bottom: 12px; }
+.note p { max-width: 64ch; font-size: 16px; line-height: 1.6; color: var(--t3); margin-bottom: 12px; }
+.note p:last-child { margin-bottom: 0; }
+.note code { font-family: var(--mono); font-size: 12px; color: var(--t2); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">Aplicación de marca · Correo</div>
+    <h1>Firma de Correo</h1>
+    <p>Lockup para Gmail/Outlook en oscuro y claro. Isotipo a 80px, a la altura del bloque completo de nombre/rol/contacto (proporción pedida por Diego, referencia Zoho), regla 1×80 centrada, nombre 14/700/+.04em, resto a 11px mono en la escala <code style="font-family:var(--mono);font-size:12px;color:var(--t2)">.surface-signature</code>. Espacio en base 4.</p>
+  </div>
+
+  <!-- surface: signature -->
+  <!-- FIRMA OSCURA -->
+  <div class="preview">
+    <table id="firma-dark" class="surface-signature" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:'Plus Jakarta Sans',system-ui,sans-serif;">
+      <tbody>
+        <tr>
+          <td valign="middle" style="padding:0 16px 0 0;"><img src="https://cdn.jsdelivr.net/gh/diegomaury/dm_designsystem@main/assets/logo-pack/png/isotipo-dark-600px.png" width="80" height="80" alt="Diego Maury" style="display:block;"></td>
+          <td valign="middle" style="padding:0 16px 0 0;"><div style="width:1px;height:80px;background:#6A291B;"></div></td>
+          <td valign="top" style="padding:0;">
+            <div style="font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#FAF8FC;padding-bottom:4px;">Diego Maury</div>
+            <div style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#DDDBE0;padding-bottom:12px;">Strategic Program Director</div>
+            <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;color:#A8A6AC;line-height:1.6;">
+              <a href="mailto:dm@diegomaury.mx" style="color:#A8A6AC;text-decoration:none;">dm@diegomaury.mx</a><br>
+              <a href="https://diegomaury.mx" style="color:#DDDBE0;text-decoration:none;">diegomaury.mx</a> · <a href="https://www.linkedin.com/in/diegomaury/" style="color:#DDDBE0;text-decoration:none;">LinkedIn</a> · <a href="https://diegomaury.substack.com" style="color:#DDDBE0;text-decoration:none;">Substack</a>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#FF5C39;padding-top:12px;">Hagamos que las cosas pasen</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="copy-btn" id="copyDarkBtn">Copiar firma oscura</button>
+
+  <!-- FIRMA CLARA -->
+  <div class="preview theme-light">
+    <table id="firma-light" class="surface-signature" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:'Plus Jakarta Sans',system-ui,sans-serif;">
+      <tbody>
+        <tr>
+          <td valign="middle" style="padding:0 16px 0 0;"><img src="https://cdn.jsdelivr.net/gh/diegomaury/dm_designsystem@main/assets/logo-pack/png/isotipo-light-600px.png" width="80" height="80" alt="Diego Maury" style="display:block;"></td>
+          <td valign="middle" style="padding:0 16px 0 0;"><div style="width:1px;height:80px;background:#E4DAEE;"></div></td>
+          <td valign="top" style="padding:0;">
+            <div style="font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#0A0612;padding-bottom:4px;">Diego Maury</div>
+            <div style="font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#3D2A52;padding-bottom:12px;">Strategic Program Director</div>
+            <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;color:#3D2A52;line-height:1.6;">
+              <a href="mailto:dm@diegomaury.mx" style="color:#3D2A52;text-decoration:none;">dm@diegomaury.mx</a><br>
+              <a href="https://diegomaury.mx" style="color:#0A0612;text-decoration:none;">diegomaury.mx</a> · <a href="https://www.linkedin.com/in/diegomaury/" style="color:#0A0612;text-decoration:none;">LinkedIn</a> · <a href="https://diegomaury.substack.com" style="color:#0A0612;text-decoration:none;">Substack</a>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#FF5C39;padding-top:12px;">Hagamos que las cosas pasen</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="copy-btn" id="copyLightBtn">Copiar firma clara</button>
+
+  <!-- surface: document -->
+  <div class="copy-status" id="copyStatus"></div>
+
+  <div class="note">
+    <div class="label">Nota de contrato</div>
+    <p>Las dos tablas llevan <code>class="surface-signature"</code> y valores literales, no <code>var()</code>: los clientes de correo no resuelven variables CSS. Es la misma excepción de R1 ya registrada en <code>_adherence-exceptions.json</code> para el hex crudo de esta superficie.</p>
+    <p>Contenido alineado a la firma vigente en Zoho Mail: sin teléfono, enlaces a diegomaury.mx · LinkedIn · Substack en una sola línea, y el cierre "Hagamos que las cosas pasen" como único acento Ember — sin la barra degradada morado→azul→ember de la versión de Zoho, que viola la regla de un solo acento vivo sin gradientes.</p>
+    <p>El isotipo apunta a un PNG público en <code>cdn.jsdelivr.net</code> (no a <code>assets/isotipo-*.svg</code> local): al copiar/pegar la tabla en Zoho, una ruta relativa a un archivo del repo no resuelve — el cliente de correo no tiene acceso al sistema de archivos local. PNG en vez de SVG porque el soporte de SVG en clientes de correo (Outlook en particular) es pobre o nulo.</p>
+  </div>
+</div>
+
+<script>
+  function copyTable(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const range = document.createRange();
+    range.selectNode(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    sel.removeAllRanges();
+    document.getElementById('copyStatus').textContent = ok
+      ? 'Copiada — pégala en tu cliente de correo'
+      : 'No se pudo copiar aquí; ábrela en una pestaña';
+  }
+  document.getElementById('copyDarkBtn').addEventListener('click', () => copyTable('firma-dark'));
+  document.getElementById('copyLightBtn').addEventListener('click', () => copyTable('firma-light'));
+</script>
+</body>
+</html>

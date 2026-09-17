@@ -41,6 +41,8 @@ Excepciones aprobadas viven en `_adherence-exceptions.json` (por archivo o por r
 
 `ds-dimension-check.mjs` mapea cada archivo a una escala tipográfica cerrada (`SURFACE_MAP` → `TYPE_SCALES`): `deck`, `social`, `poster`, `signature`, `document`, `docs`. Una pieza nueva debe declarar su superficie (clase `surface-*` o entrada en `SURFACE_MAP` si el linter necesita reconocerla) y usar solo los tamaños de esa escala — no valores arbitrarios. El espaciado sigue la escala base 4 en `SPACE` (0–288, paso 32 arriba de 128).
 
+Un archivo puede mezclar superficies (una página-demo `document` que envuelve una pieza copiable `signature`, p.ej. `Firma de Correo.html`). Desde 2026-09-17 el linter lee comentarios `/* surface: X */` (en CSS) o `<!-- surface: X -->` (en HTML) para aplicar la escala correcta por región en vez de por archivo completo — el marcador rige desde su posición hasta el siguiente marcador o el fin del archivo, así que un archivo con más de un tramo de superficie necesita un marcador de **entrada y de salida** (ver `Deck.html`, donde el bloque `.chrome` marca `surface: document` y el cierre del `<style>` marca `surface: deck` de vuelta) — olvidar el de salida deja el resto del archivo mal clasificado.
+
 ### Regla de negocio central del sistema visual
 
 Un solo acento vivo (Ember `#FF5C39`) en todo el sistema, reservado a señalización estructural (eyebrow/label + CTA) — nunca en cifras, bullets, iconos o texto suelto de titular. El resto de las reglas no negociables (dark-mode primario, sin efectos/gradientes/glow, DM Mono restringido a metadata, Archivo 700 para titulares con tracking `-0.035em`, contraste AA en cualquier combinación texto/fondo, `--border-control` en vez de `--border` para contornos de elementos accionables) están detalladas en `README.md` § "Reglas de diseño no negociables" y son lo que R0–R15 verifican mecánicamente. Léelas ahí antes de crear una pieza nueva; no se repiten aquí porque el linter y el README ya son la fuente viva.
@@ -54,6 +56,10 @@ Este repo alimenta un bundle `_ds/…` que los Design Components del proyecto de
 ### Consumidores externos
 
 `diegomaury-mx/newlandingpage` vendorea una copia de los tokens en `src/styles/vendor/ds-v2-tokens.css`, con una guardia de deriva (`ds-tokens-drift.test.ts`) en ese repo. Un cambio de token aquí requiere regenerar esa copia y correr el `grep` sobre ambos repos (este y la copia) antes de cerrar cualquier cambio de tokens — no hay referencia directa entre los dos.
+
+### Piezas para copiar/pegar fuera del repo (firmas de correo, etc.)
+
+Una pieza pensada para seleccionarse y pegarse en un destino externo (cliente de correo, editor de terceros) nunca puede referenciar una imagen por ruta relativa al repo (`assets/isotipo-dark.svg`): el destino no tiene acceso al sistema de archivos local y la imagen sale rota, aunque se vea bien en la vista previa del navegador. Usar una URL pública absoluta (este repo es público en GitHub: `https://cdn.jsdelivr.net/gh/diegomaury/dm_designsystem@main/<ruta>`) y PNG en vez de SVG — el soporte de SVG en clientes de correo como Outlook es pobre o nulo. `Firma de Correo.html` referencia así `assets/logo-pack/png/isotipo-{dark,light}-600px.png`.
 
 ## Regla del logotipo (obligatoria)
 
