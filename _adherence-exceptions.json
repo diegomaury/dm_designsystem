@@ -3,7 +3,8 @@
   "files": [],
   "rules": {
     "R1-hex-crudo": [
-      "archive/Firma de Correo v1.html"
+      "archive/Firma de Correo v1.html",
+      "Quote Cards.html"
     ],
     "R5-efectos": [],
     "R7-token-sin-consumidor": [
@@ -13,6 +14,10 @@
   "notes": {
     "R7-token-sin-consumidor": {
       "v2-tokens.css": "--light-accent reservado sin consumidor — aprobado 2026-09-11. D2 documenta la paleta clara como bloque completo y D-E (Fase 2) planea migrar superficies de lectura a modo claro; borrarlo hoy y reponerlo en semanas es peor que declararlo reservado. Revisar al cerrar D-E: si sigue sin consumidor, se retira."
+    },
+    "R1-hex-crudo": {
+      "archive/Firma de Correo v1.html": "Aplica al canónico de Claude Design, no a este repo: archive/ no se versiona aquí y el script salta ese directorio. Se conserva para que la razón (los clientes de email no soportan variables CSS) no se pierda al sincronizar. Sin efecto en las corridas de este repo.",
+      "Quote Cards.html": "Aprobada 2026-09-16 (D-J). Los 5 rgba(42,31,61,.NN) de las reglas .s-light (contador, atribución, URL, tag del lockup) son tinta clara (#2A1F3D) a distintas opacidades, preexistentes a D-J — no son ember y no usan --ember-fill/--ember-fill-strong. Nunca los detectó el chequeo viejo (solo cazaba #hex); al ampliar R1 a rgba()/hsla()/oklch()/color-mix() para atrapar el propio caso de D-J, salieron a la luz como efecto colateral. Deuda preexistente sin tokenizar, fuera del alcance de D-J — no se crean tokens --ink-light-* nuevos aquí. Revisar si se tokeniza en una pieza futura que toque el modo claro de este archivo."
     }
   }
 }

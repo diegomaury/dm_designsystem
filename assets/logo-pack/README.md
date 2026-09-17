@@ -20,6 +20,8 @@ Todos los PNG llevan aire uniforme en los cuatro lados.
 
 Usa estos PNG en cualquier aplicación (LinkedIn, Facebook, Substack, firma de correo, decks).
 
+**Nota (2026-09-16):** `isotipo-ember-*` es el mismo render que `isotipo-dark-*` — no es un error de exportación. `assets/isotipo-dark.svg` y `assets/isotipo-final-ember.svg` son la misma pieza (hexágono Off-White + facetas Ember), así que su PNG es byte-idéntico. Se conservan los dos nombres para no romper enlaces externos al pack. Si algún día el pack quiere un solo nombre, es decisión del pack, no del contrato.
+
 ## svg/ — vectores editables
 Los lockups con texto usan `Plus Jakarta Sans` y `DM Mono` como texto vivo:
 requieren las fuentes instaladas o convertir a curvas en Illustrator/Figma antes de
