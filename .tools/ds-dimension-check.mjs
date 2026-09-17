@@ -90,6 +90,31 @@ function cssRegions(src) {
 
 const lineOf = (src, i) => src.slice(0, i).split('\n').length;
 
+// Un archivo puede mezclar superficies (una página-demo en 'document' que
+// envuelve una pieza copiable en 'signature', p.ej. Footer.html o Firma de
+// Correo.html). Un comentario `/* surface: X */` (dentro de un bloque
+// <style>) o `<!-- surface: X -->` (en el HTML, antes de un bloque de
+// atributos style="...") marca el punto a partir del cual esa superficie
+// aplica, hasta el siguiente marcador o el fin del archivo. Sin marcador,
+// rige la superficie de SURFACE_MAP para todo el archivo — comportamiento
+// idéntico al de antes de que existiera este mecanismo.
+function surfaceMarkers(src) {
+  const marks = [];
+  for (const m of src.matchAll(/\/\*\s*surface:\s*(\w+)/gi)) marks.push({ offset: m.index, surface: m[1] });
+  for (const m of src.matchAll(/<!--\s*surface:\s*(\w+)/gi)) marks.push({ offset: m.index, surface: m[1] });
+  marks.sort((a, b) => a.offset - b.offset);
+  return marks;
+}
+
+function surfaceAt(marks, offset, fallback) {
+  let current = fallback;
+  for (const mark of marks) {
+    if (mark.offset > offset) break;
+    if (TYPE_SCALES[mark.surface]) current = mark.surface;
+  }
+  return current;
+}
+
 // El lockup no obedece la escala tipográfica: sus cuerpos son razones de X
 // y caen en valores fraccionarios. Una declaración marcada como lockup
 // queda excusada de R8.
@@ -116,11 +141,10 @@ function blockAround(text, i) {
 }
 
 export function checkDimensions(file, src) {
-  const surface = SURFACE_MAP[file.split('/').pop()] ?? 'document';
-  const scale = TYPE_SCALES[surface];
-  const fluidOk = FLUID_OK.has(surface);
+  const fileDefault = SURFACE_MAP[file.split('/').pop()] ?? 'document';
+  const marks = surfaceMarkers(src);
   const found = [];
-  const add = (rule, line, detail) =>
+  const add = (rule, line, detail, surface) =>
     found.push({ file, line, rule, detail, surface });
 
   for (const region of cssRegions(src)) {
@@ -128,32 +152,39 @@ export function checkDimensions(file, src) {
 
     for (const m of text.matchAll(/font-size:\s*([^;"}]+)/g)) {
       const val = m[1].trim();
-      const line = lineOf(src, offset + m.index);
+      const abs = offset + m.index;
+      const line = lineOf(src, abs);
+      const surface = surfaceAt(marks, abs, fileDefault);
+      const scale = TYPE_SCALES[surface];
+      const fluidOk = FLUID_OK.has(surface);
       const clamp = val.match(/clamp\(\s*([\d.]+)px[^,]*,[^,]+,\s*([\d.]+)px\s*\)/);
       if (clamp) {
-        if (!fluidOk) { add('R11', line, `font-size: ${val}`); continue; }
+        if (!fluidOk) { add('R11', line, `font-size: ${val}`, surface); continue; }
         for (const end of [clamp[1], clamp[2]]) {
-          if (!scale.includes(parseFloat(end))) add('R12', line, `${end}px no está en la escala ${surface}`);
+          if (!scale.includes(parseFloat(end))) add('R12', line, `${end}px no está en la escala ${surface}`, surface);
         }
         continue;
       }
       const px = val.match(/^([\d.]+)px$/);
       if (px && !scale.includes(parseFloat(px[1])) && !isLockup(region)
           && !isWordmark(blockAround(text, m.index))) {
-        add('R8', line, `${px[1]}px no está en la escala ${surface}`);
+        add('R8', line, `${px[1]}px no está en la escala ${surface}`, surface);
       }
     }
 
     for (const m of text.matchAll(/([a-z-]+)\s*:\s*([^;"}]+)/g)) {
       const prop = m[1], val = m[2].trim();
-      const line = lineOf(src, offset + m.index);
+      const abs = offset + m.index;
+      const line = lineOf(src, abs);
+      const surface = surfaceAt(marks, abs, fileDefault);
+      const fluidOk = FLUID_OK.has(surface);
 
       if (SPACE_PROPS.test(prop)) {
         if (/clamp\(/.test(val)) {
-          if (!fluidOk) { add('R11', line, `${prop}: ${val}`); continue; }
+          if (!fluidOk) { add('R11', line, `${prop}: ${val}`, surface); continue; }
           for (const c of val.matchAll(/clamp\(\s*([\d.]+)px[^,]*,[^,]+,\s*([\d.]+)px\s*\)/g)) {
             for (const end of [c[1], c[2]]) {
-              if (!SPACE.includes(parseFloat(end))) add('R12', line, `${end}px fuera de base 4`);
+              if (!SPACE.includes(parseFloat(end))) add('R12', line, `${end}px fuera de base 4`, surface);
             }
           }
           continue;
@@ -161,22 +192,22 @@ export function checkDimensions(file, src) {
         if (/calc\(|auto|%|em\b/.test(val)) continue;
         if (isLockup(region)) continue;
         for (const p of val.matchAll(/([\d.]+)px/g)) {
-          if (!SPACE.includes(parseFloat(p[1]))) add('R9', line, `${prop}: ${p[1]}px`);
+          if (!SPACE.includes(parseFloat(p[1]))) add('R9', line, `${prop}: ${p[1]}px`, surface);
         }
       }
 
       if (prop === 'border-radius' && !/^0(px)?$/.test(val)) {
-        add('R10', line, `border-radius: ${val}`);
+        add('R10', line, `border-radius: ${val}`, surface);
       }
 
       if (prop === 'font-weight') {
         const w = parseInt(val, 10);
-        if (!Number.isNaN(w) && !WEIGHTS.has(w)) add('R13', line, `font-weight: ${val}`);
+        if (!Number.isNaN(w) && !WEIGHTS.has(w)) add('R13', line, `font-weight: ${val}`, surface);
       }
 
       if (/^(border|border-top|border-bottom|border-left|border-right)$/.test(prop)) {
         const w = val.match(/([\d.]+)px/);
-        if (w && !RULES_OK.has(parseFloat(w[1]))) add('R14', line, `${prop}: ${w[1]}px`);
+        if (w && !RULES_OK.has(parseFloat(w[1]))) add('R14', line, `${prop}: ${w[1]}px`, surface);
       }
 
       if (prop === 'font-size' && !isLockup(region)) {
@@ -185,7 +216,7 @@ export function checkDimensions(file, src) {
         if (px && heads.includes(parseFloat(px[1]))) {
           const block = blockAround(text, m.index);
           if (!DISPLAY_FAMILY.test(block)) {
-            add('R15', line, `${px[1]}px es cuerpo de titular y no declara Archivo`);
+            add('R15', line, `${px[1]}px es cuerpo de titular y no declara Archivo`, surface);
           }
         }
       }
@@ -193,7 +224,7 @@ export function checkDimensions(file, src) {
       if (/^(min-height|height)$/.test(prop)) {
         const px = val.match(/^([\d.]+)px$/);
         if (px && parseFloat(px[1]) < 44 && INTERACTIVE.test(blockAround(text, m.index))) {
-          add('R14', line, `área táctil ${px[1]}px < 44px`);
+          add('R14', line, `área táctil ${px[1]}px < 44px`, surface);
         }
       }
     }
